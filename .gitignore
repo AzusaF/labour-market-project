@@ -1,0 +1,5 @@
+# Raw source data
+data/raw/*
+
+# Local DuckDB database
+*.duckdb
