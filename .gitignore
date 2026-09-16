@@ -3,3 +3,6 @@ data/raw/*
 
 # Local DuckDB database
 *.duckdb
+
+# Mac setting
+*.DS_Store
