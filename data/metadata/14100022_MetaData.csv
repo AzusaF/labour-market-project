@@ -1,0 +1,111 @@
+﻿"Cube Title","Product Id","CANSIM Id",URL,"Cube Notes","Archive Status",Frequency,"Start Reference Period","End Reference Period","Total number of dimensions"
+"Labour force characteristics by industry, monthly, unadjusted for seasonality","14100022","282-0007","https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410002201",11;22,"CURRENT - a cube available to the public and that is current","Monthly","1976-01-01","2026-08-01","5",
+
+"Dimension ID","Dimension name","Dimension Notes","Dimension Definitions"
+"1","Geography",21,""
+"2","Labour force characteristics",,""
+"3","North American Industry Classification System (NAICS)",7,""
+"4","Gender",23;24,""
+"5","Age group",,""
+
+"Dimension ID","Member Name","Classification Code","Member ID","Parent Member ID",Terminated,"Member Notes","Member Definitions"
+"1","Canada","[11124]","1","","",,
+"1","Newfoundland and Labrador","[10]","2","1","",,
+"1","Prince Edward Island","[11]","3","1","",,
+"1","Nova Scotia","[12]","4","1","",,
+"1","New Brunswick","[13]","5","1","",,
+"1","Quebec","[24]","6","1","",,
+"1","Ontario","[35]","7","1","",,
+"1","Manitoba","[46]","8","1","",,
+"1","Saskatchewan","[47]","9","1","",,
+"1","Alberta","[48]","10","1","",,
+"1","British Columbia","[59]","11","1","",,
+"2","Labour force","","1","","",1,
+"2","Employment","","2","1","",2,
+"2","Full-time employment","","3","2","",3,
+"2","Part-time employment","","4","2","",4,
+"2","Unemployment","","5","1","",5,
+"2","Unemployment rate","","6","","",6,
+"3","Total, all industries","","1","","",14,
+"3","Goods-producing sector","","2","1","",15,
+"3","Agriculture","[111-112, 1100, 1151-1152]","3","2","",17,
+"3","Forestry, fishing, mining, quarrying, oil and gas","[21, 113-114, 1153, 2100]","4","2","",18;19,
+"3","Forestry and logging and support activities for forestry","[113, 1153]","5","4","",,
+"3","Fishing, hunting and trapping","[114]","6","4","",,
+"3","Mining, quarrying, and oil and gas extraction","[21, 2100]","7","4","",18,
+"3","Utilities","[22]","8","2","",,
+"3","Construction","[23]","9","2","",,
+"3","Manufacturing","[31-33]","10","2","",,
+"3","Durables","[321, 327, 331-339]","11","10","",,
+"3","Non-durables","[311-316, 322-326]","12","10","",,
+"3","Services-producing sector","","13","1","",16,
+"3","Wholesale and retail trade","[41, 44-45]","14","13","",,
+"3","Wholesale trade","[41]","15","14","",,
+"3","Retail trade","[44-45]","16","14","",,
+"3","Transportation and warehousing","[48-49]","17","13","",,
+"3","Finance, insurance, real estate, rental and leasing","[52, 53]","18","13","",,
+"3","Finance and insurance","[52]","19","18","",,
+"3","Real estate and rental and leasing","[53]","20","18","",,
+"3","Professional, scientific and technical services","[54]","21","13","",,
+"3","Business, building and other support services","[55, 56]","22","13","",12,
+"3","Educational services","[61]","23","13","",,
+"3","Health care and social assistance","[62]","24","13","",,
+"3","Information, culture and recreation","[51, 71]","25","13","",,
+"3","Accommodation and food services","[72]","26","13","",,
+"3","Other services (except public administration)","[81]","27","13","",,
+"3","Public administration","[91]","28","13","",,
+"3","Unclassified industries","","29","","",20,
+"4","Total - Gender","","1","","",,
+"4","Men+","","2","1","",,
+"4","Women+","","3","1","",,
+"5","15 years and over","","1","","",,
+"5","15 to 24 years","","2","","",,
+"5","25 to 54 years","","3","","",,
+"5","55 years and over","","4","","",,
+
+Symbol Legend
+Description,Symbol
+"not available for a specific reference period","..",
+"less than the limit of detection","<LOD",
+"value rounded to 0 (zero) where there is a meaningful distinction between true zero and the value that was rounded","0s",
+"data quality: excellent","A",
+"data quality: very good","B",
+"data quality: good","C",
+"data quality: acceptable","D",
+"use with caution","E",
+"too unreliable to be published","F",
+"not applicable","...",
+"preliminary","p",
+"revised","r",
+"suppressed to meet the confidentiality requirements of the Statistics Act","x",
+"terminated","t",
+
+"Survey Code","Survey Name"
+"3701","Labour Force Survey"
+
+"Subject Code","Subject Name"
+"14","Labour"
+
+"Note ID",Note
+1,"Number of civilian, non-institutionalized persons 15 years of age and over who, during the reference week, were employed or unemployed. Estimates in thousands, rounded to the nearest hundred."
+2,"Number of persons who, during the reference week, worked for pay or profit, or performed unpaid family work or had a job but were not at work due to own illness or disability, personal or family responsibilities, labour dispute, vacation, or other reason. Those persons on layoff and persons without work but who had a job to start at a definite date in the future are not considered employed. Estimates in thousands, rounded to the nearest hundred."
+3,"Full-time employment consists of persons who usually work 30 hours or more per week at their main or only job. Estimates in thousands, rounded to the nearest hundred."
+4,"Part-time employment consists of persons who usually work less than 30 hours per week at their main or only job. Estimates in thousands, rounded to the nearest hundred."
+5,"Number of persons who, during the reference week, were without work, had looked for work in the past four weeks, and were available for work. Those persons on layoff or who had a new job to start in four weeks or less are considered unemployed. Estimates in thousands, rounded to the nearest hundred."
+6,"The unemployment rate is the number of unemployed persons expressed as a percentage of the labour force. The unemployment rate for a particular group (age, gender, marital status, etcetera) is the number unemployed in that group expressed as a percentage of the labour force for that group. Estimates are percentages, rounded to the nearest tenth."
+7,"Industry refers to the general nature of the business carried out by the employer for whom the respondent works (main job only). Industry estimates in this table are based on the 2022 North American Industry Classification System (NAICS)."
+11,"To ensure respondent confidentiality, estimates below a certain threshold are suppressed. For Canada, Quebec, Ontario, Alberta and British Columbia suppression is applied to all data below 1,500. The threshold level for Newfoundland and Labrador, Nova Scotia, New Brunswick, Manitoba and Saskatchewan is 500, while in Prince Edward Island, estimates under 200 are suppressed. For census metropolitan areas (CMAs) and economic regions (ERs), use their respective provincial suppression levels mentioned above. Estimates are based on smaller sample sizes the more detailed the table becomes, which could result in lower data quality."
+12,"Formerly "Management of companies and administrative and other support services"."
+14,"This combines the North American Industry Classification System (NAICS) codes 11 to 91."
+15,"This combines the North American Industry Classification System (NAICS) codes 11 to 33."
+16,"This combines the North American Industry Classification System (NAICS) codes 41 to 91."
+17,"Labour Force Survey (LFS) North American Industry Classification System (NAICS) code exception: add group 1100 - Farming - not elsewhere classified (nec). When the type of farm activity cannot be distinguished between crop and livestock, (example: mixed farming)."
+18,"Labour Force Survey (LFS) North American Industry Classification System (NAICS) code exception: add group 2100 - Mining - not elsewhere classified (nec). Whenever the type of mining activity cannot be distinguished."
+19,"Also referred to as Natural resources."
+20,"Unemployed persons who have never worked before, and those unemployed persons who last worked more than 1 year ago."
+21,"Excluding the territories."
+22,"Starting in 2006, enhancements to the Labour Force Survey data processing system may have introduced a level shift in some estimates, particularly for less common labour force characteristics. Use caution when comparing estimates before and after 2006. For more information, contact statcan.labour-travail.statcan@statcan.gc.ca"
+23,"Gender refers to an individual's personal and social identity as a man, woman or non-binary person (a person who is not exclusively a man or a woman). Some people may not identify with a specific gender and a person's gender may change over time. Gender includes the following concepts: gender identity, which refers to the gender that a person feels internally and individually; gender expression, which refers to the way a person presents their gender, regardless of their gender identity, through body language, aesthetic choices or accessories (for example, clothes, hairstyle and makeup), which may have traditionally been associated with a specific gender. A person's gender may differ from their sex at birth, and from what is indicated on their current identification or legal documents such as their birth certificate, passport or driver's license. LFS started collecting gender of person in 2022. Prior to 2022, LFS only collected information on sex of person (male or female), as declared by the respondent or recorded by the interviewer. The sex variable prior to 2022 and the two-category gender variable since 2022 are combined in this table. Although sex and gender refer to two different concepts, the introduction of gender is not expected to have a significant impact on data analysis and historical comparability, given the small size of the transgender and non-binary populations."
+24,"Given that the non-binary population is small, data aggregation to a two-category gender variable is necessary to protect the confidentiality of responses provided. Individuals in the category "non-binary persons" are distributed into the other two gender categories and are denoted by the "+" symbol. The category "Men+" includes men, as well as some non-binary persons, while the category "Women+" includes women, as well as some non-binary persons."
+
+"Correction ID","Correction Date","Correction Note"
