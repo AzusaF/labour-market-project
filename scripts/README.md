@@ -6,7 +6,7 @@ The scripts follow a sequential workflow:
 
 ### 01 — Metadata Inspection
 
-**Script:** `01_inspect_metadata.py`
+**Script:** `01_metadata.py`
 
 Inspects the files in the raw data directory and reports basic file metadata, such as:
 
@@ -17,6 +17,8 @@ Inspects the files in the raw data directory and reports basic file metadata, su
 ---
 
 ### 02 — Data Inspection
+
+**Script:** `02_inspect.py`
 
 Examines the structure of the source CSV files, including:
 
@@ -30,9 +32,9 @@ Large files are inspected without loading the entire file into memory.
 
 ---
 
-### 03 — Exploratory Data Analysis
+### 03 — Prepare Data
 
-Script: 03_eda.py
+**Script:** `03_prepare.py`
 
 Provides an interactive overview of available CSV files. When multiple files are found, the user can select one to analyze:
 
@@ -54,6 +56,6 @@ Scripts are run from the project root directory.
 
 For example:
 
-**Script:** `python scripts/01_inspect_metadata.py`
+**Script:** `python scripts/01_metadata.py`
 
 As the data pipeline develops, additional scripts will be documented here in numerical order.
