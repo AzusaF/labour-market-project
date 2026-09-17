@@ -2,108 +2,42 @@
 
 This directory contains the source and processed datasets used in the project.
 
-## Data Sources
+## Raw Data
 
-The raw datasets are sourced from **Statistics Canada**.
+The raw datasets are sourced from Statistics Canada.
+The original CSV files are not included in the repository because of their size.
 
-Because the original CSV files are large, they are not included in this repository. Source information and download details are documented below so that the datasets can be retrieved and the analysis can be reproduced.
+### `14100022.csv`
 
----
+Source: Statistics Canada
+Table: Labour force characteristics by industry, monthly, unadjusted for seasonality
+Table number: 14-10-0022-01
+Source URL: https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410002201
+Frequency: Monthly
 
-## Dataset 1 — dataset1.csv
+### `14100063.csv`
 
-**Purpose:**
-What this dataset measures and how it is used in the project.
+Source: Statistics Canada
+Table: Employee wages by industry, monthly, unadjusted for seasonality
+Table number: 14-10-0063-01
+Source URL: https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410006301
+Frequency: Monthly
 
-- **Source:** Statistics Canada
-- **Table title:**
-- **Product ID / Table number:**
-- **Source URL:**
-- **Original file name:** `.csv`
-- **Download date:** 2026-09-15
-- **Reference period:** YYYY-MM to YYYY-MM
-- **Geographic coverage:**
-- **Frequency:**
-- **Key dimensions:**
-- **Approximate file size:**
+### `14100372.csv`
 
-### Role in the Analysis
+Source: Statistics Canada
+Table: Job vacancies, payroll employees, and job vacancy rate by industry sector, monthly, unadjusted for seasonality
+Table number: 14-10-0372-01
+Source URL: https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410037201
+Frequency: Monthly
 
-What this dataset contributes to the project.
+## Processed Data
 
----
-
-## Dataset 2 — dataset2.csv
-
-**Purpose:**
-Brief description.
-
-- **Source:** Statistics Canada
-- **Table title:**
-- **Product ID / Table number:**
-- **Source URL:**
-- **Original file name:** `.csv`
-- **Download date:** 2026-09-15
-- **Reference period:** YYYY-MM to YYYY-MM
-- **Geographic coverage:**
-- **Frequency:**
-- **Key dimensions:**
-- **Approximate file size:**
-
-### Role in the Analysis
-
-What this dataset contributes to the project.
-
----
-
-## Dataset 3 — dataset3.csv
-
-**Purpose:**
-Brief description.
-
-- **Source:** Statistics Canada
-- **Table title:**
-- **Product ID / Table number:**
-- **Source URL:**
-- **Original file name:** `.csv`
-- **Download date:** 2026-09-15
-- **Reference period:** YYYY-MM to YYYY-MM
-- **Geographic coverage:**
-- **Frequency:**
-- **Key dimensions:**
-- **Approximate file size:**
-
-### Role in the Analysis
-
-What this dataset contributes to the project.
-
----
+The `processed/` directory contains datasets generated from the raw data for analysis.
 
 ## Directory Structure
 
-```text
 data/
 ├── README.md
-├── raw/          # Original source files; not included in Git
-└── processed/    # Analysis-ready datasets generated during the project
-```
-
-### Raw Data
-
-The `raw/` directory is used for the original downloaded CSV files.
-
-These files are excluded from Git because of their size and can be retrieved from the Statistics Canada sources documented above.
-
-### Processed Data
-
-The `processed/` directory contains datasets generated from the raw data during the analysis workflow.
-
-The specific transformations and SQL used to create these datasets are documented in the project's SQL scripts.
-
----
-
-## Notes
-
-- Data definitions and classifications follow the documentation provided by Statistics Canada.
-- important limitation, classification difference, missing-data issue, or other data-quality
-- note about differences in reference periods or dimensions across datasets
+├── raw/ # Original source files; not included in Git
+└── processed/ # Analysis-ready datasets
