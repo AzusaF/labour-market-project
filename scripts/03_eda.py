@@ -72,6 +72,25 @@ def inspect_categories(df):
     ).size()
   )
 
+
+def inspect_date_range(df):
+  """
+  Display the date range and number of periods.
+  """
+  print("\n[REF_DATE]")
+  print(f"Number of periods: {df['REF_DATE'].nunique()}")
+  print(f"First period: {df['REF_DATE'].min()}")
+  print(f"Last period: {df['REF_DATE'].max()}")
+
+
+def inspect_status(df):
+  """
+  Display the distribution of STATUS values.
+  """
+  print("\n[STATUS]")
+  print(df["STATUS"].value_counts(dropna=False))
+
+
 def inspect_numeric_statistics(df):
   """
   Display descriptive statistics for numeric columns.
@@ -88,6 +107,8 @@ def main():
   inspect_missing_value_status(df)
   inspect_unique_values(df)
   inspect_categories(df)
+  inspect_date_range(df)
+  inspect_status(df)
   inspect_numeric_statistics(df)
 
 
