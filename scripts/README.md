@@ -1,6 +1,6 @@
 # Scripts
 
-This directory contains Python scripts for inspecting, exploring, extracting, and transforming project data.
+This directory contains Python scripts for inspecting, preparing, extracting, and transforming project data.
 
 The scripts follow a sequential workflow:
 
@@ -36,19 +36,28 @@ Large files are inspected without loading the entire file into memory.
 
 **Script:** `03_prepare.py`
 
-Provides an interactive overview of available CSV files. When multiple files are found, the user can select one to analyze:
-
-CSV files found:
-
-[1] 14100022.csv
-[2] 14100063.csv
-[3] 14100372.csv
-
-Select a file to analyze:
+Provides an interactive overview of available CSV files and allows the user to select one for analysis.
 
 Large files are sampled rather than loaded in full.
 
-The EDA stage does not modify the source data.
+The preparation stage does not modify the source data.
+
+---
+
+### 04 — Extract Data
+
+**Script:** `04_extract.py`
+
+Extracts the required data from the raw CSV files and saves the results to the `data/extracted/` directory.
+
+The extraction process:
+
+- Reads the source CSV files in chunks to handle large datasets
+- Filters data based on the project requirements
+- Processes data from 2021 onward
+- Saves extracted datasets for subsequent analysis
+
+---
 
 ## Running the Scripts
 
