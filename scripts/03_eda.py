@@ -59,26 +59,6 @@ def inspect_categories(df):
   """
   Display the distribution of key categorical columns.
   """
-#   print("\n[REF_DATE]")
-#   print(df["REF_DATE"].unique())
-
-#   print("\n[NAICS]")
-#   print(
-#     df[
-#       "North American Industry Classification System (NAICS)"
-#     ].unique()
-#   )
-
-#   print("\n[Statistics]")
-#   print(df["Statistics"].value_counts())
-
-#   print("\n[UOM]")
-#   print(df["UOM"].value_counts())
-
-#   print("\n[STATUS]")
-#   print(df["STATUS"].value_counts())
-
-# def inspect_categories(df):
   print("\n[Statistics × UOM]")
   print(
     df.groupby("Statistics")["UOM"]
