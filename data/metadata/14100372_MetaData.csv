@@ -1,0 +1,71 @@
+﻿"Cube Title","Product Id","CANSIM Id",URL,"Cube Notes","Archive Status",Frequency,"Start Reference Period","End Reference Period","Total number of dimensions"
+"Job vacancies, payroll employees, and job vacancy rate by industry sector, monthly, unadjusted for seasonality","14100372",,"https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410037201",1;2;3,"CURRENT - a cube available to the public and that is current","Monthly","2015-04-01","2026-06-01","3",
+
+"Dimension ID","Dimension name","Dimension Notes","Dimension Definitions"
+"1","Geography",,""
+"2","North American Industry Classification System (NAICS)",4,""
+"3","Statistics",,""
+
+"Dimension ID","Member Name","Classification Code","Member ID","Parent Member ID",Terminated,"Member Notes","Member Definitions"
+"1","Canada","[11124]","1","","",,
+"2","Total, all industries","","1","","",4,
+"2","Agriculture, forestry, fishing and hunting","[11]","2","1","",,
+"2","Mining, quarrying, and oil and gas extraction","[21]","3","1","",,
+"2","Utilities","[22]","4","1","",,
+"2","Construction","[23]","5","1","",,
+"2","Manufacturing","[31-33]","6","1","",,
+"2","Wholesale trade","[41]","7","1","",,
+"2","Retail trade","[44-45]","8","1","",,
+"2","Transportation and warehousing","[48-49]","9","1","",,
+"2","Information and cultural industries","[51]","10","1","",,
+"2","Finance and insurance","[52]","11","1","",,
+"2","Real estate and rental and leasing","[53]","12","1","",,
+"2","Professional, scientific and technical services","[54]","13","1","",,
+"2","Management of companies and enterprises","[55]","14","1","",,
+"2","Administrative and support, waste management and remediation services","[56]","15","1","",,
+"2","Educational services","[61]","16","1","",,
+"2","Health care and social assistance","[62]","17","1","",,
+"2","Arts, entertainment and recreation","[71]","18","1","",,
+"2","Accommodation and food services","[72]","19","1","",,
+"2","Other services (except public administration)","[81]","20","1","",5,
+"2","Public administration","[91]","21","1","",6,
+"3","Job vacancies","","1","","",7,
+"3","Payroll employees","","3","","",8;10,
+"3","Job vacancy rate","","4","","",9,
+
+Symbol Legend
+Description,Symbol
+"not available for a specific reference period","..",
+"less than the limit of detection","<LOD",
+"value rounded to 0 (zero) where there is a meaningful distinction between true zero and the value that was rounded","0s",
+"data quality: excellent","A",
+"data quality: very good","B",
+"data quality: good","C",
+"data quality: acceptable","D",
+"use with caution","E",
+"too unreliable to be published","F",
+"not applicable","...",
+"preliminary","p",
+"revised","r",
+"suppressed to meet the confidentiality requirements of the Statistics Act","x",
+"terminated","t",
+
+"Survey Code","Survey Name"
+"5217","Job Vacancy and Wage Survey"
+
+"Subject Code","Subject Name"
+"14","Labour"
+
+"Note ID",Note
+1,"Data quality indicators are based on the coefficient of variation (CV), the non-response errors, the imputation errors, and subject matter expertise: A – Excellent; B - Very good; C - Good; D – Acceptable; E - Use with caution; F - Too unreliable to publish."
+2,"Estimates are preliminary before the associated quarterly data is released. The three monthly estimates in a quarter are revised as final when the quarterly estimates are released, or shortly after."
+3,"Data for the second and third quarters of 2020 are unavailable due to some Statistics Canada operations being temporarily suspended during the COVID-19 pandemic."
+4,"Industry estimates are based on the <a href="https://www.statcan.gc.ca/en/subjects/standard/naics/2022/v1/index" rel="external noopener noreferrer" target="_blank">2022 North American Industry Classification System (NAICS) Version 1.0 (opens new window)</a>. The following categories are excluded from the survey: 'Religious organizations' (8131) within 'Religious, grant-making, civic, and professional and similar organizations' (813), 'Private households' (814), 'Federal, government public administration' (911), 'Provincial and territorial public administration' (912) and 'International and other extra-territorial public administration' (919)."
+5,"Excludes "Religious organizations" (8131) within "Religious, grant-making, civic, and professional and similar organizations" (813) as well as "Private households" (814)."
+6,"Excludes "Federal, government public administration" (911), "Provincial and territorial public administration" (912) and "International and other extra-territorial public administration" (919)."
+7,"A job is vacant if it meets the following conditions: it is vacant on the reference date (first day of the month) or will become vacant during the month; there are tasks to be carried out during the month for the job in question; and the employer is actively seeking a worker outside the organization to fill the job. The jobs could be full-time, part-time, permanent, temporary, casual, or seasonal. Jobs reserved for subcontractors, external consultants, or other workers who are not considered employees, are excluded."
+8,"The "employee" concept used in the Job Vacancy and Wage Survey (JVWS) is comprised of full-time employees, part-time employees, as well as permanent, casual, temporary, and seasonal employees. It also includes working owners, directors, partners, and other officers of incorporated businesses, as well as employees who work off site (for example, at home or on the road) but report to the location, and those employees on paid leave. The "employee" concept used in the JVWS is meant to exclude owners or partners of unincorporated businesses and professional practices, the self-employed, subcontractors, external consultants, unpaid family workers, persons working outside Canada, and military personnel. It also excludes employees on unpaid leave, such as those on extended sick leave who are receiving insurance benefits."
+9,"The job vacancy rate is the number of job vacancies expressed as a percentage of labour demand; that is, all occupied and vacant jobs."
+10,"The employment estimates from the Job Vacancy and Wage Survey (JVWS) are calibrated to corresponding employment estimates from the <a href="https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=2612">Survey of Employment, Payrolls and Hours</a> (SEPH), usually at the North American Industry Classification System sector (NAICS2) level by province. The reference period for JVWS is the first day of the month, which corresponds to the previous month for SEPH. Therefore, JVWS estimates for the current month are calibrated to SEPH estimates for the previous month. To improve timeliness of the preliminary JVWS estimates, they are calibrated to preliminary SEPH employment estimates. The final JVWS estimates are calibrated to final SEPH employment estimates. Users wishing to analyse employment data are advised to use the most current Labour Force Survey and SEPH estimates."
+
+"Correction ID","Correction Date","Correction Note"

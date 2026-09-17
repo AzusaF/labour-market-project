@@ -1,0 +1,100 @@
+﻿"Cube Title","Product Id","CANSIM Id",URL,"Cube Notes","Archive Status",Frequency,"Start Reference Period","End Reference Period","Total number of dimensions"
+"Employee wages by industry, monthly, unadjusted for seasonality","14100063","282-0071","https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410006301",5;15,"CURRENT - a cube available to the public and that is current","Monthly","1997-01-01","2026-08-01","6",
+
+"Dimension ID","Dimension name","Dimension Notes","Dimension Definitions"
+"1","Geography",14,""
+"2","Wages",1,""
+"3","Type of work",,""
+"4","North American Industry Classification System (NAICS)",4,""
+"5","Gender",16;17,""
+"6","Age group",,""
+
+"Dimension ID","Member Name","Classification Code","Member ID","Parent Member ID",Terminated,"Member Notes","Member Definitions"
+"1","Canada","[11124]","1","","",,
+"1","Newfoundland and Labrador","[10]","2","1","",,
+"1","Prince Edward Island","[11]","3","1","",,
+"1","Nova Scotia","[12]","4","1","",,
+"1","New Brunswick","[13]","5","1","",,
+"1","Quebec","[24]","6","1","",,
+"1","Ontario","[35]","7","1","",,
+"1","Manitoba","[46]","8","1","",,
+"1","Saskatchewan","[47]","9","1","",,
+"1","Alberta","[48]","10","1","",,
+"1","British Columbia","[59]","11","1","",,
+"2","Total employees, all wages","","1","","",,
+"2","Average hourly wage rate","","2","","",,
+"2","Average weekly wage rate","","3","","",,
+"2","Median hourly wage rate","","4","","",,
+"2","Median weekly wage rate","","5","","",,
+"3","Both full- and part-time employees","","1","","",,
+"3","Full-time employees","","2","1","",2,
+"3","Part-time employees","","3","1","",3,
+"4","Total employees, all industries","","1","","",8,
+"4","Goods-producing sector","","2","1","",9,
+"4","Agriculture","[111-112, 1100, 1151-1152]","3","2","",11,
+"4","Forestry, fishing, mining, quarrying, oil and gas","[21, 113-114, 1153, 2100]","4","2","",12;13,
+"4","Utilities","[22]","5","2","",,
+"4","Construction","[23]","6","2","",,
+"4","Manufacturing","[31-33]","7","2","",,
+"4","Services-producing sector","","8","1","",10,
+"4","Wholesale and retail trade","[41, 44-45]","9","8","",,
+"4","Transportation and warehousing","[48-49]","10","8","",,
+"4","Finance, insurance, real estate, rental and leasing","[52-53]","11","8","",,
+"4","Professional, scientific and technical services","[54]","12","8","",,
+"4","Business, building and other support services","[55-56]","13","8","",6,
+"4","Educational services","[61]","14","8","",,
+"4","Health care and social assistance","[62]","15","8","",,
+"4","Information, culture and recreation","[51, 71]","16","8","",,
+"4","Accommodation and food services","[72]","17","8","",,
+"4","Other services (except public administration)","[81]","18","8","",,
+"4","Public administration","[91]","19","8","",,
+"5","Total - Gender","","1","","",,
+"5","Men+","","2","1","",,
+"5","Women+","","3","1","",,
+"6","15 years and over","","1","","",,
+"6","15 to 24 years","","2","","",,
+"6","25 to 54 years","","3","","",,
+"6","55 years and over","","4","","",,
+
+Symbol Legend
+Description,Symbol
+"not available for a specific reference period","..",
+"less than the limit of detection","<LOD",
+"value rounded to 0 (zero) where there is a meaningful distinction between true zero and the value that was rounded","0s",
+"data quality: excellent","A",
+"data quality: very good","B",
+"data quality: good","C",
+"data quality: acceptable","D",
+"use with caution","E",
+"too unreliable to be published","F",
+"not applicable","...",
+"preliminary","p",
+"revised","r",
+"suppressed to meet the confidentiality requirements of the Statistics Act","x",
+"terminated","t",
+
+"Survey Code","Survey Name"
+"3701","Labour Force Survey"
+
+"Subject Code","Subject Name"
+"14","Labour"
+
+"Note ID",Note
+1,"Beginning January 1997, information is collected on the usual wages or salary of employees at their main job. Respondents are asked to report their wage/salary before taxes and other deductions, and include tips, commissions and bonuses. Weekly and hourly wages/salaries are calculated in conjunction with usual paid work hours per week. Starting in 2006, enhancements to the Labour Force Survey processing system have introduced a level shift in average and median wages. Use caution when comparing estimates before and after 2006. For more information, contact statcan.labour-travail.statcan@statcan.gc.ca"
+2,"Full-time employees are those who usually work 30 hours or more per week at their main or only job. Estimates in thousands, rounded to the nearest hundred."
+3,"Part-time employees are those who usually work less than 30 hours per week at their main or only job. Estimates in thousands, rounded to the nearest hundred."
+4,"Industry refers to the general nature of the business carried out by the employer for whom the respondent works (main job only). Industry estimates in this table are based on the 2022 North American Industry Classification System (NAICS)."
+5,"To ensure respondent confidentiality, estimates below a certain threshold are suppressed. For Canada, Quebec, Ontario, Alberta and British Columbia suppression is applied to all data below 1,500. The threshold level for Newfoundland and Labrador, Nova Scotia, New Brunswick, Manitoba and Saskatchewan is 500, while in Prince Edward Island, estimates under 200 are suppressed. For census metropolitan areas (CMAs) and economic regions (ERs), use their respective provincial suppression levels mentioned above. Estimates are based on smaller sample sizes the more detailed the table becomes, which could result in lower data quality."
+6,"Formerly "Management of companies and administrative and other support services"."
+8,"This combines the North American Industry Classification System (NAICS) codes 11 to 91."
+9,"This combines the North American Industry Classification System (NAICS) codes 11 to 33."
+10,"This combines the North American Industry Classification System (NAICS) codes 41 to 91."
+11,"Labour Force Survey (LFS) North American Industry Classification System (NAICS) code exception: add group 1100 - Farming - not elsewhere classified (nec). When the type of farm activity cannot be distinguished between crop and livestock, (example: mixed farming)."
+12,"Labour Force Survey (LFS) North American Industry Classification System (NAICS) code exception: add group 2100 - Mining - not elsewhere classified (nec). Whenever the type of mining activity cannot be distinguished."
+13,"Also referred to as Natural resources."
+14,"Excluding the territories."
+15,"Starting in 2006, enhancements to the Labour Force Survey data processing system may have introduced a level shift in some estimates, particularly for less common labour force characteristics. Use caution when comparing estimates before and after 2006. For more information, contact statcan.labour-travail.statcan@statcan.gc.ca"
+16,"Gender refers to an individual's personal and social identity as a man, woman or non-binary person (a person who is not exclusively a man or a woman). Some people may not identify with a specific gender and a person's gender may change over time. Gender includes the following concepts: gender identity, which refers to the gender that a person feels internally and individually; gender expression, which refers to the way a person presents their gender, regardless of their gender identity, through body language, aesthetic choices or accessories (for example, clothes, hairstyle and makeup), which may have traditionally been associated with a specific gender. A person's gender may differ from their sex at birth, and from what is indicated on their current identification or legal documents such as their birth certificate, passport or driver's license. LFS started collecting gender of person in 2022. Prior to 2022, LFS only collected information on sex of person (male or female), as declared by the respondent or recorded by the interviewer. The sex variable prior to 2022 and the two-category gender variable since 2022 are combined in this table. Although sex and gender refer to two different concepts, the introduction of gender is not expected to have a significant impact on data analysis and historical comparability, given the small size of the transgender and non-binary populations."
+17,"Given that the non-binary population is small, data aggregation to a two-category gender variable is necessary to protect the confidentiality of responses provided. Individuals in the category "non-binary persons" are distributed into the other two gender categories and are denoted by the "+" symbol. The category "Men+" includes men, as well as some non-binary persons, while the category "Women+" includes women, as well as some non-binary persons."
+
+"Correction ID","Correction Date","Correction Note"
