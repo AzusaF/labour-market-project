@@ -13,6 +13,7 @@ Sections:
 - Value & Unit Semantics
 - Missing / Data Quality
 - Industry Compatibility
+- Metadata / Data Semantics Validation
 - Analysis Readiness
 """
 
@@ -26,6 +27,7 @@ import pandas as pd
 # =============================================================================
 
 EXTRACTED_DIR = Path("data/extracted")
+METADATA_DIR = Path("data/metadata")
 
 ANALYSIS_START = "2021-01"
 ANALYSIS_END = "2025-12"
@@ -108,8 +110,15 @@ def get_analysis_period_profile(df):
     errors="coerce",
   )
 
-  start = pd.Period(ANALYSIS_START, freq="M")
-  end = pd.Period(ANALYSIS_END, freq="M")
+  start = pd.Period(
+    ANALYSIS_START,
+    freq="M",
+  )
+
+  end = pd.Period(
+    ANALYSIS_END,
+    freq="M",
+  )
 
   analysis_dates = dates[
     (dates.dt.to_period("M") >= start)
@@ -176,14 +185,17 @@ def profile_dimensions(df):
         f"Minimum date : "
         f"{date_profile['min']}"
       )
+
       print(
         f"Maximum date : "
         f"{date_profile['max']}"
       )
+
       print(
         f"Date periods : "
         f"{date_profile['unique']:,}"
       )
+
       print(
         f"Invalid dates: "
         f"{date_profile['invalid']:,}"
@@ -196,7 +208,9 @@ def profile_dimensions(df):
         .head(10)
       )
 
-      print(value_counts.to_string())
+      print(
+        value_counts.to_string()
+      )
 
 
 def check_candidate_key(df, key_columns):
@@ -238,6 +252,7 @@ def check_candidate_key(df, key_columns):
     f"Unique key combinations: "
     f"{unique_key_count:,}"
   )
+
   print(
     f"Duplicate key rows     : "
     f"{duplicate_count:,}"
@@ -293,6 +308,7 @@ def print_missing_analysis(df, measure_column):
     f"Missing VALUE      : "
     f"{value_missing.sum():,}"
   )
+
   print(
     f"Missing VALUE (%)  : "
     f"{value_missing.mean() * 100:.2f}%"
@@ -305,6 +321,7 @@ def print_missing_analysis(df, measure_column):
       f"Non-null STATUS    : "
       f"{df['STATUS'].notna().sum():,}"
     )
+
     print(
       f"Missing STATUS     : "
       f"{status_missing:,}"
@@ -435,130 +452,129 @@ def compare_industries(file_paths):
       print(f"  - {industry}")
 
 
-def print_analysis_readiness():
-  """Print the planned analytical grains and time period."""
-  print_section("ANALYSIS READINESS")
+# =============================================================================
+# METADATA / DATA SEMANTICS VALIDATION
+# =============================================================================
 
-  print(
-    f"Analysis period: "
-    f"{ANALYSIS_START} → {ANALYSIS_END}"
-  )
+def inspect_metadata(filename):
+  """Inspect metadata related to STATUS symbols and VALUE semantics."""
+  metadata_path = METADATA_DIR / filename
 
-  start = pd.Period(
-    ANALYSIS_START,
-    freq="M",
-  )
+  print()
+  print("-" * 80)
+  print(f"METADATA: {filename}")
+  print("-" * 80)
 
-  end = pd.Period(
-    ANALYSIS_END,
-    freq="M",
-  )
-
-  months = len(
-    pd.period_range(
-      start,
-      end,
-      freq="M",
+  if not metadata_path.exists():
+    print(
+      f"Metadata file not found: "
+      f"{metadata_path}"
     )
+    return
+
+  metadata = pd.read_csv(
+    metadata_path,
+    low_memory=False,
   )
 
   print(
-    f"Expected months: "
-    f"{months}"
+    f"Metadata shape: "
+    f"{metadata.shape}"
   )
 
-  print()
   print(
-    "Analysis A — Labour force × Wage"
-  )
-
-  print("Datasets:")
-  print("  - 14100022")
-  print("  - 14100063")
-
-  print()
-  print("Common dimensions:")
-  print("  - REF_DATE")
-  print("  - GEO")
-  print("  - NAICS")
-  print("  - Gender")
-  print("  - Age group")
-
-  print()
-  print("Dataset-specific dimensions:")
-  print(
-    "  - 14100022: "
-    "Labour force characteristics"
-  )
-  print(
-    "  - 14100063: "
-    "Wages, Type of work"
+    f"Columns: "
+    f"{list(metadata.columns)}"
   )
 
   print()
-  print("Potential analysis grain:")
-  print(
-    "  REF_DATE × GEO × NAICS × "
-    "Gender × Age group"
+
+  text_columns = metadata.select_dtypes(
+    include=["object", "string"]
+  ).columns
+
+  relevant_mask = pd.Series(
+    False,
+    index=metadata.index,
   )
+
+  search_terms = (
+    "STATUS",
+    "status",
+    "symbol",
+    "symbols",
+    "confidential",
+    "suppressed",
+    "suppression",
+  )
+
+  for column in text_columns:
+    values = metadata[column].astype("string")
+
+    for term in search_terms:
+      relevant_mask |= values.str.contains(
+        term,
+        case=False,
+        na=False,
+      )
+
+  relevant = metadata.loc[relevant_mask]
+
+  if relevant.empty:
+    print(
+      "No STATUS / symbol-related "
+      "metadata rows found."
+    )
+    return
+
+  print(
+    "Relevant metadata rows:"
+  )
+
+  print("-" * 80)
+
+  print(
+    relevant.to_string(index=False)
+  )
+
+
+def inspect_status_metadata():
+  """Inspect metadata for STATUS and symbol semantics."""
+  print_section(
+    "METADATA / DATA SEMANTICS VALIDATION"
+  )
+
+  metadata_files = [
+    "14100022_Metadata.csv",
+    "14100063_Metadata.csv",
+  ]
+
+  for filename in metadata_files:
+    inspect_metadata(filename)
 
   print()
   print(
-    "Analysis B — Wage × Job vacancy"
+    "Purpose:"
   )
 
-  print("Datasets:")
-  print("  - 14100063")
-  print("  - 14100372")
-
-  print()
-  print("Common dimensions:")
-  print("  - REF_DATE")
-  print("  - GEO")
-  print("  - NAICS")
-
-  print()
-  print("Dataset-specific dimensions:")
   print(
-    "  - 14100063: "
-    "Wages, Type of work, Gender, Age group"
-  )
-  print(
-    "  - 14100372: "
-    "Statistics"
+    "  - Validate the meaning of STATUS symbols"
   )
 
-  print()
-  print("Potential analysis grain:")
   print(
-    "  REF_DATE × GEO × NAICS"
+    "  - Confirm whether 'x' represents "
+    "suppression / confidentiality"
   )
 
-  print()
-  print("Transformation considerations:")
   print(
-    "  - Filter to "
-    "2021-01 → 2025-12"
-  )
-  print(
-    "  - Harmonize NAICS categories"
-  )
-  print(
-    "  - Pivot measures where appropriate"
-  )
-  print(
-    "  - Create calendar YEAR "
-    "for annual analysis"
-  )
-  print(
-    "  - Aggregate dimensions "
-    "before cross-dataset joins"
-  )
-  print(
-    "  - Preserve STATUS information "
-    "where relevant"
+    "  - Confirm how STATUS should be handled "
+    "during transformation"
   )
 
+
+# =============================================================================
+# DATASET INSPECTION
+# =============================================================================
 
 def inspect_file(file_path):
   """Inspect one extracted CSV file."""
@@ -787,6 +803,143 @@ def inspect_file(file_path):
 
 
 # =============================================================================
+# ANALYSIS READINESS
+# =============================================================================
+
+def print_analysis_readiness():
+  """Print the planned analytical grains and time period."""
+  print_section("ANALYSIS READINESS")
+
+  print(
+    f"Analysis period: "
+    f"{ANALYSIS_START} → {ANALYSIS_END}"
+  )
+
+  start = pd.Period(
+    ANALYSIS_START,
+    freq="M",
+  )
+
+  end = pd.Period(
+    ANALYSIS_END,
+    freq="M",
+  )
+
+  months = len(
+    pd.period_range(
+      start,
+      end,
+      freq="M",
+    )
+  )
+
+  print(
+    f"Expected months: "
+    f"{months}"
+  )
+
+  print()
+  print(
+    "Analysis A — Labour force × Wage"
+  )
+
+  print("Datasets:")
+  print("  - 14100022")
+  print("  - 14100063")
+
+  print()
+  print("Common dimensions:")
+  print("  - REF_DATE")
+  print("  - GEO")
+  print("  - NAICS")
+  print("  - Gender")
+  print("  - Age group")
+
+  print()
+  print("Dataset-specific dimensions:")
+  print(
+    "  - 14100022: "
+    "Labour force characteristics"
+  )
+
+  print(
+    "  - 14100063: "
+    "Wages, Type of work"
+  )
+
+  print()
+  print("Potential analysis grain:")
+  print(
+    "  REF_DATE × GEO × NAICS × "
+    "Gender × Age group"
+  )
+
+  print()
+  print(
+    "Analysis B — Wage × Job vacancy"
+  )
+
+  print("Datasets:")
+  print("  - 14100063")
+  print("  - 14100372")
+
+  print()
+  print("Common dimensions:")
+  print("  - REF_DATE")
+  print("  - GEO")
+  print("  - NAICS")
+
+  print()
+  print("Dataset-specific dimensions:")
+  print(
+    "  - 14100063: "
+    "Wages, Type of work, Gender, Age group"
+  )
+
+  print(
+    "  - 14100372: "
+    "Statistics"
+  )
+
+  print()
+  print("Potential analysis grain:")
+  print(
+    "  REF_DATE × GEO × NAICS"
+  )
+
+  print()
+  print("Transformation considerations:")
+
+  print(
+    "  - Filter to "
+    "2021-01 → 2025-12"
+  )
+
+  print(
+    "  - Harmonize NAICS categories"
+  )
+
+  print(
+    "  - Pivot measures where appropriate"
+  )
+
+  print(
+    "  - Create calendar YEAR "
+    "for annual analysis"
+  )
+
+  print(
+    "  - Aggregate dimensions "
+    "before cross-dataset joins"
+  )
+
+  print(
+    "  - Preserve STATUS information "
+    "where relevant"
+  )
+
+
+# =============================================================================
 # MAIN
 # =============================================================================
 
@@ -843,6 +996,12 @@ def main():
   compare_industries(
     csv_files
   )
+
+  # ---------------------------------------------------------------------------
+  # Metadata / data semantics validation
+  # ---------------------------------------------------------------------------
+
+  inspect_status_metadata()
 
   # ---------------------------------------------------------------------------
   # Analysis readiness
