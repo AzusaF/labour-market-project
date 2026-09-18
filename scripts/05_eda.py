@@ -4,21 +4,11 @@
 Provides an initial overview of the extracted data and evaluates
 whether the datasets are ready for transformation and analysis.
 
-Sections:
-- Dataset Overview
-- Structure
-- Dimension Profile
-- Date / Time Coverage
-- Data Grain / Key Check
-- Value & Unit Semantics
-- Missing / Data Quality
-- Industry Compatibility
-- Metadata / Data Semantics Validation
-- Analysis Readiness
+Output:
+- output/05_eda.txt
 """
 
 from pathlib import Path
-
 import pandas as pd
 
 
@@ -27,44 +17,44 @@ import pandas as pd
 # =============================================================================
 
 EXTRACTED_DIR = Path("data/extracted")
-METADATA_DIR = Path("data/metadata")
+OUTPUT_FILE = Path("output/05_eda.txt")
 
 ANALYSIS_START = "2021-01"
 ANALYSIS_END = "2025-12"
 
 DATASET_CONFIG = {
-  "14100022_extracted.csv": {
-    "measure_column": "Labour force characteristics",
-    "key_columns": [
-      "REF_DATE",
-      "GEO",
-      "NAICS",
-      "Labour force characteristics",
-      "Gender",
-      "Age group",
-    ],
-  },
-  "14100063_extracted.csv": {
-    "measure_column": "Wages",
-    "key_columns": [
-      "REF_DATE",
-      "GEO",
-      "NAICS",
-      "Wages",
-      "Type of work",
-      "Gender",
-      "Age group",
-    ],
-  },
-  "14100372_extracted.csv": {
-    "measure_column": "Statistics",
-    "key_columns": [
-      "REF_DATE",
-      "GEO",
-      "NAICS",
-      "Statistics",
-    ],
-  },
+    "14100022_extracted.csv": {
+        "measure_column": "Labour force characteristics",
+        "key_columns": [
+            "REF_DATE",
+            "GEO",
+            "NAICS",
+            "Labour force characteristics",
+            "Gender",
+            "Age group",
+        ],
+    },
+    "14100063_extracted.csv": {
+        "measure_column": "Wages",
+        "key_columns": [
+            "REF_DATE",
+            "GEO",
+            "NAICS",
+            "Wages",
+            "Type of work",
+            "Gender",
+            "Age group",
+        ],
+    },
+    "14100372_extracted.csv": {
+        "measure_column": "Statistics",
+        "key_columns": [
+            "REF_DATE",
+            "GEO",
+            "NAICS",
+            "Statistics",
+        ],
+    },
 }
 
 
@@ -73,870 +63,585 @@ DATASET_CONFIG = {
 # =============================================================================
 
 def print_section(title):
-  """Print a formatted section header."""
-  print()
-  print("=" * 80)
-  print(title)
-  print("=" * 80)
+    """Print a formatted section header."""
+    print()
+    print("=" * 80)
+    print(title)
+    print("=" * 80)
 
 
 def print_subsection(title):
-  """Print a smaller subsection header."""
-  print()
-  print(f"[{title}]")
+    """Print a smaller subsection header."""
+    print()
+    print(f"[{title}]")
 
 
 def get_date_profile(df):
-  """Return basic information about the REF_DATE column."""
-  dates = pd.to_datetime(
-    df["REF_DATE"],
-    format="%Y-%m",
-    errors="coerce",
-  )
+    """Return basic information about the REF_DATE column."""
+    dates = pd.to_datetime(
+        df["REF_DATE"],
+        format="%Y-%m",
+        errors="coerce",
+    )
 
-  return {
-    "min": dates.min().strftime("%Y-%m") if dates.notna().any() else "N/A",
-    "max": dates.max().strftime("%Y-%m") if dates.notna().any() else "N/A",
-    "unique": dates.nunique(),
-    "invalid": dates.isna().sum(),
-  }
+    return {
+        "min": dates.min().strftime("%Y-%m") if dates.notna().any() else "N/A",
+        "max": dates.max().strftime("%Y-%m") if dates.notna().any() else "N/A",
+        "unique": dates.nunique(),
+        "invalid": dates.isna().sum(),
+    }
 
 
 def get_analysis_period_profile(df):
-  """Check coverage of the target analysis period."""
-  dates = pd.to_datetime(
-    df["REF_DATE"],
-    format="%Y-%m",
-    errors="coerce",
-  )
+    """Check coverage of the target analysis period."""
+    dates = pd.to_datetime(
+        df["REF_DATE"],
+        format="%Y-%m",
+        errors="coerce",
+    )
 
-  start = pd.Period(
-    ANALYSIS_START,
-    freq="M",
-  )
+    start = pd.Period(ANALYSIS_START, freq="M")
+    end = pd.Period(ANALYSIS_END, freq="M")
 
-  end = pd.Period(
-    ANALYSIS_END,
-    freq="M",
-  )
+    analysis_dates = dates[
+        (dates.dt.to_period("M") >= start)
+        & (dates.dt.to_period("M") <= end)
+    ]
 
-  analysis_dates = dates[
-    (dates.dt.to_period("M") >= start)
-    & (dates.dt.to_period("M") <= end)
-  ]
+    expected_months = pd.period_range(
+        start=start,
+        end=end,
+        freq="M",
+    )
 
-  expected_months = pd.period_range(
-    start=start,
-    end=end,
-    freq="M",
-  )
+    actual_months = set(
+        analysis_dates.dt.to_period("M").dropna().unique()
+    )
 
-  actual_months = set(
-    analysis_dates.dt.to_period("M").dropna().unique()
-  )
+    missing_months = [
+        str(month)
+        for month in expected_months
+        if month not in actual_months
+    ]
 
-  missing_months = [
-    str(month)
-    for month in expected_months
-    if month not in actual_months
-  ]
-
-  return {
-    "expected": len(expected_months),
-    "available": len(actual_months),
-    "missing": missing_months,
-  }
+    return {
+        "expected": len(expected_months),
+        "available": len(actual_months),
+        "missing": missing_months,
+    }
 
 
 def profile_dimensions(df):
-  """Print profiles for important dimension columns."""
-  dimension_columns = [
-    "REF_DATE",
-    "GEO",
-    "NAICS",
-    "Gender",
-    "Age group",
-    "Type of work",
-    "Labour force characteristics",
-    "Wages",
-    "Statistics",
-  ]
+    """Print profiles for important dimension columns."""
+    dimension_columns = [
+        "REF_DATE",
+        "GEO",
+        "NAICS",
+        "Gender",
+        "Age group",
+        "Type of work",
+        "Labour force characteristics",
+        "Wages",
+        "Statistics",
+    ]
 
-  available_columns = [
-    column
-    for column in dimension_columns
-    if column in df.columns
-  ]
+    available_columns = [
+        column
+        for column in dimension_columns
+        if column in df.columns
+    ]
 
-  print_section("DIMENSION PROFILE")
+    print_section("DIMENSION PROFILE")
 
-  for column in available_columns:
-    print_subsection(column)
+    for column in available_columns:
+        print_subsection(column)
 
-    print(
-      f"Unique values: "
-      f"{df[column].nunique(dropna=True):,}"
-    )
+        print(
+            f"Unique values: "
+            f"{df[column].nunique(dropna=True):,}"
+        )
 
-    if column == "REF_DATE":
-      date_profile = get_date_profile(df)
+        if column == "REF_DATE":
+            date_profile = get_date_profile(df)
 
-      print(
-        f"Minimum date : "
-        f"{date_profile['min']}"
-      )
+            print(
+                f"Minimum date : "
+                f"{date_profile['min']}"
+            )
+            print(
+                f"Maximum date : "
+                f"{date_profile['max']}"
+            )
+            print(
+                f"Date periods : "
+                f"{date_profile['unique']:,}"
+            )
+            print(
+                f"Invalid dates: "
+                f"{date_profile['invalid']:,}"
+            )
 
-      print(
-        f"Maximum date : "
-        f"{date_profile['max']}"
-      )
+        else:
+            value_counts = (
+                df[column]
+                .value_counts(dropna=False)
+                .head(10)
+            )
 
-      print(
-        f"Date periods : "
-        f"{date_profile['unique']:,}"
-      )
-
-      print(
-        f"Invalid dates: "
-        f"{date_profile['invalid']:,}"
-      )
-
-    else:
-      value_counts = (
-        df[column]
-        .value_counts(dropna=False)
-        .head(10)
-      )
-
-      print(
-        value_counts.to_string()
-      )
+            print(value_counts.to_string())
 
 
 def check_candidate_key(df, key_columns):
-  """Check whether the candidate analytical key is unique."""
-  print_section("DATA GRAIN / KEY CHECK")
+    """Check whether the candidate analytical key is unique."""
+    print_section("DATA GRAIN / KEY CHECK")
 
-  print("Candidate key:")
+    print("Candidate key:")
 
-  for column in key_columns:
-    print(f"  - {column}")
+    for column in key_columns:
+        print(f"  - {column}")
 
-  missing_columns = [
-    column
-    for column in key_columns
-    if column not in df.columns
-  ]
+    missing_columns = [
+        column
+        for column in key_columns
+        if column not in df.columns
+    ]
 
-  if missing_columns:
+    if missing_columns:
+        print()
+        print("Missing key columns:")
+
+        for column in missing_columns:
+            print(f"  - {column}")
+
+        return
+
+    duplicate_count = df.duplicated(
+        subset=key_columns
+    ).sum()
+
+    unique_key_count = (
+        df[key_columns]
+        .drop_duplicates()
+        .shape[0]
+    )
+
     print()
-    print("Missing key columns:")
+    print(
+        f"Unique key combinations: "
+        f"{unique_key_count:,}"
+    )
+    print(
+        f"Duplicate key rows     : "
+        f"{duplicate_count:,}"
+    )
 
-    for column in missing_columns:
-      print(f"  - {column}")
-
-    return
-
-  duplicate_count = df.duplicated(
-    subset=key_columns
-  ).sum()
-
-  unique_key_count = (
-    df[key_columns]
-    .drop_duplicates()
-    .shape[0]
-  )
-
-  print()
-  print(
-    f"Unique key combinations: "
-    f"{unique_key_count:,}"
-  )
-
-  print(
-    f"Duplicate key rows     : "
-    f"{duplicate_count:,}"
-  )
-
-  if duplicate_count == 0:
-    print("Key status             : UNIQUE")
-  else:
-    print("Key status             : DUPLICATES FOUND")
+    if duplicate_count == 0:
+        print("Key status             : UNIQUE")
+    else:
+        print("Key status             : DUPLICATES FOUND")
 
 
 def print_value_unit_semantics(df, measure_column):
-  """Show how measures map to units and scalar factors."""
-  print_section("VALUE & UNIT SEMANTICS")
+    """Show how measures map to units and scalar factors."""
+    print_section("VALUE & UNIT SEMANTICS")
 
-  if measure_column not in df.columns:
-    print(
-      f"Measure column not found: "
-      f"{measure_column}"
+    if measure_column not in df.columns:
+        print(
+            f"Measure column not found: "
+            f"{measure_column}"
+        )
+        return
+
+    columns = [
+        measure_column,
+        "UOM",
+        "SCALAR_FACTOR",
+    ]
+
+    available_columns = [
+        column
+        for column in columns
+        if column in df.columns
+    ]
+
+    semantics = (
+        df[available_columns]
+        .drop_duplicates()
+        .sort_values(available_columns)
     )
-    return
 
-  columns = [
-    measure_column,
-    "UOM",
-    "SCALAR_FACTOR",
-  ]
-
-  available_columns = [
-    column
-    for column in columns
-    if column in df.columns
-  ]
-
-  semantics = (
-    df[available_columns]
-    .drop_duplicates()
-    .sort_values(available_columns)
-  )
-
-  print(
-    semantics.to_string(index=False)
-  )
+    print(
+        semantics.to_string(index=False)
+    )
 
 
 def print_missing_analysis(df, measure_column):
-  """Analyze missing VALUE and STATUS relationships."""
-  print_section("MISSING / DATA QUALITY")
+    """Analyze missing VALUE and STATUS relationships."""
+    print_section("MISSING / DATA QUALITY")
 
-  value_missing = df["VALUE"].isna()
-
-  print(
-    f"Missing VALUE      : "
-    f"{value_missing.sum():,}"
-  )
-
-  print(
-    f"Missing VALUE (%)  : "
-    f"{value_missing.mean() * 100:.2f}%"
-  )
-
-  if "STATUS" in df.columns:
-    status_missing = df["STATUS"].isna().sum()
+    value_missing = df["VALUE"].isna()
 
     print(
-      f"Non-null STATUS    : "
-      f"{df['STATUS'].notna().sum():,}"
+        f"Missing VALUE      : "
+        f"{value_missing.sum():,}"
     )
-
     print(
-      f"Missing STATUS     : "
-      f"{status_missing:,}"
+        f"Missing VALUE (%)  : "
+        f"{value_missing.mean() * 100:.2f}%"
     )
 
-    print()
-    print("STATUS × VALUE missingness:")
+    if "STATUS" in df.columns:
+        status_missing = df["STATUS"].isna().sum()
 
-    status_table = pd.crosstab(
-      df["STATUS"].fillna("<NA>"),
-      value_missing,
-    )
+        print(
+            f"Non-null STATUS    : "
+            f"{df['STATUS'].notna().sum():,}"
+        )
+        print(
+            f"Missing STATUS     : "
+            f"{status_missing:,}"
+        )
 
-    status_table.columns = [
-      "VALUE present",
-      "VALUE missing",
-    ]
+        print()
+        print("STATUS × VALUE missingness:")
 
-    print(
-      status_table.to_string()
-    )
+        status_table = pd.crosstab(
+            df["STATUS"].fillna("<NA>"),
+            value_missing,
+        )
 
-  if measure_column in df.columns:
-    print()
-    print(
-      f"Missing VALUE by "
-      f"[{measure_column}]:"
-    )
+        status_table.columns = [
+            "VALUE present",
+            "VALUE missing",
+        ]
 
-    measure_missing = (
-      df.groupby(measure_column)["VALUE"]
-      .agg(
-        rows="size",
-        missing=lambda s: s.isna().sum(),
-      )
-    )
+        print(
+            status_table.to_string()
+        )
 
-    measure_missing["missing_pct"] = (
-      measure_missing["missing"]
-      / measure_missing["rows"]
-      * 100
-    ).round(2)
+    if measure_column in df.columns:
+        print()
+        print(
+            f"Missing VALUE by "
+            f"[{measure_column}]:"
+        )
 
-    print(
-      measure_missing.to_string()
-    )
+        measure_missing = (
+            df.groupby(measure_column)["VALUE"]
+            .agg(
+                rows="size",
+                missing=lambda s: s.isna().sum(),
+            )
+        )
+
+        measure_missing["missing_pct"] = (
+            measure_missing["missing"]
+            / measure_missing["rows"]
+            * 100
+        ).round(2)
+
+        print(
+            measure_missing.to_string()
+        )
 
 
 def compare_industries(file_paths):
-  """Compare NAICS categories across datasets."""
-  print_section("INDUSTRY COMPATIBILITY")
+    """Compare NAICS categories across datasets."""
+    print_section("INDUSTRY COMPATIBILITY")
 
-  industry_sets = {}
+    industry_sets = {}
 
-  for file_path in file_paths:
-    try:
-      naics = pd.read_csv(
-        file_path,
-        usecols=["NAICS"],
-        low_memory=False,
-      )["NAICS"]
+    for file_path in file_paths:
+        try:
+            naics = pd.read_csv(
+                file_path,
+                usecols=["NAICS"],
+                low_memory=False,
+            )["NAICS"]
 
-      industry_sets[file_path.name] = set(
-        naics.dropna().unique()
-      )
+            industry_sets[file_path.name] = set(
+                naics.dropna().unique()
+            )
 
-    except Exception as error:
-      print(
-        f"Could not inspect "
-        f"{file_path.name}: {error}"
-      )
+        except Exception as error:
+            print(
+                f"Could not inspect "
+                f"{file_path.name}: {error}"
+            )
 
-  comparisons = [
-    (
-      "14100022_extracted.csv",
-      "14100063_extracted.csv",
-    ),
-    (
-      "14100063_extracted.csv",
-      "14100372_extracted.csv",
-    ),
-  ]
+    comparisons = [
+        (
+            "14100022_extracted.csv",
+            "14100063_extracted.csv",
+        ),
+        (
+            "14100063_extracted.csv",
+            "14100372_extracted.csv",
+        ),
+    ]
 
-  for left_name, right_name in comparisons:
-    if (
-      left_name not in industry_sets
-      or right_name not in industry_sets
-    ):
-      continue
+    for left_name, right_name in comparisons:
+        if (
+            left_name not in industry_sets
+            or right_name not in industry_sets
+        ):
+            continue
 
-    left = industry_sets[left_name]
-    right = industry_sets[right_name]
+        left = industry_sets[left_name]
+        right = industry_sets[right_name]
 
-    common = sorted(left & right)
-    only_left = sorted(left - right)
-    only_right = sorted(right - left)
+        common = sorted(left & right)
+        only_left = sorted(left - right)
+        only_right = sorted(right - left)
 
-    print()
-    print(
-      f"{left_name} × {right_name}"
-    )
+        print()
+        print(
+            f"{left_name} × {right_name}"
+        )
 
-    print()
-    print(
-      f"Common industries "
-      f"({len(common)}):"
-    )
+        print()
+        print(
+            f"Common industries "
+            f"({len(common)}):"
+        )
 
-    for industry in common:
-      print(f"  - {industry}")
+        for industry in common:
+            print(f"  - {industry}")
 
-    print()
-    print(
-      f"Only in {left_name} "
-      f"({len(only_left)}):"
-    )
+        print()
+        print(
+            f"Only in {left_name} "
+            f"({len(only_left)}):"
+        )
 
-    for industry in only_left:
-      print(f"  - {industry}")
+        for industry in only_left:
+            print(f"  - {industry}")
 
-    print()
-    print(
-      f"Only in {right_name} "
-      f"({len(only_right)}):"
-    )
+        print()
+        print(
+            f"Only in {right_name} "
+            f"({len(only_right)}):"
+        )
 
-    for industry in only_right:
-      print(f"  - {industry}")
+        for industry in only_right:
+            print(f"  - {industry}")
 
-
-# =============================================================================
-# METADATA / DATA SEMANTICS VALIDATION
-# =============================================================================
-
-def inspect_metadata(filename):
-  """Inspect metadata related to STATUS symbols and VALUE semantics."""
-  metadata_path = METADATA_DIR / filename
-
-  print()
-  print("-" * 80)
-  print(f"METADATA: {filename}")
-  print("-" * 80)
-
-  if not metadata_path.exists():
-    print(
-      f"Metadata file not found: "
-      f"{metadata_path}"
-    )
-    return
-
-  metadata = pd.read_csv(
-    metadata_path,
-    low_memory=False,
-  )
-
-  print(
-    f"Metadata shape: "
-    f"{metadata.shape}"
-  )
-
-  print(
-    f"Columns: "
-    f"{list(metadata.columns)}"
-  )
-
-  print()
-
-  text_columns = metadata.select_dtypes(
-    include=["object", "string"]
-  ).columns
-
-  relevant_mask = pd.Series(
-    False,
-    index=metadata.index,
-  )
-
-  search_terms = (
-    "STATUS",
-    "status",
-    "symbol",
-    "symbols",
-    "confidential",
-    "suppressed",
-    "suppression",
-  )
-
-  for column in text_columns:
-    values = metadata[column].astype("string")
-
-    for term in search_terms:
-      relevant_mask |= values.str.contains(
-        term,
-        case=False,
-        na=False,
-      )
-
-  relevant = metadata.loc[relevant_mask]
-
-  if relevant.empty:
-    print(
-      "No STATUS / symbol-related "
-      "metadata rows found."
-    )
-    return
-
-  print(
-    "Relevant metadata rows:"
-  )
-
-  print("-" * 80)
-
-  print(
-    relevant.to_string(index=False)
-  )
-
-
-def inspect_status_metadata():
-  """Inspect metadata for STATUS and symbol semantics."""
-  print_section(
-    "METADATA / DATA SEMANTICS VALIDATION"
-  )
-
-  metadata_files = [
-    "14100022_Metadata.csv",
-    "14100063_Metadata.csv",
-  ]
-
-  for filename in metadata_files:
-    inspect_metadata(filename)
-
-  print()
-  print(
-    "Purpose:"
-  )
-
-  print(
-    "  - Validate the meaning of STATUS symbols"
-  )
-
-  print(
-    "  - Confirm whether 'x' represents "
-    "suppression / confidentiality"
-  )
-
-  print(
-    "  - Confirm how STATUS should be handled "
-    "during transformation"
-  )
-
-
-# =============================================================================
-# DATASET INSPECTION
-# =============================================================================
 
 def inspect_file(file_path):
-  """Inspect one extracted CSV file."""
-  print_section(
-    f"FILE: {file_path.name}"
-  )
-
-  df = pd.read_csv(
-    file_path,
-    low_memory=False,
-  )
-
-  config = DATASET_CONFIG.get(
-    file_path.name,
-    {},
-  )
-
-  measure_column = config.get(
-    "measure_column"
-  )
-
-  key_columns = config.get(
-    "key_columns",
-    [],
-  )
-
-  # ---------------------------------------------------------------------------
-  # Dataset overview
-  # ---------------------------------------------------------------------------
-
-  print_section("DATASET OVERVIEW")
-
-  print(
-    f"Rows       : "
-    f"{len(df):,}"
-  )
-
-  print(
-    f"Columns    : "
-    f"{len(df.columns):,}"
-  )
-
-  print(
-    f"Memory     : "
-    f"{df.memory_usage(deep=True).sum() / 1024**2:,.1f} MB"
-  )
-
-  if "REF_DATE" in df.columns:
-    date_profile = get_date_profile(df)
-
-    period_profile = (
-      get_analysis_period_profile(df)
-    )
-
-    print()
-
-    print(
-      f"Available period: "
-      f"{date_profile['min']} → "
-      f"{date_profile['max']}"
-    )
-
-    print(
-      f"Available months: "
-      f"{date_profile['unique']:,}"
-    )
-
-    print()
-
-    print(
-      f"Analysis period: "
-      f"{ANALYSIS_START} → "
-      f"{ANALYSIS_END}"
-    )
-
-    print(
-      f"Expected months: "
-      f"{period_profile['expected']:,}"
-    )
-
-    print(
-      f"Available months: "
-      f"{period_profile['available']:,}"
-    )
-
-    if period_profile["missing"]:
-      print(
-        "Missing analysis months:"
-      )
-
-      for month in period_profile["missing"]:
-        print(f"  - {month}")
-
-    else:
-      print(
-        "Analysis coverage: COMPLETE"
-      )
-
-  # ---------------------------------------------------------------------------
-  # Variables
-  # ---------------------------------------------------------------------------
-
-  print_section("STRUCTURE")
-
-  variable_info = pd.DataFrame({
-    "variable": df.columns,
-    "dtype": df.dtypes.astype(str).values,
-    "non_null": df.notna().sum().values,
-    "missing": df.isna().sum().values,
-    "missing_pct": (
-      df.isna().mean().values * 100
-    ).round(2),
-    "unique": df.nunique(
-      dropna=True
-    ).values,
-  })
-
-  print(
-    variable_info.to_string(
-      index=False
-    )
-  )
-
-  # ---------------------------------------------------------------------------
-  # Dimension profile
-  # ---------------------------------------------------------------------------
-
-  profile_dimensions(df)
-
-  # ---------------------------------------------------------------------------
-  # Numeric statistics
-  # ---------------------------------------------------------------------------
-
-  numeric_columns = (
-    df.select_dtypes(
-      include="number"
-    ).columns
-  )
-
-  if len(numeric_columns) > 0:
+    """Inspect one extracted CSV file."""
     print_section(
-      "NUMERIC VARIABLES — BASIC STATISTICS"
+        f"FILE: {file_path.name}"
     )
 
-    numeric_stats = (
-      df[numeric_columns]
-      .describe()
-      .T
+    df = pd.read_csv(
+        file_path,
+        low_memory=False,
     )
 
-    numeric_stats["missing"] = (
-      df[numeric_columns]
-      .isna()
-      .sum()
+    config = DATASET_CONFIG.get(
+        file_path.name,
+        {},
     )
 
-    numeric_stats["missing_pct"] = (
-      df[numeric_columns]
-      .isna()
-      .mean()
-      * 100
-    ).round(2)
+    measure_column = config.get(
+        "measure_column"
+    )
+
+    key_columns = config.get(
+        "key_columns",
+        [],
+    )
+
+    # -------------------------------------------------------------------------
+    # Dataset overview
+    # -------------------------------------------------------------------------
+
+    print_section("DATASET OVERVIEW")
 
     print(
-      numeric_stats.to_string()
+        f"Rows       : "
+        f"{len(df):,}"
     )
 
-  # ---------------------------------------------------------------------------
-  # Candidate key
-  # ---------------------------------------------------------------------------
-
-  if key_columns:
-    check_candidate_key(
-      df,
-      key_columns,
-    )
-
-  # ---------------------------------------------------------------------------
-  # Value / Unit semantics
-  # ---------------------------------------------------------------------------
-
-  if measure_column:
-    print_value_unit_semantics(
-      df,
-      measure_column,
-    )
-
-  # ---------------------------------------------------------------------------
-  # Missing / data quality
-  # ---------------------------------------------------------------------------
-
-  if (
-    "VALUE" in df.columns
-    and measure_column
-  ):
-    print_missing_analysis(
-      df,
-      measure_column,
-    )
-
-  # ---------------------------------------------------------------------------
-  # Exact duplicate rows
-  # ---------------------------------------------------------------------------
-
-  print_section(
-    "EXACT DUPLICATE ROWS"
-  )
-
-  duplicate_rows = df.duplicated().sum()
-
-  print(
-    f"Duplicate rows: "
-    f"{duplicate_rows:,}"
-  )
-
-  if duplicate_rows == 0:
     print(
-      "Duplicate status: NONE"
+        f"Columns    : "
+        f"{len(df.columns):,}"
     )
-  else:
+
     print(
-      "Duplicate status: FOUND"
+        f"Memory     : "
+        f"{df.memory_usage(deep=True).sum() / 1024**2:,.1f} MB"
     )
 
-  return df
+    if "REF_DATE" in df.columns:
+        date_profile = get_date_profile(df)
 
+        period_profile = (
+            get_analysis_period_profile(df)
+        )
 
-# =============================================================================
-# ANALYSIS READINESS
-# =============================================================================
+        print()
 
-def print_analysis_readiness():
-  """Print the planned analytical grains and time period."""
-  print_section("ANALYSIS READINESS")
+        print(
+            f"Available period: "
+            f"{date_profile['min']} → "
+            f"{date_profile['max']}"
+        )
 
-  print(
-    f"Analysis period: "
-    f"{ANALYSIS_START} → {ANALYSIS_END}"
-  )
+        print(
+            f"Available months: "
+            f"{date_profile['unique']:,}"
+        )
 
-  start = pd.Period(
-    ANALYSIS_START,
-    freq="M",
-  )
+        print()
 
-  end = pd.Period(
-    ANALYSIS_END,
-    freq="M",
-  )
+        print(
+            f"Analysis period: "
+            f"{ANALYSIS_START} → "
+            f"{ANALYSIS_END}"
+        )
 
-  months = len(
-    pd.period_range(
-      start,
-      end,
-      freq="M",
+        print(
+            f"Expected months: "
+            f"{period_profile['expected']:,}"
+        )
+
+        print(
+            f"Available months: "
+            f"{period_profile['available']:,}"
+        )
+
+        if period_profile["missing"]:
+            print(
+                "Missing analysis months:"
+            )
+
+            for month in period_profile["missing"]:
+                print(f"  - {month}")
+
+        else:
+            print(
+                "Analysis coverage: COMPLETE"
+            )
+
+    # -------------------------------------------------------------------------
+    # Variables
+    # -------------------------------------------------------------------------
+
+    print_section("STRUCTURE")
+
+    variable_info = pd.DataFrame({
+        "variable": df.columns,
+        "dtype": df.dtypes.astype(str).values,
+        "non_null": df.notna().sum().values,
+        "missing": df.isna().sum().values,
+        "missing_pct": (
+            df.isna().mean().values * 100
+        ).round(2),
+        "unique": df.nunique(
+            dropna=True
+        ).values,
+    })
+
+    print(
+        variable_info.to_string(
+            index=False
+        )
     )
-  )
 
-  print(
-    f"Expected months: "
-    f"{months}"
-  )
+    # -------------------------------------------------------------------------
+    # Dimension profile
+    # -------------------------------------------------------------------------
 
-  print()
-  print(
-    "Analysis A — Labour force × Wage"
-  )
+    profile_dimensions(df)
 
-  print("Datasets:")
-  print("  - 14100022")
-  print("  - 14100063")
+    # -------------------------------------------------------------------------
+    # Numeric statistics
+    # -------------------------------------------------------------------------
 
-  print()
-  print("Common dimensions:")
-  print("  - REF_DATE")
-  print("  - GEO")
-  print("  - NAICS")
-  print("  - Gender")
-  print("  - Age group")
+    numeric_columns = (
+        df.select_dtypes(
+            include="number"
+        ).columns
+    )
 
-  print()
-  print("Dataset-specific dimensions:")
-  print(
-    "  - 14100022: "
-    "Labour force characteristics"
-  )
+    if len(numeric_columns) > 0:
+        print_section(
+            "NUMERIC VARIABLES — BASIC STATISTICS"
+        )
 
-  print(
-    "  - 14100063: "
-    "Wages, Type of work"
-  )
+        numeric_stats = (
+            df[numeric_columns]
+            .describe()
+            .T
+        )
 
-  print()
-  print("Potential analysis grain:")
-  print(
-    "  REF_DATE × GEO × NAICS × "
-    "Gender × Age group"
-  )
+        numeric_stats["missing"] = (
+            df[numeric_columns]
+            .isna()
+            .sum()
+        )
 
-  print()
-  print(
-    "Analysis B — Wage × Job vacancy"
-  )
+        numeric_stats["missing_pct"] = (
+            df[numeric_columns]
+            .isna()
+            .mean()
+            * 100
+        ).round(2)
 
-  print("Datasets:")
-  print("  - 14100063")
-  print("  - 14100372")
+        print(
+            numeric_stats.to_string()
+        )
 
-  print()
-  print("Common dimensions:")
-  print("  - REF_DATE")
-  print("  - GEO")
-  print("  - NAICS")
+    # -------------------------------------------------------------------------
+    # Candidate key
+    # -------------------------------------------------------------------------
 
-  print()
-  print("Dataset-specific dimensions:")
-  print(
-    "  - 14100063: "
-    "Wages, Type of work, Gender, Age group"
-  )
+    if key_columns:
+        check_candidate_key(
+            df,
+            key_columns,
+        )
 
-  print(
-    "  - 14100372: "
-    "Statistics"
-  )
+    # -------------------------------------------------------------------------
+    # Value / Unit semantics
+    # -------------------------------------------------------------------------
 
-  print()
-  print("Potential analysis grain:")
-  print(
-    "  REF_DATE × GEO × NAICS"
-  )
+    if measure_column:
+        print_value_unit_semantics(
+            df,
+            measure_column,
+        )
 
-  print()
-  print("Transformation considerations:")
+    # -------------------------------------------------------------------------
+    # Missing / data quality
+    # -------------------------------------------------------------------------
 
-  print(
-    "  - Filter to "
-    "2021-01 → 2025-12"
-  )
+    if (
+        "VALUE" in df.columns
+        and measure_column
+    ):
+        print_missing_analysis(
+            df,
+            measure_column,
+        )
 
-  print(
-    "  - Harmonize NAICS categories"
-  )
+    # -------------------------------------------------------------------------
+    # Exact duplicate rows
+    # -------------------------------------------------------------------------
 
-  print(
-    "  - Pivot measures where appropriate"
-  )
+    print_section(
+        "EXACT DUPLICATE ROWS"
+    )
 
-  print(
-    "  - Create calendar YEAR "
-    "for annual analysis"
-  )
+    duplicate_rows = df.duplicated().sum()
 
-  print(
-    "  - Aggregate dimensions "
-    "before cross-dataset joins"
-  )
+    print(
+        f"Duplicate rows: "
+        f"{duplicate_rows:,}"
+    )
 
-  print(
-    "  - Preserve STATUS information "
-    "where relevant"
-  )
+    return df
 
 
 # =============================================================================
@@ -944,76 +649,94 @@ def print_analysis_readiness():
 # =============================================================================
 
 def main():
-  print_section(
-    "EXPLORATORY DATA ANALYSIS"
-  )
-
-  print(
-    f"Extracted directory: "
-    f"{EXTRACTED_DIR}"
-  )
-
-  print()
-
-  print(
-    f"Target analysis period: "
-    f"{ANALYSIS_START} → "
-    f"{ANALYSIS_END}"
-  )
-
-  csv_files = sorted(
-    EXTRACTED_DIR.glob("*.csv")
-  )
-
-  if not csv_files:
-    print()
-    print("No CSV files found.")
-    return
-
-  print()
-  print("CSV files found:")
-
-  for file_path in csv_files:
-    print(
-      f"  - {file_path.name}"
+    # Ensure output directory exists.
+    OUTPUT_FILE.parent.mkdir(
+        parents=True,
+        exist_ok=True,
     )
 
-  # ---------------------------------------------------------------------------
-  # Inspect each dataset separately
-  # ---------------------------------------------------------------------------
+    # Redirect all print output to the EDA report file.
+    with OUTPUT_FILE.open(
+        "w",
+        encoding="utf-8",
+    ) as output_file:
 
-  for file_path in csv_files:
-    df = inspect_file(file_path)
+        import sys
 
-    # Explicitly release the large DataFrame
-    # before loading the next file.
-    del df
+        original_stdout = sys.stdout
+        sys.stdout = output_file
 
-  # ---------------------------------------------------------------------------
-  # Cross-dataset industry compatibility
-  # ---------------------------------------------------------------------------
+        try:
+            print_section(
+                "EXPLORATORY DATA ANALYSIS"
+            )
 
-  compare_industries(
-    csv_files
-  )
+            print(
+                f"Extracted directory: "
+                f"{EXTRACTED_DIR}"
+            )
 
-  # ---------------------------------------------------------------------------
-  # Metadata / data semantics validation
-  # ---------------------------------------------------------------------------
+            print(
+                f"Output file: "
+                f"{OUTPUT_FILE}"
+            )
 
-  inspect_status_metadata()
+            print()
 
-  # ---------------------------------------------------------------------------
-  # Analysis readiness
-  # ---------------------------------------------------------------------------
+            print(
+                f"Target analysis period: "
+                f"{ANALYSIS_START} → "
+                f"{ANALYSIS_END}"
+            )
 
-  print_analysis_readiness()
+            csv_files = sorted(
+                EXTRACTED_DIR.glob("*.csv")
+            )
 
-  print()
-  print("=" * 80)
-  print("EDA COMPLETE")
-  print("=" * 80)
+            if not csv_files:
+                print()
+                print("No CSV files found.")
+                return
+
+            print()
+            print("CSV files found:")
+
+            for file_path in csv_files:
+                print(
+                    f"  - {file_path.name}"
+                )
+
+            # -----------------------------------------------------------------
+            # Inspect each dataset separately
+            # -----------------------------------------------------------------
+
+            for file_path in csv_files:
+                df = inspect_file(file_path)
+
+                # Explicitly release the large DataFrame
+                # before loading the next file.
+                del df
+
+            # -----------------------------------------------------------------
+            # Cross-dataset industry compatibility
+            # -----------------------------------------------------------------
+
+            compare_industries(
+                csv_files
+            )
+
+            print()
+            print("=" * 80)
+            print("EDA COMPLETE")
+            print("=" * 80)
+
+        finally:
+            sys.stdout = original_stdout
+
+    print(
+        f"EDA report written to: {OUTPUT_FILE}"
+    )
 
 
 if __name__ == "__main__":
-  main()
+    main()
