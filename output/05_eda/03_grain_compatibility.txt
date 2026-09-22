@@ -1,0 +1,248 @@
+
+================================================================================
+GRAIN & JOIN COMPATIBILITY ANALYSIS
+================================================================================
+Extracted directory: data/extracted
+Output file: output/05_eda/03_grain_compatibility.txt
+
+Purpose:
+Identify the analytical grain of each dataset and compare shared and dataset-specific dimensions to determine whether direct cross-dataset joins are appropriate before transformation.
+
+================================================================================
+DATASET DISCOVERY
+================================================================================
+Loading: 14100022_extracted.csv
+Loading: 14100063_extracted.csv
+Loading: 14100372_extracted.csv
+
+Datasets successfully loaded: 3
+
+================================================================================
+GRAIN PROFILE: 14100022_extracted.csv
+================================================================================
+Dataset: Labour force characteristics
+
+Candidate analytical grain:
+  - REF_DATE
+  - GEO
+  - North American Industry Classification System (NAICS)
+  - Labour force characteristics
+  - Gender
+  - Age group
+
+Unique grain combinations: 1,525,920
+Duplicate grain rows     : 0
+Grain status             : UNIQUE
+
+[Dimension Cardinality]
+REF_DATE: 68 unique values
+GEO: 11 unique values
+North American Industry Classification System (NAICS): 29 unique values
+Labour force characteristics: 6 unique values
+Gender: 3 unique values
+Age group: 4 unique values
+
+================================================================================
+GRAIN PROFILE: 14100063_extracted.csv
+================================================================================
+Dataset: Employee wages
+
+Candidate analytical grain:
+  - REF_DATE
+  - GEO
+  - North American Industry Classification System (NAICS)
+  - Wages
+  - Type of work
+  - Gender
+  - Age group
+
+Unique grain combinations: 2,558,160
+Duplicate grain rows     : 0
+Grain status             : UNIQUE
+
+[Dimension Cardinality]
+REF_DATE: 68 unique values
+GEO: 11 unique values
+North American Industry Classification System (NAICS): 19 unique values
+Wages: 5 unique values
+Type of work: 3 unique values
+Gender: 3 unique values
+Age group: 4 unique values
+
+================================================================================
+GRAIN PROFILE: 14100372_extracted.csv
+================================================================================
+Dataset: Job vacancies, payroll employees, and vacancy rate
+
+Candidate analytical grain:
+  - REF_DATE
+  - GEO
+  - North American Industry Classification System (NAICS)
+  - Statistics
+
+Unique grain combinations: 4,158
+Duplicate grain rows     : 0
+Grain status             : UNIQUE
+
+[Dimension Cardinality]
+REF_DATE: 66 unique values
+GEO: 1 unique values
+North American Industry Classification System (NAICS): 21 unique values
+Statistics: 3 unique values
+
+================================================================================
+SHARED JOIN DIMENSIONS
+================================================================================
+Dimensions present in all datasets:
+  - COORDINATE
+  - DECIMALS
+  - DGUID
+  - GEO
+  - North American Industry Classification System (NAICS)
+  - REF_DATE
+  - SCALAR_FACTOR
+  - SCALAR_ID
+  - STATUS
+  - SYMBOL
+  - TERMINATED
+  - UOM
+  - UOM_ID
+  - VALUE
+  - VECTOR
+
+These columns are shared across datasets, but shared presence alone does not imply join compatibility. Analytical join dimensions must be evaluated separately from metadata and observation attributes.
+
+================================================================================
+DATASET-SPECIFIC DIMENSIONS
+================================================================================
+
+[14100022_extracted.csv]
+  - Age group
+  - Gender
+  - Labour force characteristics
+
+[14100063_extracted.csv]
+  - Age group
+  - Gender
+  - Type of work
+  - Wages
+
+[14100372_extracted.csv]
+  - Statistics
+
+Shared dimensions: 15
+Total dimensions across datasets: 21
+
+================================================================================
+COMMON DIMENSION VALUE COMPATIBILITY
+================================================================================
+
+[COORDINATE]
+14100022_extracted.csv: 22,440 unique values
+14100063_extracted.csv: 37,620 unique values
+14100372_extracted.csv: 63 unique values
+Common values across all datasets: 0
+Total distinct values: 60,123
+
+[DECIMALS]
+14100022_extracted.csv: 1 unique values
+14100063_extracted.csv: 2 unique values
+14100372_extracted.csv: 2 unique values
+Common values across all datasets: 1
+Total distinct values: 3
+
+[DGUID]
+14100022_extracted.csv: 11 unique values
+14100063_extracted.csv: 11 unique values
+14100372_extracted.csv: 1 unique values
+Common values across all datasets: 0
+Total distinct values: 12
+
+[GEO]
+14100022_extracted.csv: 11 unique values
+14100063_extracted.csv: 11 unique values
+14100372_extracted.csv: 1 unique values
+Common values across all datasets: 1
+Total distinct values: 11
+
+[North American Industry Classification System (NAICS)]
+14100022_extracted.csv: 29 unique values
+14100063_extracted.csv: 19 unique values
+14100372_extracted.csv: 21 unique values
+Common values across all datasets: 10
+Total distinct values: 38
+Note: NAICS category coverage is not identical across datasets. See 02_naics_comparison.txt.
+
+[REF_DATE]
+14100022_extracted.csv: 68 unique values
+14100063_extracted.csv: 68 unique values
+14100372_extracted.csv: 66 unique values
+Common values across all datasets: 66
+Total distinct values: 68
+
+[SCALAR_FACTOR]
+14100022_extracted.csv: 2 unique values
+14100063_extracted.csv: 2 unique values
+14100372_extracted.csv: 1 unique values
+Common values across all datasets: 1
+Total distinct values: 2
+
+[SCALAR_ID]
+14100022_extracted.csv: 2 unique values
+14100063_extracted.csv: 2 unique values
+14100372_extracted.csv: 1 unique values
+Common values across all datasets: 1
+Total distinct values: 2
+
+[STATUS]
+14100022_extracted.csv: 1 unique values
+14100063_extracted.csv: 1 unique values
+14100372_extracted.csv: 6 unique values
+Common values across all datasets: 0
+Total distinct values: 7
+
+[SYMBOL]
+14100022_extracted.csv: 0 unique values
+14100063_extracted.csv: 0 unique values
+14100372_extracted.csv: 0 unique values
+Common values across all datasets: 0
+Total distinct values: 0
+
+[TERMINATED]
+14100022_extracted.csv: 0 unique values
+14100063_extracted.csv: 0 unique values
+14100372_extracted.csv: 0 unique values
+Common values across all datasets: 0
+Total distinct values: 0
+
+[UOM]
+14100022_extracted.csv: 2 unique values
+14100063_extracted.csv: 2 unique values
+14100372_extracted.csv: 2 unique values
+Common values across all datasets: 0
+Total distinct values: 4
+
+[UOM_ID]
+14100022_extracted.csv: 2 unique values
+14100063_extracted.csv: 2 unique values
+14100372_extracted.csv: 2 unique values
+Common values across all datasets: 0
+Total distinct values: 4
+
+[VALUE]
+14100022_extracted.csv: 24,500 unique values
+14100063_extracted.csv: 178,411 unique values
+14100372_extracted.csv: 2,779 unique values
+Common values across all datasets: 112
+Total distinct values: 188,617
+
+[VECTOR]
+14100022_extracted.csv: 22,440 unique values
+14100063_extracted.csv: 37,620 unique values
+14100372_extracted.csv: 63 unique values
+Common values across all datasets: 0
+Total distinct values: 60,123
+
+================================================================================
+GRAIN & JOIN COMPATIBILITY ANALYSIS COMPLETE
+================================================================================
