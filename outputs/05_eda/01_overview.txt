@@ -1,0 +1,468 @@
+
+================================================================================
+EXPLORATORY DATA ANALYSIS
+================================================================================
+Extracted directory: data/extracted
+Output file: output/05_eda/01_overview.txt
+
+Target analysis period: 2021-01 → 2025-12
+
+CSV files found:
+  - 14100022_extracted.csv
+  - 14100063_extracted.csv
+  - 14100372_extracted.csv
+
+================================================================================
+FILE: 14100022_extracted.csv
+================================================================================
+
+================================================================================
+DATASET OVERVIEW
+================================================================================
+Rows       : 1,525,920
+Columns    : 18
+Memory     : 1,258.4 MB
+
+Available period: 2021-01 → 2026-08
+Available months: 68
+
+Analysis period: 2021-01 → 2025-12
+Expected months: 60
+Available months: 60
+Analysis coverage: COMPLETE
+
+================================================================================
+STRUCTURE
+================================================================================
+                                             variable   dtype  non_null  missing  missing_pct  unique
+                                             REF_DATE  object   1525920        0         0.00      68
+                                                  GEO  object   1525920        0         0.00      11
+                                                DGUID  object   1525920        0         0.00      11
+                         Labour force characteristics  object   1525920        0         0.00       6
+North American Industry Classification System (NAICS)  object   1525920        0         0.00      29
+                                               Gender  object   1525920        0         0.00       3
+                                            Age group  object   1525920        0         0.00       4
+                                                  UOM  object   1525920        0         0.00       2
+                                               UOM_ID   int64   1525920        0         0.00       2
+                                        SCALAR_FACTOR  object   1525920        0         0.00       2
+                                            SCALAR_ID   int64   1525920        0         0.00       2
+                                               VECTOR  object   1525920        0         0.00   22440
+                                           COORDINATE  object   1525920        0         0.00   22440
+                                                VALUE float64   1060615   465305        30.49   24500
+                                               STATUS  object    465305  1060615        69.51       1
+                                               SYMBOL float64         0  1525920       100.00       0
+                                           TERMINATED float64         0  1525920       100.00       0
+                                             DECIMALS   int64   1525920        0         0.00       1
+
+================================================================================
+DIMENSION PROFILE
+================================================================================
+
+[REF_DATE]
+Unique values: 68
+Minimum date : 2021-01
+Maximum date : 2026-08
+Date periods : 68
+Invalid dates: 0
+
+[GEO]
+Unique values: 11
+GEO
+Canada                       138720
+Newfoundland and Labrador    138720
+Prince Edward Island         138720
+Nova Scotia                  138720
+New Brunswick                138720
+Quebec                       138720
+Ontario                      138720
+Manitoba                     138720
+Saskatchewan                 138720
+Alberta                      138720
+
+[Gender]
+Unique values: 3
+Gender
+Total - Gender    508640
+Men+              508640
+Women+            508640
+
+[Age group]
+Unique values: 4
+Age group
+15 years and over    381480
+15 to 24 years       381480
+25 to 54 years       381480
+55 years and over    381480
+
+[Labour force characteristics]
+Unique values: 6
+Labour force characteristics
+Labour force            260304
+Unemployment            260304
+Employment              251328
+Full-time employment    251328
+Part-time employment    251328
+Unemployment rate       251328
+
+================================================================================
+NUMERIC VARIABLES — BASIC STATISTICS
+================================================================================
+                count        mean         std    min    25%    50%    75%      max  missing  missing_pct
+UOM_ID      1525920.0  396.870588   70.102937  239.0  428.0  428.0  428.0    428.0        0         0.00
+SCALAR_ID   1525920.0    2.505882    1.112745    0.0    3.0    3.0    3.0      3.0        0         0.00
+VALUE       1060615.0  108.244843  601.872818    0.2    2.7    8.6   38.3  22977.0   465305        30.49
+SYMBOL            0.0         NaN         NaN    NaN    NaN    NaN    NaN      NaN  1525920       100.00
+TERMINATED        0.0         NaN         NaN    NaN    NaN    NaN    NaN      NaN  1525920       100.00
+DECIMALS    1525920.0    1.000000    0.000000    1.0    1.0    1.0    1.0      1.0        0         0.00
+
+================================================================================
+DATA GRAIN / KEY CHECK
+================================================================================
+Candidate key:
+  - REF_DATE
+  - GEO
+  - NAICS
+  - Labour force characteristics
+  - Gender
+  - Age group
+
+Missing key columns:
+  - NAICS
+
+================================================================================
+VALUE & UNIT SEMANTICS
+================================================================================
+Labour force characteristics                  UOM SCALAR_FACTOR
+                  Employment Persons in thousands     thousands
+        Full-time employment Persons in thousands     thousands
+                Labour force Persons in thousands     thousands
+        Part-time employment Persons in thousands     thousands
+                Unemployment Persons in thousands     thousands
+           Unemployment rate              Percent         units
+
+================================================================================
+MISSING / DATA QUALITY
+================================================================================
+Missing VALUE      : 465,305
+Missing VALUE (%)  : 30.49%
+Non-null STATUS    : 465,305
+Missing STATUS     : 1,060,615
+
+STATUS × VALUE missingness:
+        VALUE present  VALUE missing
+STATUS                              
+<NA>          1060615              0
+x                   0         465305
+
+Missing VALUE by [Labour force characteristics]:
+                                rows  missing  missing_pct
+Labour force characteristics                              
+Employment                    251328    27546        10.96
+Full-time employment          251328    32335        12.87
+Labour force                  260304    25492         9.79
+Part-time employment          251328    96468        38.38
+Unemployment                  260304   141853        54.50
+Unemployment rate             251328   141611        56.35
+
+================================================================================
+EXACT DUPLICATE ROWS
+================================================================================
+Duplicate rows: 0
+
+================================================================================
+FILE: 14100063_extracted.csv
+================================================================================
+
+================================================================================
+DATASET OVERVIEW
+================================================================================
+Rows       : 2,558,160
+Columns    : 19
+Memory     : 2,313.5 MB
+
+Available period: 2021-01 → 2026-08
+Available months: 68
+
+Analysis period: 2021-01 → 2025-12
+Expected months: 60
+Available months: 60
+Analysis coverage: COMPLETE
+
+================================================================================
+STRUCTURE
+================================================================================
+                                             variable   dtype  non_null  missing  missing_pct  unique
+                                             REF_DATE  object   2558160        0         0.00      68
+                                                  GEO  object   2558160        0         0.00      11
+                                                DGUID  object   2558160        0         0.00      11
+                                                Wages  object   2558160        0         0.00       5
+                                         Type of work  object   2558160        0         0.00       3
+North American Industry Classification System (NAICS)  object   2558160        0         0.00      19
+                                               Gender  object   2558160        0         0.00       3
+                                            Age group  object   2558160        0         0.00       4
+                                                  UOM  object   2558160        0         0.00       2
+                                               UOM_ID   int64   2558160        0         0.00       2
+                                        SCALAR_FACTOR  object   2558160        0         0.00       2
+                                            SCALAR_ID   int64   2558160        0         0.00       2
+                                               VECTOR  object   2558160        0         0.00   37620
+                                           COORDINATE  object   2558160        0         0.00   37620
+                                                VALUE float64   2148245   409915        16.02  178411
+                                               STATUS  object    409915  2148245        83.98       1
+                                               SYMBOL float64         0  2558160       100.00       0
+                                           TERMINATED float64         0  2558160       100.00       0
+                                             DECIMALS   int64   2558160        0         0.00       2
+
+================================================================================
+DIMENSION PROFILE
+================================================================================
+
+[REF_DATE]
+Unique values: 68
+Minimum date : 2021-01
+Maximum date : 2026-08
+Date periods : 68
+Invalid dates: 0
+
+[GEO]
+Unique values: 11
+GEO
+Canada                       232560
+Newfoundland and Labrador    232560
+Prince Edward Island         232560
+Nova Scotia                  232560
+New Brunswick                232560
+Quebec                       232560
+Ontario                      232560
+Manitoba                     232560
+Saskatchewan                 232560
+Alberta                      232560
+
+[Gender]
+Unique values: 3
+Gender
+Total - Gender    852720
+Men+              852720
+Women+            852720
+
+[Age group]
+Unique values: 4
+Age group
+15 years and over    639540
+15 to 24 years       639540
+25 to 54 years       639540
+55 years and over    639540
+
+[Type of work]
+Unique values: 3
+Type of work
+Both full- and part-time employees    852720
+Full-time employees                   852720
+Part-time employees                   852720
+
+[Wages]
+Unique values: 5
+Wages
+Total employees, all wages    511632
+Average hourly wage rate      511632
+Average weekly wage rate      511632
+Median hourly wage rate       511632
+Median weekly wage rate       511632
+
+================================================================================
+NUMERIC VARIABLES — BASIC STATISTICS
+================================================================================
+                count        mean         std   min   25%    50%    75%      max  missing  missing_pct
+UOM_ID      2558160.0  145.600000  141.200028  75.0  75.0  75.00   75.0    428.0        0         0.00
+SCALAR_ID   2558160.0    0.600000    1.200000   0.0   0.0   0.00    0.0      3.0        0         0.00
+VALUE       2148245.0  417.995467  606.264594   0.2  22.0  40.83  780.0  18799.5   409915        16.02
+SYMBOL            0.0         NaN         NaN   NaN   NaN    NaN    NaN      NaN  2558160       100.00
+TERMINATED        0.0         NaN         NaN   NaN   NaN    NaN    NaN      NaN  2558160       100.00
+DECIMALS    2558160.0    1.800000    0.400000   1.0   2.0   2.00    2.0      2.0        0         0.00
+
+================================================================================
+DATA GRAIN / KEY CHECK
+================================================================================
+Candidate key:
+  - REF_DATE
+  - GEO
+  - NAICS
+  - Wages
+  - Type of work
+  - Gender
+  - Age group
+
+Missing key columns:
+  - NAICS
+
+================================================================================
+VALUE & UNIT SEMANTICS
+================================================================================
+                     Wages                  UOM SCALAR_FACTOR
+  Average hourly wage rate      Current dollars         units
+  Average weekly wage rate      Current dollars         units
+   Median hourly wage rate      Current dollars         units
+   Median weekly wage rate      Current dollars         units
+Total employees, all wages Persons in thousands     thousands
+
+================================================================================
+MISSING / DATA QUALITY
+================================================================================
+Missing VALUE      : 409,915
+Missing VALUE (%)  : 16.02%
+Non-null STATUS    : 409,915
+Missing STATUS     : 2,148,245
+
+STATUS × VALUE missingness:
+        VALUE present  VALUE missing
+STATUS                              
+<NA>          2148245              0
+x                   0         409915
+
+Missing VALUE by [Wages]:
+                              rows  missing  missing_pct
+Wages                                                   
+Average hourly wage rate    511632    81983        16.02
+Average weekly wage rate    511632    81983        16.02
+Median hourly wage rate     511632    81983        16.02
+Median weekly wage rate     511632    81983        16.02
+Total employees, all wages  511632    81983        16.02
+
+================================================================================
+EXACT DUPLICATE ROWS
+================================================================================
+Duplicate rows: 0
+
+================================================================================
+FILE: 14100372_extracted.csv
+================================================================================
+
+================================================================================
+DATASET OVERVIEW
+================================================================================
+Rows       : 4,158
+Columns    : 16
+Memory     : 2.9 MB
+
+Available period: 2021-01 → 2026-06
+Available months: 66
+
+Analysis period: 2021-01 → 2025-12
+Expected months: 60
+Available months: 60
+Analysis coverage: COMPLETE
+
+================================================================================
+STRUCTURE
+================================================================================
+                                             variable   dtype  non_null  missing  missing_pct  unique
+                                             REF_DATE  object      4158        0         0.00      66
+                                                  GEO  object      4158        0         0.00       1
+                                                DGUID  object      4158        0         0.00       1
+North American Industry Classification System (NAICS)  object      4158        0         0.00      21
+                                           Statistics  object      4158        0         0.00       3
+                                                  UOM  object      4158        0         0.00       2
+                                               UOM_ID   int64      4158        0         0.00       2
+                                        SCALAR_FACTOR  object      4158        0         0.00       1
+                                            SCALAR_ID   int64      4158        0         0.00       1
+                                               VECTOR  object      4158        0         0.00      63
+                                           COORDINATE  object      4158        0         0.00      63
+                                                VALUE float64      4142       16         0.38    2779
+                                               STATUS  object      4158        0         0.00       6
+                                               SYMBOL float64         0     4158       100.00       0
+                                           TERMINATED float64         0     4158       100.00       0
+                                             DECIMALS   int64      4158        0         0.00       2
+
+================================================================================
+DIMENSION PROFILE
+================================================================================
+
+[REF_DATE]
+Unique values: 66
+Minimum date : 2021-01
+Maximum date : 2026-06
+Date periods : 66
+Invalid dates: 0
+
+[GEO]
+Unique values: 1
+GEO
+Canada    4158
+
+[Statistics]
+Unique values: 3
+Statistics
+Job vacancies        1386
+Payroll employees    1386
+Job vacancy rate     1386
+
+================================================================================
+NUMERIC VARIABLES — BASIC STATISTICS
+================================================================================
+             count           mean           std    min    25%      50%       75%         max  missing  missing_pct
+UOM_ID      4158.0     228.333333  7.543379e+00  223.0  223.0    223.0     239.0       239.0        0         0.00
+SCALAR_ID   4158.0       0.000000  0.000000e+00    0.0    0.0      0.0       0.0         0.0        0         0.00
+VALUE       4142.0  559030.024891  2.139957e+06    0.8    4.7  25505.0  356065.0  17677885.0       16         0.38
+SYMBOL         0.0            NaN           NaN    NaN    NaN      NaN       NaN         NaN     4158       100.00
+TERMINATED     0.0            NaN           NaN    NaN    NaN      NaN       NaN         NaN     4158       100.00
+DECIMALS    4158.0       0.333333  4.714612e-01    0.0    0.0      0.0       1.0         1.0        0         0.00
+
+================================================================================
+DATA GRAIN / KEY CHECK
+================================================================================
+Candidate key:
+  - REF_DATE
+  - GEO
+  - NAICS
+  - Statistics
+
+Missing key columns:
+  - NAICS
+
+================================================================================
+VALUE & UNIT SEMANTICS
+================================================================================
+       Statistics     UOM SCALAR_FACTOR
+    Job vacancies  Number         units
+ Job vacancy rate Percent         units
+Payroll employees  Number         units
+
+================================================================================
+MISSING / DATA QUALITY
+================================================================================
+Missing VALUE      : 16
+Missing VALUE (%)  : 0.38%
+Non-null STATUS    : 4,158
+Missing STATUS     : 0
+
+STATUS × VALUE missingness:
+        VALUE present  VALUE missing
+STATUS                              
+A                1773              0
+B                1296              0
+C                 720              0
+D                 309              0
+E                  44              0
+F                   0             16
+
+Missing VALUE by [Statistics]:
+                   rows  missing  missing_pct
+Statistics                                   
+Job vacancies      1386        8         0.58
+Job vacancy rate   1386        8         0.58
+Payroll employees  1386        0         0.00
+
+================================================================================
+EXACT DUPLICATE ROWS
+================================================================================
+Duplicate rows: 0
+
+================================================================================
+INDUSTRY COMPATIBILITY
+================================================================================
+Could not inspect 14100022_extracted.csv: Usecols do not match columns, columns expected but not found: ['NAICS']
+Could not inspect 14100063_extracted.csv: Usecols do not match columns, columns expected but not found: ['NAICS']
+Could not inspect 14100372_extracted.csv: Usecols do not match columns, columns expected but not found: ['NAICS']
+
+================================================================================
+EDA COMPLETE
+================================================================================

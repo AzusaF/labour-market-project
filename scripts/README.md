@@ -1,6 +1,6 @@
 # Scripts
 
-This directory contains Python scripts for inspecting, preparing, extracting, and transforming project data.
+This directory contains Python scripts for inspecting, preparing, extracting, and transforming project data. The results are saved to `output/` for reference and further analysis.
 
 The scripts follow a sequential workflow:
 
@@ -56,6 +56,25 @@ The extraction process:
 - Filters data based on the project requirements
 - Processes data from 2021 onward
 - Saves extracted datasets for subsequent analysis
+
+---
+
+### 05 — Exploratory Data Analysis
+
+**Script:** `05_eda.py`
+Performs an initial exploratory analysis of the extracted datasets to assess their structure, coverage, data quality, and suitability for further analysis.
+
+The analysis includes:
+
+- Dataset size and memory usage
+- Data structure and variable profiles
+- Dimension and date coverage
+- Basic statistics for numeric variables
+- Data grain and candidate key checks
+- Value and unit semantics
+- Missing values and data-quality patterns
+- Duplicate row checks
+- Industry compatibility checks
 
 ---
 
