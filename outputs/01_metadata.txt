@@ -1,0 +1,474 @@
+01 — Metadata Inspection
+================================================================================
+Metadata directory: data/metadata
+CSV files found: 3
+
+================================================================================
+FILE: 14100022_MetaData.csv
+================================================================================
+Total CSV rows: 111
+Detected tables: 8
+
+--------------------------------------------------------------------------------
+TABLE 1
+--------------------------------------------------------------------------------
+Rows: 2 (CSV lines 1–2)
+Columns: 10–11 (variable row width)
+WARNING: Row widths are not consistent.
+
+Columns:
+    1: Cube Title
+    2: Product Id
+    3: CANSIM Id
+    4: URL
+    5: Cube Notes
+    6: Archive Status
+    7: Frequency
+    8: Start Reference Period
+    9: End Reference Period
+    10: Total number of dimensions
+
+First data rows:
+  Row 1: ['Labour force characteristics by industry, monthly, unadjusted for seasonality', '14100022', '282-0007', 'https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410002201', '11;22', 'CURRENT - a cube available to the public and that is current', 'Monthly', '1976-01-01', '2026-08-01', '5', '']
+
+--------------------------------------------------------------------------------
+TABLE 2
+--------------------------------------------------------------------------------
+Rows: 6 (CSV lines 4–9)
+Columns: 4
+
+Columns:
+    1: Dimension ID
+    2: Dimension name
+    3: Dimension Notes
+    4: Dimension Definitions
+
+First data rows:
+  Row 1: ['1', 'Geography', '21', '']
+  Row 2: ['2', 'Labour force characteristics', '', '']
+  Row 3: ['3', 'North American Industry Classification System (NAICS)', '7', '']
+
+--------------------------------------------------------------------------------
+TABLE 3
+--------------------------------------------------------------------------------
+Rows: 54 (CSV lines 11–64)
+Columns: 8
+
+Columns:
+    1: Dimension ID
+    2: Member Name
+    3: Classification Code
+    4: Member ID
+    5: Parent Member ID
+    6: Terminated
+    7: Member Notes
+    8: Member Definitions
+
+First data rows:
+  Row 1: ['1', 'Canada', '[11124]', '1', '', '', '', '']
+  Row 2: ['1', 'Newfoundland and Labrador', '[10]', '2', '1', '', '', '']
+  Row 3: ['1', 'Prince Edward Island', '[11]', '3', '1', '', '', '']
+
+--------------------------------------------------------------------------------
+TABLE 4
+--------------------------------------------------------------------------------
+Rows: 16 (CSV lines 66–81)
+Columns: 1–3 (variable row width)
+WARNING: Row widths are not consistent.
+
+Columns:
+    1: Symbol Legend
+
+First data rows:
+  Row 1: ['Description', 'Symbol']
+  Row 2: ['not available for a specific reference period', '..', '']
+  Row 3: ['less than the limit of detection', '<LOD', '']
+
+--------------------------------------------------------------------------------
+TABLE 5
+--------------------------------------------------------------------------------
+Rows: 2 (CSV lines 83–84)
+Columns: 2
+
+Columns:
+    1: Survey Code
+    2: Survey Name
+
+First data rows:
+  Row 1: ['3701', 'Labour Force Survey']
+
+--------------------------------------------------------------------------------
+TABLE 6
+--------------------------------------------------------------------------------
+Rows: 2 (CSV lines 86–87)
+Columns: 2
+
+Columns:
+    1: Subject Code
+    2: Subject Name
+
+First data rows:
+  Row 1: ['14', 'Labour']
+
+--------------------------------------------------------------------------------
+TABLE 7
+--------------------------------------------------------------------------------
+Rows: 21 (CSV lines 89–109)
+Columns: 2–5 (variable row width)
+WARNING: Row widths are not consistent.
+
+Columns:
+    1: Note ID
+    2: Note
+
+First data rows:
+  Row 1: ['1', 'Number of civilian, non-institutionalized persons 15 years of age and over who, during the reference week, were employed or unemployed. Estimates in thousands, rounded to the nearest hundred.']
+  Row 2: ['2', 'Number of persons who, during the reference week, worked for pay or profit, or performed unpaid family work or had a job but were not at work due to own illness or disability, personal or family responsibilities, labour dispute, vacation, or other reason. Those persons on layoff and persons without work but who had a job to start at a definite date in the future are not considered employed. Estimates in thousands, rounded to the nearest hundred.']
+  Row 3: ['3', 'Full-time employment consists of persons who usually work 30 hours or more per week at their main or only job. Estimates in thousands, rounded to the nearest hundred.']
+
+--------------------------------------------------------------------------------
+TABLE 8
+--------------------------------------------------------------------------------
+Rows: 1 (CSV lines 111–111)
+Columns: 3
+
+Columns:
+    1: Correction ID
+    2: Correction Date
+    3: Correction Note
+
+First data rows:
+  <none>
+
+================================================================================
+DATASET SUMMARY
+================================================================================
+Title: Labour force characteristics by industry, monthly, unadjusted for seasonality
+Product ID: 14100022
+Frequency: Monthly
+Reference period: 1976-01-01 to 2026-08-01
+Dimensions: 5
+
+Dimension names:
+    1: Geography
+    2: Labour force characteristics
+    3: North American Industry Classification System (NAICS)
+    4: Gender
+    5: Age group
+
+Structural checks:
+    Dimension count: OK
+    Dimension table: detected
+
+================================================================================
+FILE: 14100063_MetaData.csv
+================================================================================
+Total CSV rows: 100
+Detected tables: 8
+
+--------------------------------------------------------------------------------
+TABLE 1
+--------------------------------------------------------------------------------
+Rows: 2 (CSV lines 1–2)
+Columns: 10–11 (variable row width)
+WARNING: Row widths are not consistent.
+
+Columns:
+    1: Cube Title
+    2: Product Id
+    3: CANSIM Id
+    4: URL
+    5: Cube Notes
+    6: Archive Status
+    7: Frequency
+    8: Start Reference Period
+    9: End Reference Period
+    10: Total number of dimensions
+
+First data rows:
+  Row 1: ['Employee wages by industry, monthly, unadjusted for seasonality', '14100063', '282-0071', 'https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410006301', '5;15', 'CURRENT - a cube available to the public and that is current', 'Monthly', '1997-01-01', '2026-08-01', '6', '']
+
+--------------------------------------------------------------------------------
+TABLE 2
+--------------------------------------------------------------------------------
+Rows: 7 (CSV lines 4–10)
+Columns: 4
+
+Columns:
+    1: Dimension ID
+    2: Dimension name
+    3: Dimension Notes
+    4: Dimension Definitions
+
+First data rows:
+  Row 1: ['1', 'Geography', '14', '']
+  Row 2: ['2', 'Wages', '1', '']
+  Row 3: ['3', 'Type of work', '', '']
+
+--------------------------------------------------------------------------------
+TABLE 3
+--------------------------------------------------------------------------------
+Rows: 46 (CSV lines 12–57)
+Columns: 8
+
+Columns:
+    1: Dimension ID
+    2: Member Name
+    3: Classification Code
+    4: Member ID
+    5: Parent Member ID
+    6: Terminated
+    7: Member Notes
+    8: Member Definitions
+
+First data rows:
+  Row 1: ['1', 'Canada', '[11124]', '1', '', '', '', '']
+  Row 2: ['1', 'Newfoundland and Labrador', '[10]', '2', '1', '', '', '']
+  Row 3: ['1', 'Prince Edward Island', '[11]', '3', '1', '', '', '']
+
+--------------------------------------------------------------------------------
+TABLE 4
+--------------------------------------------------------------------------------
+Rows: 16 (CSV lines 59–74)
+Columns: 1–3 (variable row width)
+WARNING: Row widths are not consistent.
+
+Columns:
+    1: Symbol Legend
+
+First data rows:
+  Row 1: ['Description', 'Symbol']
+  Row 2: ['not available for a specific reference period', '..', '']
+  Row 3: ['less than the limit of detection', '<LOD', '']
+
+--------------------------------------------------------------------------------
+TABLE 5
+--------------------------------------------------------------------------------
+Rows: 2 (CSV lines 76–77)
+Columns: 2
+
+Columns:
+    1: Survey Code
+    2: Survey Name
+
+First data rows:
+  Row 1: ['3701', 'Labour Force Survey']
+
+--------------------------------------------------------------------------------
+TABLE 6
+--------------------------------------------------------------------------------
+Rows: 2 (CSV lines 79–80)
+Columns: 2
+
+Columns:
+    1: Subject Code
+    2: Subject Name
+
+First data rows:
+  Row 1: ['14', 'Labour']
+
+--------------------------------------------------------------------------------
+TABLE 7
+--------------------------------------------------------------------------------
+Rows: 17 (CSV lines 82–98)
+Columns: 2–5 (variable row width)
+WARNING: Row widths are not consistent.
+
+Columns:
+    1: Note ID
+    2: Note
+
+First data rows:
+  Row 1: ['1', 'Beginning January 1997, information is collected on the usual wages or salary of employees at their main job. Respondents are asked to report their wage/salary before taxes and other deductions, and include tips, commissions and bonuses. Weekly and hourly wages/salaries are calculated in conjunction with usual paid work hours per week. Starting in 2006, enhancements to the Labour Force Survey processing system have introduced a level shift in average and median wages. Use caution when comparing estimates before and after 2006. For more information, contact statcan.labour-travail.statcan@statcan.gc.ca']
+  Row 2: ['2', 'Full-time employees are those who usually work 30 hours or more per week at their main or only job. Estimates in thousands, rounded to the nearest hundred.']
+  Row 3: ['3', 'Part-time employees are those who usually work less than 30 hours per week at their main or only job. Estimates in thousands, rounded to the nearest hundred.']
+
+--------------------------------------------------------------------------------
+TABLE 8
+--------------------------------------------------------------------------------
+Rows: 1 (CSV lines 100–100)
+Columns: 3
+
+Columns:
+    1: Correction ID
+    2: Correction Date
+    3: Correction Note
+
+First data rows:
+  <none>
+
+================================================================================
+DATASET SUMMARY
+================================================================================
+Title: Employee wages by industry, monthly, unadjusted for seasonality
+Product ID: 14100063
+Frequency: Monthly
+Reference period: 1997-01-01 to 2026-08-01
+Dimensions: 6
+
+Dimension names:
+    1: Geography
+    2: Wages
+    3: Type of work
+    4: North American Industry Classification System (NAICS)
+    5: Gender
+    6: Age group
+
+Structural checks:
+    Dimension count: OK
+    Dimension table: detected
+
+================================================================================
+FILE: 14100372_MetaData.csv
+================================================================================
+Total CSV rows: 71
+Detected tables: 8
+
+--------------------------------------------------------------------------------
+TABLE 1
+--------------------------------------------------------------------------------
+Rows: 2 (CSV lines 1–2)
+Columns: 10–11 (variable row width)
+WARNING: Row widths are not consistent.
+
+Columns:
+    1: Cube Title
+    2: Product Id
+    3: CANSIM Id
+    4: URL
+    5: Cube Notes
+    6: Archive Status
+    7: Frequency
+    8: Start Reference Period
+    9: End Reference Period
+    10: Total number of dimensions
+
+First data rows:
+  Row 1: ['Job vacancies, payroll employees, and job vacancy rate by industry sector, monthly, unadjusted for seasonality', '14100372', '', 'https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410037201', '1;2;3', 'CURRENT - a cube available to the public and that is current', 'Monthly', '2015-04-01', '2026-06-01', '3', '']
+
+--------------------------------------------------------------------------------
+TABLE 2
+--------------------------------------------------------------------------------
+Rows: 4 (CSV lines 4–7)
+Columns: 4
+
+Columns:
+    1: Dimension ID
+    2: Dimension name
+    3: Dimension Notes
+    4: Dimension Definitions
+
+First data rows:
+  Row 1: ['1', 'Geography', '', '']
+  Row 2: ['2', 'North American Industry Classification System (NAICS)', '4', '']
+  Row 3: ['3', 'Statistics', '', '']
+
+--------------------------------------------------------------------------------
+TABLE 3
+--------------------------------------------------------------------------------
+Rows: 26 (CSV lines 9–34)
+Columns: 8
+
+Columns:
+    1: Dimension ID
+    2: Member Name
+    3: Classification Code
+    4: Member ID
+    5: Parent Member ID
+    6: Terminated
+    7: Member Notes
+    8: Member Definitions
+
+First data rows:
+  Row 1: ['1', 'Canada', '[11124]', '1', '', '', '', '']
+  Row 2: ['2', 'Total, all industries', '', '1', '', '', '4', '']
+  Row 3: ['2', 'Agriculture, forestry, fishing and hunting', '[11]', '2', '1', '', '', '']
+
+--------------------------------------------------------------------------------
+TABLE 4
+--------------------------------------------------------------------------------
+Rows: 16 (CSV lines 36–51)
+Columns: 1–3 (variable row width)
+WARNING: Row widths are not consistent.
+
+Columns:
+    1: Symbol Legend
+
+First data rows:
+  Row 1: ['Description', 'Symbol']
+  Row 2: ['not available for a specific reference period', '..', '']
+  Row 3: ['less than the limit of detection', '<LOD', '']
+
+--------------------------------------------------------------------------------
+TABLE 5
+--------------------------------------------------------------------------------
+Rows: 2 (CSV lines 53–54)
+Columns: 2
+
+Columns:
+    1: Survey Code
+    2: Survey Name
+
+First data rows:
+  Row 1: ['5217', 'Job Vacancy and Wage Survey']
+
+--------------------------------------------------------------------------------
+TABLE 6
+--------------------------------------------------------------------------------
+Rows: 2 (CSV lines 56–57)
+Columns: 2
+
+Columns:
+    1: Subject Code
+    2: Subject Name
+
+First data rows:
+  Row 1: ['14', 'Labour']
+
+--------------------------------------------------------------------------------
+TABLE 7
+--------------------------------------------------------------------------------
+Rows: 11 (CSV lines 59–69)
+Columns: 2–20 (variable row width)
+WARNING: Row widths are not consistent.
+
+Columns:
+    1: Note ID
+    2: Note
+
+First data rows:
+  Row 1: ['1', 'Data quality indicators are based on the coefficient of variation (CV), the non-response errors, the imputation errors, and subject matter expertise: A – Excellent; B - Very good; C - Good; D – Acceptable; E - Use with caution; F - Too unreliable to publish.']
+  Row 2: ['2', 'Estimates are preliminary before the associated quarterly data is released. The three monthly estimates in a quarter are revised as final when the quarterly estimates are released, or shortly after.']
+  Row 3: ['3', 'Data for the second and third quarters of 2020 are unavailable due to some Statistics Canada operations being temporarily suspended during the COVID-19 pandemic.']
+
+--------------------------------------------------------------------------------
+TABLE 8
+--------------------------------------------------------------------------------
+Rows: 1 (CSV lines 71–71)
+Columns: 3
+
+Columns:
+    1: Correction ID
+    2: Correction Date
+    3: Correction Note
+
+First data rows:
+  <none>
+
+================================================================================
+DATASET SUMMARY
+================================================================================
+Title: Job vacancies, payroll employees, and job vacancy rate by industry sector, monthly, unadjusted for seasonality
+Product ID: 14100372
+Frequency: Monthly
+Reference period: 2015-04-01 to 2026-06-01
+Dimensions: 3
+
+Dimension names:
+    1: Geography
+    2: North American Industry Classification System (NAICS)
+    3: Statistics
+
+Structural checks:
+    Dimension count: OK
+    Dimension table: detected
