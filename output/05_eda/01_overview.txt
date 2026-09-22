@@ -3,7 +3,7 @@
 EXPLORATORY DATA ANALYSIS
 ================================================================================
 Extracted directory: data/extracted
-Output file: output/05_eda.txt
+Output file: output/05_eda/01_overview.txt
 
 Target analysis period: 2021-01 → 2025-12
 
