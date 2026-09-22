@@ -32,15 +32,13 @@ Large files are inspected without loading the entire file into memory.
 
 ---
 
-## 03. Prepare Data
+## 03. Profile Data
 
-**Script:** `03_prepare.py`
+**Script:** `03_profile.py`
 
 Provides an interactive overview of available CSV files and allows the user to select one for analysis.
 
-Large files are sampled rather than loaded in full.
-
-The preparation stage does not modify the source data.
+This inspection is intended for initial structural checks. Large files are inspected using a sample.
 
 ---
 

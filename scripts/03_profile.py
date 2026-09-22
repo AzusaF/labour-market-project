@@ -1,6 +1,24 @@
-from pathlib import Path
 
+"""
+03 — Profile
+
+Profiles all CSV files in data/raw and reports:
+- Data loading information
+- Dataset structure
+- Numeric summary
+- VALUE analysis
+- Duplicate rows
+- Missing values
+- Categorical columns
+
+Output:
+- outputs/03_profile.txt
+"""
+
+
+from pathlib import Path
 import pandas as pd
+import sys
 
 
 # ============================================================
@@ -8,6 +26,8 @@ import pandas as pd
 # ============================================================
 
 DATA_DIR = Path("data/raw")
+OUTPUT_DIR = Path("outputs")
+OUTPUT_FILE = OUTPUT_DIR / "03_profile.txt"
 
 # Files larger than this size are treated as large files.
 LARGE_FILE_SIZE_MB = 500
@@ -28,37 +48,6 @@ def find_csv_files():
     return []
 
   return csv_files
-
-
-# ============================================================
-# Select CSV file
-# ============================================================
-
-def select_file(csv_files):
-  if len(csv_files) == 1:
-    print(f"CSV file found: {csv_files[0].name}")
-    return csv_files[0]
-
-  print("CSV files found:\n")
-
-  for i, file_path in enumerate(csv_files, start=1):
-    print(f"[{i}] {file_path.name}")
-
-  print("\nSelect a file to analyze:")
-
-  while True:
-    try:
-      selection = int(input("> "))
-
-      if 1 <= selection <= len(csv_files):
-        return csv_files[selection - 1]
-
-      print(
-        f"Please enter a number between 1 and {len(csv_files)}."
-      )
-
-    except ValueError:
-      print("Please enter a valid number.")
 
 
 # ============================================================
@@ -231,16 +220,14 @@ def analyze_categorical_columns(df):
 
 
 # ============================================================
-# Main
+# Profile all files
 # ============================================================
 
-def main():
-  csv_files = find_csv_files()
-
-  if not csv_files:
-    return
-
-  file_path = select_file(csv_files)
+def profile_file(file_path):
+  print("\n")
+  print("#" * 80)
+  print(f"# 03 PROFILE — {file_path.name}")
+  print("#" * 80)
 
   df, is_sample = load_data(file_path)
 
@@ -251,9 +238,42 @@ def main():
   analyze_missing_values(df)
   analyze_categorical_columns(df)
 
-  print("\n" + "=" * 80)
-  print("EDA COMPLETE")
-  print("=" * 80)
+
+# ============================================================
+# Main
+# ============================================================
+
+def main():
+  csv_files = find_csv_files()
+
+  if not csv_files:
+    return
+
+  OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+  original_stdout = sys.stdout
+
+  try:
+    with OUTPUT_FILE.open("w", encoding="utf-8") as output:
+      sys.stdout = output
+
+      print("=" * 80)
+      print("03 PROFILE")
+      print("=" * 80)
+      print(f"Data directory: {DATA_DIR}")
+      print(f"Files analyzed: {len(csv_files)}")
+
+      for file_path in csv_files:
+        profile_file(file_path)
+
+      print("\n" + "=" * 80)
+      print("PROFILE COMPLETE")
+      print("=" * 80)
+
+  finally:
+    sys.stdout = original_stdout
+
+  print(f"Profile saved to: {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":
