@@ -1,10 +1,33 @@
+"""
+01 — Metadata Inspection
+
+Inspects Statistics Canada metadata CSV files and extracts:
+- Metadata table structure
+- Column names and sample rows
+- Dataset-level information
+- Dimension definitions
+- Basic structural consistency checks
+
+Output:
+- outputs/01_metadata.txt
+"""
+
 from pathlib import Path
 import csv
 
 
-# Directory containing Statistics Canada metadata CSV files
-METADATA_DIR = Path("data/metadata")
+# =============================================================================
+# CONFIGURATION
+# =============================================================================
 
+METADATA_DIR = Path("data/metadata")
+OUTPUT_DIR = Path("outputs")
+OUTPUT_FILE = OUTPUT_DIR / "01_metadata.txt"
+
+
+# =============================================================================
+# HELPER FUNCTIONS
+# =============================================================================
 
 def is_blank_row(row):
   """Return True if the row is empty or contains only blank cells."""
@@ -12,9 +35,7 @@ def is_blank_row(row):
 
 
 def detect_tables(rows):
-  """
-  Split a metadata CSV into tables using blank rows as table separators.
-  """
+  """Split a metadata CSV into tables using blank rows as separators."""
   tables = []
   current_table = []
 
@@ -37,55 +58,64 @@ def clean_cell(value):
   return value.strip()
 
 
-def inspect_table(table, table_number, start_line, end_line):
-  """Print structural information and a small preview of a metadata table."""
+# =============================================================================
+# TABLE INSPECTION
+# =============================================================================
 
-  print("\n" + "-" * 80)
-  print(f"TABLE {table_number}")
-  print("-" * 80)
+def inspect_table(table, table_number, start_line, end_line, output):
+  """Write structural information and a small preview of a metadata table."""
 
-  print(f"Rows: {len(table)} (CSV lines {start_line}–{end_line})")
+  output.write("\n" + "-" * 80 + "\n")
+  output.write(f"TABLE {table_number}\n")
+  output.write("-" * 80 + "\n")
 
-  # Check whether all rows have the same number of columns
+  output.write(
+    f"Rows: {len(table)} (CSV lines {start_line}–{end_line})\n"
+  )
+
+  # Check whether all rows have the same number of columns.
   widths = [len(row) for row in table]
   min_width = min(widths)
   max_width = max(widths)
 
   if min_width == max_width:
-    print(f"Columns: {max_width}")
+    output.write(f"Columns: {max_width}\n")
   else:
-    print(
+    output.write(
       f"Columns: {min_width}–{max_width} "
-      "(variable row width)"
+      "(variable row width)\n"
     )
-    print("WARNING: Row widths are not consistent.")
+    output.write("WARNING: Row widths are not consistent.\n")
 
-  # Treat the first row as the table header
+  # Treat the first row as the table header.
   header = table[0]
 
-  print("\nColumns:")
+  output.write("\nColumns:\n")
 
   for column_number, column_name in enumerate(header, start=1):
     column_name = clean_cell(column_name)
 
     if column_name:
-      print(f"    {column_number}: {column_name}")
+      output.write(f"    {column_number}: {column_name}\n")
     else:
-      print(f"    {column_number}: <blank>")
+      output.write(f"    {column_number}: <blank>\n")
 
-  # Show a small preview of the first data rows
+  # Show a small preview of the first data rows.
+  output.write("\nFirst data rows:\n")
+
   if len(table) > 1:
-    print("\nFirst data rows:")
-
     preview_rows = table[1:4]
 
     for row_number, row in enumerate(preview_rows, start=1):
       cleaned_row = [clean_cell(value) for value in row]
-      print(f"  Row {row_number}: {cleaned_row}")
+      output.write(f"  Row {row_number}: {cleaned_row}\n")
   else:
-    print("\nFirst data rows:")
-    print("  <none>")
+    output.write("  <none>\n")
 
+
+# =============================================================================
+# DATASET SUMMARY
+# =============================================================================
 
 def extract_dataset_summary(tables):
   """
@@ -108,6 +138,7 @@ def extract_dataset_summary(tables):
   # ------------------------------------------------------------------
   # Table 1: Cube-level information
   # ------------------------------------------------------------------
+
   if tables:
     cube_table = tables[0]
 
@@ -146,6 +177,7 @@ def extract_dataset_summary(tables):
   # ------------------------------------------------------------------
   # Table 2: Dimension definitions
   # ------------------------------------------------------------------
+
   if len(tables) >= 2:
     dimension_table = tables[1]
 
@@ -185,37 +217,43 @@ def extract_dataset_summary(tables):
   return summary
 
 
-def print_dataset_summary(summary):
-  """Print a concise summary of the metadata file."""
+def print_dataset_summary(summary, output):
+  """Write a concise summary of the metadata file."""
 
-  print("\n" + "=" * 80)
-  print("DATASET SUMMARY")
-  print("=" * 80)
+  output.write("\n" + "=" * 80 + "\n")
+  output.write("DATASET SUMMARY\n")
+  output.write("=" * 80 + "\n")
 
-  print(f"Title: {summary['title']}")
-  print(f"Product ID: {summary['product_id']}")
-  print(f"Frequency: {summary['frequency']}")
-  print(
+  output.write(f"Title: {summary['title']}\n")
+  output.write(f"Product ID: {summary['product_id']}\n")
+  output.write(f"Frequency: {summary['frequency']}\n")
+  output.write(
     f"Reference period: "
-    f"{summary['start_period']} to {summary['end_period']}"
+    f"{summary['start_period']} to {summary['end_period']}\n"
   )
-  print(f"Dimensions: {summary['dimension_count']}")
+  output.write(f"Dimensions: {summary['dimension_count']}\n")
 
-  print("\nDimension names:")
+  output.write("\nDimension names:\n")
 
   if summary["dimensions"]:
     for dimension_id, dimension_name in summary["dimensions"]:
-      print(f"    {dimension_id}: {dimension_name}")
+      output.write(
+        f"    {dimension_id}: {dimension_name}\n"
+      )
   else:
-    print("    <none detected>")
+    output.write("    <none detected>\n")
 
 
-def inspect_metadata_file(file_path):
+# =============================================================================
+# METADATA FILE INSPECTION
+# =============================================================================
+
+def inspect_metadata_file(file_path, output):
   """Inspect one Statistics Canada metadata CSV file."""
 
-  print("\n" + "=" * 80)
-  print(f"FILE: {file_path.name}")
-  print("=" * 80)
+  output.write("\n" + "=" * 80 + "\n")
+  output.write(f"FILE: {file_path.name}\n")
+  output.write("=" * 80 + "\n")
 
   with open(
     file_path,
@@ -223,87 +261,109 @@ def inspect_metadata_file(file_path):
     encoding="utf-8-sig",
     newline=""
   ) as file:
-
     rows = list(csv.reader(file))
 
-  # Remove trailing blank rows
+  # Remove trailing blank rows.
   while rows and is_blank_row(rows[-1]):
     rows.pop()
 
   if not rows:
-    print("WARNING: File is empty.")
+    output.write("WARNING: File is empty.\n")
     return
 
-  print(f"Total CSV rows: {len(rows)}")
+  output.write(f"Total CSV rows: {len(rows)}\n")
 
-  # Detect tables dynamically
+  # Detect metadata tables dynamically.
   tables = detect_tables(rows)
 
-  print(f"Detected tables: {len(tables)}")
+  output.write(f"Detected tables: {len(tables)}\n")
 
-  # Track the original CSV line numbers
+  # Track the original CSV line numbers.
   table_start = 1
   table_number = 1
 
   for table in tables:
-
-    # Find the actual end line based on table length
     table_end = table_start + len(table) - 1
 
     inspect_table(
       table,
       table_number,
       table_start,
-      table_end
+      table_end,
+      output
     )
 
     table_start = table_end + 2
     table_number += 1
 
-  # Print high-level dataset summary
+  # Write the high-level dataset summary.
   summary = extract_dataset_summary(tables)
 
-  print_dataset_summary(summary)
+  print_dataset_summary(summary, output)
 
-  # Basic structural checks
-  print("\nStructural checks:")
+  # Run basic structural checks.
+  output.write("\nStructural checks:\n")
 
   if summary["dimension_count"] is not None:
     detected_count = len(summary["dimensions"])
 
     if isinstance(summary["dimension_count"], int):
       if detected_count == summary["dimension_count"]:
-        print("    Dimension count: OK")
+        output.write("    Dimension count: OK\n")
       else:
-        print(
+        output.write(
           "    WARNING: Declared dimension count "
           f"({summary['dimension_count']}) does not match "
-          f"detected dimension rows ({detected_count})."
+          f"detected dimension rows ({detected_count}).\n"
         )
 
   if len(tables) < 2:
-    print("    WARNING: Expected dimension information was not detected.")
+    output.write(
+      "    WARNING: Expected dimension information "
+      "was not detected.\n"
+    )
   else:
-    print("    Dimension table: detected")
+    output.write("    Dimension table: detected\n")
 
+
+# =============================================================================
+# MAIN
+# =============================================================================
 
 def main():
-  """Inspect all metadata CSV files in the metadata directory."""
+  """Inspect all metadata CSV files and save the results."""
 
-  print(f"Metadata directory: {METADATA_DIR}")
+  OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
   metadata_files = sorted(
     METADATA_DIR.glob("*_MetaData.csv")
   )
 
-  print(f"CSV files found: {len(metadata_files)}")
+  with open(
+    OUTPUT_FILE,
+    "w",
+    encoding="utf-8"
+  ) as output:
 
-  if not metadata_files:
-    print("WARNING: No metadata CSV files found.")
-    return
+    output.write("01 — Metadata Inspection\n")
+    output.write("=" * 80 + "\n")
+    output.write(
+      f"Metadata directory: {METADATA_DIR}\n"
+    )
+    output.write(
+      f"CSV files found: {len(metadata_files)}\n"
+    )
 
-  for file_path in metadata_files:
-    inspect_metadata_file(file_path)
+    if not metadata_files:
+      output.write(
+        "WARNING: No metadata CSV files found.\n"
+      )
+      return
+
+    for file_path in metadata_files:
+      inspect_metadata_file(file_path, output)
+
+  print(f"Metadata inspection complete: {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":

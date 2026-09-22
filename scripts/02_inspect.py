@@ -1,3 +1,18 @@
+"""
+02 — Data Inspection
+
+Inspects Statistics Canada raw CSV datasets without loading
+the full datasets into memory and extracts:
+- File size information
+- CSV structure and delimiter
+- Column names
+- Row width consistency
+- Beginning, middle, and end-of-file samples
+
+Output:
+- outputs/02_inspect.txt
+"""
+
 from pathlib import Path
 import csv
 import os
@@ -8,6 +23,7 @@ import os
 # ============================================================
 
 DATA_DIR = Path("data/raw")
+OUTPUT_DIR = Path("outputs")
 
 TARGET_FILES = [
   "14100022.csv",
@@ -23,29 +39,29 @@ STRUCTURE_CHECK_ROWS = 1000
 # File information
 # ============================================================
 
-def inspect_file_info(file_path):
+def inspect_file_info(file_path, output):
   """Display basic information about the CSV file."""
 
   file_size_bytes = os.path.getsize(file_path)
   file_size_mb = file_size_bytes / (1024 ** 2)
   file_size_gb = file_size_bytes / (1024 ** 3)
 
-  print("-" * 80)
-  print(f"FILE: {file_path.name}")
-  print("-" * 80)
-  print(f"Size: {file_size_bytes:,} bytes")
+  output.write("-" * 80 + "\n")
+  output.write(f"FILE: {file_path.name}\n")
+  output.write("-" * 80 + "\n")
+  output.write(f"Size: {file_size_bytes:,} bytes\n")
 
   if file_size_gb >= 1:
-    print(f"Size: {file_size_gb:.2f} GB")
+    output.write(f"Size: {file_size_gb:.2f} GB\n")
   else:
-    print(f"Size: {file_size_mb:.2f} MB")
+    output.write(f"Size: {file_size_mb:.2f} MB\n")
 
 
 # ============================================================
 # CSV structure detection
 # ============================================================
 
-def detect_csv_structure(file_path):
+def detect_csv_structure(file_path, output):
   """
   Inspect the CSV structure without loading the entire file.
 
@@ -55,7 +71,7 @@ def detect_csv_structure(file_path):
   - row width consistency in an initial sample
   """
 
-  print("\n[CSV structure]")
+  output.write("\n[CSV structure]\n")
 
   with open(
     file_path,
@@ -85,58 +101,66 @@ def detect_csv_structure(file_path):
     header = next(reader, None)
 
     if header is None:
-      print("WARNING: Empty file.")
+      output.write("WARNING: Empty file.\n")
       return None, None
 
-    print(f"Detected delimiter: {repr(delimiter)}")
-    print(f"Number of columns: {len(header)}")
+    output.write(
+      f"Detected delimiter: {repr(delimiter)}\n"
+    )
+    output.write(
+      f"Number of columns: {len(header)}\n"
+    )
 
-    print("\nColumn names:")
+    output.write("\nColumn names:\n")
 
     for index, column in enumerate(header, start=1):
-      print(f"  {index}. {column}")
+      output.write(
+        f"  {index}. {column}\n"
+      )
 
     # Check row width consistency using a limited sample.
     inconsistent_rows = []
+    rows_checked = 0
 
     for row_number, row in enumerate(
       reader,
       start=2
     ):
+      rows_checked += 1
+
       if len(row) != len(header):
         inconsistent_rows.append(
           (row_number, len(row))
         )
 
-      if row_number > STRUCTURE_CHECK_ROWS:
+      if rows_checked >= STRUCTURE_CHECK_ROWS:
         break
 
-    print(
-      f"\nChecked first "
-      f"{min(STRUCTURE_CHECK_ROWS, row_number - 1)} data rows."
+    output.write(
+      f"\nChecked first {rows_checked} data rows.\n"
     )
 
     if inconsistent_rows:
-      print(
-        "WARNING: Inconsistent row structure detected."
+      output.write(
+        "WARNING: Inconsistent row structure detected.\n"
       )
 
       for row_number, width in inconsistent_rows[:10]:
-        print(
+        output.write(
           f"  Row {row_number}: "
           f"{width} columns "
-          f"(expected {len(header)})"
+          f"(expected {len(header)})\n"
         )
 
       if len(inconsistent_rows) > 10:
-        print(
+        output.write(
           f"  ... and "
-          f"{len(inconsistent_rows) - 10} more."
+          f"{len(inconsistent_rows) - 10} more.\n"
         )
     else:
-      print(
+      output.write(
         "Row structure is consistent "
-        "within the checked sample."
+        "within the checked sample.\n"
       )
 
     return delimiter, header
@@ -146,10 +170,10 @@ def detect_csv_structure(file_path):
 # Safe data sampling
 # ============================================================
 
-def inspect_head(file_path, delimiter):
+def inspect_head(file_path, delimiter, output):
   """Display the first few data rows."""
 
-  print("\n[Beginning of file]")
+  output.write("\n[Beginning of file]\n")
 
   with open(
     file_path,
@@ -168,28 +192,32 @@ def inspect_head(file_path, delimiter):
     if header is None:
       return
 
-    print(f"Header columns: {len(header)}")
+    output.write(
+      f"Header columns: {len(header)}\n"
+    )
 
     for row_number, row in enumerate(
       reader,
       start=1
     ):
-      print(f"Row {row_number}: {row}")
+      output.write(
+        f"Row {row_number}: {row}\n"
+      )
 
       if row_number >= SAMPLE_ROWS:
         break
 
-def inspect_middle(file_path, delimiter):
+
+def inspect_middle(file_path, delimiter, output):
   """
   Display a small sample from the middle of the file.
 
   This does not load the entire file into memory.
   """
 
-  print("\n[Middle of file]")
+  output.write("\n[Middle of file]\n")
 
   file_size = os.path.getsize(file_path)
-
   middle_position = file_size // 2
 
   with open(
@@ -212,17 +240,17 @@ def inspect_middle(file_path, delimiter):
   lines = text.splitlines()
 
   for line in lines[:SAMPLE_ROWS]:
-    print(line)
+    output.write(line + "\n")
 
 
-def inspect_tail(file_path, delimiter):
+def inspect_tail(file_path, delimiter, output):
   """
   Display the last few physical lines of the file.
 
   This does not load the entire file into memory.
   """
 
-  print("\n[End of file]")
+  output.write("\n[End of file]\n")
 
   with open(
     file_path,
@@ -234,7 +262,9 @@ def inspect_tail(file_path, delimiter):
 
     read_size = min(100_000, file_size)
 
-    file.seek(max(0, file_size - read_size))
+    file.seek(
+      max(0, file_size - read_size)
+    )
 
     data = file.read(read_size)
 
@@ -246,68 +276,104 @@ def inspect_tail(file_path, delimiter):
   lines = text.splitlines()
 
   for line in lines[-SAMPLE_ROWS:]:
-    print(line)
+    output.write(line + "\n")
 
 
 # ============================================================
 # Main inspection
 # ============================================================
 
-def inspect_dataset(file_path):
+def inspect_dataset(file_path, output):
   """Run all safe inspection steps for one dataset."""
 
   if not file_path.exists():
-    print(f"\nWARNING: File not found: {file_path}")
+    output.write(
+      f"\nWARNING: File not found: {file_path}\n"
+    )
     return
 
-  inspect_file_info(file_path)
+  inspect_file_info(
+    file_path,
+    output
+  )
 
-  delimiter, header = detect_csv_structure(file_path)
+  delimiter, header = detect_csv_structure(
+    file_path,
+    output
+  )
 
   if delimiter is None:
     return
 
   inspect_head(
     file_path,
-    delimiter
+    delimiter,
+    output
   )
 
   inspect_middle(
     file_path,
-    delimiter
+    delimiter,
+    output
   )
 
   inspect_tail(
     file_path,
-    delimiter
+    delimiter,
+    output
   )
 
-  print("\n[Full-file analysis]")
-  print(
+  output.write("\n[Full-file analysis]\n")
+  output.write(
     "Skipped intentionally to avoid loading "
-    "the entire dataset into memory."
+    "the entire dataset into memory.\n"
   )
 
 
 def main():
-  """Inspect all selected datasets."""
+  """Inspect all selected datasets and save the output."""
 
-  print("=" * 80)
-  print("DATA INSPECTION")
-  print("=" * 80)
-  print(f"Data directory: {DATA_DIR}")
-  print()
+  OUTPUT_DIR.mkdir(
+    parents=True,
+    exist_ok=True
+  )
 
-  for filename in TARGET_FILES:
-    file_path = DATA_DIR / filename
+  output_path = OUTPUT_DIR / "02_inspect.txt"
 
-    print("\n")
-    inspect_dataset(file_path)
+  with open(
+    output_path,
+    "w",
+    encoding="utf-8"
+  ) as output:
 
-  print("\n")
-  print("=" * 80)
-  print("INSPECTION COMPLETE")
-  print("=" * 80)
+    output.write("=" * 80 + "\n")
+    output.write("DATA INSPECTION\n")
+    output.write("=" * 80 + "\n")
+    output.write(
+      f"Data directory: {DATA_DIR}\n"
+    )
+    output.write(
+      f"Output directory: {OUTPUT_DIR}\n"
+    )
+    output.write("\n")
+
+    for filename in TARGET_FILES:
+      file_path = DATA_DIR / filename
+
+      output.write("\n")
+      inspect_dataset(
+        file_path,
+        output
+      )
+
+    output.write("\n")
+    output.write("=" * 80 + "\n")
+    output.write("INSPECTION COMPLETE\n")
+    output.write("=" * 80 + "\n")
+
+  print(
+    f"Inspection output saved to: {output_path}"
+  )
 
 
 if __name__ == "__main__":

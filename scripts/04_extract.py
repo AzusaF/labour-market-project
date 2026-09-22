@@ -1,5 +1,20 @@
-from pathlib import Path
+"""
+04 — Data Extraction
 
+Extracts records from the raw Statistics Canada CSV files from 2021 onward.
+
+- Reads large CSV files in chunks
+- Preserves all original columns and values
+- Removes records before the target year
+- Saves extracted datasets to data/extracted/
+- Verifies row counts, columns, and REF_DATE range
+
+Output:
+- data/extracted/*_extracted.csv
+"""
+
+
+from pathlib import Path
 import pandas as pd
 
 
