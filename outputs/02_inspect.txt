@@ -1,0 +1,183 @@
+================================================================================
+DATA INSPECTION
+================================================================================
+Data directory: data/raw
+Output directory: outputs
+
+
+--------------------------------------------------------------------------------
+FILE: 14100022.csv
+--------------------------------------------------------------------------------
+Size: 2,688,358,363 bytes
+Size: 2.50 GB
+
+[CSV structure]
+Detected delimiter: ','
+Number of columns: 18
+
+Column names:
+  1. REF_DATE
+  2. GEO
+  3. DGUID
+  4. Labour force characteristics
+  5. North American Industry Classification System (NAICS)
+  6. Gender
+  7. Age group
+  8. UOM
+  9. UOM_ID
+  10. SCALAR_FACTOR
+  11. SCALAR_ID
+  12. VECTOR
+  13. COORDINATE
+  14. VALUE
+  15. STATUS
+  16. SYMBOL
+  17. TERMINATED
+  18. DECIMALS
+
+Checked first 1000 data rows.
+Row structure is consistent within the checked sample.
+
+[Beginning of file]
+Header columns: 18
+Row 1: ['1976-01', 'Canada', '2021A000011124', 'Labour force', 'Total, all industries', 'Total - Gender', '15 years and over', 'Persons in thousands', '428', 'thousands', '3', 'v2710104', '1.1.1.1.1', '10087.1', '', '', '', '1']
+Row 2: ['1976-01', 'Canada', '2021A000011124', 'Labour force', 'Total, all industries', 'Total - Gender', '15 to 24 years', 'Persons in thousands', '428', 'thousands', '3', 'v19651242', '1.1.1.1.2', '2666.1', '', '', '', '1']
+Row 3: ['1976-01', 'Canada', '2021A000011124', 'Labour force', 'Total, all industries', 'Total - Gender', '25 to 54 years', 'Persons in thousands', '428', 'thousands', '3', 'v19651243', '1.1.1.1.3', '6251.8', '', '', '', '1']
+Row 4: ['1976-01', 'Canada', '2021A000011124', 'Labour force', 'Total, all industries', 'Total - Gender', '55 years and over', 'Persons in thousands', '428', 'thousands', '3', 'v19651244', '1.1.1.1.4', '1169.2', '', '', '', '1']
+Row 5: ['1976-01', 'Canada', '2021A000011124', 'Labour force', 'Total, all industries', 'Men+', '15 years and over', 'Persons in thousands', '428', 'thousands', '3', 'v2710274', '1.1.1.2.1', '6320.7', '', '', '', '1']
+
+[Middle of file]
+"2003-01","British Columbia","2021A000259","Full-time employment","Information, culture and recreation [51, 71]","Men+","15 to 24 years","Persons in thousands","428","thousands","3","v19667274","11.3.25.2.2","2.6","","","","1"
+"2003-01","British Columbia","2021A000259","Full-time employment","Information, culture and recreation [51, 71]","Men+","25 to 54 years","Persons in thousands","428","thousands","3","v19667275","11.3.25.2.3","34.5","","","","1"
+"2003-01","British Columbia","2021A000259","Full-time employment","Information, culture and recreation [51, 71]","Men+","55 years and over","Persons in thousands","428","thousands","3","v19667276","11.3.25.2.4","3.1","","","","1"
+"2003-01","British Columbia","2021A000259","Full-time employment","Information, culture and recreation [51, 71]","Women+","15 years and over","Persons in thousands","428","thousands","3","v2722033","11.3.25.3.1","27.6","","","","1"
+"2003-01","British Columbia","2021A000259","Full-time employment","Information, culture and recreation [51, 71]","Women+","15 to 24 years","Persons in thousands","428","thousands","3","v19667277","11.3.25.3.2","3.2","","","","1"
+
+[End of file]
+"2026-08","British Columbia","2021A000259","Unemployment rate","Public administration [91]","Men+","55 years and over","Percent","239","units","0","v19668068","11.6.28.2.4","","x","","","1"
+"2026-08","British Columbia","2021A000259","Unemployment rate","Public administration [91]","Women+","15 years and over","Percent","239","units","0","v2722121","11.6.28.3.1","","x","","","1"
+"2026-08","British Columbia","2021A000259","Unemployment rate","Public administration [91]","Women+","15 to 24 years","Percent","239","units","0","v19668069","11.6.28.3.2","","x","","","1"
+"2026-08","British Columbia","2021A000259","Unemployment rate","Public administration [91]","Women+","25 to 54 years","Percent","239","units","0","v19668070","11.6.28.3.3","","x","","","1"
+"2026-08","British Columbia","2021A000259","Unemployment rate","Public administration [91]","Women+","55 years and over","Percent","239","units","0","v19668071","11.6.28.3.4","","x","","","1"
+
+[Full-file analysis]
+Skipped intentionally to avoid loading the entire dataset into memory.
+
+--------------------------------------------------------------------------------
+FILE: 14100063.csv
+--------------------------------------------------------------------------------
+Size: 3,291,659,238 bytes
+Size: 3.07 GB
+
+[CSV structure]
+Detected delimiter: ','
+Number of columns: 19
+
+Column names:
+  1. REF_DATE
+  2. GEO
+  3. DGUID
+  4. Wages
+  5. Type of work
+  6. North American Industry Classification System (NAICS)
+  7. Gender
+  8. Age group
+  9. UOM
+  10. UOM_ID
+  11. SCALAR_FACTOR
+  12. SCALAR_ID
+  13. VECTOR
+  14. COORDINATE
+  15. VALUE
+  16. STATUS
+  17. SYMBOL
+  18. TERMINATED
+  19. DECIMALS
+
+Checked first 1000 data rows.
+Row structure is consistent within the checked sample.
+
+[Beginning of file]
+Header columns: 19
+Row 1: ['1997-01', 'Canada', '2021A000011124', 'Total employees, all wages', 'Both full- and part-time employees', 'Total employees, all industries', 'Total - Gender', '15 years and over', 'Persons in thousands', '428', 'thousands', '3', 'v2132578', '1.1.1.1.1.1', '10921.0', '', '', '', '1']
+Row 2: ['1997-01', 'Canada', '2021A000011124', 'Total employees, all wages', 'Both full- and part-time employees', 'Total employees, all industries', 'Total - Gender', '15 to 24 years', 'Persons in thousands', '428', 'thousands', '3', 'v2132863', '1.1.1.1.1.2', '1721.8', '', '', '', '1']
+Row 3: ['1997-01', 'Canada', '2021A000011124', 'Total employees, all wages', 'Both full- and part-time employees', 'Total employees, all industries', 'Total - Gender', '25 to 54 years', 'Persons in thousands', '428', 'thousands', '3', 'v2133148', '1.1.1.1.1.3', '8333.1', '', '', '', '1']
+Row 4: ['1997-01', 'Canada', '2021A000011124', 'Total employees, all wages', 'Both full- and part-time employees', 'Total employees, all industries', 'Total - Gender', '55 years and over', 'Persons in thousands', '428', 'thousands', '3', 'v2133433', '1.1.1.1.1.4', '866.2', '', '', '', '1']
+Row 5: ['1997-01', 'Canada', '2021A000011124', 'Total employees, all wages', 'Both full- and part-time employees', 'Total employees, all industries', 'Men+', '15 years and over', 'Persons in thousands', '428', 'thousands', '3', 'v2133718', '1.1.1.1.2.1', '5645.4', '', '', '', '1']
+
+[Middle of file]
+"2011-11","Newfoundland and Labrador","2021A000210","Total employees, all wages","Full-time employees","Finance, insurance, real estate, rental and leasing [52-53]","Men+","55 years and over","Persons in thousands","428","thousands","3","v2138128","2.1.2.11.2.4","0.5","","","","1"
+"2011-11","Newfoundland and Labrador","2021A000210","Total employees, all wages","Full-time employees","Finance, insurance, real estate, rental and leasing [52-53]","Women+","15 years and over","Persons in thousands","428","thousands","3","v2138413","2.1.2.11.3.1","4.3","","","","1"
+"2011-11","Newfoundland and Labrador","2021A000210","Total employees, all wages","Full-time employees","Finance, insurance, real estate, rental and leasing [52-53]","Women+","15 to 24 years","Persons in thousands","428","thousands","3","v2138698","2.1.2.11.3.2","","x","","","1"
+"2011-11","Newfoundland and Labrador","2021A000210","Total employees, all wages","Full-time employees","Finance, insurance, real estate, rental and leasing [52-53]","Women+","25 to 54 years","Persons in thousands","428","thousands","3","v2138983","2.1.2.11.3.3","3.4","","","","1"
+"2011-11","Newfoundland and Labrador","2021A000210","Total employees, all wages","Full-time employees","Finance, insurance, real estate, rental and leasing [52-53]","Women+","55 years and over","Persons in thousands","428","thousands","3","v2139268","2.1.2.11.3.4","0.6","","","","1"
+
+[End of file]
+"2026-08","British Columbia","2021A000259","Median weekly wage rate","Part-time employees","Public administration [91]","Men+","55 years and over","Current dollars","75","units","0","v2169057","11.5.3.19.2.4","300.00","","","","2"
+"2026-08","British Columbia","2021A000259","Median weekly wage rate","Part-time employees","Public administration [91]","Women+","15 years and over","Current dollars","75","units","0","v2169342","11.5.3.19.3.1","517.40","","","","2"
+"2026-08","British Columbia","2021A000259","Median weekly wage rate","Part-time employees","Public administration [91]","Women+","15 to 24 years","Current dollars","75","units","0","v2169627","11.5.3.19.3.2","","x","","","2"
+"2026-08","British Columbia","2021A000259","Median weekly wage rate","Part-time employees","Public administration [91]","Women+","25 to 54 years","Current dollars","75","units","0","v2169912","11.5.3.19.3.3","","x","","","2"
+"2026-08","British Columbia","2021A000259","Median weekly wage rate","Part-time employees","Public administration [91]","Women+","55 years and over","Current dollars","75","units","0","v2170197","11.5.3.19.3.4","","x","","","2"
+
+[Full-file analysis]
+Skipped intentionally to avoid loading the entire dataset into memory.
+
+--------------------------------------------------------------------------------
+FILE: 14100372.csv
+--------------------------------------------------------------------------------
+Size: 1,333,439 bytes
+Size: 1.27 MB
+
+[CSV structure]
+Detected delimiter: ','
+Number of columns: 16
+
+Column names:
+  1. REF_DATE
+  2. GEO
+  3. DGUID
+  4. North American Industry Classification System (NAICS)
+  5. Statistics
+  6. UOM
+  7. UOM_ID
+  8. SCALAR_FACTOR
+  9. SCALAR_ID
+  10. VECTOR
+  11. COORDINATE
+  12. VALUE
+  13. STATUS
+  14. SYMBOL
+  15. TERMINATED
+  16. DECIMALS
+
+Checked first 1000 data rows.
+Row structure is consistent within the checked sample.
+
+[Beginning of file]
+Header columns: 16
+Row 1: ['2015-04', 'Canada', '2016A000011124', 'Total, all industries', 'Job vacancies', 'Number', '223', 'units', '0', 'v1212389466', '1.1.1', '482925', 'A', '', '', '0']
+Row 2: ['2015-04', 'Canada', '2016A000011124', 'Total, all industries', 'Payroll employees', 'Number', '223', 'units', '0', 'v1212389465', '1.1.3', '14803985', 'A', '', '', '0']
+Row 3: ['2015-04', 'Canada', '2016A000011124', 'Total, all industries', 'Job vacancy rate', 'Percent', '239', 'units', '0', 'v1212389467', '1.1.4', '3.2', 'A', '', '', '1']
+Row 4: ['2015-04', 'Canada', '2016A000011124', 'Agriculture, forestry, fishing and hunting [11]', 'Job vacancies', 'Number', '223', 'units', '0', 'v1212389406', '1.2.1', '18300', 'C', '', '', '0']
+Row 5: ['2015-04', 'Canada', '2016A000011124', 'Agriculture, forestry, fishing and hunting [11]', 'Payroll employees', 'Number', '223', 'units', '0', 'v1212389405', '1.2.3', '170000', 'A', '', '', '0']
+
+[Middle of file]
+"2021-02","Canada","2016A000011124","Real estate and rental and leasing [53]","Payroll employees","Number","223","units","0","v1212389435","1.12.3","247035","A","","","0"
+"2021-02","Canada","2016A000011124","Real estate and rental and leasing [53]","Job vacancy rate","Percent","239","units","0","v1212389437","1.12.4","2.7","D","","","1"
+"2021-02","Canada","2016A000011124","Professional, scientific and technical services [54]","Job vacancies","Number","223","units","0","v1212389439","1.13.1","50000","B","","","0"
+"2021-02","Canada","2016A000011124","Professional, scientific and technical services [54]","Payroll employees","Number","223","units","0","v1212389438","1.13.3","993260","A","","","0"
+"2021-02","Canada","2016A000011124","Professional, scientific and technical services [54]","Job vacancy rate","Percent","239","units","0","v1212389440","1.13.4","4.8","B","","","1"
+
+[End of file]
+"2026-06","Canada","2016A000011124","Other services (except public administration) [81]","Payroll employees","Number","223","units","0","v1212389459","1.20.3","577705","A","","","0"
+"2026-06","Canada","2016A000011124","Other services (except public administration) [81]","Job vacancy rate","Percent","239","units","0","v1212389461","1.20.4","4.4","B","","","1"
+"2026-06","Canada","2016A000011124","Public administration [91]","Job vacancies","Number","223","units","0","v1212389463","1.21.1","12960","B","","","0"
+"2026-06","Canada","2016A000011124","Public administration [91]","Payroll employees","Number","223","units","0","v1212389462","1.21.3","614855","A","","","0"
+"2026-06","Canada","2016A000011124","Public administration [91]","Job vacancy rate","Percent","239","units","0","v1212389464","1.21.4","2.1","B","","","1"
+
+[Full-file analysis]
+Skipped intentionally to avoid loading the entire dataset into memory.
+
+================================================================================
+INSPECTION COMPLETE
+================================================================================
