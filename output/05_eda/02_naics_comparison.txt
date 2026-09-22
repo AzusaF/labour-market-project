@@ -1,0 +1,318 @@
+
+================================================================================
+NAICS COMPARISON
+================================================================================
+Extracted directory: data/extracted
+Output file: output/05_eda/02_naics_comparison.txt
+
+Purpose:
+Compare NAICS categories across the three extracted datasets before defining a cross-dataset mapping or join strategy.
+
+================================================================================
+DATASET DISCOVERY
+================================================================================
+Loading: 14100022_extracted.csv
+Loading: 14100063_extracted.csv
+Loading: 14100372_extracted.csv
+
+Datasets successfully loaded: 3
+
+================================================================================
+NAICS PROFILE BY DATASET
+================================================================================
+
+[14100022_extracted.csv]
+Unique NAICS categories: 29
+
+NAICS categories:
+  - Accommodation and food services [72]
+  - Agriculture [111-112, 1100, 1151-1152]
+  - Business, building and other support services [55, 56]
+  - Construction [23]
+  - Durables [321, 327, 331-339]
+  - Educational services [61]
+  - Finance and insurance [52]
+  - Finance, insurance, real estate, rental and leasing [52, 53]
+  - Fishing, hunting and trapping [114]
+  - Forestry and logging and support activities for forestry [113, 1153]
+  - Forestry, fishing, mining, quarrying, oil and gas [21, 113-114, 1153, 2100]
+  - Goods-producing sector
+  - Health care and social assistance [62]
+  - Information, culture and recreation [51, 71]
+  - Manufacturing [31-33]
+  - Mining, quarrying, and oil and gas extraction [21, 2100]
+  - Non-durables [311-316, 322-326]
+  - Other services (except public administration) [81]
+  - Professional, scientific and technical services [54]
+  - Public administration [91]
+  - Real estate and rental and leasing [53]
+  - Retail trade [44-45]
+  - Services-producing sector
+  - Total, all industries
+  - Transportation and warehousing [48-49]
+  - Unclassified industries
+  - Utilities [22]
+  - Wholesale and retail trade [41, 44-45]
+  - Wholesale trade [41]
+
+[14100063_extracted.csv]
+Unique NAICS categories: 19
+
+NAICS categories:
+  - Accommodation and food services [72]
+  - Agriculture [111-112, 1100, 1151-1152]
+  - Business, building and other support services [55-56]
+  - Construction [23]
+  - Educational services [61]
+  - Finance, insurance, real estate, rental and leasing [52-53]
+  - Forestry, fishing, mining, quarrying, oil and gas [21, 113-114, 1153, 2100]
+  - Goods-producing sector
+  - Health care and social assistance [62]
+  - Information, culture and recreation [51, 71]
+  - Manufacturing [31-33]
+  - Other services (except public administration) [81]
+  - Professional, scientific and technical services [54]
+  - Public administration [91]
+  - Services-producing sector
+  - Total employees, all industries
+  - Transportation and warehousing [48-49]
+  - Utilities [22]
+  - Wholesale and retail trade [41, 44-45]
+
+[14100372_extracted.csv]
+Unique NAICS categories: 21
+
+NAICS categories:
+  - Accommodation and food services [72]
+  - Administrative and support, waste management and remediation services [56]
+  - Agriculture, forestry, fishing and hunting [11]
+  - Arts, entertainment and recreation [71]
+  - Construction [23]
+  - Educational services [61]
+  - Finance and insurance [52]
+  - Health care and social assistance [62]
+  - Information and cultural industries [51]
+  - Management of companies and enterprises [55]
+  - Manufacturing [31-33]
+  - Mining, quarrying, and oil and gas extraction [21]
+  - Other services (except public administration) [81]
+  - Professional, scientific and technical services [54]
+  - Public administration [91]
+  - Real estate and rental and leasing [53]
+  - Retail trade [44-45]
+  - Total, all industries
+  - Transportation and warehousing [48-49]
+  - Utilities [22]
+  - Wholesale trade [41]
+
+================================================================================
+NAICS COMPARISON: 14100022_extracted.csv × 14100063_extracted.csv
+================================================================================
+Categories in 14100022_extracted.csv: 29
+Categories in 14100063_extracted.csv: 19
+Common categories: 16
+Only in 14100022_extracted.csv: 13
+Only in 14100063_extracted.csv: 3
+
+
+[COMMON CATEGORIES]
+  - Accommodation and food services [72]
+  - Agriculture [111-112, 1100, 1151-1152]
+  - Construction [23]
+  - Educational services [61]
+  - Forestry, fishing, mining, quarrying, oil and gas [21, 113-114, 1153, 2100]
+  - Goods-producing sector
+  - Health care and social assistance [62]
+  - Information, culture and recreation [51, 71]
+  - Manufacturing [31-33]
+  - Other services (except public administration) [81]
+  - Professional, scientific and technical services [54]
+  - Public administration [91]
+  - Services-producing sector
+  - Transportation and warehousing [48-49]
+  - Utilities [22]
+  - Wholesale and retail trade [41, 44-45]
+
+[ONLY IN 14100022_extracted.csv]
+  - Business, building and other support services [55, 56]
+  - Durables [321, 327, 331-339]
+  - Finance and insurance [52]
+  - Finance, insurance, real estate, rental and leasing [52, 53]
+  - Fishing, hunting and trapping [114]
+  - Forestry and logging and support activities for forestry [113, 1153]
+  - Mining, quarrying, and oil and gas extraction [21, 2100]
+  - Non-durables [311-316, 322-326]
+  - Real estate and rental and leasing [53]
+  - Retail trade [44-45]
+  - Total, all industries
+  - Unclassified industries
+  - Wholesale trade [41]
+
+[ONLY IN 14100063_extracted.csv]
+  - Business, building and other support services [55-56]
+  - Finance, insurance, real estate, rental and leasing [52-53]
+  - Total employees, all industries
+
+================================================================================
+NAICS COMPARISON: 14100022_extracted.csv × 14100372_extracted.csv
+================================================================================
+Categories in 14100022_extracted.csv: 29
+Categories in 14100372_extracted.csv: 21
+Common categories: 15
+Only in 14100022_extracted.csv: 14
+Only in 14100372_extracted.csv: 6
+
+
+[COMMON CATEGORIES]
+  - Accommodation and food services [72]
+  - Construction [23]
+  - Educational services [61]
+  - Finance and insurance [52]
+  - Health care and social assistance [62]
+  - Manufacturing [31-33]
+  - Other services (except public administration) [81]
+  - Professional, scientific and technical services [54]
+  - Public administration [91]
+  - Real estate and rental and leasing [53]
+  - Retail trade [44-45]
+  - Total, all industries
+  - Transportation and warehousing [48-49]
+  - Utilities [22]
+  - Wholesale trade [41]
+
+[ONLY IN 14100022_extracted.csv]
+  - Agriculture [111-112, 1100, 1151-1152]
+  - Business, building and other support services [55, 56]
+  - Durables [321, 327, 331-339]
+  - Finance, insurance, real estate, rental and leasing [52, 53]
+  - Fishing, hunting and trapping [114]
+  - Forestry and logging and support activities for forestry [113, 1153]
+  - Forestry, fishing, mining, quarrying, oil and gas [21, 113-114, 1153, 2100]
+  - Goods-producing sector
+  - Information, culture and recreation [51, 71]
+  - Mining, quarrying, and oil and gas extraction [21, 2100]
+  - Non-durables [311-316, 322-326]
+  - Services-producing sector
+  - Unclassified industries
+  - Wholesale and retail trade [41, 44-45]
+
+[ONLY IN 14100372_extracted.csv]
+  - Administrative and support, waste management and remediation services [56]
+  - Agriculture, forestry, fishing and hunting [11]
+  - Arts, entertainment and recreation [71]
+  - Information and cultural industries [51]
+  - Management of companies and enterprises [55]
+  - Mining, quarrying, and oil and gas extraction [21]
+
+================================================================================
+NAICS COMPARISON: 14100063_extracted.csv × 14100372_extracted.csv
+================================================================================
+Categories in 14100063_extracted.csv: 19
+Categories in 14100372_extracted.csv: 21
+Common categories: 10
+Only in 14100063_extracted.csv: 9
+Only in 14100372_extracted.csv: 11
+
+
+[COMMON CATEGORIES]
+  - Accommodation and food services [72]
+  - Construction [23]
+  - Educational services [61]
+  - Health care and social assistance [62]
+  - Manufacturing [31-33]
+  - Other services (except public administration) [81]
+  - Professional, scientific and technical services [54]
+  - Public administration [91]
+  - Transportation and warehousing [48-49]
+  - Utilities [22]
+
+[ONLY IN 14100063_extracted.csv]
+  - Agriculture [111-112, 1100, 1151-1152]
+  - Business, building and other support services [55-56]
+  - Finance, insurance, real estate, rental and leasing [52-53]
+  - Forestry, fishing, mining, quarrying, oil and gas [21, 113-114, 1153, 2100]
+  - Goods-producing sector
+  - Information, culture and recreation [51, 71]
+  - Services-producing sector
+  - Total employees, all industries
+  - Wholesale and retail trade [41, 44-45]
+
+[ONLY IN 14100372_extracted.csv]
+  - Administrative and support, waste management and remediation services [56]
+  - Agriculture, forestry, fishing and hunting [11]
+  - Arts, entertainment and recreation [71]
+  - Finance and insurance [52]
+  - Information and cultural industries [51]
+  - Management of companies and enterprises [55]
+  - Mining, quarrying, and oil and gas extraction [21]
+  - Real estate and rental and leasing [53]
+  - Retail trade [44-45]
+  - Total, all industries
+  - Wholesale trade [41]
+
+================================================================================
+THREE-WAY NAICS COMPATIBILITY
+================================================================================
+Total distinct NAICS categories across all datasets: 38
+NAICS categories common to all three datasets: 10
+
+
+[COMMON TO ALL THREE DATASETS]
+  - Accommodation and food services [72]
+  - Construction [23]
+  - Educational services [61]
+  - Health care and social assistance [62]
+  - Manufacturing [31-33]
+  - Other services (except public administration) [81]
+  - Professional, scientific and technical services [54]
+  - Public administration [91]
+  - Transportation and warehousing [48-49]
+  - Utilities [22]
+
+[CATEGORIES NOT COMMON TO ALL THREE]
+  - Administrative and support, waste management and remediation services [56]
+  - Agriculture [111-112, 1100, 1151-1152]
+  - Agriculture, forestry, fishing and hunting [11]
+  - Arts, entertainment and recreation [71]
+  - Business, building and other support services [55, 56]
+  - Business, building and other support services [55-56]
+  - Durables [321, 327, 331-339]
+  - Finance and insurance [52]
+  - Finance, insurance, real estate, rental and leasing [52, 53]
+  - Finance, insurance, real estate, rental and leasing [52-53]
+  - Fishing, hunting and trapping [114]
+  - Forestry and logging and support activities for forestry [113, 1153]
+  - Forestry, fishing, mining, quarrying, oil and gas [21, 113-114, 1153, 2100]
+  - Goods-producing sector
+  - Information and cultural industries [51]
+  - Information, culture and recreation [51, 71]
+  - Management of companies and enterprises [55]
+  - Mining, quarrying, and oil and gas extraction [21, 2100]
+  - Mining, quarrying, and oil and gas extraction [21]
+  - Non-durables [311-316, 322-326]
+  - Real estate and rental and leasing [53]
+  - Retail trade [44-45]
+  - Services-producing sector
+  - Total employees, all industries
+  - Total, all industries
+  - Unclassified industries
+  - Wholesale and retail trade [41, 44-45]
+  - Wholesale trade [41]
+
+================================================================================
+COMPATIBILITY SUMMARY
+================================================================================
+NAICS compatibility status: NOT FULLY ALIGNED
+
+Common categories across all datasets: 10
+Distinct categories across all datasets: 38
+
+Direct cross-dataset joins should not assume identical NAICS coverage.
+A mapping or harmonization strategy may be required before joining datasets.
+
+Recommended next step:
+Review the NAICS category differences and determine whether the differences represent different classification levels, different category definitions, or dataset-specific coverage.
+
+================================================================================
+NAICS COMPARISON COMPLETE
+================================================================================
