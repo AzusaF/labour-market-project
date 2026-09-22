@@ -1,11 +1,12 @@
 """
 05 — Exploratory Data Analysis
+01 - Overview
 
 Provides an initial overview of the extracted data and evaluates
 whether the datasets are ready for transformation and analysis.
 
 Output:
-- output/05_eda.txt
+- output/05_eda/01_overview.txt
 """
 
 from pathlib import Path
