@@ -4,7 +4,7 @@ This directory contains Python scripts for inspecting, preparing, extracting, an
 
 The scripts follow a sequential workflow:
 
-### 01 — Metadata Inspection
+## 01. Metadata Inspection
 
 **Script:** `01_metadata.py`
 
@@ -16,7 +16,7 @@ Inspects the files in the raw data directory and reports basic file metadata, su
 
 ---
 
-### 02 — Data Inspection
+## 02. Data Inspection
 
 **Script:** `02_inspect.py`
 
@@ -32,7 +32,7 @@ Large files are inspected without loading the entire file into memory.
 
 ---
 
-### 03 — Prepare Data
+## 03. Prepare Data
 
 **Script:** `03_prepare.py`
 
@@ -44,7 +44,7 @@ The preparation stage does not modify the source data.
 
 ---
 
-### 04 — Extract Data
+## 04. Extract Data
 
 **Script:** `04_extract.py`
 
@@ -59,31 +59,62 @@ The extraction process:
 
 ---
 
-### 05 — Exploratory Data Analysis
+## 05. Exploratory Data Analysis
 
-**Script:** `05_eda.py`
-Performs an initial exploratory analysis of the extracted datasets to assess their structure, coverage, data quality, and suitability for further analysis.
+The EDA stage evaluates the extracted Statistics Canada datasets before transformation and integration.
 
-The analysis includes:
+The analysis is divided into three sequential steps:
 
-- Dataset size and memory usage
-- Data structure and variable profiles
+| Step   | Script                      | Purpose                                                                                                                  |
+| ------ | --------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **01** | `01_overview.py`            | Examine dataset structure, dimensions, date coverage, basic statistics, missing values, data quality, and duplicate rows |
+| **02** | `02_naics_comparison.py`    | Compare NAICS / industry structures across datasets and identify differences that affect cross-dataset integration       |
+| **03** | `03_grain_compatibility.py` | Assess the analytical grain, shared dimensions, and join compatibility across datasets                                   |
+
+### Step 01: Dataset Overview
+
+Establishes a baseline understanding of each extracted dataset, including:
+
+- Dataset dimensions and memory usage
+- Column and variable profiles
 - Dimension and date coverage
-- Basic statistics for numeric variables
-- Data grain and candidate key checks
-- Value and unit semantics
-- Missing values and data-quality patterns
+- Basic numeric statistics
+- Missing values and suppression patterns
+- Data-quality indicators
 - Duplicate row checks
-- Industry compatibility checks
+
+### Step 02: NAICS Comparison
+
+Examines the industry classification structure across the three datasets to determine whether industry categories can be used directly for integration.
+
+This step identifies:
+
+- Available NAICS levels and categories
+- Differences in industry coverage
+- Inconsistent industry labels or structures
+
+### Step 03: Grain Compatibility
+
+Evaluates whether the datasets share a compatible analytical grain for integration.
+
+This step examines:
+
+- Dataset-specific dimensions
+- Shared dimensions
+- Candidate analytical keys
+- Geography and time coverage
+- Direct join compatibility
+
+### Outcome
+
+The three EDA steps provide the structural findings required to define the target analytical grain, NAICS mapping strategy, geographic scope, analysis period, and data-quality handling for the subsequent transformation stage.
 
 ---
 
-## Running the Scripts
+# Running the Scripts
 
 Scripts are run from the project root directory.
 
 For example:
 
 **Script:** `python scripts/01_metadata.py`
-
-As the data pipeline develops, additional scripts will be documented here in numerical order.
