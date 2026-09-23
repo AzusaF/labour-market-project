@@ -4,6 +4,9 @@ data/raw/*
 # Extracted from source
 data/extracted/*
 
+# Processed from source
+data/processed/*
+
 # Local DuckDB database
 *.duckdb
 
