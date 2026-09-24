@@ -3,24 +3,34 @@
 01 — Transformation
 
 Transforms the extracted Statistics Canada datasets into
-three independent analysis-ready datasets:
-- Employment
-- Wages
-- Job vacancies
+four independent analysis-ready tables:
+- Employment              (Canada × Industry × Month)
+- Wages                   (Canada × Industry × Month)
+- Job vacancies           (Canada × Industry × Month)
+- Labour force total      (Canada × Month, all industries)
 
 Transformation steps:
 - Standardize common columns and dates
 - Normalize selected NAICS labels
 - Filter to Canada and the primary analysis period
-- Remove suppressed or unreliable observations
+- Remove suppressed observations (x)
+- Keep the data-quality flag of the job vacancy estimates and set
+  unreliable values (F) to NULL instead of dropping the rows
 - Select required dimensions and measures
 - Reshape measures into analysis-ready columns
 - Validate the target analytical grain
+
+Units are NOT converted. Column names carry the unit of the source:
+- *_thousands : persons in thousands (14100022, 14100063)
+- *_cad       : current dollars      (14100063)
+- *_pct       : percent
+- no suffix   : persons (units)      (14100372)
 
 Output:
 - data/processed/employment.csv
 - data/processed/wages.csv
 - data/processed/vacancies.csv
+- data/processed/labour_force_total.csv
 """
 
 
@@ -41,11 +51,22 @@ NAICS_SOURCE_COLUMN = (
   "North American Industry Classification System (NAICS)"
 )
 
+# Define the status flags handled in each dataset.
+# Keep these consistent with 02_validation.py.
+SUPPRESSED_FLAGS = ("x",)
+UNRELIABLE_FLAGS = ("F",)
+
+# Label of the all-industries total in the labour force survey.
+TOTAL_ALL_INDUSTRIES = "Total, all industries"
+
+# Define the analytical grain of the industry-level tables.
+KEY_COLUMNS = ["REF_DATE", "GEO", "NAICS"]
+
 
 # Load an extracted dataset from the input directory.
 def load_data(filename):
   path = EXTRACTED_DIR / filename
-  return pd.read_csv(path)
+  return pd.read_csv(path, low_memory=False)
 
 
 # Standardize columns shared across the datasets.
@@ -71,6 +92,7 @@ def standardize_common_columns(df):
 
 
 # Standardize minor differences in NAICS labels.
+# Keep these replacements consistent with 02_validation.py.
 def normalize_naics_labels(df):
   df = df.copy()
 
@@ -109,28 +131,47 @@ def filter_canada(df):
   ].copy()
 
 
-# Remove suppressed observations.
-def remove_suppressed_values(df):
+# Apply the steps shared by all datasets.
+# Canada is filtered first so that the large provincial
+# tables are reduced before the remaining copies are made.
+def apply_common_steps(df):
+  df = filter_canada(df)
+  df = standardize_common_columns(df)
+  df = normalize_naics_labels(df)
+  df = filter_common_period(df)
+
+  return df
+
+
+# Remove observations marked with the given status flags.
+def remove_flagged_values(df, flags):
   if "STATUS" in df.columns:
     df = df[
-      df["STATUS"] != "x"
+      ~df["STATUS"].isin(flags)
     ].copy()
 
   return df
 
 
-# Transform the labour force dataset into an employment table.
-def transform_employment():
-  df = load_data(
-    "14100022_extracted.csv"
+# Set the value of flagged observations to NULL but keep the row
+# and its status flag.
+def null_flagged_values(df, flags):
+  df = df.copy()
+
+  df["VALUE"] = df["VALUE"].mask(
+    df["STATUS"].isin(flags)
   )
 
-  # Apply common transformations and filters.
-  df = standardize_common_columns(df)
-  df = normalize_naics_labels(df)
-  df = filter_canada(df)
-  df = filter_common_period(df)
-  df = remove_suppressed_values(df)
+  return df
+
+
+# Transform the labour force dataset into an employment table.
+# Expects the output of apply_common_steps().
+def transform_employment(labour_force):
+  df = labour_force.copy()
+
+  # Remove suppressed observations.
+  df = remove_flagged_values(df, SUPPRESSED_FLAGS)
 
   # Select total employment for people aged 15 and over.
   df = df[
@@ -142,10 +183,10 @@ def transform_employment():
     )
   ].copy()
 
-  # Rename the measure column.
+  # Rename the measure column (persons in thousands).
   df = df.rename(
     columns={
-      "VALUE": "Employment"
+      "VALUE": "Employment_thousands"
     }
   )
 
@@ -155,7 +196,72 @@ def transform_employment():
       "REF_DATE",
       "GEO",
       "NAICS",
-      "Employment"
+      "Employment_thousands"
+    ]
+  ]
+
+
+# Transform the labour force dataset into a Canada-level total table.
+# Expects the output of apply_common_steps().
+# This table supports the Beveridge curve (unemployment vs vacancies).
+def transform_labour_force_total(labour_force):
+  df = labour_force.copy()
+
+  # Remove suppressed observations.
+  df = remove_flagged_values(df, SUPPRESSED_FLAGS)
+
+  # Select all industries, both genders, aged 15 and over.
+  df = df[
+    (df["NAICS"] == TOTAL_ALL_INDUSTRIES) &
+    (df["Gender"] == "Total - Gender") &
+    (df["Age group"] == "15 years and over") &
+    (
+      df["Labour force characteristics"].isin(
+        [
+          "Labour force",
+          "Employment",
+          "Unemployment",
+          "Unemployment rate"
+        ]
+      )
+    )
+  ].copy()
+
+  # Reshape measures into separate columns.
+  # pivot raises an error if the selected rows are not unique.
+  df = df.pivot(
+    index=[
+      "REF_DATE",
+      "GEO"
+    ],
+    columns="Labour force characteristics",
+    values="VALUE"
+  ).reset_index()
+  df.columns.name = None
+
+  # Rename measures for the processed dataset.
+  df = df.rename(
+    columns={
+      "Labour force":
+        "Labour_force_thousands",
+      "Employment":
+        "Employment_thousands",
+      "Unemployment":
+        "Unemployment_thousands",
+      "Unemployment rate":
+        "Unemployment_rate_pct"
+    }
+  )
+
+  # Keep columns required for analysis.
+  return df[
+    [
+      "REF_DATE",
+      "GEO",
+      "Labour_force_thousands",
+      "Employment_thousands",
+      "Unemployment_thousands",
+      "Unemployment_rate_pct"
     ]
   ]
 
@@ -167,47 +273,54 @@ def transform_wages():
   )
 
   # Apply common transformations and filters.
-  df = standardize_common_columns(df)
-  df = normalize_naics_labels(df)
-  df = filter_canada(df)
-  df = filter_common_period(df)
-  df = remove_suppressed_values(df)
+  df = apply_common_steps(df)
 
-  # Select total wages for people aged 15 and over.
+  # Remove suppressed observations.
+  df = remove_flagged_values(df, SUPPRESSED_FLAGS)
+
+  # Select wages for people aged 15 and over,
+  # covering both full- and part-time employees.
+  # The employee count uses the same population so that it can
+  # later be used as a weight for the wage measures.
   df = df[
     (df["Gender"] == "Total - Gender") &
-    (df["Age group"] == "15 years and over")
+    (df["Age group"] == "15 years and over") &
+    (
+      df["Type of work"]
+      == "Both full- and part-time employees"
+    )
   ].copy()
 
-  # Retain average and median hourly wage measures.
+  # Retain wage measures and the number of employees.
   df = df[
     df["Wages"].isin(
       [
         "Average hourly wage rate",
-        "Median hourly wage rate"
+        "Median hourly wage rate",
+        "Total employees, all wages"
       ]
     )
   ].copy()
 
   # Reshape wage measures into separate columns.
-  df = df.pivot_table(
-    index=[
-      "REF_DATE",
-      "GEO",
-      "NAICS"
-    ],
+  # pivot raises an error if the selected rows are not unique,
+  # so a missing filter cannot go unnoticed.
+  df = df.pivot(
+    index=KEY_COLUMNS,
     columns="Wages",
-    values="VALUE",
-    aggfunc="first"
+    values="VALUE"
   ).reset_index()
+  df.columns.name = None
 
   # Rename wage measures for the processed dataset.
   df = df.rename(
     columns={
       "Average hourly wage rate":
-        "Average_hourly_wage",
+        "Average_hourly_wage_cad",
       "Median hourly wage rate":
-        "Median_hourly_wage"
+        "Median_hourly_wage_cad",
+      "Total employees, all wages":
+        "Total_employees_thousands"
     }
   )
 
@@ -217,8 +330,9 @@ def transform_wages():
       "REF_DATE",
       "GEO",
       "NAICS",
-      "Average_hourly_wage",
-      "Median_hourly_wage"
+      "Average_hourly_wage_cad",
+      "Median_hourly_wage_cad",
+      "Total_employees_thousands"
     ]
   ]
 
@@ -230,40 +344,49 @@ def transform_vacancies():
   )
 
   # Apply common transformations and filters.
-  df = standardize_common_columns(df)
-  df = normalize_naics_labels(df)
-  df = filter_canada(df)
-  df = filter_common_period(df)
+  df = apply_common_steps(df)
 
-  # Remove observations marked as too unreliable to publish.
-  if "STATUS" in df.columns:
-    df = df[
-      df["STATUS"] != "F"
-    ].copy()
+  # Set values marked as too unreliable to publish to NULL.
+  # The rows are kept so that the status flag is not lost.
+  df = null_flagged_values(df, UNRELIABLE_FLAGS)
 
-  # Reshape statistics into separate columns.
-  df = df.pivot_table(
-    index=[
-      "REF_DATE",
-      "GEO",
-      "NAICS"
-    ],
+  # Reshape values and status flags into separate columns.
+  # pivot raises an error if the selected rows are not unique.
+  values = df.pivot(
+    index=KEY_COLUMNS,
     columns="Statistics",
-    values="VALUE",
-    aggfunc="first"
-  ).reset_index()
+    values="VALUE"
+  )
+  quality = df.pivot(
+    index=KEY_COLUMNS,
+    columns="Statistics",
+    values="STATUS"
+  )
 
   # Rename measures for the processed dataset.
-  df = df.rename(
+  values = values.rename(
     columns={
       "Job vacancies":
         "Job_vacancies",
       "Payroll employees":
         "Payroll_employees",
       "Job vacancy rate":
-        "Job_vacancy_rate"
+        "Job_vacancy_rate_pct"
     }
   )
+  quality = quality.rename(
+    columns={
+      "Job vacancies":
+        "Job_vacancies_quality",
+      "Payroll employees":
+        "Payroll_employees_quality",
+      "Job vacancy rate":
+        "Job_vacancy_rate_quality"
+    }
+  )
+
+  df = values.join(quality).reset_index()
+  df.columns.name = None
 
   # Keep columns required for analysis.
   return df[
@@ -273,20 +396,21 @@ def transform_vacancies():
       "NAICS",
       "Job_vacancies",
       "Payroll_employees",
-      "Job_vacancy_rate"
+      "Job_vacancy_rate_pct",
+      "Job_vacancies_quality",
+      "Payroll_employees_quality",
+      "Job_vacancy_rate_quality"
     ]
   ]
 
 
 # Validate the target grain and basic structure of a processed table.
-def validate_table(df, table_name):
-  key_columns = [
-    "REF_DATE",
-    "GEO",
-    "NAICS"
-  ]
-
-  # Check for duplicate Canada × Industry × Month records.
+def validate_table(
+  df,
+  table_name,
+  key_columns=KEY_COLUMNS
+):
+  # Check for duplicate records at the target grain.
   duplicates = df.duplicated(
     subset=key_columns,
     keep=False
@@ -330,6 +454,18 @@ def validate_table(df, table_name):
       f"Unexpected maximum date: {max_date}"
     )
 
+  # Confirm that no month of the analysis period is missing.
+  expected_months = set(
+    pd.date_range(START_DATE, END_DATE, freq="MS")
+  )
+  missing_months = expected_months - set(df["REF_DATE"])
+
+  if missing_months:
+    raise ValueError(
+      f"{table_name}: "
+      f"{len(missing_months)} months are missing."
+    )
+
   # Report basic validation results.
   print(
     f"{table_name} validation passed."
@@ -337,13 +473,29 @@ def validate_table(df, table_name):
   print(
     f"Rows: {len(df):,}"
   )
-  print(
-    f"Industries: {df['NAICS'].nunique():,}"
-  )
+
+  if "NAICS" in df.columns:
+    print(
+      f"Industries: {df['NAICS'].nunique():,}"
+    )
+
   print(
     f"Date range: "
     f"{min_date:%Y-%m} to {max_date:%Y-%m}"
   )
+
+  # Report missing cells so that they are never silent.
+  missing = df.isna().sum()
+  missing = missing[missing > 0]
+
+  if missing.empty:
+    print("Missing cells: 0")
+  else:
+    print("Missing cells:")
+    for column, count in missing.items():
+      print(f"  {column}: {count:,}")
+
+  print()
 
 
 # Run all transformations, validations, and exports.
@@ -353,8 +505,16 @@ def main():
     exist_ok=True
   )
 
+  # Load the labour force survey once and reuse it for two tables.
+  labour_force = apply_common_steps(
+    load_data("14100022_extracted.csv")
+  )
+
   # Transform each source dataset independently.
-  employment = transform_employment()
+  employment = transform_employment(labour_force)
+  labour_force_total = transform_labour_force_total(
+    labour_force
+  )
   wages = transform_wages()
   vacancies = transform_vacancies()
 
@@ -374,35 +534,28 @@ def main():
     "Vacancies"
   )
 
-  # Save the three independent processed datasets.
-  employment.to_csv(
-    PROCESSED_DIR / "employment.csv",
-    index=False
+  validate_table(
+    labour_force_total,
+    "Labour force total",
+    key_columns=["REF_DATE", "GEO"]
   )
 
-  wages.to_csv(
-    PROCESSED_DIR / "wages.csv",
-    index=False
-  )
+  # Save the four independent processed datasets.
+  outputs = {
+    "employment.csv": employment,
+    "wages.csv": wages,
+    "vacancies.csv": vacancies,
+    "labour_force_total.csv": labour_force_total
+  }
 
-  vacancies.to_csv(
-    PROCESSED_DIR / "vacancies.csv",
-    index=False
-  )
-
-  # Report the output files.
-  print(
-    f"Saved: "
-    f"{PROCESSED_DIR / 'employment.csv'}"
-  )
-  print(
-    f"Saved: "
-    f"{PROCESSED_DIR / 'wages.csv'}"
-  )
-  print(
-    f"Saved: "
-    f"{PROCESSED_DIR / 'vacancies.csv'}"
-  )
+  for filename, table in outputs.items():
+    table.to_csv(
+      PROCESSED_DIR / filename,
+      index=False
+    )
+    print(
+      f"Saved: {PROCESSED_DIR / filename}"
+    )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,366 @@
+02 — Transformation Validation
+================================================================================
+
+Comparison: data/extracted/ → data/processed/
+
+Status levels:
+- [OK]      matches the expectation
+- [NOTE]    differs from the extract by design
+- [WARNING] unexpected difference, needs review
+
+Summary
+================================================================================
+- employment: OK 11, NOTE 6, WARNING 0
+- wages: OK 11, NOTE 3, WARNING 0
+- vacancies: OK 14, NOTE 3, WARNING 0
+- labour_force_total: OK 13, NOTE 3, WARNING 0
+Overall: no unexpected differences found. All differences between extracted and processed data follow from the transformation rules.
+
+Dataset: employment (14100022)
+================================================================================
+1. Dataset correspondence
+- Extracted: 14100022_extracted.csv
+- Processed: employment.csv
+
+2. Shape
+- Extracted rows: 1,525,920
+- Processed rows: 1,680
+- Extracted columns: 18
+- Processed columns: 4
+- Row funnel (extracted → processed):
+  - Extracted rows: 1,525,920
+  - After Canada and analysis period: 122,400
+  - After selected measures and dimensions: 1,680
+  - Suppressed observations removed: 0
+  - Valid observations: 1,680
+  - Expected processed rows (month × industry): 1,680
+- [OK] Processed rows match the expected rows (1,680). The reduction from 1,525,920 extracted rows is due to the Canada filter, the analysis period, and the selected measures.
+- [OK] Complete month × industry grid: 28 industries × 60 months = 1,680.
+
+3. Column changes
+- [OK] Processed columns match the expected output structure: REF_DATE, GEO, NAICS, Employment_thousands
+- [NOTE] Extracted columns not carried over (16): metadata columns and dimensions collapsed by the filters or the reshaping.
+  - Age group
+  - COORDINATE
+  - DECIMALS
+  - DGUID
+  - Gender
+  - Labour force characteristics
+  - North American Industry Classification System (NAICS)
+  - SCALAR_FACTOR
+  - SCALAR_ID
+  - STATUS
+  - SYMBOL
+  - TERMINATED
+  - UOM
+  - UOM_ID
+  - VALUE
+  - VECTOR
+- Added or renamed in processed: Employment_thousands, NAICS
+
+4. Date coverage
+- Extracted: 2021-01 → 2026-08
+- Processed: 2021-01 → 2025-12
+- [NOTE] Extracted data covers 8 months outside the analysis period (2021-01 → 2025-12). These months are trimmed by design.
+- [OK] Processed date range matches the analysis period.
+- [OK] All 60 months of the analysis period are present.
+
+5. Geography
+- Extracted unique GEO values: 11
+- Processed unique GEO values: 1
+- [NOTE] Extracted geographies (11) are reduced to Canada only by design (national-level analysis).
+
+6. NAICS coverage
+- [NOTE] Label normalized: Business, building and other support services [55, 56] → Business, building and other support services [55-56]
+- [NOTE] Label normalized: Finance, insurance, real estate, rental and leasing [52, 53] → Finance, insurance, real estate, rental and leasing [52-53]
+- Extracted unique NAICS values: 29 (29 after normalization)
+- Processed unique NAICS values: 28
+- [NOTE] Unclassified industries — not reported for the selected measure (Employment); appears only under Labour force characteristics: Labour force, Unemployment. Excluded by design.
+- [OK] Processed NAICS (28) match the industries with valid observations for the selected measures.
+
+7. Duplicate rows
+- Extracted duplicates: 0
+- Processed duplicates: 0
+- [OK] No duplicate rows in processed.
+
+8. Missing values
+- Extracted missing cells: 4,577,760
+  - SYMBOL: 1,525,920 — empty metadata column
+  - TERMINATED: 1,525,920 — empty metadata column
+  - STATUS: 1,060,615 — no quality flag (valid observation)
+  - VALUE: 465,305 — no value published (suppressed or unreliable)
+- Processed missing cells: 0
+- [OK] No missing cells in processed. Suppressed observations are removed before reshaping.
+
+9. Analytical grain
+- Target grain: GEO × NAICS × REF_DATE
+- [OK] No duplicate analytical keys.
+- [OK] Selected extracted rows are unique per month × industry × measure (the filters fully determine the grain).
+
+10. Value reconciliation (extracted vs processed)
+- Rows checked: 22 of 1,680 rows (2 first/last month of the Total row, 20 random, seed 42)
+- Values and flags compared: 22
+- [OK] All compared values and flags match the extract.
+
+Dataset: wages (14100063)
+================================================================================
+1. Dataset correspondence
+- Extracted: 14100063_extracted.csv
+- Processed: wages.csv
+
+2. Shape
+- Extracted rows: 2,558,160
+- Processed rows: 1,140
+- Extracted columns: 19
+- Processed columns: 6
+- Row funnel (extracted → processed):
+  - Extracted rows: 2,558,160
+  - After Canada and analysis period: 205,200
+  - After selected measures and dimensions: 3,420
+  - Suppressed observations removed: 0
+  - Valid observations: 3,420
+  - Expected processed rows (month × industry): 1,140
+- [OK] Processed rows match the expected rows (1,140). The reduction from 2,558,160 extracted rows is due to the Canada filter, the analysis period, and the selected measures.
+- [OK] Complete month × industry grid: 19 industries × 60 months = 1,140.
+
+3. Column changes
+- [OK] Processed columns match the expected output structure: REF_DATE, GEO, NAICS, Average_hourly_wage_cad, Median_hourly_wage_cad, Total_employees_thousands
+- [NOTE] Extracted columns not carried over (17): metadata columns and dimensions collapsed by the filters or the reshaping.
+  - Age group
+  - COORDINATE
+  - DECIMALS
+  - DGUID
+  - Gender
+  - North American Industry Classification System (NAICS)
+  - SCALAR_FACTOR
+  - SCALAR_ID
+  - STATUS
+  - SYMBOL
+  - TERMINATED
+  - Type of work
+  - UOM
+  - UOM_ID
+  - VALUE
+  - VECTOR
+  - Wages
+- Added or renamed in processed: Average_hourly_wage_cad, Median_hourly_wage_cad, NAICS, Total_employees_thousands
+
+4. Date coverage
+- Extracted: 2021-01 → 2026-08
+- Processed: 2021-01 → 2025-12
+- [NOTE] Extracted data covers 8 months outside the analysis period (2021-01 → 2025-12). These months are trimmed by design.
+- [OK] Processed date range matches the analysis period.
+- [OK] All 60 months of the analysis period are present.
+
+5. Geography
+- Extracted unique GEO values: 11
+- Processed unique GEO values: 1
+- [NOTE] Extracted geographies (11) are reduced to Canada only by design (national-level analysis).
+
+6. NAICS coverage
+- Extracted unique NAICS values: 19 (19 after normalization)
+- Processed unique NAICS values: 19
+- [OK] Processed NAICS (19) match the industries with valid observations for the selected measures.
+
+7. Duplicate rows
+- Extracted duplicates: 0
+- Processed duplicates: 0
+- [OK] No duplicate rows in processed.
+
+8. Missing values
+- Extracted missing cells: 7,674,480
+  - SYMBOL: 2,558,160 — empty metadata column
+  - TERMINATED: 2,558,160 — empty metadata column
+  - STATUS: 2,148,245 — no quality flag (valid observation)
+  - VALUE: 409,915 — no value published (suppressed or unreliable)
+- Processed missing cells: 0
+- [OK] No missing cells in processed. Suppressed observations are removed before reshaping.
+
+9. Analytical grain
+- Target grain: GEO × NAICS × REF_DATE
+- [OK] No duplicate analytical keys.
+- [OK] Selected extracted rows are unique per month × industry × measure (the filters fully determine the grain).
+
+10. Value reconciliation (extracted vs processed)
+- Rows checked: 22 of 1,140 rows (2 first/last month of the Total row, 20 random, seed 42)
+- Values and flags compared: 66
+- [OK] All compared values and flags match the extract.
+
+Dataset: vacancies (14100372)
+================================================================================
+1. Dataset correspondence
+- Extracted: 14100372_extracted.csv
+- Processed: vacancies.csv
+
+2. Shape
+- Extracted rows: 4,158
+- Processed rows: 1,260
+- Extracted columns: 16
+- Processed columns: 9
+- Row funnel (extracted → processed):
+  - Extracted rows: 4,158
+  - After Canada and analysis period: 3,780
+  - After selected measures and dimensions: 3,780
+  - Suppressed observations removed: 0
+  - Unreliable observations set to NULL (flag kept): 16
+  - Valid observations: 3,764
+  - Expected processed rows (month × industry): 1,260
+- [OK] Processed rows match the expected rows (1,260). The reduction from 4,158 extracted rows is due to the Canada filter, the analysis period, and the selected measures.
+- [OK] Complete month × industry grid: 21 industries × 60 months = 1,260.
+
+3. Column changes
+- [OK] Processed columns match the expected output structure: REF_DATE, GEO, NAICS, Job_vacancies, Payroll_employees, Job_vacancy_rate_pct, Job_vacancies_quality, Payroll_employees_quality, Job_vacancy_rate_quality
+- [NOTE] Extracted columns not carried over (14): metadata columns and dimensions collapsed by the filters or the reshaping.
+  - COORDINATE
+  - DECIMALS
+  - DGUID
+  - North American Industry Classification System (NAICS)
+  - SCALAR_FACTOR
+  - SCALAR_ID
+  - STATUS
+  - SYMBOL
+  - Statistics
+  - TERMINATED
+  - UOM
+  - UOM_ID
+  - VALUE
+  - VECTOR
+- Added or renamed in processed: Job_vacancies, Job_vacancies_quality, Job_vacancy_rate_pct, Job_vacancy_rate_quality, NAICS, Payroll_employees, Payroll_employees_quality
+
+4. Date coverage
+- Extracted: 2021-01 → 2026-06
+- Processed: 2021-01 → 2025-12
+- [NOTE] Extracted data covers 6 months outside the analysis period (2021-01 → 2025-12). These months are trimmed by design.
+- [OK] Processed date range matches the analysis period.
+- [OK] All 60 months of the analysis period are present.
+
+5. Geography
+- Extracted unique GEO values: 1
+- Processed unique GEO values: 1
+- [OK] Single geography (Canada) in both datasets.
+
+6. NAICS coverage
+- Extracted unique NAICS values: 21 (21 after normalization)
+- Processed unique NAICS values: 21
+- [OK] Processed NAICS (21) match the industries with valid observations for the selected measures.
+
+7. Duplicate rows
+- Extracted duplicates: 0
+- Processed duplicates: 0
+- [OK] No duplicate rows in processed.
+
+8. Missing values
+- Extracted missing cells: 8,332
+  - SYMBOL: 4,158 — empty metadata column
+  - TERMINATED: 4,158 — empty metadata column
+  - VALUE: 16 — no value published (suppressed or unreliable)
+- Processed missing cells: 16
+- [NOTE] 16 missing value cells are expected: each unreliable observation keeps its row, its value is set to NULL, and its flag stays in the quality column.
+  - Job_vacancies: 8
+  - Job_vacancy_rate_pct: 8
+
+9. Analytical grain
+- Target grain: GEO × NAICS × REF_DATE
+- [OK] No duplicate analytical keys.
+- [OK] Selected extracted rows are unique per month × industry × measure (the filters fully determine the grain).
+
+10. Value reconciliation (extracted vs processed)
+- Rows checked: 22 of 1,260 rows (2 first/last month of the Total row, 20 random, seed 42)
+- Values and flags compared: 132
+- [OK] All compared values and flags match the extract.
+
+11. Quality flag columns
+- Job_vacancies_quality: A 188, B 581, C 324, D 140, E 19, F 8
+- Payroll_employees_quality: A 1,229, B 12, C 12, D 5, E 2
+- Job_vacancy_rate_quality: A 206, B 582, C 314, D 130, E 20, F 8
+- [OK] No missing quality flags.
+- [OK] Quality flags contain only A, B, C, D, E, F.
+- [OK] Each value is NULL exactly when its quality flag is F.
+
+Dataset: labour_force_total (14100022)
+================================================================================
+1. Dataset correspondence
+- Extracted: 14100022_extracted.csv
+- Processed: labour_force_total.csv
+
+2. Shape
+- Extracted rows: 1,525,920
+- Processed rows: 60
+- Extracted columns: 18
+- Processed columns: 6
+- Row funnel (extracted → processed):
+  - Extracted rows: 1,525,920
+  - After Canada and analysis period: 122,400
+  - After selected measures and dimensions: 240
+  - Suppressed observations removed: 0
+  - Valid observations: 240
+  - Expected processed rows (month × industry): 60
+- [OK] Processed rows match the expected rows (60). The reduction from 1,525,920 extracted rows is due to the Canada filter, the analysis period, and the selected measures.
+- [OK] Complete month × industry grid: 1 industries × 60 months = 60.
+
+3. Column changes
+- [OK] Processed columns match the expected output structure: REF_DATE, GEO, Labour_force_thousands, Employment_thousands, Unemployment_thousands, Unemployment_rate_pct
+- [NOTE] Extracted columns not carried over (16): metadata columns and dimensions collapsed by the filters or the reshaping.
+  - Age group
+  - COORDINATE
+  - DECIMALS
+  - DGUID
+  - Gender
+  - Labour force characteristics
+  - North American Industry Classification System (NAICS)
+  - SCALAR_FACTOR
+  - SCALAR_ID
+  - STATUS
+  - SYMBOL
+  - TERMINATED
+  - UOM
+  - UOM_ID
+  - VALUE
+  - VECTOR
+- Added or renamed in processed: Employment_thousands, Labour_force_thousands, Unemployment_rate_pct, Unemployment_thousands
+
+4. Date coverage
+- Extracted: 2021-01 → 2026-08
+- Processed: 2021-01 → 2025-12
+- [NOTE] Extracted data covers 8 months outside the analysis period (2021-01 → 2025-12). These months are trimmed by design.
+- [OK] Processed date range matches the analysis period.
+- [OK] All 60 months of the analysis period are present.
+
+5. Geography
+- Extracted unique GEO values: 11
+- Processed unique GEO values: 1
+- [NOTE] Extracted geographies (11) are reduced to Canada only by design (national-level analysis).
+
+6. NAICS coverage
+- Not applicable: the table holds the all-industries total only (Total, all industries).
+
+7. Duplicate rows
+- Extracted duplicates: 0
+- Processed duplicates: 0
+- [OK] No duplicate rows in processed.
+
+8. Missing values
+- Extracted missing cells: 4,577,760
+  - SYMBOL: 1,525,920 — empty metadata column
+  - TERMINATED: 1,525,920 — empty metadata column
+  - STATUS: 1,060,615 — no quality flag (valid observation)
+  - VALUE: 465,305 — no value published (suppressed or unreliable)
+- Processed missing cells: 0
+- [OK] No missing cells in processed. Suppressed observations are removed before reshaping.
+
+9. Analytical grain
+- Target grain: GEO × REF_DATE
+- [OK] No duplicate analytical keys.
+- [OK] Selected extracted rows are unique per month × industry × measure (the filters fully determine the grain).
+
+10. Value reconciliation (extracted vs processed)
+- Rows checked: all 60 rows
+- Values and flags compared: 240
+- [OK] All compared values and flags match the extract.
+
+12. Internal consistency
+- [OK] Employment_thousands equals the Total row of employment.csv in all 60 months.
+- Max |labour force − employment − unemployment|: 0.10 thousand
+- [OK] Labour force = employment + unemployment (tolerance 0.3 thousand).
+- Max |implied rate − published rate|: 0.050 percentage points
+- [OK] Unemployment rate = unemployment / labour force (tolerance 0.15 percentage points).
