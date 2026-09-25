@@ -3,7 +3,7 @@
 EXPLORATORY DATA ANALYSIS
 ================================================================================
 Extracted directory: data/extracted
-Output file: output/05_eda/01_overview.txt
+Output file: outputs/05_eda/01_overview.txt
 
 Target analysis period: 2021-01 → 2025-12
 
@@ -34,25 +34,25 @@ Analysis coverage: COMPLETE
 ================================================================================
 STRUCTURE
 ================================================================================
-                                             variable   dtype  non_null  missing  missing_pct  unique
-                                             REF_DATE  object   1525920        0         0.00      68
-                                                  GEO  object   1525920        0         0.00      11
-                                                DGUID  object   1525920        0         0.00      11
-                         Labour force characteristics  object   1525920        0         0.00       6
-North American Industry Classification System (NAICS)  object   1525920        0         0.00      29
-                                               Gender  object   1525920        0         0.00       3
-                                            Age group  object   1525920        0         0.00       4
-                                                  UOM  object   1525920        0         0.00       2
-                                               UOM_ID   int64   1525920        0         0.00       2
-                                        SCALAR_FACTOR  object   1525920        0         0.00       2
-                                            SCALAR_ID   int64   1525920        0         0.00       2
-                                               VECTOR  object   1525920        0         0.00   22440
-                                           COORDINATE  object   1525920        0         0.00   22440
-                                                VALUE float64   1060615   465305        30.49   24500
-                                               STATUS  object    465305  1060615        69.51       1
-                                               SYMBOL float64         0  1525920       100.00       0
-                                           TERMINATED float64         0  1525920       100.00       0
-                                             DECIMALS   int64   1525920        0         0.00       1
+                    variable   dtype  non_null  missing  missing_pct  unique
+                    REF_DATE  object   1525920        0         0.00      68
+                         GEO  object   1525920        0         0.00      11
+                       DGUID  object   1525920        0         0.00      11
+Labour force characteristics  object   1525920        0         0.00       6
+                       NAICS  object   1525920        0         0.00      29
+                      Gender  object   1525920        0         0.00       3
+                   Age group  object   1525920        0         0.00       4
+                         UOM  object   1525920        0         0.00       2
+                      UOM_ID   int64   1525920        0         0.00       2
+               SCALAR_FACTOR  object   1525920        0         0.00       2
+                   SCALAR_ID   int64   1525920        0         0.00       2
+                      VECTOR  object   1525920        0         0.00   22440
+                  COORDINATE  object   1525920        0         0.00   22440
+                       VALUE float64   1060615   465305        30.49   24500
+                      STATUS  object    465305  1060615        69.51       1
+                      SYMBOL float64         0  1525920       100.00       0
+                  TERMINATED float64         0  1525920       100.00       0
+                    DECIMALS   int64   1525920        0         0.00       1
 
 ================================================================================
 DIMENSION PROFILE
@@ -78,6 +78,20 @@ Ontario                      138720
 Manitoba                     138720
 Saskatchewan                 138720
 Alberta                      138720
+
+[NAICS]
+Unique values: 29
+NAICS
+Total, all industries                                     53856
+Retail trade [44-45]                                      53856
+Public administration [91]                                53856
+Other services (except public administration) [81]        53856
+Accommodation and food services [72]                      53856
+Information, culture and recreation [51, 71]              53856
+Health care and social assistance [62]                    53856
+Educational services [61]                                 53856
+Business, building and other support services [55, 56]    53856
+Professional, scientific and technical services [54]      53856
 
 [Gender]
 Unique values: 3
@@ -126,8 +140,9 @@ Candidate key:
   - Gender
   - Age group
 
-Missing key columns:
-  - NAICS
+Unique key combinations: 1,525,920
+Duplicate key rows     : 0
+Key status             : UNIQUE
 
 ================================================================================
 VALUE & UNIT SEMANTICS
@@ -191,26 +206,26 @@ Analysis coverage: COMPLETE
 ================================================================================
 STRUCTURE
 ================================================================================
-                                             variable   dtype  non_null  missing  missing_pct  unique
-                                             REF_DATE  object   2558160        0         0.00      68
-                                                  GEO  object   2558160        0         0.00      11
-                                                DGUID  object   2558160        0         0.00      11
-                                                Wages  object   2558160        0         0.00       5
-                                         Type of work  object   2558160        0         0.00       3
-North American Industry Classification System (NAICS)  object   2558160        0         0.00      19
-                                               Gender  object   2558160        0         0.00       3
-                                            Age group  object   2558160        0         0.00       4
-                                                  UOM  object   2558160        0         0.00       2
-                                               UOM_ID   int64   2558160        0         0.00       2
-                                        SCALAR_FACTOR  object   2558160        0         0.00       2
-                                            SCALAR_ID   int64   2558160        0         0.00       2
-                                               VECTOR  object   2558160        0         0.00   37620
-                                           COORDINATE  object   2558160        0         0.00   37620
-                                                VALUE float64   2148245   409915        16.02  178411
-                                               STATUS  object    409915  2148245        83.98       1
-                                               SYMBOL float64         0  2558160       100.00       0
-                                           TERMINATED float64         0  2558160       100.00       0
-                                             DECIMALS   int64   2558160        0         0.00       2
+     variable   dtype  non_null  missing  missing_pct  unique
+     REF_DATE  object   2558160        0         0.00      68
+          GEO  object   2558160        0         0.00      11
+        DGUID  object   2558160        0         0.00      11
+        Wages  object   2558160        0         0.00       5
+ Type of work  object   2558160        0         0.00       3
+        NAICS  object   2558160        0         0.00      19
+       Gender  object   2558160        0         0.00       3
+    Age group  object   2558160        0         0.00       4
+          UOM  object   2558160        0         0.00       2
+       UOM_ID   int64   2558160        0         0.00       2
+SCALAR_FACTOR  object   2558160        0         0.00       2
+    SCALAR_ID   int64   2558160        0         0.00       2
+       VECTOR  object   2558160        0         0.00   37620
+   COORDINATE  object   2558160        0         0.00   37620
+        VALUE float64   2148245   409915        16.02  178411
+       STATUS  object    409915  2148245        83.98       1
+       SYMBOL float64         0  2558160       100.00       0
+   TERMINATED float64         0  2558160       100.00       0
+     DECIMALS   int64   2558160        0         0.00       2
 
 ================================================================================
 DIMENSION PROFILE
@@ -236,6 +251,20 @@ Ontario                      232560
 Manitoba                     232560
 Saskatchewan                 232560
 Alberta                      232560
+
+[NAICS]
+Unique values: 19
+NAICS
+Total employees, all industries                                134640
+Finance, insurance, real estate, rental and leasing [52-53]    134640
+Other services (except public administration) [81]             134640
+Accommodation and food services [72]                           134640
+Information, culture and recreation [51, 71]                   134640
+Health care and social assistance [62]                         134640
+Educational services [61]                                      134640
+Business, building and other support services [55-56]          134640
+Professional, scientific and technical services [54]           134640
+Transportation and warehousing [48-49]                         134640
 
 [Gender]
 Unique values: 3
@@ -291,8 +320,9 @@ Candidate key:
   - Gender
   - Age group
 
-Missing key columns:
-  - NAICS
+Unique key combinations: 2,558,160
+Duplicate key rows     : 0
+Key status             : UNIQUE
 
 ================================================================================
 VALUE & UNIT SEMANTICS
@@ -354,23 +384,23 @@ Analysis coverage: COMPLETE
 ================================================================================
 STRUCTURE
 ================================================================================
-                                             variable   dtype  non_null  missing  missing_pct  unique
-                                             REF_DATE  object      4158        0         0.00      66
-                                                  GEO  object      4158        0         0.00       1
-                                                DGUID  object      4158        0         0.00       1
-North American Industry Classification System (NAICS)  object      4158        0         0.00      21
-                                           Statistics  object      4158        0         0.00       3
-                                                  UOM  object      4158        0         0.00       2
-                                               UOM_ID   int64      4158        0         0.00       2
-                                        SCALAR_FACTOR  object      4158        0         0.00       1
-                                            SCALAR_ID   int64      4158        0         0.00       1
-                                               VECTOR  object      4158        0         0.00      63
-                                           COORDINATE  object      4158        0         0.00      63
-                                                VALUE float64      4142       16         0.38    2779
-                                               STATUS  object      4158        0         0.00       6
-                                               SYMBOL float64         0     4158       100.00       0
-                                           TERMINATED float64         0     4158       100.00       0
-                                             DECIMALS   int64      4158        0         0.00       2
+     variable   dtype  non_null  missing  missing_pct  unique
+     REF_DATE  object      4158        0         0.00      66
+          GEO  object      4158        0         0.00       1
+        DGUID  object      4158        0         0.00       1
+        NAICS  object      4158        0         0.00      21
+   Statistics  object      4158        0         0.00       3
+          UOM  object      4158        0         0.00       2
+       UOM_ID   int64      4158        0         0.00       2
+SCALAR_FACTOR  object      4158        0         0.00       1
+    SCALAR_ID   int64      4158        0         0.00       1
+       VECTOR  object      4158        0         0.00      63
+   COORDINATE  object      4158        0         0.00      63
+        VALUE float64      4142       16         0.38    2779
+       STATUS  object      4158        0         0.00       6
+       SYMBOL float64         0     4158       100.00       0
+   TERMINATED float64         0     4158       100.00       0
+     DECIMALS   int64      4158        0         0.00       2
 
 ================================================================================
 DIMENSION PROFILE
@@ -387,6 +417,20 @@ Invalid dates: 0
 Unique values: 1
 GEO
 Canada    4158
+
+[NAICS]
+Unique values: 21
+NAICS
+Total, all industries                                                         198
+Real estate and rental and leasing [53]                                       198
+Other services (except public administration) [81]                            198
+Accommodation and food services [72]                                          198
+Arts, entertainment and recreation [71]                                       198
+Health care and social assistance [62]                                        198
+Educational services [61]                                                     198
+Administrative and support, waste management and remediation services [56]    198
+Management of companies and enterprises [55]                                  198
+Professional, scientific and technical services [54]                          198
 
 [Statistics]
 Unique values: 3
@@ -415,8 +459,9 @@ Candidate key:
   - NAICS
   - Statistics
 
-Missing key columns:
-  - NAICS
+Unique key combinations: 4,158
+Duplicate key rows     : 0
+Key status             : UNIQUE
 
 ================================================================================
 VALUE & UNIT SEMANTICS
@@ -459,9 +504,127 @@ Duplicate rows: 0
 ================================================================================
 INDUSTRY COMPATIBILITY
 ================================================================================
-Could not inspect 14100022_extracted.csv: Usecols do not match columns, columns expected but not found: ['NAICS']
-Could not inspect 14100063_extracted.csv: Usecols do not match columns, columns expected but not found: ['NAICS']
-Could not inspect 14100372_extracted.csv: Usecols do not match columns, columns expected but not found: ['NAICS']
+
+14100022_extracted.csv × 14100063_extracted.csv
+
+Common industries (16):
+  - Accommodation and food services [72]
+  - Agriculture [111-112, 1100, 1151-1152]
+  - Construction [23]
+  - Educational services [61]
+  - Forestry, fishing, mining, quarrying, oil and gas [21, 113-114, 1153, 2100]
+  - Goods-producing sector
+  - Health care and social assistance [62]
+  - Information, culture and recreation [51, 71]
+  - Manufacturing [31-33]
+  - Other services (except public administration) [81]
+  - Professional, scientific and technical services [54]
+  - Public administration [91]
+  - Services-producing sector
+  - Transportation and warehousing [48-49]
+  - Utilities [22]
+  - Wholesale and retail trade [41, 44-45]
+
+Only in 14100022_extracted.csv (13):
+  - Business, building and other support services [55, 56]
+  - Durables [321, 327, 331-339]
+  - Finance and insurance [52]
+  - Finance, insurance, real estate, rental and leasing [52, 53]
+  - Fishing, hunting and trapping [114]
+  - Forestry and logging and support activities for forestry [113, 1153]
+  - Mining, quarrying, and oil and gas extraction [21, 2100]
+  - Non-durables [311-316, 322-326]
+  - Real estate and rental and leasing [53]
+  - Retail trade [44-45]
+  - Total, all industries
+  - Unclassified industries
+  - Wholesale trade [41]
+
+Only in 14100063_extracted.csv (3):
+  - Business, building and other support services [55-56]
+  - Finance, insurance, real estate, rental and leasing [52-53]
+  - Total employees, all industries
+
+14100022_extracted.csv × 14100372_extracted.csv
+
+Common industries (15):
+  - Accommodation and food services [72]
+  - Construction [23]
+  - Educational services [61]
+  - Finance and insurance [52]
+  - Health care and social assistance [62]
+  - Manufacturing [31-33]
+  - Other services (except public administration) [81]
+  - Professional, scientific and technical services [54]
+  - Public administration [91]
+  - Real estate and rental and leasing [53]
+  - Retail trade [44-45]
+  - Total, all industries
+  - Transportation and warehousing [48-49]
+  - Utilities [22]
+  - Wholesale trade [41]
+
+Only in 14100022_extracted.csv (14):
+  - Agriculture [111-112, 1100, 1151-1152]
+  - Business, building and other support services [55, 56]
+  - Durables [321, 327, 331-339]
+  - Finance, insurance, real estate, rental and leasing [52, 53]
+  - Fishing, hunting and trapping [114]
+  - Forestry and logging and support activities for forestry [113, 1153]
+  - Forestry, fishing, mining, quarrying, oil and gas [21, 113-114, 1153, 2100]
+  - Goods-producing sector
+  - Information, culture and recreation [51, 71]
+  - Mining, quarrying, and oil and gas extraction [21, 2100]
+  - Non-durables [311-316, 322-326]
+  - Services-producing sector
+  - Unclassified industries
+  - Wholesale and retail trade [41, 44-45]
+
+Only in 14100372_extracted.csv (6):
+  - Administrative and support, waste management and remediation services [56]
+  - Agriculture, forestry, fishing and hunting [11]
+  - Arts, entertainment and recreation [71]
+  - Information and cultural industries [51]
+  - Management of companies and enterprises [55]
+  - Mining, quarrying, and oil and gas extraction [21]
+
+14100063_extracted.csv × 14100372_extracted.csv
+
+Common industries (10):
+  - Accommodation and food services [72]
+  - Construction [23]
+  - Educational services [61]
+  - Health care and social assistance [62]
+  - Manufacturing [31-33]
+  - Other services (except public administration) [81]
+  - Professional, scientific and technical services [54]
+  - Public administration [91]
+  - Transportation and warehousing [48-49]
+  - Utilities [22]
+
+Only in 14100063_extracted.csv (9):
+  - Agriculture [111-112, 1100, 1151-1152]
+  - Business, building and other support services [55-56]
+  - Finance, insurance, real estate, rental and leasing [52-53]
+  - Forestry, fishing, mining, quarrying, oil and gas [21, 113-114, 1153, 2100]
+  - Goods-producing sector
+  - Information, culture and recreation [51, 71]
+  - Services-producing sector
+  - Total employees, all industries
+  - Wholesale and retail trade [41, 44-45]
+
+Only in 14100372_extracted.csv (11):
+  - Administrative and support, waste management and remediation services [56]
+  - Agriculture, forestry, fishing and hunting [11]
+  - Arts, entertainment and recreation [71]
+  - Finance and insurance [52]
+  - Information and cultural industries [51]
+  - Management of companies and enterprises [55]
+  - Mining, quarrying, and oil and gas extraction [21]
+  - Real estate and rental and leasing [53]
+  - Retail trade [44-45]
+  - Total, all industries
+  - Wholesale trade [41]
 
 ================================================================================
 EDA COMPLETE

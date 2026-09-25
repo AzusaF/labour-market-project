@@ -18,10 +18,18 @@ import pandas as pd
 # =============================================================================
 
 EXTRACTED_DIR = Path("data/extracted")
-OUTPUT_FILE = Path("output/05_eda/01_overview.txt")
+OUTPUT_FILE = Path("outputs/05_eda/01_overview.txt")
 
 ANALYSIS_START = "2021-01"
 ANALYSIS_END = "2025-12"
+
+# The extracted CSVs carry the full Statistics Canada column name.
+# It is renamed to "NAICS" right after each file is read so that every
+# downstream function in this script (key checks, dimension profiling,
+# missing-value analysis, industry comparison) can refer to it as "NAICS".
+NAICS_SOURCE_COLUMN = (
+    "North American Industry Classification System (NAICS)"
+)
 
 DATASET_CONFIG = {
     "14100022_extracted.csv": {
@@ -62,6 +70,22 @@ DATASET_CONFIG = {
 # =============================================================================
 # HELPERS
 # =============================================================================
+
+def load_extracted(file_path):
+    """
+    Load an extracted CSV and standardize the NAICS column name.
+
+    Every place in this script that reads an extracted file should go
+    through this function, so the "NAICS" column name is guaranteed to
+    exist regardless of the long Statistics Canada column name on disk.
+    """
+    df = pd.read_csv(file_path, low_memory=False)
+
+    if NAICS_SOURCE_COLUMN in df.columns:
+        df = df.rename(columns={NAICS_SOURCE_COLUMN: "NAICS"})
+
+    return df
+
 
 def print_section(title):
     """Print a formatted section header."""
@@ -354,11 +378,14 @@ def compare_industries(file_paths):
 
     for file_path in file_paths:
         try:
+            # Read only the NAICS column, by its real name on disk, then
+            # treat it as "NAICS" from here on. Reading a single column
+            # keeps this comparison cheap on the two multi-GB files.
             naics = pd.read_csv(
                 file_path,
-                usecols=["NAICS"],
+                usecols=[NAICS_SOURCE_COLUMN],
                 low_memory=False,
-            )["NAICS"]
+            )[NAICS_SOURCE_COLUMN]
 
             industry_sets[file_path.name] = set(
                 naics.dropna().unique()
@@ -370,10 +397,15 @@ def compare_industries(file_paths):
                 f"{file_path.name}: {error}"
             )
 
+    # All three pairwise comparisons, so no dataset pair is skipped.
     comparisons = [
         (
             "14100022_extracted.csv",
             "14100063_extracted.csv",
+        ),
+        (
+            "14100022_extracted.csv",
+            "14100372_extracted.csv",
         ),
         (
             "14100063_extracted.csv",
@@ -434,10 +466,7 @@ def inspect_file(file_path):
         f"FILE: {file_path.name}"
     )
 
-    df = pd.read_csv(
-        file_path,
-        low_memory=False,
-    )
+    df = load_extracted(file_path)
 
     config = DATASET_CONFIG.get(
         file_path.name,
