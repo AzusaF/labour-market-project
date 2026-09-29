@@ -45,7 +45,7 @@ Input:
 - data/processed/*.csv
 
 Output:
-- outputs/07_transform/02_validation.txt
+- outputs/07_02_validation.txt
 """
 
 from pathlib import Path
@@ -56,7 +56,7 @@ import pandas as pd
 
 EXTRACTED_DIR = Path("data/extracted")
 PROCESSED_DIR = Path("data/processed")
-OUTPUT_FILE = Path("outputs/07_transform/02_validation.txt")
+OUTPUT_FILE = Path("outputs/07_02_validation.txt")
 
 # These constants must match 01_transform.py.
 START_DATE = pd.Timestamp("2021-01-01")

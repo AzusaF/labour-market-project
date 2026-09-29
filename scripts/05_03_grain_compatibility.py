@@ -7,7 +7,7 @@ identifies shared and dataset-specific dimensions to determine
 whether direct cross-dataset joins are appropriate.
 
 Output:
-- output/05_eda/03_grain_compatibility.txt
+- outputs/05_03_grain_compatibility.txt
 """
 
 from pathlib import Path
@@ -19,7 +19,7 @@ import pandas as pd
 # =============================================================================
 
 EXTRACTED_DIR = Path("data/extracted")
-OUTPUT_FILE = Path("output/05_eda/03_grain_compatibility.txt")
+OUTPUT_FILE = Path("outputs/05_03_grain_compatibility.txt")
 
 DATASET_CONFIG = {
   "14100022_extracted.csv": {
