@@ -25,7 +25,7 @@ Dataset: Labour force characteristics
 Candidate analytical grain:
   - REF_DATE
   - GEO
-  - North American Industry Classification System (NAICS)
+  - NAICS
   - Labour force characteristics
   - Gender
   - Age group
@@ -37,7 +37,7 @@ Grain status             : UNIQUE
 [Dimension Cardinality]
 REF_DATE: 68 unique values
 GEO: 11 unique values
-North American Industry Classification System (NAICS): 29 unique values
+NAICS: 29 unique values
 Labour force characteristics: 6 unique values
 Gender: 3 unique values
 Age group: 4 unique values
@@ -50,7 +50,7 @@ Dataset: Employee wages
 Candidate analytical grain:
   - REF_DATE
   - GEO
-  - North American Industry Classification System (NAICS)
+  - NAICS
   - Wages
   - Type of work
   - Gender
@@ -63,7 +63,7 @@ Grain status             : UNIQUE
 [Dimension Cardinality]
 REF_DATE: 68 unique values
 GEO: 11 unique values
-North American Industry Classification System (NAICS): 19 unique values
+NAICS: 19 unique values
 Wages: 5 unique values
 Type of work: 3 unique values
 Gender: 3 unique values
@@ -77,7 +77,7 @@ Dataset: Job vacancies, payroll employees, and vacancy rate
 Candidate analytical grain:
   - REF_DATE
   - GEO
-  - North American Industry Classification System (NAICS)
+  - NAICS
   - Statistics
 
 Unique grain combinations: 4,158
@@ -87,7 +87,7 @@ Grain status             : UNIQUE
 [Dimension Cardinality]
 REF_DATE: 66 unique values
 GEO: 1 unique values
-North American Industry Classification System (NAICS): 21 unique values
+NAICS: 21 unique values
 Statistics: 3 unique values
 
 ================================================================================
@@ -98,7 +98,7 @@ Dimensions present in all datasets:
   - DECIMALS
   - DGUID
   - GEO
-  - North American Industry Classification System (NAICS)
+  - NAICS
   - REF_DATE
   - SCALAR_FACTOR
   - SCALAR_ID
@@ -165,13 +165,13 @@ Total distinct values: 12
 Common values across all datasets: 1
 Total distinct values: 11
 
-[North American Industry Classification System (NAICS)]
+[NAICS]
 14100022_extracted.csv: 29 unique values
 14100063_extracted.csv: 19 unique values
 14100372_extracted.csv: 21 unique values
 Common values across all datasets: 10
 Total distinct values: 38
-Note: NAICS category coverage is not identical across datasets. See 02_naics_comparison.txt.
+Note: NAICS category coverage is not identical across datasets. See 05_02_naics_comparison.txt.
 
 [REF_DATE]
 14100022_extracted.csv: 68 unique values

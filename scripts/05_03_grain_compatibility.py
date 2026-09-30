@@ -27,7 +27,7 @@ DATASET_CONFIG = {
     "grain_columns": [
       "REF_DATE",
       "GEO",
-      "North American Industry Classification System (NAICS)",
+      "NAICS",
       "Labour force characteristics",
       "Gender",
       "Age group",
@@ -38,7 +38,7 @@ DATASET_CONFIG = {
     "grain_columns": [
       "REF_DATE",
       "GEO",
-      "North American Industry Classification System (NAICS)",
+      "NAICS",
       "Wages",
       "Type of work",
       "Gender",
@@ -50,12 +50,15 @@ DATASET_CONFIG = {
     "grain_columns": [
       "REF_DATE",
       "GEO",
-      "North American Industry Classification System (NAICS)",
+      "NAICS",
       "Statistics",
     ],
   },
 }
 
+NAICS_SOURCE_COLUMN  = (
+    "North American Industry Classification System (NAICS)"
+)
 
 # =============================================================================
 # HELPERS
@@ -306,11 +309,11 @@ def compare_common_dimensions(datasets):
       f"{len(union_values):,}"
     )
 
-    if column == "North American Industry Classification System (NAICS)":
+    if column == "NAICS":
       print(
         "Note: NAICS category coverage is "
         "not identical across datasets. "
-        "See 02_naics_comparison.txt."
+        "See 05_02_naics_comparison.txt."
       )
 
 
@@ -393,6 +396,8 @@ def main():
         df = load_dataset(file_path)
 
         if df is not None:
+          if NAICS_SOURCE_COLUMN in df.columns:
+            df = df.rename(columns={NAICS_SOURCE_COLUMN: "NAICS"})
           datasets[file_name] = df
 
       print()
