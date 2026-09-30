@@ -293,18 +293,6 @@ def print_compatibility_summary(industry_sets):
       "may be required before joining datasets."
     )
 
-  print()
-  print(
-    "Recommended next step:"
-  )
-  print(
-    "Review the NAICS category differences "
-    "and determine whether the differences "
-    "represent different classification levels, "
-    "different category definitions, or "
-    "dataset-specific coverage."
-  )
-
 
 # =============================================================================
 # MAIN

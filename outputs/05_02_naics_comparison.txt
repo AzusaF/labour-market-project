@@ -310,9 +310,6 @@ Distinct categories across all datasets: 38
 Direct cross-dataset joins should not assume identical NAICS coverage.
 A mapping or harmonization strategy may be required before joining datasets.
 
-Recommended next step:
-Review the NAICS category differences and determine whether the differences represent different classification levels, different category definitions, or dataset-specific coverage.
-
 ================================================================================
 NAICS COMPARISON COMPLETE
 ================================================================================
