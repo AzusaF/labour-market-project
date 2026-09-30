@@ -36,7 +36,7 @@ Output:
 
 from pathlib import Path
 import pandas as pd
-
+import re
 
 # Define input and output directories.
 EXTRACTED_DIR = Path("data/extracted")
@@ -92,7 +92,6 @@ def standardize_common_columns(df):
 
 
 # Standardize minor differences in NAICS labels.
-# Keep these replacements consistent with 02_validation.py.
 def normalize_naics_labels(df):
   df = df.copy()
 
@@ -102,19 +101,17 @@ def normalize_naics_labels(df):
   df["NAICS"] = (
     df["NAICS"]
     .str.replace(
-      "[55, 56]",
-      "[55-56]",
+      "Business, building and other support services [55, 56]",
+      "Business, building and other support services [55-56]",
       regex=False
     )
     .str.replace(
-      "[52, 53]",
-      "[52-53]",
+      "Finance, insurance, real estate, rental and leasing [52, 53]",
+      "Finance, insurance, real estate, rental and leasing [52-53]",
       regex=False
     )
   )
-
   return df
-
 
 # Restrict the dataset to the primary analysis period.
 def filter_common_period(df):
