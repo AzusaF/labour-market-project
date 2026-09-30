@@ -1,6 +1,6 @@
 # Scripts
 
-This directory contains Python scripts for inspecting, preparing, extracting, and transforming project data. The results are saved to `output/` for reference and further analysis.
+This directory contains Python scripts for inspecting, preparing, extracting, and transforming project data. The results are saved to `outputs/` for reference and further analysis.
 
 The scripts follow a sequential workflow:
 
@@ -63,11 +63,11 @@ The EDA stage evaluates the extracted Statistics Canada datasets before transfor
 
 The analysis is divided into three sequential steps:
 
-| Step   | Script                      | Purpose                                                                                                                  |
-| ------ | --------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **01** | `01_overview.py`            | Examine dataset structure, dimensions, date coverage, basic statistics, missing values, data quality, and duplicate rows |
-| **02** | `02_naics_comparison.py`    | Compare NAICS / industry structures across datasets and identify differences that affect cross-dataset integration       |
-| **03** | `03_grain_compatibility.py` | Assess the analytical grain, shared dimensions, and join compatibility across datasets                                   |
+| Step   | Script                         | Purpose                                                                                                                  |
+| ------ | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| **01** | `05_01_overview.py`            | Examine dataset structure, dimensions, date coverage, basic statistics, missing values, data quality, and duplicate rows |
+| **02** | `05_02_naics_comparison.py`    | Compare NAICS / industry structures across datasets and identify differences that affect cross-dataset integration       |
+| **03** | `05_03_grain_compatibility.py` | Assess the analytical grain, shared dimensions, and join compatibility across datasets                                   |
 
 ### Step 01: Dataset Overview
 

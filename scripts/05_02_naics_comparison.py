@@ -7,7 +7,7 @@ to determine whether industry categories are directly compatible
 for cross-dataset analysis and future joins.
 
 Output:
-- output/05_eda/02_naics_comparison.txt
+- outputs/05_02_naics_comparison.txt
 """
 
 from pathlib import Path
@@ -19,7 +19,7 @@ import pandas as pd
 # =============================================================================
 
 EXTRACTED_DIR = Path("data/extracted")
-OUTPUT_FILE = Path("output/05_eda/02_naics_comparison.txt")
+OUTPUT_FILE = Path("outputs/05_02_naics_comparison.txt")
 
 DATASETS = [
   "14100022_extracted.csv",
