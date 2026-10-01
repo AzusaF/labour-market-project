@@ -1,0 +1,54 @@
+================================================================================
+HARMONIZE
+================================================================================
+
+-- Output tables --
+   employment_h: 900 rows, 15 harmonized industries
+[PASS] employment_h: not empty
+   wages_h: 900 rows, 15 harmonized industries
+[PASS] wages_h: not empty
+   vacancies_h: 900 rows, 15 harmonized industries
+[PASS] vacancies_h: not empty
+   industry_monthly: 900 rows, 15 harmonized industries
+[PASS] industry_monthly: not empty
+
+-- Component stability --
+[PASS] employment_h: n_components constant across months
+[PASS] wages_h: n_components constant across months
+[PASS] vacancies_h: n_components constant across months
+[PASS] employment_h: unique on (REF_DATE, GEO, naics_harmonized)
+[PASS] wages_h: unique on (REF_DATE, GEO, naics_harmonized)
+[PASS] vacancies_h: unique on (REF_DATE, GEO, naics_harmonized)
+[PASS] industry_monthly: unique on (REF_DATE, GEO, naics_harmonized)
+
+-- Harmonized industry overlap across tables --
+   in all 3 tables: 15
+     Accommodation and food services
+     Agriculture, forestry, fishing, mining, quarrying, oil and gas
+     Business, building and other support services
+     Construction
+     Educational services
+     Finance, insurance, real estate, rental and leasing
+     Health care and social assistance
+     Information, culture and recreation
+     Manufacturing
+     Other services (except public administration)
+     Professional, scientific and technical services
+     Public administration
+     Transportation and warehousing
+     Utilities
+     Wholesale and retail trade
+   in only some tables: 0
+[PASS] at least one industry present in all 3 tables
+
+-- Harmonized employment vs labour_force_total.Employment_thousands --
+   sum(harmonized) / total employment: min 1.000, max 1.000
+   (should be close to 1; if not, check for aggregate rows kept as direct)
+
+-- vacancies_h rows with NULL vacancies (suppressed component): 8
+
+================================================================================
+HARMONIZE RESULT
+================================================================================
+Checks: 12 | Passed: 12 | Failed: 0
+Status: PASSED

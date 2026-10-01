@@ -1,5 +1,6 @@
 """
-09_02 VALIDATION
+09 — Data Warehouse
+02 - VALIDATION
 Reads data/warehouse.duckdb, runs integrity checks, writes outputs/09_02_validation_report.txt.
 Exit code 1 if any FAIL.
 """
