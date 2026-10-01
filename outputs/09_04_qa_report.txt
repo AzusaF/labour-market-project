@@ -1,0 +1,73 @@
+================================================================================
+QA + PROVENANCE
+================================================================================
+
+-- 1. Row lineage (source rows by mapping_type) --
+   employment: 1680 source rows, 1200 kept
+     direct: 720
+     component: 480
+     exclude_redundant: 300
+     aggregate_qa: 180
+[PASS] employment: no UNMAPPED source rows
+[PASS] employment: kept rows (1200) == components feeding employment_h (1200)
+   wages: 1140 source rows, 960 kept
+     direct: 840
+     aggregate_qa: 180
+     component: 120
+[PASS] wages: no UNMAPPED source rows
+[PASS] wages: kept rows (960) == components feeding wages_h (960)
+   vacancies: 1260 source rows, 1200 kept
+     component: 600
+     direct: 600
+     aggregate_qa: 60
+[PASS] vacancies: no UNMAPPED source rows
+[PASS] vacancies: kept rows (1200) == components feeding vacancies_h (1200)
+
+-- 2. aggregate_qa rows in mapping --
+   (14100022, 'Goods-producing sector', 'AGG', 'AGGREGATE_QA', 'Multi-industry aggregate; use for validation only, not part of industry-level sum')
+   (14100022, 'Services-producing sector', 'AGG', 'AGGREGATE_QA', 'Multi-industry aggregate; use for validation only, not part of industry-level sum')
+   (14100022, 'Total, all industries', 'TOTAL', 'TOTAL_QA', 'Grand total; use for validation only')
+   (14100063, 'Goods-producing sector', 'AGG', 'AGGREGATE_QA', 'Multi-industry aggregate; use for validation only, not part of industry-level sum')
+   (14100063, 'Services-producing sector', 'AGG', 'AGGREGATE_QA', 'Multi-industry aggregate; use for validation only, not part of industry-level sum')
+   (14100063, 'Total employees, all industries', 'TOTAL', 'TOTAL_QA', 'Grand total; use for validation only')
+   (14100372, 'Total, all industries', 'TOTAL', 'TOTAL_QA', 'Grand total; use for validation only')
+
+-- 2b. Reconciliation (employment table) --
+[PASS] 'Goods-producing sector' == sum of 4 harmonized industries (tol 2.0k)  -> max abs diff 0.20k over 60 months
+[PASS] 'Services-producing sector' == sum of 11 harmonized industries (tol 2.0k)  -> max abs diff 0.20k over 60 months
+[PASS] 'Total, all industries' == sum of 15 harmonized industries (tol 2.0k)  -> max abs diff 0.30k over 60 months
+
+-- 3. NULL vacancy audit --
+   rows with NULL Job_vacancies: 8
+     2022-02-01 | Finance and insurance [52] | quality: vac=F, payroll=A, rate=F
+     2022-11-01 | Mining, quarrying, and oil and gas extraction [21] | quality: vac=F, payroll=A, rate=F
+     2021-06-01 | Utilities [22] | quality: vac=F, payroll=D, rate=F
+     2022-01-01 | Utilities [22] | quality: vac=F, payroll=A, rate=F
+     2022-06-01 | Utilities [22] | quality: vac=F, payroll=E, rate=F
+     2022-12-01 | Utilities [22] | quality: vac=F, payroll=B, rate=F
+     2024-06-01 | Utilities [22] | quality: vac=F, payroll=E, rate=F
+     2025-08-01 | Utilities [22] | quality: vac=F, payroll=A, rate=F
+   written: outputs/09_04_null_vacancies.csv
+
+   Job_vacancies_quality distribution (all rows):
+     B: 581
+     C: 324
+     A: 188
+     D: 140
+     E: 19
+     F: 8
+
+   industries affected (source level):
+     Utilities [22]: 6 months
+     Mining, quarrying, and oil and gas extraction [21]: 1 months
+     Finance and insurance [52]: 1 months
+[PASS] every NULL vacancy row has a Job_vacancies_quality flag (documented missingness)
+[PASS] NULL vacancies never have a populated rate
+
+   harmonized industry-months set to NULL (propagated): 8
+
+================================================================================
+QA RESULT
+================================================================================
+Checks: 11 | Passed: 11 | Failed: 0 | Warnings: 0
+Status: PASSED
