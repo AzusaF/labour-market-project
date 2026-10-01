@@ -47,7 +47,7 @@ QA + PROVENANCE
      2022-12-01 | Utilities [22] | quality: vac=F, payroll=B, rate=F
      2024-06-01 | Utilities [22] | quality: vac=F, payroll=E, rate=F
      2025-08-01 | Utilities [22] | quality: vac=F, payroll=A, rate=F
-   written: outputs/09_04_null_vacancies.csv
+   written: outputs/08_04_null_vacancies.csv
 
    Job_vacancies_quality distribution (all rows):
      B: 581

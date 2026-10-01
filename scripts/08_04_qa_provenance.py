@@ -1,10 +1,10 @@
 """
-09 — Data Warehouse
+08 — Data Warehouse
 04 - QA + PROVENANCE
 
 Read-only against data/warehouse.duckdb. Writes:
-  outputs/09_04_qa_report.txt
-  outputs/09_04_null_vacancies.csv
+  outputs/08_04_qa_report.txt
+  outputs/08_04_null_vacancies.csv
 
 Sections:
   1. Row lineage: every source row is kept (direct/component) or dropped for a named reason
@@ -18,8 +18,8 @@ from pathlib import Path
 import duckdb
 
 DB = "data/warehouse.duckdb"
-OUT = Path("outputs/09_04_qa_report.txt")
-CSV = Path("outputs/09_04_null_vacancies.csv")
+OUT = Path("outputs/08_04_qa_report.txt")
+CSV = Path("outputs/08_04_null_vacancies.csv")
 OUT.parent.mkdir(exist_ok=True)
 
 SRC = {"employment": 14100022, "wages": 14100063, "vacancies": 14100372}

@@ -1,5 +1,5 @@
 """
-08 — Industry Classification Mapping
+07 — Industry Classification Mapping
 01 - Validate NAICS Mapping
 
 Validates the hand-built NAICS crosswalk (config/naics_mapping.csv)
@@ -10,7 +10,7 @@ the design artifact and the real data still agree before anything
 downstream is allowed to JOIN on it.
 
 Output:
-- outputs/08_01_naics_mapping_validation.txt
+- outputs/07_01_naics_mapping_validation.txt
 """
 
 import re
@@ -26,7 +26,7 @@ import pandas as pd
 
 PROCESSED_DIR = Path("data/processed")
 MAPPING_FILE = Path("config/naics_mapping.csv")
-OUTPUT_FILE = Path("outputs/08_01_naics_mapping_validation.txt")
+OUTPUT_FILE = Path("outputs/07_01_naics_mapping_validation.txt")
 
 # source_table -> processed file that holds its NAICS breakdown.
 # labour_force_total.csv is intentionally excluded: it is Canada x Month,

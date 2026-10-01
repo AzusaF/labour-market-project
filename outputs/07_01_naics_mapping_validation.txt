@@ -4,7 +4,7 @@ NAICS MAPPING VALIDATION (per source table)
 ================================================================================
 Mapping file  : config/naics_mapping.csv
 Processed dir : data/processed
-Output file   : outputs/08_01_naics_mapping_validation.txt
+Output file   : outputs/07_01_naics_mapping_validation.txt
 
 [MAPPING TABLE — KEY CHECK]
 Rows in mapping table                          : 69

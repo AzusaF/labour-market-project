@@ -1,7 +1,7 @@
 """
-09 — Data Warehouse
+08 — Data Warehouse
 02 - VALIDATION
-Reads data/warehouse.duckdb, runs integrity checks, writes outputs/09_02_validation_report.txt.
+Reads data/warehouse.duckdb, runs integrity checks, writes outputs/08_02_validation_report.txt.
 Exit code 1 if any FAIL.
 """
 
@@ -10,7 +10,7 @@ from pathlib import Path
 import duckdb
 
 DB = "data/warehouse.duckdb"
-OUT = Path("outputs/09_02_validation_report.txt")
+OUT = Path("outputs/08_02_validation_report.txt")
 OUT.parent.mkdir(exist_ok=True)
 
 con = duckdb.connect(DB, read_only=True)

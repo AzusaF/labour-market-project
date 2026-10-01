@@ -1,5 +1,5 @@
 """
-09 — Data Warehouse
+08 — Data Warehouse
 01 - Load Tables into DuckDB
 
 Loads the four analysis-ready tables from 07_transform and the NAICS
@@ -15,7 +15,7 @@ issues), not that the data is semantically correct.
 
 Output:
 - data/warehouse.duckdb
-- outputs/09_01_load_report.txt
+- outputs/08_01_load_report.txt
 """
 
 import sys
@@ -32,7 +32,7 @@ import pandas as pd
 PROCESSED_DIR = Path("data/processed")
 MAPPING_FILE = Path("config/naics_mapping.csv")
 DB_FILE = Path("data/warehouse.duckdb")
-OUTPUT_FILE = Path("outputs/09_01_load_report.txt")
+OUTPUT_FILE = Path("outputs/08_01_load_report.txt")
 
 # table_name -> source CSV. naics_mapping is included here so the whole
 # warehouse load goes through one loop instead of a special case.

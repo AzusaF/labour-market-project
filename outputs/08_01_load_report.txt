@@ -3,7 +3,7 @@
 DUCKDB LOAD
 ================================================================================
 Database file: data/warehouse.duckdb
-Output file  : outputs/09_01_load_report.txt
+Output file  : outputs/08_01_load_report.txt
 
 [employment]
 CSV rows   : 1,680
