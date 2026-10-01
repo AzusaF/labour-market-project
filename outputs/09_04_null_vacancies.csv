@@ -1,0 +1,9 @@
+REF_DATE,GEO,NAICS,Job_vacancies,Payroll_employees,Job_vacancy_rate_pct,Job_vacancies_quality,Payroll_employees_quality,Job_vacancy_rate_quality
+2022-02-01,Canada,Finance and insurance [52],,783330.0,,F,A,F
+2022-11-01,Canada,"Mining, quarrying, and oil and gas extraction [21]",,203680.0,,F,A,F
+2021-06-01,Canada,Utilities [22],,124255.0,,F,D,F
+2022-01-01,Canada,Utilities [22],,129155.0,,F,A,F
+2022-06-01,Canada,Utilities [22],,129745.0,,F,E,F
+2022-12-01,Canada,Utilities [22],,130850.0,,F,B,F
+2024-06-01,Canada,Utilities [22],,135415.0,,F,E,F
+2025-08-01,Canada,Utilities [22],,135535.0,,F,A,F

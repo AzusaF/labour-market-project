@@ -1,0 +1,98 @@
+================================================================================
+VALIDATION
+================================================================================
+[PASS] employment: row count == 1680
+[PASS] wages: row count == 1140
+[PASS] vacancies: row count == 1260
+[PASS] labour_force_total: row count == 60
+[PASS] naics_mapping: row count == 69
+[PASS] employment.REF_DATE: no NULLs
+[PASS] employment.GEO: no NULLs
+[PASS] employment.NAICS: no NULLs
+[PASS] wages.REF_DATE: no NULLs
+[PASS] wages.GEO: no NULLs
+[PASS] wages.NAICS: no NULLs
+[PASS] vacancies.REF_DATE: no NULLs
+[PASS] vacancies.GEO: no NULLs
+[PASS] vacancies.NAICS: no NULLs
+[PASS] labour_force_total.REF_DATE: no NULLs
+[PASS] labour_force_total.GEO: no NULLs
+[PASS] employment: unique on (REF_DATE, GEO, NAICS)
+[PASS] wages: unique on (REF_DATE, GEO, NAICS)
+[PASS] vacancies: unique on (REF_DATE, GEO, NAICS)
+[PASS] labour_force_total: unique on (REF_DATE, GEO)
+
+-- Measure null rates --
+   employment.Employment_thousands: 0/1680 NULL (0.0%)
+[PASS] employment.Employment_thousands: not entirely NULL
+   wages.Average_hourly_wage_cad: 0/1140 NULL (0.0%)
+[PASS] wages.Average_hourly_wage_cad: not entirely NULL
+   wages.Median_hourly_wage_cad: 0/1140 NULL (0.0%)
+[PASS] wages.Median_hourly_wage_cad: not entirely NULL
+   wages.Total_employees_thousands: 0/1140 NULL (0.0%)
+[PASS] wages.Total_employees_thousands: not entirely NULL
+   vacancies.Job_vacancies: 8/1260 NULL (0.6%)
+[PASS] vacancies.Job_vacancies: not entirely NULL
+   vacancies.Payroll_employees: 0/1260 NULL (0.0%)
+[PASS] vacancies.Payroll_employees: not entirely NULL
+   vacancies.Job_vacancy_rate_pct: 8/1260 NULL (0.6%)
+[PASS] vacancies.Job_vacancy_rate_pct: not entirely NULL
+   labour_force_total.Labour_force_thousands: 0/60 NULL (0.0%)
+[PASS] labour_force_total.Labour_force_thousands: not entirely NULL
+   labour_force_total.Employment_thousands: 0/60 NULL (0.0%)
+[PASS] labour_force_total.Employment_thousands: not entirely NULL
+   labour_force_total.Unemployment_thousands: 0/60 NULL (0.0%)
+[PASS] labour_force_total.Unemployment_thousands: not entirely NULL
+   labour_force_total.Unemployment_rate_pct: 0/60 NULL (0.0%)
+[PASS] labour_force_total.Unemployment_rate_pct: not entirely NULL
+
+-- Value ranges --
+[PASS] employment.Employment_thousands >= 0
+[PASS] wages.Average_hourly_wage_cad BETWEEN 5 AND 200
+[PASS] wages.Median_hourly_wage_cad BETWEEN 5 AND 200
+[PASS] wages.Total_employees_thousands >= 0
+[PASS] vacancies.Job_vacancies >= 0
+[PASS] vacancies.Payroll_employees >= 0
+[PASS] vacancies.Job_vacancy_rate_pct BETWEEN 0 AND 30
+[PASS] labour_force_total.Unemployment_rate_pct BETWEEN 0 AND 30
+
+-- Date coverage --
+   employment: 2021-01-01 -> 2025-12-01, 60 distinct periods
+   wages: 2021-01-01 -> 2025-12-01, 60 distinct periods
+   vacancies: 2021-01-01 -> 2025-12-01, 60 distinct periods
+   labour_force_total: 2021-01-01 -> 2025-12-01, 60 distinct periods
+[PASS] labour_force_total: monthly series has no gaps
+
+-- Consistency --
+[PASS] labour_force_total: LF = Employment + Unemployment (tol 1k)
+[PASS] labour_force_total: unemployment rate recomputes (tol 0.15pp)
+[PASS] vacancies: rate = V/(V+Payroll) (tol 0.2pp)
+[PASS] wages: median not > 2x average
+
+-- NAICS mapping coverage --
+[PASS] employment: all NAICS names mapped (source_table 14100022)
+   employment: mapping rows not present in data: [('Unclassified industries', 'residual_excluded')]
+[PASS] wages: all NAICS names mapped (source_table 14100063)
+[PASS] vacancies: all NAICS names mapped (source_table 14100372)
+[PASS] naics_mapping: harmonized + mapping_type populated
+[PASS] naics_mapping: unique (source_table, naics_original)
+[PASS] naics_mapping: source_table values are the 3 known tables
+
+   mapping_type distribution:
+     direct: 36
+     component: 20
+     aggregate_qa: 7
+     exclude_redundant: 5
+     residual_excluded: 1
+
+-- GEO values --
+   employment: ['Canada']
+   wages: ['Canada']
+   vacancies: ['Canada']
+   labour_force_total: ['Canada']
+
+================================================================================
+VALIDATION RESULT
+================================================================================
+Checks: 50 | Passed: 50 | Failed: 0
+Status: PASSED
