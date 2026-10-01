@@ -4,7 +4,7 @@
 
 Builds NAICS-harmonized tables in data/warehouse.duckdb using naics_mapping:
   employment_h, wages_h, vacancies_h, industry_monthly
-  
+
 Rules:
   - keep mapping_type in ('direct','component'); drop aggregate_qa / exclude_redundant / residual_excluded
   - employment: SUM across components
@@ -89,7 +89,8 @@ con.execute(f"""
                 THEN 100.0 * SUM(Job_vacancies) / (SUM(Job_vacancies) + SUM(Payroll_employees))
            END AS job_vacancy_rate_pct,
            COUNT(*) AS n_components,
-           COUNT(*) FILTER (WHERE Job_vacancies IS NULL) AS n_null_components
+           COUNT(*) FILTER (WHERE Job_vacancies IS NULL) AS n_null_components,
+           MAX(Job_vacancies_quality) AS worst_vacancy_quality  -- A best ... F worst
     FROM ({mapped('vacancies')})
     GROUP BY 1, 2, 3
 """)
@@ -100,6 +101,7 @@ con.execute("""
            e.employment_thousands,
            w.employees_thousands, w.avg_hourly_wage_cad, w.median_hourly_wage_cad,
            v.job_vacancies, v.payroll_employees, v.job_vacancy_rate_pct,
+           v.worst_vacancy_quality,
            e.n_components AS emp_components,
            w.n_components AS wage_components,
            v.n_components AS vac_components
@@ -164,6 +166,13 @@ lo, hi = q("""
 """)[0]
 log(f"   sum(harmonized) / total employment: min {lo:.3f}, max {hi:.3f}")
 log("   (should be close to 1; if not, check for aggregate rows kept as direct)")
+
+# ---- quality flag carried through ----
+log("\n-- worst_vacancy_quality in industry_monthly --")
+for qv, c in q("SELECT worst_vacancy_quality, COUNT(*) FROM industry_monthly GROUP BY 1 ORDER BY 1"):
+    log(f"   {qv}: {c}")
+n = q("SELECT COUNT(*) FROM industry_monthly WHERE worst_vacancy_quality IS NULL")[0][0]
+check("worst_vacancy_quality populated for every industry-month", n == 0, f"{n} NULL" if n else "")
 
 # ---- vacancy NULL propagation ----
 n = q("SELECT COUNT(*) FROM vacancies_h WHERE job_vacancies IS NULL")[0][0]

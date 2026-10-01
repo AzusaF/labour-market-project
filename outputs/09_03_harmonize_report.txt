@@ -45,10 +45,19 @@ HARMONIZE
    sum(harmonized) / total employment: min 1.000, max 1.000
    (should be close to 1; if not, check for aggregate rows kept as direct)
 
+-- worst_vacancy_quality in industry_monthly --
+   A: 122
+   B: 382
+   C: 235
+   D: 134
+   E: 19
+   F: 8
+[PASS] worst_vacancy_quality populated for every industry-month
+
 -- vacancies_h rows with NULL vacancies (suppressed component): 8
 
 ================================================================================
 HARMONIZE RESULT
 ================================================================================
-Checks: 12 | Passed: 12 | Failed: 0
+Checks: 13 | Passed: 13 | Failed: 0
 Status: PASSED
