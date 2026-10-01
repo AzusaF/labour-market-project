@@ -3,7 +3,7 @@
 GRAIN & JOIN COMPATIBILITY ANALYSIS
 ================================================================================
 Extracted directory: data/extracted
-Output file: outputs/05_03_grain_compatibility.txt
+Output file: outputs/03_03_grain_compatibility.txt
 
 Purpose:
 Identify the analytical grain of each dataset and compare shared and dataset-specific dimensions to determine whether direct cross-dataset joins are appropriate before transformation.

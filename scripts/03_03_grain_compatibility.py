@@ -1,5 +1,5 @@
 """
-05 — Exploratory Data Analysis
+03 — Exploratory Data Analysis
 02 - Grain Compatibility
 
 Evaluates the analytical grain of each extracted dataset and
@@ -7,7 +7,7 @@ identifies shared and dataset-specific dimensions to determine
 whether direct cross-dataset joins are appropriate.
 
 Output:
-- outputs/05_03_grain_compatibility.txt
+- outputs/03_03_grain_compatibility.txt
 """
 
 from pathlib import Path
@@ -19,7 +19,7 @@ import pandas as pd
 # =============================================================================
 
 EXTRACTED_DIR = Path("data/extracted")
-OUTPUT_FILE = Path("outputs/05_03_grain_compatibility.txt")
+OUTPUT_FILE = Path("outputs/03_03_grain_compatibility.txt")
 
 DATASET_CONFIG = {
   "14100022_extracted.csv": {
@@ -313,7 +313,7 @@ def compare_common_dimensions(datasets):
       print(
         "Note: NAICS category coverage is "
         "not identical across datasets. "
-        "See 05_02_naics_comparison.txt."
+        "See 03_02_naics_comparison.txt."
       )
 
 

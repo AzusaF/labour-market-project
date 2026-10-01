@@ -1,7 +1,7 @@
 """
-09 — Data Warehouse
+06 — Data Warehouse
 00 - RUN ALL
-Runs the stage-09 scripts in order (scripts/09_01_*.py ... 09_04_*.py) from the project root.
+Runs the stage-08 scripts in order (scripts/06_01_*.py ... 06_04_*.py) from the project root.
 Stops at the first non-zero exit code.
 """
 import subprocess
@@ -9,9 +9,9 @@ import sys
 import time
 from pathlib import Path
 
-steps = sorted(Path("scripts").glob("09_0[1-4]_*.py"))
+steps = sorted(Path("scripts").glob("06_0[1-4]_*.py"))
 if not steps:
-    sys.exit("No scripts/09_0[1-4]_*.py found. Run from the project root.")
+    sys.exit("No scripts/06_0[1-4]_*.py found. Run from the project root.")
 
 summary = []
 for s in steps:

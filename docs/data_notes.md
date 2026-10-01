@@ -1,4 +1,4 @@
-# Stage 09: Data Notes
+# Data Notes
 
 ## Sources (Statistics Canada, Canada-level, monthly, Jan 2021 to Dec 2025)
 
@@ -37,6 +37,6 @@ Source-row lineage (used / total): employment 1,200 / 1,680; wages 960 / 1,140; 
 
 ## Validation results
 
-- 09_02: 50 checks passed (counts, keys, ranges, consistency, NAICS coverage).
-- 09_03: 12 checks passed; harmonized employment equals total employment (ratio 1.000).
-- 09_04: 11 checks passed; harmonized sums match StatCan's Goods-producing, Services-producing, and Total aggregates within 0.3k.
+- 06_02: 50 checks passed (counts, keys, ranges, consistency, NAICS coverage).
+- 06_03: 12 checks passed; harmonized employment equals total employment (ratio 1.000).
+- 06_04: 11 checks passed; harmonized sums match StatCan's Goods-producing, Services-producing, and Total aggregates within 0.3k.
