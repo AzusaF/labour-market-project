@@ -1,0 +1,70 @@
+source_table,naics_original,naics_code,naics_harmonized,mapping_type,notes
+14100022,"Accommodation and food services",72,"Accommodation and food services",direct,
+14100022,"Agriculture",111-112;1100;1151-1152,"Agriculture, forestry, fishing, mining, quarrying, oil and gas",component,"Sum with Forestry and logging + Fishing/hunting/trapping + Mining rows"
+14100022,"Business, building and other support services",55;56,"Business, building and other support services",direct,
+14100022,"Construction",23,"Construction",direct,
+14100022,"Durables",321;327;331-339,EXCLUDE,exclude_redundant,"Sub-component of Manufacturing; use Manufacturing[31-33] row directly, avoid double count"
+14100022,"Educational services",61,"Educational services",direct,
+14100022,"Finance and insurance",52,"Finance, insurance, real estate, rental and leasing",component,"Sum with Real estate and rental and leasing[53]"
+14100022,"Finance, insurance, real estate, rental and leasing",52;53,EXCLUDE,exclude_redundant,"Pre-combined duplicate; use granular Finance[52] + Real estate[53] instead for consistency with vacancies table"
+14100022,"Fishing, hunting and trapping",114,"Agriculture, forestry, fishing, mining, quarrying, oil and gas",component,"Sum with Agriculture + Forestry and logging + Mining rows"
+14100022,"Forestry and logging and support activities for forestry",113;1153,"Agriculture, forestry, fishing, mining, quarrying, oil and gas",component,"Sum with Agriculture + Fishing/hunting/trapping + Mining rows"
+14100022,"Forestry, fishing, mining, quarrying, oil and gas",21;113-114;1153;2100,EXCLUDE,exclude_redundant,"Pre-combined duplicate; use granular Forestry/Fishing/Mining rows instead"
+14100022,"Goods-producing sector",AGG,AGGREGATE_QA,aggregate_qa,"Multi-industry aggregate; use for validation only, not part of industry-level sum"
+14100022,"Health care and social assistance",62,"Health care and social assistance",direct,
+14100022,"Information, culture and recreation",51;71,"Information, culture and recreation",direct,
+14100022,"Manufacturing",31-33,"Manufacturing",direct,
+14100022,"Mining, quarrying, and oil and gas extraction",21;2100,"Agriculture, forestry, fishing, mining, quarrying, oil and gas",component,"Sum with Agriculture + Forestry and logging + Fishing/hunting/trapping rows"
+14100022,"Non-durables",311-316;322-326,EXCLUDE,exclude_redundant,"Sub-component of Manufacturing; use Manufacturing[31-33] row directly, avoid double count"
+14100022,"Other services (except public administration)",81,"Other services (except public administration)",direct,
+14100022,"Professional, scientific and technical services",54,"Professional, scientific and technical services",direct,
+14100022,"Public administration",91,"Public administration",direct,
+14100022,"Real estate and rental and leasing",53,"Finance, insurance, real estate, rental and leasing",component,"Sum with Finance and insurance[52]"
+14100022,"Retail trade",44-45,"Wholesale and retail trade",component,"Sum with Wholesale trade[41]"
+14100022,"Services-producing sector",AGG,AGGREGATE_QA,aggregate_qa,"Multi-industry aggregate; use for validation only, not part of industry-level sum"
+14100022,"Total, all industries",TOTAL,TOTAL_QA,aggregate_qa,"Grand total; use for validation only"
+14100022,"Transportation and warehousing",48-49,"Transportation and warehousing",direct,
+14100022,"Unclassified industries",UNCL,RESIDUAL_EXCLUDED,residual_excluded,"Not mappable to any harmonized category; excluded from industry-level analysis"
+14100022,"Utilities",22,"Utilities",direct,
+14100022,"Wholesale and retail trade",41;44-45,EXCLUDE,exclude_redundant,"Pre-combined duplicate; use granular Wholesale[41] + Retail[44-45] instead"
+14100022,"Wholesale trade",41,"Wholesale and retail trade",component,"Sum with Retail trade[44-45]"
+14100063,"Accommodation and food services",72,"Accommodation and food services",direct,
+14100063,"Agriculture",111-112;1100;1151-1152,"Agriculture, forestry, fishing, mining, quarrying, oil and gas",component,"Sum with Forestry, fishing, mining, quarrying, oil and gas row (table has no finer split)"
+14100063,"Business, building and other support services",55-56,"Business, building and other support services",direct,
+14100063,"Construction",23,"Construction",direct,
+14100063,"Educational services",61,"Educational services",direct,
+14100063,"Finance, insurance, real estate, rental and leasing",52-53,"Finance, insurance, real estate, rental and leasing",direct,"Table has no finer split; use as-is"
+14100063,"Forestry, fishing, mining, quarrying, oil and gas",21;113-114;1153;2100,"Agriculture, forestry, fishing, mining, quarrying, oil and gas",component,"Sum with Agriculture row (table has no finer split)"
+14100063,"Goods-producing sector",AGG,AGGREGATE_QA,aggregate_qa,"Multi-industry aggregate; use for validation only, not part of industry-level sum"
+14100063,"Health care and social assistance",62,"Health care and social assistance",direct,
+14100063,"Information, culture and recreation",51;71,"Information, culture and recreation",direct,
+14100063,"Manufacturing",31-33,"Manufacturing",direct,
+14100063,"Other services (except public administration)",81,"Other services (except public administration)",direct,
+14100063,"Professional, scientific and technical services",54,"Professional, scientific and technical services",direct,
+14100063,"Public administration",91,"Public administration",direct,
+14100063,"Services-producing sector",AGG,AGGREGATE_QA,aggregate_qa,"Multi-industry aggregate; use for validation only, not part of industry-level sum"
+14100063,"Total employees, all industries",TOTAL,TOTAL_QA,aggregate_qa,"Grand total; use for validation only"
+14100063,"Transportation and warehousing",48-49,"Transportation and warehousing",direct,
+14100063,"Utilities",22,"Utilities",direct,
+14100063,"Wholesale and retail trade",41;44-45,"Wholesale and retail trade",direct,"Table has no finer split; use as-is"
+14100372,"Accommodation and food services",72,"Accommodation and food services",direct,
+14100372,"Administrative and support, waste management and remediation services",56,"Business, building and other support services",component,"Sum with Management of companies and enterprises[55]"
+14100372,"Agriculture, forestry, fishing and hunting",11,"Agriculture, forestry, fishing, mining, quarrying, oil and gas",component,"Sum with Mining[21]; table cannot separate agriculture from forestry/fishing within sector 11"
+14100372,"Arts, entertainment and recreation",71,"Information, culture and recreation",component,"Sum with Information and cultural industries[51]"
+14100372,"Construction",23,"Construction",direct,
+14100372,"Educational services",61,"Educational services",direct,
+14100372,"Finance and insurance",52,"Finance, insurance, real estate, rental and leasing",component,"Sum with Real estate and rental and leasing[53]"
+14100372,"Health care and social assistance",62,"Health care and social assistance",direct,
+14100372,"Information and cultural industries",51,"Information, culture and recreation",component,"Sum with Arts, entertainment and recreation[71]"
+14100372,"Management of companies and enterprises",55,"Business, building and other support services",component,"Sum with Administrative and support, waste management and remediation services[56]"
+14100372,"Manufacturing",31-33,"Manufacturing",direct,
+14100372,"Mining, quarrying, and oil and gas extraction",21,"Agriculture, forestry, fishing, mining, quarrying, oil and gas",component,"Sum with Agriculture, forestry, fishing and hunting[11]"
+14100372,"Other services (except public administration)",81,"Other services (except public administration)",direct,
+14100372,"Professional, scientific and technical services",54,"Professional, scientific and technical services",direct,
+14100372,"Public administration",91,"Public administration",direct,
+14100372,"Real estate and rental and leasing",53,"Finance, insurance, real estate, rental and leasing",component,"Sum with Finance and insurance[52]"
+14100372,"Retail trade",44-45,"Wholesale and retail trade",component,"Sum with Wholesale trade[41]"
+14100372,"Total, all industries",TOTAL,TOTAL_QA,aggregate_qa,"Grand total; use for validation only"
+14100372,"Transportation and warehousing",48-49,"Transportation and warehousing",direct,
+14100372,"Utilities",22,"Utilities",direct,
+14100372,"Wholesale trade",41,"Wholesale and retail trade",component,"Sum with Retail trade[44-45]"
