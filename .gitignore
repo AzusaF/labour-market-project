@@ -12,3 +12,12 @@ data/processed/*
 
 # Mac setting
 *.DS_Store
+
+# DuckDB
+data/warehouse.duckdb
+*.duckdb
+*.duckdb.wal
+
+# Editor
+.vscode/*
+!.vscode/settings.json

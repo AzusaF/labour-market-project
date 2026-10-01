@@ -1,0 +1,77 @@
+
+================================================================================
+DUCKDB LOAD
+================================================================================
+Database file: data/warehouse.duckdb
+Output file  : outputs/09_01_load_report.txt
+
+[employment]
+CSV rows   : 1,680
+DuckDB rows: 1,680
+
+Schema:
+         column_name column_type
+            REF_DATE        DATE
+                 GEO     VARCHAR
+               NAICS     VARCHAR
+Employment_thousands      DOUBLE
+
+[wages]
+CSV rows   : 1,140
+DuckDB rows: 1,140
+
+Schema:
+              column_name column_type
+                 REF_DATE        DATE
+                      GEO     VARCHAR
+                    NAICS     VARCHAR
+  Average_hourly_wage_cad      DOUBLE
+   Median_hourly_wage_cad      DOUBLE
+Total_employees_thousands      DOUBLE
+
+[vacancies]
+CSV rows   : 1,260
+DuckDB rows: 1,260
+
+Schema:
+              column_name column_type
+                 REF_DATE        DATE
+                      GEO     VARCHAR
+                    NAICS     VARCHAR
+            Job_vacancies      DOUBLE
+        Payroll_employees      DOUBLE
+     Job_vacancy_rate_pct      DOUBLE
+    Job_vacancies_quality     VARCHAR
+Payroll_employees_quality     VARCHAR
+ Job_vacancy_rate_quality     VARCHAR
+
+[labour_force_total]
+CSV rows   : 60
+DuckDB rows: 60
+
+Schema:
+           column_name column_type
+              REF_DATE        DATE
+                   GEO     VARCHAR
+Labour_force_thousands      DOUBLE
+  Employment_thousands      DOUBLE
+Unemployment_thousands      DOUBLE
+ Unemployment_rate_pct      DOUBLE
+
+[naics_mapping]
+CSV rows   : 69
+DuckDB rows: 69
+
+Schema:
+     column_name column_type
+    source_table      BIGINT
+  naics_original     VARCHAR
+      naics_code     VARCHAR
+naics_harmonized     VARCHAR
+    mapping_type     VARCHAR
+           notes     VARCHAR
+
+================================================================================
+LOAD RESULT
+================================================================================
+Status: PASSED
