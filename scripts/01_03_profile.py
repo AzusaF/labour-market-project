@@ -1,5 +1,6 @@
 
 """
+01 - Inspect
 03 — Profile
 
 Profiles all CSV files in data/raw and reports:
@@ -12,7 +13,7 @@ Profiles all CSV files in data/raw and reports:
 - Categorical columns
 
 Output:
-- outputs/03_profile.txt
+- outputs/01_03_profile.txt
 """
 
 
@@ -27,7 +28,7 @@ import sys
 
 DATA_DIR = Path("data/raw")
 OUTPUT_DIR = Path("outputs")
-OUTPUT_FILE = OUTPUT_DIR / "03_profile.txt"
+OUTPUT_FILE = OUTPUT_DIR / "01_03_profile.txt"
 
 # Files larger than this size are treated as large files.
 LARGE_FILE_SIZE_MB = 500

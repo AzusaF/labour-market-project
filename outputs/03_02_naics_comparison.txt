@@ -3,7 +3,7 @@
 NAICS COMPARISON
 ================================================================================
 Extracted directory: data/extracted
-Output file: outputs/05_02_naics_comparison.txt
+Output file: outputs/03_02_naics_comparison.txt
 
 Purpose:
 Compare NAICS categories across the three extracted datasets before defining a cross-dataset mapping or join strategy.

@@ -4,7 +4,7 @@ NAICS MAPPING VALIDATION (per source table)
 ================================================================================
 Mapping file  : config/naics_mapping.csv
 Processed dir : data/processed
-Output file   : outputs/07_01_naics_mapping_validation.txt
+Output file   : outputs/05_01_naics_mapping_validation.txt
 
 [MAPPING TABLE — KEY CHECK]
 Rows in mapping table                          : 69
@@ -24,7 +24,7 @@ Labels actually in processed file : 28
 
 Expected but missing from data (0):
 
-Residual labels found in data — should have been filtered in 07 (0):
+Residual labels found in data — should have been filtered in 04 (0):
 
 In data but not in mapping table at all (0):
 
@@ -35,7 +35,7 @@ Labels actually in processed file : 19
 
 Expected but missing from data (0):
 
-Residual labels found in data — should have been filtered in 07 (0):
+Residual labels found in data — should have been filtered in 04 (0):
 
 In data but not in mapping table at all (0):
 
@@ -46,7 +46,7 @@ Labels actually in processed file : 21
 
 Expected but missing from data (0):
 
-Residual labels found in data — should have been filtered in 07 (0):
+Residual labels found in data — should have been filtered in 04 (0):
 
 In data but not in mapping table at all (0):
 

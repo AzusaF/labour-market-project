@@ -1,4 +1,5 @@
 """
+01 - Inspect
 01 — Metadata Inspection
 
 Inspects Statistics Canada metadata CSV files and extracts:
@@ -9,7 +10,7 @@ Inspects Statistics Canada metadata CSV files and extracts:
 - Basic structural consistency checks
 
 Output:
-- outputs/01_metadata.txt
+- outputs/01_01_metadata.txt
 """
 
 from pathlib import Path
@@ -22,7 +23,7 @@ import csv
 
 METADATA_DIR = Path("data/metadata")
 OUTPUT_DIR = Path("outputs")
-OUTPUT_FILE = OUTPUT_DIR / "01_metadata.txt"
+OUTPUT_FILE = OUTPUT_DIR / "01_01_metadata.txt"
 
 
 # =============================================================================

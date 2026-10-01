@@ -1,4 +1,4 @@
-# Stage 06: Transformation Design
+# Stage 04: Transformation Design
 
 ## 1. Purpose
 

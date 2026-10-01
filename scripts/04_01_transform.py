@@ -1,5 +1,5 @@
 """
-06 — Data Transformation
+04 — Data Transformation
 01 — Transformation
 
 Transforms the extracted Statistics Canada datasets into

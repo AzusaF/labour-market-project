@@ -1,5 +1,5 @@
 """
-09 — Data Warehouse
+06 — Data Warehouse
 03 - HARMONIZE
 
 Builds NAICS-harmonized tables in data/warehouse.duckdb using naics_mapping:
@@ -12,14 +12,14 @@ Rules:
   - vacancies: SUM vacancies and payroll; rate recomputed as V/(V+P);
                vacancies/rate are NULL if any component is NULL (no partial sums)
 
-Writes outputs/09_03_harmonize_report.txt. Exit 1 on FAIL.
+Writes outputs/06_03_harmonize_report.txt. Exit 1 on FAIL.
 """
 import sys
 from pathlib import Path
 import duckdb
 
 DB = "data/warehouse.duckdb"
-OUT = Path("outputs/09_03_harmonize_report.txt")
+OUT = Path("outputs/06_03_harmonize_report.txt")
 OUT.parent.mkdir(exist_ok=True)
 
 SRC = {"employment": 14100022, "wages": 14100063, "vacancies": 14100372}

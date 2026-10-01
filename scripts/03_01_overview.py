@@ -1,12 +1,12 @@
 """
-05 — Exploratory Data Analysis
+03 — Exploratory Data Analysis
 01 - Overview
 
 Provides an initial overview of the extracted data and evaluates
 whether the datasets are ready for transformation and analysis.
 
 Output:
-- outputs/05_01_overview.txt
+- outputs/03_01_overview.txt
 """
 
 from pathlib import Path
@@ -18,7 +18,7 @@ import pandas as pd
 # =============================================================================
 
 EXTRACTED_DIR = Path("data/extracted")
-OUTPUT_FILE = Path("outputs/05_01_overview.txt")
+OUTPUT_FILE = Path("outputs/03_01_overview.txt")
 
 ANALYSIS_START = "2021-01"
 ANALYSIS_END = "2025-12"

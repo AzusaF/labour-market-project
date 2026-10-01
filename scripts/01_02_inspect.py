@@ -1,4 +1,5 @@
 """
+01 - Inspect
 02 — Data Inspection
 
 Inspects Statistics Canada raw CSV datasets without loading
@@ -10,7 +11,7 @@ the full datasets into memory and extracts:
 - Beginning, middle, and end-of-file samples
 
 Output:
-- outputs/02_inspect.txt
+- outputs/01_02_inspect.txt
 """
 
 from pathlib import Path
@@ -338,7 +339,7 @@ def main():
     exist_ok=True
   )
 
-  output_path = OUTPUT_DIR / "02_inspect.txt"
+  output_path = OUTPUT_DIR / "01_02_inspect.txt"
 
   with open(
     output_path,
