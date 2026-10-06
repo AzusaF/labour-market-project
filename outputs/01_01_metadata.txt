@@ -1,474 +1,1174 @@
 01 — Metadata Inspection
 ================================================================================
 Metadata directory: data/metadata
-CSV files found: 3
+CSV files found: 4
 
 ================================================================================
 FILE: 14100022_MetaData.csv
 ================================================================================
-Total CSV rows: 111
+SHA-256: 2b93a0bdae9ebb7b85e26793208f86b324bce118960990ddbd248095613d61f9
+Size: 10,002 bytes
+CSV lines: 111
 Detected tables: 8
 
+TABLE LAYOUT
 --------------------------------------------------------------------------------
-TABLE 1
---------------------------------------------------------------------------------
-Rows: 2 (CSV lines 1–2)
-Columns: 10–11 (variable row width)
-WARNING: Row widths are not consistent.
+  1. cube: lines 1–2, 1 data rows, 10 columns
+     Cube Title, Product Id, CANSIM Id, URL, Cube Notes, Archive Status, Frequency, Start Reference Period, End Reference Period, Total number of dimensions
+  2. dimensions: lines 4–9, 5 data rows, 4 columns
+     Dimension ID, Dimension name, Dimension Notes, Dimension Definitions
+  3. members: lines 11–64, 53 data rows, 8 columns
+     Dimension ID, Member Name, Classification Code, Member ID, Parent Member ID, Terminated, Member Notes, Member Definitions
+  4. symbols [Symbol Legend]: lines 66–81, 14 data rows, 2 columns
+     Description, Symbol
+  5. survey: lines 83–84, 1 data rows, 2 columns
+     Survey Code, Survey Name
+  6. subject: lines 86–87, 1 data rows, 2 columns
+     Subject Code, Subject Name
+  7. notes: lines 89–109, 20 data rows, 2 columns
+     Note ID, Note
+  8. corrections: lines 111–111, 0 data rows, 3 columns
+     Correction ID, Correction Date, Correction Note
 
-Columns:
-    1: Cube Title
-    2: Product Id
-    3: CANSIM Id
-    4: URL
-    5: Cube Notes
-    6: Archive Status
-    7: Frequency
-    8: Start Reference Period
-    9: End Reference Period
-    10: Total number of dimensions
-
-First data rows:
-  Row 1: ['Labour force characteristics by industry, monthly, unadjusted for seasonality', '14100022', '282-0007', 'https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410002201', '11;22', 'CURRENT - a cube available to the public and that is current', 'Monthly', '1976-01-01', '2026-08-01', '5', '']
-
---------------------------------------------------------------------------------
-TABLE 2
---------------------------------------------------------------------------------
-Rows: 6 (CSV lines 4–9)
-Columns: 4
-
-Columns:
-    1: Dimension ID
-    2: Dimension name
-    3: Dimension Notes
-    4: Dimension Definitions
-
-First data rows:
-  Row 1: ['1', 'Geography', '21', '']
-  Row 2: ['2', 'Labour force characteristics', '', '']
-  Row 3: ['3', 'North American Industry Classification System (NAICS)', '7', '']
-
---------------------------------------------------------------------------------
-TABLE 3
---------------------------------------------------------------------------------
-Rows: 54 (CSV lines 11–64)
-Columns: 8
-
-Columns:
-    1: Dimension ID
-    2: Member Name
-    3: Classification Code
-    4: Member ID
-    5: Parent Member ID
-    6: Terminated
-    7: Member Notes
-    8: Member Definitions
-
-First data rows:
-  Row 1: ['1', 'Canada', '[11124]', '1', '', '', '', '']
-  Row 2: ['1', 'Newfoundland and Labrador', '[10]', '2', '1', '', '', '']
-  Row 3: ['1', 'Prince Edward Island', '[11]', '3', '1', '', '', '']
-
---------------------------------------------------------------------------------
-TABLE 4
---------------------------------------------------------------------------------
-Rows: 16 (CSV lines 66–81)
-Columns: 1–3 (variable row width)
-WARNING: Row widths are not consistent.
-
-Columns:
-    1: Symbol Legend
-
-First data rows:
-  Row 1: ['Description', 'Symbol']
-  Row 2: ['not available for a specific reference period', '..', '']
-  Row 3: ['less than the limit of detection', '<LOD', '']
-
---------------------------------------------------------------------------------
-TABLE 5
---------------------------------------------------------------------------------
-Rows: 2 (CSV lines 83–84)
-Columns: 2
-
-Columns:
-    1: Survey Code
-    2: Survey Name
-
-First data rows:
-  Row 1: ['3701', 'Labour Force Survey']
-
---------------------------------------------------------------------------------
-TABLE 6
---------------------------------------------------------------------------------
-Rows: 2 (CSV lines 86–87)
-Columns: 2
-
-Columns:
-    1: Subject Code
-    2: Subject Name
-
-First data rows:
-  Row 1: ['14', 'Labour']
-
---------------------------------------------------------------------------------
-TABLE 7
---------------------------------------------------------------------------------
-Rows: 21 (CSV lines 89–109)
-Columns: 2–5 (variable row width)
-WARNING: Row widths are not consistent.
-
-Columns:
-    1: Note ID
-    2: Note
-
-First data rows:
-  Row 1: ['1', 'Number of civilian, non-institutionalized persons 15 years of age and over who, during the reference week, were employed or unemployed. Estimates in thousands, rounded to the nearest hundred.']
-  Row 2: ['2', 'Number of persons who, during the reference week, worked for pay or profit, or performed unpaid family work or had a job but were not at work due to own illness or disability, personal or family responsibilities, labour dispute, vacation, or other reason. Those persons on layoff and persons without work but who had a job to start at a definite date in the future are not considered employed. Estimates in thousands, rounded to the nearest hundred.']
-  Row 3: ['3', 'Full-time employment consists of persons who usually work 30 hours or more per week at their main or only job. Estimates in thousands, rounded to the nearest hundred.']
-
---------------------------------------------------------------------------------
-TABLE 8
---------------------------------------------------------------------------------
-Rows: 1 (CSV lines 111–111)
-Columns: 3
-
-Columns:
-    1: Correction ID
-    2: Correction Date
-    3: Correction Note
-
-First data rows:
-  <none>
-
-================================================================================
 DATASET SUMMARY
-================================================================================
-Title: Labour force characteristics by industry, monthly, unadjusted for seasonality
-Product ID: 14100022
-Frequency: Monthly
-Reference period: 1976-01-01 to 2026-08-01
-Dimensions: 5
+--------------------------------------------------------------------------------
+  Title: Labour force characteristics by industry, monthly, unadjusted for seasonality
+  Product ID: 14100022
+  CANSIM ID: 282-0007
+  URL: https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410002201
+  Archive status: CURRENT - a cube available to the public and that is current
+  Frequency: Monthly
+  Reference period: 1976-01-01 to 2026-08-01
+  Declared dimensions: 5
+  Cube notes (IDs): 11;22
+  Note: the release date is not in the metadata file; record it from the table page.
 
-Dimension names:
-    1: Geography
-    2: Labour force characteristics
-    3: North American Industry Classification System (NAICS)
-    4: Gender
-    5: Age group
+DIMENSIONS AND MEMBERS
+--------------------------------------------------------------------------------
+  Dimension 1: Geography (11 members)  notes=21
+      Canada  [11124]  id=1
+        Newfoundland and Labrador  [10]  id=2
+        Prince Edward Island  [11]  id=3
+        Nova Scotia  [12]  id=4
+        New Brunswick  [13]  id=5
+        Quebec  [24]  id=6
+        Ontario  [35]  id=7
+        Manitoba  [46]  id=8
+        Saskatchewan  [47]  id=9
+        Alberta  [48]  id=10
+        British Columbia  [59]  id=11
 
-Structural checks:
-    Dimension count: OK
-    Dimension table: detected
+  Dimension 2: Labour force characteristics (6 members)
+      Labour force  id=1  notes=1
+        Employment  id=2  notes=2
+          Full-time employment  id=3  notes=3
+          Part-time employment  id=4  notes=4
+        Unemployment  id=5  notes=5
+      Unemployment rate  id=6  notes=6
+
+  Dimension 3: North American Industry Classification System (NAICS) (29 members)  notes=7
+      Total, all industries  id=1  notes=14
+        Goods-producing sector  id=2  notes=15
+          Agriculture  [111-112, 1100, 1151-1152]  id=3  notes=17
+          Forestry, fishing, mining, quarrying, oil and gas  [21, 113-114, 1153, 2100]  id=4  notes=18;19
+            Forestry and logging and support activities for forestry  [113, 1153]  id=5
+            Fishing, hunting and trapping  [114]  id=6
+            Mining, quarrying, and oil and gas extraction  [21, 2100]  id=7  notes=18
+          Utilities  [22]  id=8
+          Construction  [23]  id=9
+          Manufacturing  [31-33]  id=10
+            Durables  [321, 327, 331-339]  id=11
+            Non-durables  [311-316, 322-326]  id=12
+        Services-producing sector  id=13  notes=16
+          Wholesale and retail trade  [41, 44-45]  id=14
+            Wholesale trade  [41]  id=15
+            Retail trade  [44-45]  id=16
+          Transportation and warehousing  [48-49]  id=17
+          Finance, insurance, real estate, rental and leasing  [52, 53]  id=18
+            Finance and insurance  [52]  id=19
+            Real estate and rental and leasing  [53]  id=20
+          Professional, scientific and technical services  [54]  id=21
+          Business, building and other support services  [55, 56]  id=22  notes=12
+          Educational services  [61]  id=23
+          Health care and social assistance  [62]  id=24
+          Information, culture and recreation  [51, 71]  id=25
+          Accommodation and food services  [72]  id=26
+          Other services (except public administration)  [81]  id=27
+          Public administration  [91]  id=28
+      Unclassified industries  id=29  notes=20
+
+  Dimension 4: Gender (3 members)  notes=23;24
+      Total - Gender  id=1
+        Men+  id=2
+        Women+  id=3
+
+  Dimension 5: Age group (4 members)
+      15 years and over  id=1
+      15 to 24 years  id=2
+      25 to 54 years  id=3
+      55 years and over  id=4
+
+
+SYMBOL LEGEND
+--------------------------------------------------------------------------------
+  ..       not available for a specific reference period
+  <LOD     less than the limit of detection
+  0s       value rounded to 0 (zero) where there is a meaningful distinction between true zero and the value that was rounded
+  A        data quality: excellent
+  B        data quality: very good
+  C        data quality: good
+  D        data quality: acceptable
+  E        use with caution
+  F        too unreliable to be published
+  ...      not applicable
+  p        preliminary
+  r        revised
+  x        suppressed to meet the confidentiality requirements of the Statistics Act
+  t        terminated
+
+SURVEY AND SUBJECT
+--------------------------------------------------------------------------------
+  Survey: Labour Force Survey (code 3701)
+  Subject: Labour (code 14)
+
+NOTES (full text, 20 notes)
+--------------------------------------------------------------------------------
+  Note 1  [used by: 1 member(s) of dimension 2]
+    Number of civilian, non-institutionalized persons 15 years of age and over who, during the
+    reference week, were employed or unemployed. Estimates in thousands, rounded to the nearest
+    hundred.
+
+  Note 2  [used by: 1 member(s) of dimension 2]
+    Number of persons who, during the reference week, worked for pay or profit, or performed unpaid
+    family work or had a job but were not at work due to own illness or disability, personal or
+    family responsibilities, labour dispute, vacation, or other reason. Those persons on layoff and
+    persons without work but who had a job to start at a definite date in the future are not
+    considered employed. Estimates in thousands, rounded to the nearest hundred.
+
+  Note 3  [used by: 1 member(s) of dimension 2]
+    Full-time employment consists of persons who usually work 30 hours or more per week at their
+    main or only job. Estimates in thousands, rounded to the nearest hundred.
+
+  Note 4  [used by: 1 member(s) of dimension 2]
+    Part-time employment consists of persons who usually work less than 30 hours per week at their
+    main or only job. Estimates in thousands, rounded to the nearest hundred.
+
+  Note 5  [used by: 1 member(s) of dimension 2]
+    Number of persons who, during the reference week, were without work, had looked for work in the
+    past four weeks, and were available for work. Those persons on layoff or who had a new job to
+    start in four weeks or less are considered unemployed. Estimates in thousands, rounded to the
+    nearest hundred.
+
+  Note 6  [used by: 1 member(s) of dimension 2]
+    The unemployment rate is the number of unemployed persons expressed as a percentage of the
+    labour force. The unemployment rate for a particular group (age, gender, marital status,
+    etcetera) is the number unemployed in that group expressed as a percentage of the labour force
+    for that group. Estimates are percentages, rounded to the nearest tenth.
+
+  Note 7  [used by: dimension 3 (North American Industry Classification System (NAICS))]
+    Industry refers to the general nature of the business carried out by the employer for whom the
+    respondent works (main job only). Industry estimates in this table are based on the 2022 North
+    American Industry Classification System (NAICS).
+
+  Note 11  [used by: cube]
+    To ensure respondent confidentiality, estimates below a certain threshold are suppressed. For
+    Canada, Quebec, Ontario, Alberta and British Columbia suppression is applied to all data below
+    1,500. The threshold level for Newfoundland and Labrador, Nova Scotia, New Brunswick, Manitoba
+    and Saskatchewan is 500, while in Prince Edward Island, estimates under 200 are suppressed. For
+    census metropolitan areas (CMAs) and economic regions (ERs), use their respective provincial
+    suppression levels mentioned above. Estimates are based on smaller sample sizes the more
+    detailed the table becomes, which could result in lower data quality.
+
+  Note 12  [used by: 1 member(s) of dimension 3]
+    Formerly Management of companies and administrative and other support services"."
+
+  Note 14  [used by: 1 member(s) of dimension 3]
+    This combines the North American Industry Classification System (NAICS) codes 11 to 91.
+
+  Note 15  [used by: 1 member(s) of dimension 3]
+    This combines the North American Industry Classification System (NAICS) codes 11 to 33.
+
+  Note 16  [used by: 1 member(s) of dimension 3]
+    This combines the North American Industry Classification System (NAICS) codes 41 to 91.
+
+  Note 17  [used by: 1 member(s) of dimension 3]
+    Labour Force Survey (LFS) North American Industry Classification System (NAICS) code exception:
+    add group 1100 - Farming - not elsewhere classified (nec). When the type of farm activity cannot
+    be distinguished between crop and livestock, (example: mixed farming).
+
+  Note 18  [used by: 2 member(s) of dimension 3]
+    Labour Force Survey (LFS) North American Industry Classification System (NAICS) code exception:
+    add group 2100 - Mining - not elsewhere classified (nec). Whenever the type of mining activity
+    cannot be distinguished.
+
+  Note 19  [used by: 1 member(s) of dimension 3]
+    Also referred to as Natural resources.
+
+  Note 20  [used by: 1 member(s) of dimension 3]
+    Unemployed persons who have never worked before, and those unemployed persons who last worked
+    more than 1 year ago.
+
+  Note 21  [used by: dimension 1 (Geography)]
+    Excluding the territories.
+
+  Note 22  [used by: cube]
+    Starting in 2006, enhancements to the Labour Force Survey data processing system may have
+    introduced a level shift in some estimates, particularly for less common labour force
+    characteristics. Use caution when comparing estimates before and after 2006. For more
+    information, contact statcan.labour-travail.statcan@statcan.gc.ca
+
+  Note 23  [used by: dimension 4 (Gender)]
+    Gender refers to an individual's personal and social identity as a man, woman or non-binary
+    person (a person who is not exclusively a man or a woman). Some people may not identify with a
+    specific gender and a person's gender may change over time. Gender includes the following
+    concepts: gender identity, which refers to the gender that a person feels internally and
+    individually; gender expression, which refers to the way a person presents their gender,
+    regardless of their gender identity, through body language, aesthetic choices or accessories
+    (for example, clothes, hairstyle and makeup), which may have traditionally been associated with
+    a specific gender. A person's gender may differ from their sex at birth, and from what is
+    indicated on their current identification or legal documents such as their birth certificate,
+    passport or driver's license. LFS started collecting gender of person in 2022. Prior to 2022,
+    LFS only collected information on sex of person (male or female), as declared by the respondent
+    or recorded by the interviewer. The sex variable prior to 2022 and the two-category gender
+    variable since 2022 are combined in this table. Although sex and gender refer to two different
+    concepts, the introduction of gender is not expected to have a significant impact on data
+    analysis and historical comparability, given the small size of the transgender and non-binary
+    populations.
+
+  Note 24  [used by: dimension 4 (Gender)]
+    Given that the non-binary population is small, data aggregation to a two-category gender
+    variable is necessary to protect the confidentiality of responses provided. Individuals in the
+    category non-binary persons" are distributed into the other two gender categories and are
+    denoted by the "+" symbol. The category "Men+" includes men as well as some non-binary persons
+    while the category "Women+" includes women as well as some non-binary persons."
+
+
+CORRECTIONS
+--------------------------------------------------------------------------------
+  None listed (corrections can be added later; keep this file as a dated snapshot).
+
+STRUCTURAL CHECKS
+--------------------------------------------------------------------------------
+  OK: 'cube' table found
+  OK: 'dimensions' table found
+  OK: 'members' table found
+  OK: 'symbols' table found
+  OK: every table was recognized
+  WARNING: 1 row(s) have more cells than their header
+  OK: declared dimension count (5) matches dimension rows
+  OK: all members belong to a declared dimension
+  OK: every dimension has members
+  OK: member IDs are unique within each dimension
+  OK: every parent member ID exists
+  OK: every referenced note is defined
+  OK: reference period start is not after its end
+  INFO: 0 terminated member(s)
+  INFO: 0 defined note(s) not referenced by this cube
 
 ================================================================================
 FILE: 14100063_MetaData.csv
 ================================================================================
-Total CSV rows: 100
+SHA-256: 6115eb15dcf552b8af7d31a56d8338a658013c4cbd07579fa35e947907265b80
+Size: 8,693 bytes
+CSV lines: 100
 Detected tables: 8
 
+TABLE LAYOUT
 --------------------------------------------------------------------------------
-TABLE 1
---------------------------------------------------------------------------------
-Rows: 2 (CSV lines 1–2)
-Columns: 10–11 (variable row width)
-WARNING: Row widths are not consistent.
+  1. cube: lines 1–2, 1 data rows, 10 columns
+     Cube Title, Product Id, CANSIM Id, URL, Cube Notes, Archive Status, Frequency, Start Reference Period, End Reference Period, Total number of dimensions
+  2. dimensions: lines 4–10, 6 data rows, 4 columns
+     Dimension ID, Dimension name, Dimension Notes, Dimension Definitions
+  3. members: lines 12–57, 45 data rows, 8 columns
+     Dimension ID, Member Name, Classification Code, Member ID, Parent Member ID, Terminated, Member Notes, Member Definitions
+  4. symbols [Symbol Legend]: lines 59–74, 14 data rows, 2 columns
+     Description, Symbol
+  5. survey: lines 76–77, 1 data rows, 2 columns
+     Survey Code, Survey Name
+  6. subject: lines 79–80, 1 data rows, 2 columns
+     Subject Code, Subject Name
+  7. notes: lines 82–98, 16 data rows, 2 columns
+     Note ID, Note
+  8. corrections: lines 100–100, 0 data rows, 3 columns
+     Correction ID, Correction Date, Correction Note
 
-Columns:
-    1: Cube Title
-    2: Product Id
-    3: CANSIM Id
-    4: URL
-    5: Cube Notes
-    6: Archive Status
-    7: Frequency
-    8: Start Reference Period
-    9: End Reference Period
-    10: Total number of dimensions
-
-First data rows:
-  Row 1: ['Employee wages by industry, monthly, unadjusted for seasonality', '14100063', '282-0071', 'https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410006301', '5;15', 'CURRENT - a cube available to the public and that is current', 'Monthly', '1997-01-01', '2026-08-01', '6', '']
-
---------------------------------------------------------------------------------
-TABLE 2
---------------------------------------------------------------------------------
-Rows: 7 (CSV lines 4–10)
-Columns: 4
-
-Columns:
-    1: Dimension ID
-    2: Dimension name
-    3: Dimension Notes
-    4: Dimension Definitions
-
-First data rows:
-  Row 1: ['1', 'Geography', '14', '']
-  Row 2: ['2', 'Wages', '1', '']
-  Row 3: ['3', 'Type of work', '', '']
-
---------------------------------------------------------------------------------
-TABLE 3
---------------------------------------------------------------------------------
-Rows: 46 (CSV lines 12–57)
-Columns: 8
-
-Columns:
-    1: Dimension ID
-    2: Member Name
-    3: Classification Code
-    4: Member ID
-    5: Parent Member ID
-    6: Terminated
-    7: Member Notes
-    8: Member Definitions
-
-First data rows:
-  Row 1: ['1', 'Canada', '[11124]', '1', '', '', '', '']
-  Row 2: ['1', 'Newfoundland and Labrador', '[10]', '2', '1', '', '', '']
-  Row 3: ['1', 'Prince Edward Island', '[11]', '3', '1', '', '', '']
-
---------------------------------------------------------------------------------
-TABLE 4
---------------------------------------------------------------------------------
-Rows: 16 (CSV lines 59–74)
-Columns: 1–3 (variable row width)
-WARNING: Row widths are not consistent.
-
-Columns:
-    1: Symbol Legend
-
-First data rows:
-  Row 1: ['Description', 'Symbol']
-  Row 2: ['not available for a specific reference period', '..', '']
-  Row 3: ['less than the limit of detection', '<LOD', '']
-
---------------------------------------------------------------------------------
-TABLE 5
---------------------------------------------------------------------------------
-Rows: 2 (CSV lines 76–77)
-Columns: 2
-
-Columns:
-    1: Survey Code
-    2: Survey Name
-
-First data rows:
-  Row 1: ['3701', 'Labour Force Survey']
-
---------------------------------------------------------------------------------
-TABLE 6
---------------------------------------------------------------------------------
-Rows: 2 (CSV lines 79–80)
-Columns: 2
-
-Columns:
-    1: Subject Code
-    2: Subject Name
-
-First data rows:
-  Row 1: ['14', 'Labour']
-
---------------------------------------------------------------------------------
-TABLE 7
---------------------------------------------------------------------------------
-Rows: 17 (CSV lines 82–98)
-Columns: 2–5 (variable row width)
-WARNING: Row widths are not consistent.
-
-Columns:
-    1: Note ID
-    2: Note
-
-First data rows:
-  Row 1: ['1', 'Beginning January 1997, information is collected on the usual wages or salary of employees at their main job. Respondents are asked to report their wage/salary before taxes and other deductions, and include tips, commissions and bonuses. Weekly and hourly wages/salaries are calculated in conjunction with usual paid work hours per week. Starting in 2006, enhancements to the Labour Force Survey processing system have introduced a level shift in average and median wages. Use caution when comparing estimates before and after 2006. For more information, contact statcan.labour-travail.statcan@statcan.gc.ca']
-  Row 2: ['2', 'Full-time employees are those who usually work 30 hours or more per week at their main or only job. Estimates in thousands, rounded to the nearest hundred.']
-  Row 3: ['3', 'Part-time employees are those who usually work less than 30 hours per week at their main or only job. Estimates in thousands, rounded to the nearest hundred.']
-
---------------------------------------------------------------------------------
-TABLE 8
---------------------------------------------------------------------------------
-Rows: 1 (CSV lines 100–100)
-Columns: 3
-
-Columns:
-    1: Correction ID
-    2: Correction Date
-    3: Correction Note
-
-First data rows:
-  <none>
-
-================================================================================
 DATASET SUMMARY
-================================================================================
-Title: Employee wages by industry, monthly, unadjusted for seasonality
-Product ID: 14100063
-Frequency: Monthly
-Reference period: 1997-01-01 to 2026-08-01
-Dimensions: 6
+--------------------------------------------------------------------------------
+  Title: Employee wages by industry, monthly, unadjusted for seasonality
+  Product ID: 14100063
+  CANSIM ID: 282-0071
+  URL: https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410006301
+  Archive status: CURRENT - a cube available to the public and that is current
+  Frequency: Monthly
+  Reference period: 1997-01-01 to 2026-08-01
+  Declared dimensions: 6
+  Cube notes (IDs): 5;15
+  Note: the release date is not in the metadata file; record it from the table page.
 
-Dimension names:
-    1: Geography
-    2: Wages
-    3: Type of work
-    4: North American Industry Classification System (NAICS)
-    5: Gender
-    6: Age group
+DIMENSIONS AND MEMBERS
+--------------------------------------------------------------------------------
+  Dimension 1: Geography (11 members)  notes=14
+      Canada  [11124]  id=1
+        Newfoundland and Labrador  [10]  id=2
+        Prince Edward Island  [11]  id=3
+        Nova Scotia  [12]  id=4
+        New Brunswick  [13]  id=5
+        Quebec  [24]  id=6
+        Ontario  [35]  id=7
+        Manitoba  [46]  id=8
+        Saskatchewan  [47]  id=9
+        Alberta  [48]  id=10
+        British Columbia  [59]  id=11
 
-Structural checks:
-    Dimension count: OK
-    Dimension table: detected
+  Dimension 2: Wages (5 members)  notes=1
+      Total employees, all wages  id=1
+      Average hourly wage rate  id=2
+      Average weekly wage rate  id=3
+      Median hourly wage rate  id=4
+      Median weekly wage rate  id=5
+
+  Dimension 3: Type of work (3 members)
+      Both full- and part-time employees  id=1
+        Full-time employees  id=2  notes=2
+        Part-time employees  id=3  notes=3
+
+  Dimension 4: North American Industry Classification System (NAICS) (19 members)  notes=4
+      Total employees, all industries  id=1  notes=8
+        Goods-producing sector  id=2  notes=9
+          Agriculture  [111-112, 1100, 1151-1152]  id=3  notes=11
+          Forestry, fishing, mining, quarrying, oil and gas  [21, 113-114, 1153, 2100]  id=4  notes=12;13
+          Utilities  [22]  id=5
+          Construction  [23]  id=6
+          Manufacturing  [31-33]  id=7
+        Services-producing sector  id=8  notes=10
+          Wholesale and retail trade  [41, 44-45]  id=9
+          Transportation and warehousing  [48-49]  id=10
+          Finance, insurance, real estate, rental and leasing  [52-53]  id=11
+          Professional, scientific and technical services  [54]  id=12
+          Business, building and other support services  [55-56]  id=13  notes=6
+          Educational services  [61]  id=14
+          Health care and social assistance  [62]  id=15
+          Information, culture and recreation  [51, 71]  id=16
+          Accommodation and food services  [72]  id=17
+          Other services (except public administration)  [81]  id=18
+          Public administration  [91]  id=19
+
+  Dimension 5: Gender (3 members)  notes=16;17
+      Total - Gender  id=1
+        Men+  id=2
+        Women+  id=3
+
+  Dimension 6: Age group (4 members)
+      15 years and over  id=1
+      15 to 24 years  id=2
+      25 to 54 years  id=3
+      55 years and over  id=4
+
+
+SYMBOL LEGEND
+--------------------------------------------------------------------------------
+  ..       not available for a specific reference period
+  <LOD     less than the limit of detection
+  0s       value rounded to 0 (zero) where there is a meaningful distinction between true zero and the value that was rounded
+  A        data quality: excellent
+  B        data quality: very good
+  C        data quality: good
+  D        data quality: acceptable
+  E        use with caution
+  F        too unreliable to be published
+  ...      not applicable
+  p        preliminary
+  r        revised
+  x        suppressed to meet the confidentiality requirements of the Statistics Act
+  t        terminated
+
+SURVEY AND SUBJECT
+--------------------------------------------------------------------------------
+  Survey: Labour Force Survey (code 3701)
+  Subject: Labour (code 14)
+
+NOTES (full text, 16 notes)
+--------------------------------------------------------------------------------
+  Note 1  [used by: dimension 2 (Wages)]
+    Beginning January 1997, information is collected on the usual wages or salary of employees at
+    their main job. Respondents are asked to report their wage/salary before taxes and other
+    deductions, and include tips, commissions and bonuses. Weekly and hourly wages/salaries are
+    calculated in conjunction with usual paid work hours per week. Starting in 2006, enhancements to
+    the Labour Force Survey processing system have introduced a level shift in average and median
+    wages. Use caution when comparing estimates before and after 2006. For more information, contact
+    statcan.labour-travail.statcan@statcan.gc.ca
+
+  Note 2  [used by: 1 member(s) of dimension 3]
+    Full-time employees are those who usually work 30 hours or more per week at their main or only
+    job. Estimates in thousands, rounded to the nearest hundred.
+
+  Note 3  [used by: 1 member(s) of dimension 3]
+    Part-time employees are those who usually work less than 30 hours per week at their main or only
+    job. Estimates in thousands, rounded to the nearest hundred.
+
+  Note 4  [used by: dimension 4 (North American Industry Classification System (NAICS))]
+    Industry refers to the general nature of the business carried out by the employer for whom the
+    respondent works (main job only). Industry estimates in this table are based on the 2022 North
+    American Industry Classification System (NAICS).
+
+  Note 5  [used by: cube]
+    To ensure respondent confidentiality, estimates below a certain threshold are suppressed. For
+    Canada, Quebec, Ontario, Alberta and British Columbia suppression is applied to all data below
+    1,500. The threshold level for Newfoundland and Labrador, Nova Scotia, New Brunswick, Manitoba
+    and Saskatchewan is 500, while in Prince Edward Island, estimates under 200 are suppressed. For
+    census metropolitan areas (CMAs) and economic regions (ERs), use their respective provincial
+    suppression levels mentioned above. Estimates are based on smaller sample sizes the more
+    detailed the table becomes, which could result in lower data quality.
+
+  Note 6  [used by: 1 member(s) of dimension 4]
+    Formerly Management of companies and administrative and other support services"."
+
+  Note 8  [used by: 1 member(s) of dimension 4]
+    This combines the North American Industry Classification System (NAICS) codes 11 to 91.
+
+  Note 9  [used by: 1 member(s) of dimension 4]
+    This combines the North American Industry Classification System (NAICS) codes 11 to 33.
+
+  Note 10  [used by: 1 member(s) of dimension 4]
+    This combines the North American Industry Classification System (NAICS) codes 41 to 91.
+
+  Note 11  [used by: 1 member(s) of dimension 4]
+    Labour Force Survey (LFS) North American Industry Classification System (NAICS) code exception:
+    add group 1100 - Farming - not elsewhere classified (nec). When the type of farm activity cannot
+    be distinguished between crop and livestock, (example: mixed farming).
+
+  Note 12  [used by: 1 member(s) of dimension 4]
+    Labour Force Survey (LFS) North American Industry Classification System (NAICS) code exception:
+    add group 2100 - Mining - not elsewhere classified (nec). Whenever the type of mining activity
+    cannot be distinguished.
+
+  Note 13  [used by: 1 member(s) of dimension 4]
+    Also referred to as Natural resources.
+
+  Note 14  [used by: dimension 1 (Geography)]
+    Excluding the territories.
+
+  Note 15  [used by: cube]
+    Starting in 2006, enhancements to the Labour Force Survey data processing system may have
+    introduced a level shift in some estimates, particularly for less common labour force
+    characteristics. Use caution when comparing estimates before and after 2006. For more
+    information, contact statcan.labour-travail.statcan@statcan.gc.ca
+
+  Note 16  [used by: dimension 5 (Gender)]
+    Gender refers to an individual's personal and social identity as a man, woman or non-binary
+    person (a person who is not exclusively a man or a woman). Some people may not identify with a
+    specific gender and a person's gender may change over time. Gender includes the following
+    concepts: gender identity, which refers to the gender that a person feels internally and
+    individually; gender expression, which refers to the way a person presents their gender,
+    regardless of their gender identity, through body language, aesthetic choices or accessories
+    (for example, clothes, hairstyle and makeup), which may have traditionally been associated with
+    a specific gender. A person's gender may differ from their sex at birth, and from what is
+    indicated on their current identification or legal documents such as their birth certificate,
+    passport or driver's license. LFS started collecting gender of person in 2022. Prior to 2022,
+    LFS only collected information on sex of person (male or female), as declared by the respondent
+    or recorded by the interviewer. The sex variable prior to 2022 and the two-category gender
+    variable since 2022 are combined in this table. Although sex and gender refer to two different
+    concepts, the introduction of gender is not expected to have a significant impact on data
+    analysis and historical comparability, given the small size of the transgender and non-binary
+    populations.
+
+  Note 17  [used by: dimension 5 (Gender)]
+    Given that the non-binary population is small, data aggregation to a two-category gender
+    variable is necessary to protect the confidentiality of responses provided. Individuals in the
+    category non-binary persons" are distributed into the other two gender categories and are
+    denoted by the "+" symbol. The category "Men+" includes men as well as some non-binary persons
+    while the category "Women+" includes women as well as some non-binary persons."
+
+
+CORRECTIONS
+--------------------------------------------------------------------------------
+  None listed (corrections can be added later; keep this file as a dated snapshot).
+
+STRUCTURAL CHECKS
+--------------------------------------------------------------------------------
+  OK: 'cube' table found
+  OK: 'dimensions' table found
+  OK: 'members' table found
+  OK: 'symbols' table found
+  OK: every table was recognized
+  WARNING: 1 row(s) have more cells than their header
+  OK: declared dimension count (6) matches dimension rows
+  OK: all members belong to a declared dimension
+  OK: every dimension has members
+  OK: member IDs are unique within each dimension
+  OK: every parent member ID exists
+  OK: every referenced note is defined
+  OK: reference period start is not after its end
+  INFO: 0 terminated member(s)
+  INFO: 0 defined note(s) not referenced by this cube
 
 ================================================================================
 FILE: 14100372_MetaData.csv
 ================================================================================
-Total CSV rows: 71
+SHA-256: 28d19f7e6ec01095ebf551ae572450bde3036811d5c6a03e49192b1cb635060c
+Size: 6,966 bytes
+CSV lines: 71
 Detected tables: 8
 
+TABLE LAYOUT
 --------------------------------------------------------------------------------
-TABLE 1
---------------------------------------------------------------------------------
-Rows: 2 (CSV lines 1–2)
-Columns: 10–11 (variable row width)
-WARNING: Row widths are not consistent.
+  1. cube: lines 1–2, 1 data rows, 10 columns
+     Cube Title, Product Id, CANSIM Id, URL, Cube Notes, Archive Status, Frequency, Start Reference Period, End Reference Period, Total number of dimensions
+  2. dimensions: lines 4–7, 3 data rows, 4 columns
+     Dimension ID, Dimension name, Dimension Notes, Dimension Definitions
+  3. members: lines 9–34, 25 data rows, 8 columns
+     Dimension ID, Member Name, Classification Code, Member ID, Parent Member ID, Terminated, Member Notes, Member Definitions
+  4. symbols [Symbol Legend]: lines 36–51, 14 data rows, 2 columns
+     Description, Symbol
+  5. survey: lines 53–54, 1 data rows, 2 columns
+     Survey Code, Survey Name
+  6. subject: lines 56–57, 1 data rows, 2 columns
+     Subject Code, Subject Name
+  7. notes: lines 59–69, 10 data rows, 2 columns
+     Note ID, Note
+  8. corrections: lines 71–71, 0 data rows, 3 columns
+     Correction ID, Correction Date, Correction Note
 
-Columns:
-    1: Cube Title
-    2: Product Id
-    3: CANSIM Id
-    4: URL
-    5: Cube Notes
-    6: Archive Status
-    7: Frequency
-    8: Start Reference Period
-    9: End Reference Period
-    10: Total number of dimensions
-
-First data rows:
-  Row 1: ['Job vacancies, payroll employees, and job vacancy rate by industry sector, monthly, unadjusted for seasonality', '14100372', '', 'https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410037201', '1;2;3', 'CURRENT - a cube available to the public and that is current', 'Monthly', '2015-04-01', '2026-06-01', '3', '']
-
---------------------------------------------------------------------------------
-TABLE 2
---------------------------------------------------------------------------------
-Rows: 4 (CSV lines 4–7)
-Columns: 4
-
-Columns:
-    1: Dimension ID
-    2: Dimension name
-    3: Dimension Notes
-    4: Dimension Definitions
-
-First data rows:
-  Row 1: ['1', 'Geography', '', '']
-  Row 2: ['2', 'North American Industry Classification System (NAICS)', '4', '']
-  Row 3: ['3', 'Statistics', '', '']
-
---------------------------------------------------------------------------------
-TABLE 3
---------------------------------------------------------------------------------
-Rows: 26 (CSV lines 9–34)
-Columns: 8
-
-Columns:
-    1: Dimension ID
-    2: Member Name
-    3: Classification Code
-    4: Member ID
-    5: Parent Member ID
-    6: Terminated
-    7: Member Notes
-    8: Member Definitions
-
-First data rows:
-  Row 1: ['1', 'Canada', '[11124]', '1', '', '', '', '']
-  Row 2: ['2', 'Total, all industries', '', '1', '', '', '4', '']
-  Row 3: ['2', 'Agriculture, forestry, fishing and hunting', '[11]', '2', '1', '', '', '']
-
---------------------------------------------------------------------------------
-TABLE 4
---------------------------------------------------------------------------------
-Rows: 16 (CSV lines 36–51)
-Columns: 1–3 (variable row width)
-WARNING: Row widths are not consistent.
-
-Columns:
-    1: Symbol Legend
-
-First data rows:
-  Row 1: ['Description', 'Symbol']
-  Row 2: ['not available for a specific reference period', '..', '']
-  Row 3: ['less than the limit of detection', '<LOD', '']
-
---------------------------------------------------------------------------------
-TABLE 5
---------------------------------------------------------------------------------
-Rows: 2 (CSV lines 53–54)
-Columns: 2
-
-Columns:
-    1: Survey Code
-    2: Survey Name
-
-First data rows:
-  Row 1: ['5217', 'Job Vacancy and Wage Survey']
-
---------------------------------------------------------------------------------
-TABLE 6
---------------------------------------------------------------------------------
-Rows: 2 (CSV lines 56–57)
-Columns: 2
-
-Columns:
-    1: Subject Code
-    2: Subject Name
-
-First data rows:
-  Row 1: ['14', 'Labour']
-
---------------------------------------------------------------------------------
-TABLE 7
---------------------------------------------------------------------------------
-Rows: 11 (CSV lines 59–69)
-Columns: 2–20 (variable row width)
-WARNING: Row widths are not consistent.
-
-Columns:
-    1: Note ID
-    2: Note
-
-First data rows:
-  Row 1: ['1', 'Data quality indicators are based on the coefficient of variation (CV), the non-response errors, the imputation errors, and subject matter expertise: A – Excellent; B - Very good; C - Good; D – Acceptable; E - Use with caution; F - Too unreliable to publish.']
-  Row 2: ['2', 'Estimates are preliminary before the associated quarterly data is released. The three monthly estimates in a quarter are revised as final when the quarterly estimates are released, or shortly after.']
-  Row 3: ['3', 'Data for the second and third quarters of 2020 are unavailable due to some Statistics Canada operations being temporarily suspended during the COVID-19 pandemic.']
-
---------------------------------------------------------------------------------
-TABLE 8
---------------------------------------------------------------------------------
-Rows: 1 (CSV lines 71–71)
-Columns: 3
-
-Columns:
-    1: Correction ID
-    2: Correction Date
-    3: Correction Note
-
-First data rows:
-  <none>
-
-================================================================================
 DATASET SUMMARY
+--------------------------------------------------------------------------------
+  Title: Job vacancies, payroll employees, and job vacancy rate by industry sector, monthly, unadjusted for seasonality
+  Product ID: 14100372
+  CANSIM ID: <none>
+  URL: https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410037201
+  Archive status: CURRENT - a cube available to the public and that is current
+  Frequency: Monthly
+  Reference period: 2015-04-01 to 2026-06-01
+  Declared dimensions: 3
+  Cube notes (IDs): 1;2;3
+  Note: the release date is not in the metadata file; record it from the table page.
+
+DIMENSIONS AND MEMBERS
+--------------------------------------------------------------------------------
+  Dimension 1: Geography (1 members)
+      Canada  [11124]  id=1
+
+  Dimension 2: North American Industry Classification System (NAICS) (21 members)  notes=4
+      Total, all industries  id=1  notes=4
+        Agriculture, forestry, fishing and hunting  [11]  id=2
+        Mining, quarrying, and oil and gas extraction  [21]  id=3
+        Utilities  [22]  id=4
+        Construction  [23]  id=5
+        Manufacturing  [31-33]  id=6
+        Wholesale trade  [41]  id=7
+        Retail trade  [44-45]  id=8
+        Transportation and warehousing  [48-49]  id=9
+        Information and cultural industries  [51]  id=10
+        Finance and insurance  [52]  id=11
+        Real estate and rental and leasing  [53]  id=12
+        Professional, scientific and technical services  [54]  id=13
+        Management of companies and enterprises  [55]  id=14
+        Administrative and support, waste management and remediation services  [56]  id=15
+        Educational services  [61]  id=16
+        Health care and social assistance  [62]  id=17
+        Arts, entertainment and recreation  [71]  id=18
+        Accommodation and food services  [72]  id=19
+        Other services (except public administration)  [81]  id=20  notes=5
+        Public administration  [91]  id=21  notes=6
+
+  Dimension 3: Statistics (3 members)
+      Job vacancies  id=1  notes=7
+      Payroll employees  id=3  notes=8;10
+      Job vacancy rate  id=4  notes=9
+
+
+SYMBOL LEGEND
+--------------------------------------------------------------------------------
+  ..       not available for a specific reference period
+  <LOD     less than the limit of detection
+  0s       value rounded to 0 (zero) where there is a meaningful distinction between true zero and the value that was rounded
+  A        data quality: excellent
+  B        data quality: very good
+  C        data quality: good
+  D        data quality: acceptable
+  E        use with caution
+  F        too unreliable to be published
+  ...      not applicable
+  p        preliminary
+  r        revised
+  x        suppressed to meet the confidentiality requirements of the Statistics Act
+  t        terminated
+
+SURVEY AND SUBJECT
+--------------------------------------------------------------------------------
+  Survey: Job Vacancy and Wage Survey (code 5217)
+  Subject: Labour (code 14)
+
+NOTES (full text, 10 notes)
+--------------------------------------------------------------------------------
+  Note 1  [used by: cube]
+    Data quality indicators are based on the coefficient of variation (CV), the non-response errors,
+    the imputation errors, and subject matter expertise: A – Excellent; B - Very good; C - Good; D –
+    Acceptable; E - Use with caution; F - Too unreliable to publish.
+
+  Note 2  [used by: cube]
+    Estimates are preliminary before the associated quarterly data is released. The three monthly
+    estimates in a quarter are revised as final when the quarterly estimates are released, or
+    shortly after.
+
+  Note 3  [used by: cube]
+    Data for the second and third quarters of 2020 are unavailable due to some Statistics Canada
+    operations being temporarily suspended during the COVID-19 pandemic.
+
+  Note 4  [used by: dimension 2 (North American Industry Classification System (NAICS)); 1 member(s) of dimension 2]
+    Industry estimates are based on the <a
+    href=https://www.statcan.gc.ca/en/subjects/standard/naics/2022/v1/index" rel="external noopener
+    noreferrer" target="_blank">2022 North American Industry Classification System (NAICS) Version
+    1.0 (opens new window)</a>. The following categories are excluded from the survey: 'Religious
+    organizations' (8131) within 'Religious grant-making civic and professional and similar
+    organizations' (813) 'Private households' (814) 'Federal government public administration' (911)
+    'Provincial and territorial public administration' (912) and 'International and other extra-
+    territorial public administration' (919)."
+
+  Note 5  [used by: 1 member(s) of dimension 2]
+    Excludes Religious organizations" (8131) within "Religious grant-making civic and professional
+    and similar organizations" (813) as well as "Private households" (814)."
+
+  Note 6  [used by: 1 member(s) of dimension 2]
+    Excludes Federal government public administration" (911) "Provincial and territorial public
+    administration" (912) and "International and other extra-territorial public administration"
+    (919)."
+
+  Note 7  [used by: 1 member(s) of dimension 3]
+    A job is vacant if it meets the following conditions: it is vacant on the reference date (first
+    day of the month) or will become vacant during the month; there are tasks to be carried out
+    during the month for the job in question; and the employer is actively seeking a worker outside
+    the organization to fill the job. The jobs could be full-time, part-time, permanent, temporary,
+    casual, or seasonal. Jobs reserved for subcontractors, external consultants, or other workers
+    who are not considered employees, are excluded.
+
+  Note 8  [used by: 1 member(s) of dimension 3]
+    The employee" concept used in the Job Vacancy and Wage Survey (JVWS) is comprised of full-time
+    employees part-time employees as well as permanent casual temporary and seasonal employees. It
+    also includes working owners directors partners and other officers of incorporated businesses as
+    well as employees who work off site (for example at home or on the road) but report to the
+    location and those employees on paid leave. The "employee" concept used in the JVWS is meant to
+    exclude owners or partners of unincorporated businesses and professional practices the self-
+    employed subcontractors external consultants unpaid family workers persons working outside
+    Canada and military personnel. It also excludes employees on unpaid leave such as those on
+    extended sick leave who are receiving insurance benefits."
+
+  Note 9  [used by: 1 member(s) of dimension 3]
+    The job vacancy rate is the number of job vacancies expressed as a percentage of labour demand;
+    that is, all occupied and vacant jobs.
+
+  Note 10  [used by: 1 member(s) of dimension 3]
+    The employment estimates from the Job Vacancy and Wage Survey (JVWS) are calibrated to
+    corresponding employment estimates from the <a
+    href=https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=2612">Survey of Employment
+    Payrolls and Hours</a> (SEPH) usually at the North American Industry Classification System
+    sector (NAICS2) level by province. The reference period for JVWS is the first day of the month
+    which corresponds to the previous month for SEPH. Therefore JVWS estimates for the current month
+    are calibrated to SEPH estimates for the previous month. To improve timeliness of the
+    preliminary JVWS estimates they are calibrated to preliminary SEPH employment estimates. The
+    final JVWS estimates are calibrated to final SEPH employment estimates. Users wishing to analyse
+    employment data are advised to use the most current Labour Force Survey and SEPH estimates."
+
+
+CORRECTIONS
+--------------------------------------------------------------------------------
+  None listed (corrections can be added later; keep this file as a dated snapshot).
+
+STRUCTURAL CHECKS
+--------------------------------------------------------------------------------
+  OK: 'cube' table found
+  OK: 'dimensions' table found
+  OK: 'members' table found
+  OK: 'symbols' table found
+  OK: every table was recognized
+  WARNING: 5 row(s) have more cells than their header
+  OK: declared dimension count (3) matches dimension rows
+  OK: all members belong to a declared dimension
+  OK: every dimension has members
+  OK: member IDs are unique within each dimension
+  OK: every parent member ID exists
+  OK: every referenced note is defined
+  OK: reference period start is not after its end
+  INFO: 0 terminated member(s)
+  INFO: 0 defined note(s) not referenced by this cube
+
 ================================================================================
-Title: Job vacancies, payroll employees, and job vacancy rate by industry sector, monthly, unadjusted for seasonality
-Product ID: 14100372
-Frequency: Monthly
-Reference period: 2015-04-01 to 2026-06-01
-Dimensions: 3
+FILE: 18100004_MetaData.csv
+================================================================================
+SHA-256: aed7aacff483d69aa6b718ac07256fd106efedfa89999c5f78c462dfe909dc2f
+Size: 44,899 bytes
+CSV lines: 463
+Detected tables: 8
 
-Dimension names:
-    1: Geography
-    2: North American Industry Classification System (NAICS)
-    3: Statistics
+TABLE LAYOUT
+--------------------------------------------------------------------------------
+  1. cube: lines 1–2, 1 data rows, 10 columns
+     Cube Title, Product Id, CANSIM Id, URL, Cube Notes, Archive Status, Frequency, Start Reference Period, End Reference Period, Total number of dimensions
+  2. dimensions: lines 4–6, 2 data rows, 4 columns
+     Dimension ID, Dimension name, Dimension Notes, Dimension Definitions
+  3. members: lines 8–397, 389 data rows, 8 columns
+     Dimension ID, Member Name, Classification Code, Member ID, Parent Member ID, Terminated, Member Notes, Member Definitions
+  4. symbols [Symbol Legend]: lines 399–414, 14 data rows, 2 columns
+     Description, Symbol
+  5. survey: lines 416–417, 1 data rows, 2 columns
+     Survey Code, Survey Name
+  6. subject: lines 419–420, 1 data rows, 2 columns
+     Subject Code, Subject Name
+  7. notes: lines 422–461, 39 data rows, 2 columns
+     Note ID, Note
+  8. corrections: lines 463–463, 0 data rows, 3 columns
+     Correction ID, Correction Date, Correction Note
 
-Structural checks:
-    Dimension count: OK
-    Dimension table: detected
+DATASET SUMMARY
+--------------------------------------------------------------------------------
+  Title: Consumer Price Index, monthly, not seasonally adjusted
+  Product ID: 18100004
+  CANSIM ID: 326-0020
+  URL: https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810000401
+  Archive status: CURRENT - a cube available to the public and that is current
+  Frequency: Monthly
+  Reference period: 1914-01-01 to 2026-08-01
+  Declared dimensions: 2
+  Cube notes (IDs): 2;9;36
+  Note: the release date is not in the metadata file; record it from the table page.
+
+DIMENSIONS AND MEMBERS
+--------------------------------------------------------------------------------
+  Dimension 1: Geography (30 members)
+      Canada  [11124]  id=2
+        Newfoundland and Labrador  [10]  id=3
+          St. John's, Newfoundland and Labrador  [001]  id=4  notes=11
+        Prince Edward Island  [11]  id=5
+          Charlottetown and Summerside, Prince Edward Island  id=6  notes=11
+        Nova Scotia  [12]  id=7
+          Halifax, Nova Scotia  [205]  id=8  notes=11
+        New Brunswick  [13]  id=9
+          Saint John, New Brunswick  [310]  id=10  notes=11
+        Quebec  [24]  id=11
+          Québec, Quebec  [421]  id=12  notes=11
+          Montréal, Quebec  [462]  id=13  notes=11
+        Ontario  [35]  id=14
+          Ottawa-Gatineau, Ontario part, Ontario/Quebec  [35505]  id=15  notes=11;12
+          Toronto, Ontario  [535]  id=16  notes=11
+          Thunder Bay, Ontario  [595]  id=17  notes=11
+        Manitoba  [46]  id=18
+          Winnipeg, Manitoba  [602]  id=19  notes=11
+        Saskatchewan  [47]  id=20
+          Regina, Saskatchewan  [705]  id=21  notes=11
+          Saskatoon, Saskatchewan  [725]  id=22  notes=11
+        Alberta  [48]  id=23
+          Edmonton, Alberta  [835]  id=24  notes=11
+          Calgary, Alberta  [825]  id=25  notes=11
+        British Columbia  [59]  id=26
+          Vancouver, British Columbia  [933]  id=27  notes=11
+          Victoria, British Columbia  [935]  id=28  notes=11
+        Whitehorse, Yukon  [6001009]  id=29  notes=13
+        Yellowknife, Northwest Territories  [6106023]  id=30  notes=13
+        Iqaluit, Nunavut  [6204003]  id=31  notes=14
+
+  Dimension 2: Products and product groups (359 members)  notes=15;36
+      All-items  id=2
+        Food  id=3  notes=17
+          Food purchased from stores  id=4
+            Meat  id=5
+              Fresh or frozen meat (excluding poultry)  id=6
+                Fresh or frozen beef  id=7
+                  Fresh or frozen beef hip cuts (202404=100)  id=382
+                  Fresh or frozen beef loin cuts (202404=100)  id=383
+                  Fresh or frozen beef rib cuts (202404=100)  id=384
+                  Fresh or frozen beef chuck cuts (202404=100)  id=385
+      ... 349 more members not shown (limit: 60)
+
+
+SYMBOL LEGEND
+--------------------------------------------------------------------------------
+  ..       not available for a specific reference period
+  <LOD     less than the limit of detection
+  0s       value rounded to 0 (zero) where there is a meaningful distinction between true zero and the value that was rounded
+  A        data quality: excellent
+  B        data quality: very good
+  C        data quality: good
+  D        data quality: acceptable
+  E        use with caution
+  F        too unreliable to be published
+  ...      not applicable
+  p        preliminary
+  r        revised
+  x        suppressed to meet the confidentiality requirements of the Statistics Act
+  t        terminated
+
+SURVEY AND SUBJECT
+--------------------------------------------------------------------------------
+  Survey: Consumer Price Index (code 2301)
+  Subject: Prices and price indexes (code 18)
+
+NOTES (full text, 39 notes)
+--------------------------------------------------------------------------------
+  Note 2  [used by: cube]
+    The Consumer Price Index (CPI) is not a cost-of-living index. The objective behind a cost-of-
+    living index is to measure changes in expenditures necessary for consumers to maintain a
+    constant standard of living. The idea is that consumers would normally switch between products
+    as the price relationship of goods changes. If, for example, consumers get the same satisfaction
+    from drinking tea as they do from coffee, then it is possible to substitute tea for coffee if
+    the price of tea falls relative to the price of coffee. The cheaper of the interchangeable
+    products may be chosen. We could compute a cost-of-living index for an individual if we had
+    complete information about that person's taste and spending habits. To do this for a large
+    number of people, let alone the total population of Canada, is impossible. For this reason,
+    regularly published price indexes are based on the fixed-basket concept rather than the cost-of-
+    living concept.
+
+  Note 9  [used by: cube]
+    This table replaces table 18-10-0008-01 which was archived with the release of April 2007 data.
+
+  Note 11  [used by: 16 member(s) of dimension 1]
+    With the introduction of the 1992 basket in January 1995, emphasis was shifted from city data to
+    provincial data. City all-items series were continued since many users had come to rely on this
+    service, but the method of calculation was changed. Shelter indexes are calculated for each
+    city. This recognizes the importance of shelter in the basket, the significant and persistent
+    differences in price movements between cities, and the availability of local data. For the other
+    seven major components, the movement of the provincial counterpart is used except in the cases
+    of Montréal, Toronto, and Vancouver, where a sub-provincial counterpart is used. The major
+    components are aggregated using the city's expenditure pattern to arrive at each city's all-
+    items index.
+
+  Note 12  [used by: 1 member(s) of dimension 1]
+    Formerly Ottawa (Ottawa-Gatineau, Ontario part), represents Ottawa only.
+
+  Note 13  [used by: 2 member(s) of dimension 1]
+    The relatively small size of the housing market in these two cities makes it difficult to
+    construct reliable price indexes for new houses. To compensate, the price movements of rental
+    accommodation are used to approximate the price movements of new houses. The rent information
+    itself is collected using different pricing frequencies and collection methods than in the rest
+    of the country. Because of these problems, the indexes for rented accommodation, and owned
+    accommodation are not published for these two cities. Further, the all-items indexes published
+    for these two cities are not strictly comparable with the same indexes for the provinces or the
+    other 16 cities.
+
+  Note 14  [used by: 1 member(s) of dimension 1]
+    Data for Iqaluit are on a December 2002=100 base (200212=100) and the Standard Geographical
+    Classification (SGC) 2001. Previous to April 1, 1999, the town of Iqaluit formed part of the
+    Northwest Territories. On April 1, 1999, the town of Iqaluit formed part of the newly-created
+    territory of Nunavut.
+
+  Note 15  [used by: dimension 2 (Products and product groups)]
+    The goods and services that make up the Consumer Price Index (CPI) are organized according to a
+    hierarchical structure with the all-items CPI as the top level. Eight major components of goods
+    and services make up the all-items CPI. They are food; shelter; household operations,
+    furnishings and equipment; clothing and footwear; transportation; health and personal care;
+    recreation, education and reading; and alcoholic beverages, tobacco products and recreational
+    cannabis. These eight components are broken down into a varying number of sub-groups which are
+    in turn broken down into other sub-groups. Indents are used to identify the components that make
+    up each level of aggregation. For example, the eight major components appear with one indent
+    relative to the all-items CPI to show that they are combined to obtain the all-items CPI. NOTE:
+    Some items are recombined outside the main structure of the CPI to obtain special aggregates
+    such as all-items excluding food and energy; energy; goods; services; or fresh fruit and
+    vegetables. They are listed after the components of the main structure of the CPI following the
+    last major component entitled alcoholic beverages, tobacco products and recreational cannabis.
+
+  Note 17  [used by: 5 member(s) of dimension 2]
+    Food includes non-alcoholic beverages.
+
+  Note 18  [used by: 1 member(s) of dimension 2]
+    Part of the increase first recorded in the shelter index for Yellowknife for December 2004
+    inadvertently reflected rent increases that actually occurred earlier. As a result, the change
+    in the shelter index was overstated in December 2004, and was understated in the previous two
+    years. The shelter index series for Yellowknife has been corrected from December 2002. In
+    addition, the Yellowknife all-items Consumer Price Index (CPI) and some Yellowknife special
+    aggregate index series have also changed. Data for Canada and all other provinces and
+    territories were not affected.
+
+  Note 21  [used by: 1 member(s) of dimension 2]
+    About two thirds (4.7%) of the 7.4% decrease registered between September and October 2004 in
+    the digital computing equipment and devices index series represents a revision to source data.
+
+  Note 22  [used by: 1 member(s) of dimension 2]
+    In April 2006, Statistics Canada changed its implementation of the price index formula used for
+    traveler accommodation. As a result, data from April 2006 are not strictly comparable to earlier
+    time periods.
+
+  Note 25  [used by: 7 member(s) of dimension 2]
+    The special aggregate energy includes electricity; natural gas; fuel oil and other fuels;
+    gasoline; and fuel, parts and accessories for recreational vehicles.
+
+  Note 26  [used by: 3 member(s) of dimension 2]
+    The 1986 basket content was divided into seven major components. With the introduction of the
+    1992 basket, the housing component from the 1986 basket definition was split into two
+    components: shelter and household operations, furnishings and equipment. This brought the number
+    of major components to a total of eight. Also, the definition of shelter was changed. The
+    traveler accommodation category, which was part of the 1986 definition of shelter, was moved to
+    recreation with the introduction of the 1992 basket. To provide some continuity certain
+    aggregates were reconstructed using their 1986 basket definitions.
+
+  Note 27  [used by: 9 member(s) of dimension 2]
+    Goods are physical or tangible commodities usually classified according to their life span into
+    non-durable goods, semi-durable goods and durable goods. Non-durable goods are those goods that
+    can be used up entirely in less than a year, assuming normal usage. For example, fresh food
+    products, disposable cameras and gasoline are non-durable goods. Semi-durable goods are those
+    goods that may last less than 12 months or greater than 12 months depending on the purpose to
+    which they are put. For example, clothing, footwear and household textiles are semi-durable
+    goods. Durable goods are those goods which may be used repeatedly or continuously over more than
+    a year, assuming normal usage. For example, cars, audio and video equipment and furniture are
+    durable goods.
+
+  Note 28  [used by: 2 member(s) of dimension 2]
+    A service in the Consumer Price Index (CPI) is characterized by valuable work performed by an
+    individual or organization on behalf of a consumer, for example, car tune-ups, haircuts and city
+    public transportation. Transactions classified as a service may include the cost of goods by
+    their nature. Examples include food in restaurant food services and materials in clothing repair
+    services.
+
+  Note 29  [used by: 1 member(s) of dimension 2]
+    Revision of the methodology of the <a style=padding-left:0!important;"
+    href="http://www23.statcan.gc.ca/imdb-bmdi/document/2301_D39_T9_V1-eng.pdf" rel="external
+    noopener noreferrer" target="_blank">home insurance (opens new window)</a> component of the
+    Consumer Price Index (CPI) beginning with the February 2008 CPI."
+
+  Note 30  [used by: 1 member(s) of dimension 2]
+    Revision of the methodology of the <a style=padding-left:0!important;"
+    href="http://www23.statcan.gc.ca/imdb-bmdi/document/2301_D40_T9_V1-eng.pdf"  rel="external
+    noopener noreferrer" target="_blank">Internet access services (opens new window)</a> component
+    of the Consumer Price Index (CPI) beginning with the March 2008 CPI. Changes to the <a
+    href="https://www.statcan.gc.ca/eng/statistical-programs/document/2301_D60_T9_V1"  rel="external
+    noopener noreferrer" target="_blank">Internet Access Services (opens new window)</a> Index of
+    the Consumer Price Index (CPI) beginning with the November 2015 CPI."
+
+  Note 31  [used by: 1 member(s) of dimension 2]
+    In previous years, Statistics Canada updated, by province, the model year of passenger vehicles
+    used in the calculation of the passenger vehicle insurance premiums index over a three month
+    period. Since 2008, this quality adjustment exercise is reflected in the month of May for all
+    provinces.
+
+  Note 32  [used by: 1 member(s) of dimension 2]
+    Revision of the methodology of the <a style=padding-left:0!important;"
+    href="http://www23.statcan.gc.ca/imdb-bmdi/document/2301_D41_T9_V1-eng.pdf" rel="external
+    noopener noreferrer" target="_blank">rent(opens new window)</a> component of the Consumer Price
+    Index (CPI) beginning with the July 2009 CPI.  New approach for estimating the <a
+    href="https://www150.statcan.gc.ca/n1/pub/62f0014m/62f0014m2019002-eng.htm" rel="external
+    noopener noreferrer" target="_blank">rent(opens new window)</a> component of the Consumer Price
+    Index beginning with the January 2019 CPI."
+
+  Note 33  [used by: 1 member(s) of dimension 2]
+    Revision of the methodology of the <a href=https://www.statcan.gc.ca/eng/statistical-
+    programs/document/2301_D50_V2 " rel="external noopener noreferrer" target="_blank">prescribed
+    medicines (opens new window)</a> index of the Consumer Price Index (CPI) beginning with the
+    September 2012 CPI."
+
+  Note 34  [used by: 1 member(s) of dimension 2]
+    The timing for the introduction of new model year vehicles into the <a
+    href=https://www.statcan.gc.ca/eng/statistical-programs/document/2301_D51_T9_V1" rel="external
+    noopener noreferrer" target="_blank">purchase of passenger vehicles (opens new window)</a> index
+    of the Consumer Price Index (CPI) has changed in 2012."
+
+  Note 36  [used by: cube; dimension 2 (Products and product groups)]
+    From April 2020 to November 2021, and from January 2022 to February 2022, certain sub-indexes
+    and components thereof were imputed using special approaches in either one, or more months. The
+    affected indexes include child care services; housekeeping services; air transportation;
+    personal care services; recreational services; travel tours; spectator entertainment; use of
+    recreational facilities and services; beer served in licensed establishments; wine served in
+    licensed establishments, and liquor served in licensed establishments. The details of these
+    treatments from April 2020 to March 2021 are provided in technical supplements available through
+    the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external noopener
+    noreferrer" target="_blank">Prices Analytical Series (opens new window)</a>. Starting in April
+    2021 details and treatments are available upon request by contacting the <a
+    href="mailto:statcan.cpddisseminationunit-dpcunitedediffusion.statcan@statcan.gc.ca"
+    rel="external noopener noreferrer" target="_blank">Consumer Prices Division (opens new
+    window)</a>."
+
+  Note 37  [used by: 1 member(s) of dimension 2]
+    Price movements for this sub-index were imputed using special approaches in either one, or more
+    months. The details of these treatments for April 2020 are provided in a technical supplement
+    available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
+    window)</a>."
+
+  Note 38  [used by: 1 member(s) of dimension 2]
+    Price movements for this sub-index were imputed using special approaches in either one, or more
+    months. The details of these treatments for April 2020 are provided in a technical supplement
+    available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
+    window)</a>."
+
+  Note 39  [used by: 1 member(s) of dimension 2]
+    From April 2020 to July 2021, price movements for this sub-index were imputed using special
+    approaches. In August 2021, adjustments were introduced to remove the impact of all imputations
+    performed. Users are advised to exercise caution in interpreting the 1-month change for August
+    2021 and the 12-month change for the next 12 months for the air transportation index. The
+    details of these treatments from April 2020 to March 2021 are provided in technical supplements
+    available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
+    window)</a>. Starting in April 2021 details and treatments are available upon request by
+    contacting the <a href="mailto:statcan.cpddisseminationunit-
+    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
+    target="_blank">Consumer Prices Division (opens new window)</a>."
+
+  Note 40  [used by: 1 member(s) of dimension 2]
+    Price movements for this sub-index were imputed using special approaches in either one, or more
+    months. The details of these treatments from April 2020 to March 2021 are provided in technical
+    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
+    window)</a>. From April 2021 to June 2021 details and treatments are available upon request by
+    contacting the <a href="mailto:statcan.cpddisseminationunit-
+    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
+    target="_blank">Consumer Prices Division (opens new window)</a>."
+
+  Note 41  [used by: 1 member(s) of dimension 2]
+    Price movements for this sub-index were imputed using special approaches in either one, or more
+    months. The details of these treatments from April 2020 to March 2021 are provided in technical
+    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
+    window)</a>. From April 2021 to July 2021 details and treatments are available upon request by
+    contacting the <a href="mailto:statcan.cpddisseminationunit-
+    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
+    target="_blank">Consumer Prices Division (opens new window)</a>."
+
+  Note 42  [used by: 1 member(s) of dimension 2]
+    Price movements for this sub-index were imputed using special approaches in either one, or more
+    months. The details of these treatments from April 2020 to March 2021 are provided in technical
+    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
+    window)</a>. From April 2021 to July 2021 and January 2022 details and treatments are available
+    upon request by contacting the <a href="mailto:statcan.cpddisseminationunit-
+    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
+    target="_blank">Consumer Prices Division (opens new window)</a>."
+
+  Note 43  [used by: 1 member(s) of dimension 2]
+    Price movements for this sub-index were imputed using special approaches in either one, or more
+    months. The details of these treatments from April 2020 to March 2021 are provided in technical
+    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
+    window)</a>. From April 2021 to June 2021 details and treatments are available upon request by
+    contacting the <a href="mailto:statcan.cpddisseminationunit-
+    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
+    target="_blank">Consumer Prices Division (opens new window)</a>."
+
+  Note 44  [used by: 1 member(s) of dimension 2]
+    Price movements for this sub-index were imputed using special approaches in either one, or more
+    months. The details of these treatments from April 2020 to March 2021 are provided in technical
+    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
+    window)</a>. From April 2021 to June 2021 details and treatments are available upon request by
+    contacting the <a href="mailto:statcan.cpddisseminationunit-
+    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
+    target="_blank">Consumer Prices Division (opens new window)</a>."
+
+  Note 45  [used by: 1 member(s) of dimension 2]
+    Price movements for this sub-index were imputed using special approaches in either one, or more
+    months. The details of these treatments from April 2020 to March 2021 are provided in technical
+    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    rel="external noopener noreferrer" target="_blank">Prices Analytical Series(opens new
+    window)</a>. From April 2021 to June 2021 details and treatments are available upon request by
+    contacting the <a href="mailto:statcan.cpddisseminationunit-
+    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
+    target="_blank">Consumer Prices Division (opens new window)</a>."
+
+  Note 46  [used by: 1 member(s) of dimension 2]
+    Price movements for this sub-index were imputed using special approaches in either one, or more
+    months. The details of these treatments from April 2020 to March 2021 are provided in technical
+    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
+    window)</a>. From April 2021 to July 2021 and from January 2022 to February 2022 details and
+    treatments are available upon request by contacting the <a
+    href="mailto:statcan.cpddisseminationunit-dpcunitedediffusion.statcan@canada.ca" rel="external
+    noopener noreferrer" target="_blank">Consumer Prices Division (opens new window)</a>."
+
+  Note 47  [used by: 1 member(s) of dimension 2]
+    From April 2020 to July 2021, price movements for this sub-index were imputed using special
+    approaches. In August 2021, adjustments were introduced on a major component of this sub-index
+    to remove the impact of these imputations. In November 2021, an adjustment was introduced on the
+    remaining imputed component to remove the impact of the imputations on that component. Users are
+    advised to exercise caution in interpreting the 1-month change for August 2021 and November
+    2021, and the 12-month change for the next 12 months for the travel tours index. The details of
+    these treatments from April 2020 to March 2021 are provided in technical supplements available
+    through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external
+    noopener noreferrer" target="_blank">Prices Analytical Series (opens new window)</a>. Starting
+    in April 2021 details and treatments are available upon request by contacting the <a
+    href="mailto:statcan.cpddisseminationunit-dpcunitedediffusion.statcan@statcan.gc.ca"
+    rel="external noopener noreferrer" target="_blank">Consumer Prices Division (opens new
+    window)</a>."
+
+  Note 48  [used by: 2 member(s) of dimension 2]
+    Available starting April 2022. In order to have historical data prior to April 2022, users can
+    use the purchase of passenger vehicles index values as proxies. Please note that the purchase of
+    passenger vehicles index values are based on 2002=100 while this series is 2022-04=100.
+    Therefore, users should rebase the purchase of passenger vehicles index values that are based on
+    2002=100, to 2022-04=100 in order to make the series continuous. For more information on
+    rebasing, you can consult section 8.25 of <a
+    href=https://www150.statcan.gc.ca/n1/en/catalogue/62-553-X" rel="external noopener noreferrer"
+    target="_blank">The Consumer Price Index Reference Paper (opens new window)</a>."
+
+  Note 49  [used by: 1 member(s) of dimension 2]
+    With the release of the Consumer Price Index (CPI) of May 2023,  the classification of the fresh
+    fruit category has been updated to provide Canadians with more granular data. Previously
+    included in the other fresh fruit category, citrus (excluding oranges), grapes and berries
+    (including cherries) are now published. As a result, data for other fresh fruit beginning in May
+    2023 are no longer directly comparable to earlier time periods.
+
+  Note 50  [used by: 1 member(s) of dimension 2]
+    With the release of the Consumer Price Index (CPI) of May 2023, the classification of the fresh
+    vegetables category has been updated to provide Canadians with more granular data. Previously
+    included in the other fresh vegetables category, carrots, onions, peppers, cucumber and
+    mushrooms are now published. As a result, data for other fresh vegetables beginning in May 2023
+    are no longer directly comparable to earlier time periods.
+
+  Note 51  [used by: 2 member(s) of dimension 2]
+    As access to more granular data has become available, the cellular services index is now
+    published at the provincial level in addition to the national level. Changes over time in the
+    cellular services index at the national level may be calculated using index data from any of the
+    two base periods (2017=100 or 202304=100).
+
+  Note 52  [used by: 1 member(s) of dimension 2]
+    With the release of the Consumer Price Index (CPI) of August 2024, the cellular services price
+    index has been updated to incorporate transaction data from wireless service providers. This
+    enhancement improves the quality of the data, while ensuring the representativeness of prices
+    paid by Canadian consumers. Users should exercise caution when interpreting the year-over-year
+    change for the first 12 months following the implementation of a new methodology and data
+    source.
+
+  Note 53  [used by: 1 member(s) of dimension 2]
+    With the release of the Consumer Price Index (CPI) of August 2024, the cellular services price
+    index has been updated to incorporate transaction data from wireless service providers. This
+    enhancement improves the quality of the data, while ensuring the representativeness of prices
+    paid by Canadian consumers. Users should exercise caution when interpreting the year-over-year
+    change for the first 12 months following the implementation of a new methodology and data
+    source. Users are also advised to exercise caution when making provincial/territorial
+    comparisons. The market shares of the sampled wireless service providers vary across provinces
+    and territories and price changes derived from transaction data may differ from price changes
+    derived from web-collected data as transaction data includes monthly charges for in-market and
+    legacy plans, while web-collected data only contains monthly charges for advertised plans. The
+    hybrid cellular services price index in each province or territory is affected by the market
+    shares of the wireless service providers from which Statistics Canada is receiving transaction
+    data.
+
+
+CORRECTIONS
+--------------------------------------------------------------------------------
+  None listed (corrections can be added later; keep this file as a dated snapshot).
+
+STRUCTURAL CHECKS
+--------------------------------------------------------------------------------
+  OK: 'cube' table found
+  OK: 'dimensions' table found
+  OK: 'members' table found
+  OK: 'symbols' table found
+  OK: every table was recognized
+  WARNING: 12 row(s) have more cells than their header
+  OK: declared dimension count (2) matches dimension rows
+  OK: all members belong to a declared dimension
+  OK: every dimension has members
+  OK: member IDs are unique within each dimension
+  OK: every parent member ID exists
+  OK: every referenced note is defined
+  OK: reference period start is not after its end
+  INFO: 36 terminated member(s)
+  INFO: 0 defined note(s) not referenced by this cube
+
+================================================================================
+OVERALL SUMMARY
+================================================================================
+  14100022: Labour force characteristics by industry, monthly, unadjusted for seasonality
+      1976-01-01 to 2026-08-01  —  1 WARNING(S)
+  14100063: Employee wages by industry, monthly, unadjusted for seasonality
+      1997-01-01 to 2026-08-01  —  1 WARNING(S)
+  14100372: Job vacancies, payroll employees, and job vacancy rate by industry sector, monthly, unadjusted for seasonality
+      2015-04-01 to 2026-06-01  —  1 WARNING(S)
+  18100004: Consumer Price Index, monthly, not seasonally adjusted
+      1914-01-01 to 2026-08-01  —  1 WARNING(S)
