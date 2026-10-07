@@ -26,11 +26,13 @@ import os
 DATA_DIR = Path("data/raw")
 OUTPUT_DIR = Path("outputs")
 
-TARGET_FILES = [
-  "14100022.csv",
-  "14100063.csv",
-  "14100372.csv",
-]
+# TARGET_FILES = [
+#   "14100022.csv",
+#   "14100063.csv",
+#   "14100372.csv",
+
+METADATA_DIR = Path("data/metadata")
+
 
 SAMPLE_ROWS = 5
 STRUCTURE_CHECK_ROWS = 1000
@@ -39,6 +41,15 @@ STRUCTURE_CHECK_ROWS = 1000
 # ============================================================
 # File information
 # ============================================================
+
+def find_target_files():
+  """Data files are named after the product IDs in the metadata file names."""
+  product_ids = sorted(
+    path.name.split("_")[0]
+    for path in METADATA_DIR.glob("*_MetaData.csv")
+  )
+
+  return [f"{product_id}.csv" for product_id in product_ids]
 
 def inspect_file_info(file_path, output):
   """Display basic information about the CSV file."""
@@ -357,16 +368,29 @@ def main():
       f"Output directory: {OUTPUT_DIR}\n"
     )
     output.write("\n")
+    
+    target_files = find_target_files()
 
-    for filename in TARGET_FILES:
+    output.write(
+      f"Datasets to inspect: {', '.join(target_files) or '<none>'}\n"
+    )
+
+    unlisted = sorted(
+      path.name for path in DATA_DIR.glob("*.csv")
+      if path.name not in target_files
+    )
+
+    if unlisted:
+      output.write(
+        f"WARNING: raw files without metadata: {unlisted}\n"
+      )
+
+    for filename in target_files:
       file_path = DATA_DIR / filename
 
       output.write("\n")
-      inspect_dataset(
-        file_path,
-        output
-      )
-
+      inspect_dataset(file_path, output)
+      
     output.write("\n")
     output.write("=" * 80 + "\n")
     output.write("INSPECTION COMPLETE\n")
