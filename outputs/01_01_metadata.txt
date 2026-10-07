@@ -180,7 +180,7 @@ NOTES (full text, 20 notes)
     detailed the table becomes, which could result in lower data quality.
 
   Note 12  [used by: 1 member(s) of dimension 3]
-    Formerly Management of companies and administrative and other support services"."
+    Formerly "Management of companies and administrative and other support services".
 
   Note 14  [used by: 1 member(s) of dimension 3]
     This combines the North American Industry Classification System (NAICS) codes 11 to 91.
@@ -238,9 +238,9 @@ NOTES (full text, 20 notes)
   Note 24  [used by: dimension 4 (Gender)]
     Given that the non-binary population is small, data aggregation to a two-category gender
     variable is necessary to protect the confidentiality of responses provided. Individuals in the
-    category non-binary persons" are distributed into the other two gender categories and are
-    denoted by the "+" symbol. The category "Men+" includes men as well as some non-binary persons
-    while the category "Women+" includes women as well as some non-binary persons."
+    category "non-binary persons" are distributed into the other two gender categories and are
+    denoted by the "+" symbol. The category "Men+" includes men, as well as some non-binary persons,
+    while the category "Women+" includes women, as well as some non-binary persons.
 
 
 CORRECTIONS
@@ -254,7 +254,8 @@ STRUCTURAL CHECKS
   OK: 'members' table found
   OK: 'symbols' table found
   OK: every table was recognized
-  WARNING: 1 row(s) have more cells than their header
+  OK: no row has more cells than its header
+  OK: 20 notes read from raw text match the CSV note rows
   OK: declared dimension count (5) matches dimension rows
   OK: all members belong to a declared dimension
   OK: every dimension has members
@@ -262,6 +263,7 @@ STRUCTURAL CHECKS
   OK: every parent member ID exists
   OK: every referenced note is defined
   OK: reference period start is not after its end
+  INFO: 1 note(s) have irregular quoting in the source CSV (text recovered from raw lines)
   INFO: 0 terminated member(s)
   INFO: 0 defined note(s) not referenced by this cube
 
@@ -421,7 +423,7 @@ NOTES (full text, 16 notes)
     detailed the table becomes, which could result in lower data quality.
 
   Note 6  [used by: 1 member(s) of dimension 4]
-    Formerly Management of companies and administrative and other support services"."
+    Formerly "Management of companies and administrative and other support services".
 
   Note 8  [used by: 1 member(s) of dimension 4]
     This combines the North American Industry Classification System (NAICS) codes 11 to 91.
@@ -475,9 +477,9 @@ NOTES (full text, 16 notes)
   Note 17  [used by: dimension 5 (Gender)]
     Given that the non-binary population is small, data aggregation to a two-category gender
     variable is necessary to protect the confidentiality of responses provided. Individuals in the
-    category non-binary persons" are distributed into the other two gender categories and are
-    denoted by the "+" symbol. The category "Men+" includes men as well as some non-binary persons
-    while the category "Women+" includes women as well as some non-binary persons."
+    category "non-binary persons" are distributed into the other two gender categories and are
+    denoted by the "+" symbol. The category "Men+" includes men, as well as some non-binary persons,
+    while the category "Women+" includes women, as well as some non-binary persons.
 
 
 CORRECTIONS
@@ -491,7 +493,8 @@ STRUCTURAL CHECKS
   OK: 'members' table found
   OK: 'symbols' table found
   OK: every table was recognized
-  WARNING: 1 row(s) have more cells than their header
+  OK: no row has more cells than its header
+  OK: 16 notes read from raw text match the CSV note rows
   OK: declared dimension count (6) matches dimension rows
   OK: all members belong to a declared dimension
   OK: every dimension has members
@@ -499,6 +502,7 @@ STRUCTURAL CHECKS
   OK: every parent member ID exists
   OK: every referenced note is defined
   OK: reference period start is not after its end
+  INFO: 1 note(s) have irregular quoting in the source CSV (text recovered from raw lines)
   INFO: 0 terminated member(s)
   INFO: 0 defined note(s) not referenced by this cube
 
@@ -616,22 +620,22 @@ NOTES (full text, 10 notes)
 
   Note 4  [used by: dimension 2 (North American Industry Classification System (NAICS)); 1 member(s) of dimension 2]
     Industry estimates are based on the <a
-    href=https://www.statcan.gc.ca/en/subjects/standard/naics/2022/v1/index" rel="external noopener
+    href="https://www.statcan.gc.ca/en/subjects/standard/naics/2022/v1/index" rel="external noopener
     noreferrer" target="_blank">2022 North American Industry Classification System (NAICS) Version
     1.0 (opens new window)</a>. The following categories are excluded from the survey: 'Religious
-    organizations' (8131) within 'Religious grant-making civic and professional and similar
-    organizations' (813) 'Private households' (814) 'Federal government public administration' (911)
-    'Provincial and territorial public administration' (912) and 'International and other extra-
-    territorial public administration' (919)."
+    organizations' (8131) within 'Religious, grant-making, civic, and professional and similar
+    organizations' (813), 'Private households' (814), 'Federal, government public administration'
+    (911), 'Provincial and territorial public administration' (912) and 'International and other
+    extra-territorial public administration' (919).
 
   Note 5  [used by: 1 member(s) of dimension 2]
-    Excludes Religious organizations" (8131) within "Religious grant-making civic and professional
-    and similar organizations" (813) as well as "Private households" (814)."
+    Excludes "Religious organizations" (8131) within "Religious, grant-making, civic, and
+    professional and similar organizations" (813) as well as "Private households" (814).
 
   Note 6  [used by: 1 member(s) of dimension 2]
-    Excludes Federal government public administration" (911) "Provincial and territorial public
+    Excludes "Federal, government public administration" (911), "Provincial and territorial public
     administration" (912) and "International and other extra-territorial public administration"
-    (919)."
+    (919).
 
   Note 7  [used by: 1 member(s) of dimension 3]
     A job is vacant if it meets the following conditions: it is vacant on the reference date (first
@@ -642,15 +646,15 @@ NOTES (full text, 10 notes)
     who are not considered employees, are excluded.
 
   Note 8  [used by: 1 member(s) of dimension 3]
-    The employee" concept used in the Job Vacancy and Wage Survey (JVWS) is comprised of full-time
-    employees part-time employees as well as permanent casual temporary and seasonal employees. It
-    also includes working owners directors partners and other officers of incorporated businesses as
-    well as employees who work off site (for example at home or on the road) but report to the
-    location and those employees on paid leave. The "employee" concept used in the JVWS is meant to
-    exclude owners or partners of unincorporated businesses and professional practices the self-
-    employed subcontractors external consultants unpaid family workers persons working outside
-    Canada and military personnel. It also excludes employees on unpaid leave such as those on
-    extended sick leave who are receiving insurance benefits."
+    The "employee" concept used in the Job Vacancy and Wage Survey (JVWS) is comprised of full-time
+    employees, part-time employees, as well as permanent, casual, temporary, and seasonal employees.
+    It also includes working owners, directors, partners, and other officers of incorporated
+    businesses, as well as employees who work off site (for example, at home or on the road) but
+    report to the location, and those employees on paid leave. The "employee" concept used in the
+    JVWS is meant to exclude owners or partners of unincorporated businesses and professional
+    practices, the self-employed, subcontractors, external consultants, unpaid family workers,
+    persons working outside Canada, and military personnel. It also excludes employees on unpaid
+    leave, such as those on extended sick leave who are receiving insurance benefits.
 
   Note 9  [used by: 1 member(s) of dimension 3]
     The job vacancy rate is the number of job vacancies expressed as a percentage of labour demand;
@@ -659,14 +663,15 @@ NOTES (full text, 10 notes)
   Note 10  [used by: 1 member(s) of dimension 3]
     The employment estimates from the Job Vacancy and Wage Survey (JVWS) are calibrated to
     corresponding employment estimates from the <a
-    href=https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=2612">Survey of Employment
-    Payrolls and Hours</a> (SEPH) usually at the North American Industry Classification System
-    sector (NAICS2) level by province. The reference period for JVWS is the first day of the month
-    which corresponds to the previous month for SEPH. Therefore JVWS estimates for the current month
-    are calibrated to SEPH estimates for the previous month. To improve timeliness of the
-    preliminary JVWS estimates they are calibrated to preliminary SEPH employment estimates. The
-    final JVWS estimates are calibrated to final SEPH employment estimates. Users wishing to analyse
-    employment data are advised to use the most current Labour Force Survey and SEPH estimates."
+    href="https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=2612">Survey of
+    Employment, Payrolls and Hours</a> (SEPH), usually at the North American Industry Classification
+    System sector (NAICS2) level by province. The reference period for JVWS is the first day of the
+    month, which corresponds to the previous month for SEPH. Therefore, JVWS estimates for the
+    current month are calibrated to SEPH estimates for the previous month. To improve timeliness of
+    the preliminary JVWS estimates, they are calibrated to preliminary SEPH employment estimates.
+    The final JVWS estimates are calibrated to final SEPH employment estimates. Users wishing to
+    analyse employment data are advised to use the most current Labour Force Survey and SEPH
+    estimates.
 
 
 CORRECTIONS
@@ -680,7 +685,8 @@ STRUCTURAL CHECKS
   OK: 'members' table found
   OK: 'symbols' table found
   OK: every table was recognized
-  WARNING: 5 row(s) have more cells than their header
+  OK: no row has more cells than its header
+  OK: 10 notes read from raw text match the CSV note rows
   OK: declared dimension count (3) matches dimension rows
   OK: all members belong to a declared dimension
   OK: every dimension has members
@@ -688,6 +694,7 @@ STRUCTURAL CHECKS
   OK: every parent member ID exists
   OK: every referenced note is defined
   OK: reference period start is not after its end
+  INFO: 5 note(s) have irregular quoting in the source CSV (text recovered from raw lines)
   INFO: 0 terminated member(s)
   INFO: 0 defined note(s) not referenced by this cube
 
@@ -917,19 +924,19 @@ NOTES (full text, 39 notes)
     services.
 
   Note 29  [used by: 1 member(s) of dimension 2]
-    Revision of the methodology of the <a style=padding-left:0!important;"
+    Revision of the methodology of the <a style="padding-left:0!important;"
     href="http://www23.statcan.gc.ca/imdb-bmdi/document/2301_D39_T9_V1-eng.pdf" rel="external
     noopener noreferrer" target="_blank">home insurance (opens new window)</a> component of the
-    Consumer Price Index (CPI) beginning with the February 2008 CPI."
+    Consumer Price Index (CPI) beginning with the February 2008 CPI.
 
   Note 30  [used by: 1 member(s) of dimension 2]
-    Revision of the methodology of the <a style=padding-left:0!important;"
+    Revision of the methodology of the <a style="padding-left:0!important;"
     href="http://www23.statcan.gc.ca/imdb-bmdi/document/2301_D40_T9_V1-eng.pdf"  rel="external
     noopener noreferrer" target="_blank">Internet access services (opens new window)</a> component
     of the Consumer Price Index (CPI) beginning with the March 2008 CPI. Changes to the <a
     href="https://www.statcan.gc.ca/eng/statistical-programs/document/2301_D60_T9_V1"  rel="external
     noopener noreferrer" target="_blank">Internet Access Services (opens new window)</a> Index of
-    the Consumer Price Index (CPI) beginning with the November 2015 CPI."
+    the Consumer Price Index (CPI) beginning with the November 2015 CPI.
 
   Note 31  [used by: 1 member(s) of dimension 2]
     In previous years, Statistics Canada updated, by province, the model year of passenger vehicles
@@ -938,25 +945,25 @@ NOTES (full text, 39 notes)
     provinces.
 
   Note 32  [used by: 1 member(s) of dimension 2]
-    Revision of the methodology of the <a style=padding-left:0!important;"
+    Revision of the methodology of the <a style="padding-left:0!important;"
     href="http://www23.statcan.gc.ca/imdb-bmdi/document/2301_D41_T9_V1-eng.pdf" rel="external
     noopener noreferrer" target="_blank">rent(opens new window)</a> component of the Consumer Price
-    Index (CPI) beginning with the July 2009 CPI.  New approach for estimating the <a
+    Index (CPI), beginning with the July 2009 CPI.  New approach for estimating the <a
     href="https://www150.statcan.gc.ca/n1/pub/62f0014m/62f0014m2019002-eng.htm" rel="external
     noopener noreferrer" target="_blank">rent(opens new window)</a> component of the Consumer Price
-    Index beginning with the January 2019 CPI."
+    Index, beginning with the January 2019 CPI.
 
   Note 33  [used by: 1 member(s) of dimension 2]
-    Revision of the methodology of the <a href=https://www.statcan.gc.ca/eng/statistical-
+    Revision of the methodology of the <a href="https://www.statcan.gc.ca/eng/statistical-
     programs/document/2301_D50_V2 " rel="external noopener noreferrer" target="_blank">prescribed
-    medicines (opens new window)</a> index of the Consumer Price Index (CPI) beginning with the
-    September 2012 CPI."
+    medicines (opens new window)</a> index of the Consumer Price Index (CPI), beginning with the
+    September 2012 CPI.
 
   Note 34  [used by: 1 member(s) of dimension 2]
     The timing for the introduction of new model year vehicles into the <a
-    href=https://www.statcan.gc.ca/eng/statistical-programs/document/2301_D51_T9_V1" rel="external
+    href="https://www.statcan.gc.ca/eng/statistical-programs/document/2301_D51_T9_V1" rel="external
     noopener noreferrer" target="_blank">purchase of passenger vehicles (opens new window)</a> index
-    of the Consumer Price Index (CPI) has changed in 2012."
+    of the Consumer Price Index (CPI) has changed in 2012.
 
   Note 36  [used by: cube; dimension 2 (Products and product groups)]
     From April 2020 to November 2021, and from January 2022 to February 2022, certain sub-indexes
@@ -966,26 +973,26 @@ NOTES (full text, 39 notes)
     recreational facilities and services; beer served in licensed establishments; wine served in
     licensed establishments, and liquor served in licensed establishments. The details of these
     treatments from April 2020 to March 2021 are provided in technical supplements available through
-    the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external noopener
+    the <a href="https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external noopener
     noreferrer" target="_blank">Prices Analytical Series (opens new window)</a>. Starting in April
-    2021 details and treatments are available upon request by contacting the <a
+    2021, details and treatments are available upon request by contacting the <a
     href="mailto:statcan.cpddisseminationunit-dpcunitedediffusion.statcan@statcan.gc.ca"
     rel="external noopener noreferrer" target="_blank">Consumer Prices Division (opens new
-    window)</a>."
+    window)</a>.
 
   Note 37  [used by: 1 member(s) of dimension 2]
     Price movements for this sub-index were imputed using special approaches in either one, or more
     months. The details of these treatments for April 2020 are provided in a technical supplement
-    available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    available through the <a href="https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
     rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
-    window)</a>."
+    window)</a>.
 
   Note 38  [used by: 1 member(s) of dimension 2]
     Price movements for this sub-index were imputed using special approaches in either one, or more
     months. The details of these treatments for April 2020 are provided in a technical supplement
-    available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    available through the <a href="https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
     rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
-    window)</a>."
+    window)</a>.
 
   Note 39  [used by: 1 member(s) of dimension 2]
     From April 2020 to July 2021, price movements for this sub-index were imputed using special
@@ -993,82 +1000,83 @@ NOTES (full text, 39 notes)
     performed. Users are advised to exercise caution in interpreting the 1-month change for August
     2021 and the 12-month change for the next 12 months for the air transportation index. The
     details of these treatments from April 2020 to March 2021 are provided in technical supplements
-    available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
+    available through the <a href="https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
     rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
-    window)</a>. Starting in April 2021 details and treatments are available upon request by
+    window)</a>. Starting in April 2021, details and treatments are available upon request by
     contacting the <a href="mailto:statcan.cpddisseminationunit-
     dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
-    target="_blank">Consumer Prices Division (opens new window)</a>."
+    target="_blank">Consumer Prices Division (opens new window)</a>.
 
   Note 40  [used by: 1 member(s) of dimension 2]
     Price movements for this sub-index were imputed using special approaches in either one, or more
     months. The details of these treatments from April 2020 to March 2021 are provided in technical
-    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
-    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
-    window)</a>. From April 2021 to June 2021 details and treatments are available upon request by
-    contacting the <a href="mailto:statcan.cpddisseminationunit-
-    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
-    target="_blank">Consumer Prices Division (opens new window)</a>."
+    supplements available through the <a
+    href="https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external noopener noreferrer"
+    target="_blank">Prices Analytical Series (opens new window)</a>. From April 2021 to June 2021,
+    details and treatments are available upon request by contacting the <a
+    href="mailto:statcan.cpddisseminationunit-dpcunitedediffusion.statcan@canada.ca" rel="external
+    noopener noreferrer" target="_blank">Consumer Prices Division (opens new window)</a>.
 
   Note 41  [used by: 1 member(s) of dimension 2]
     Price movements for this sub-index were imputed using special approaches in either one, or more
     months. The details of these treatments from April 2020 to March 2021 are provided in technical
-    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
-    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
-    window)</a>. From April 2021 to July 2021 details and treatments are available upon request by
-    contacting the <a href="mailto:statcan.cpddisseminationunit-
-    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
-    target="_blank">Consumer Prices Division (opens new window)</a>."
+    supplements available through the <a
+    href="https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external noopener noreferrer"
+    target="_blank">Prices Analytical Series (opens new window)</a>. From April 2021 to July 2021,
+    details and treatments are available upon request by contacting the <a
+    href="mailto:statcan.cpddisseminationunit-dpcunitedediffusion.statcan@canada.ca" rel="external
+    noopener noreferrer" target="_blank">Consumer Prices Division (opens new window)</a>.
 
   Note 42  [used by: 1 member(s) of dimension 2]
     Price movements for this sub-index were imputed using special approaches in either one, or more
     months. The details of these treatments from April 2020 to March 2021 are provided in technical
-    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
-    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
-    window)</a>. From April 2021 to July 2021 and January 2022 details and treatments are available
-    upon request by contacting the <a href="mailto:statcan.cpddisseminationunit-
-    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
-    target="_blank">Consumer Prices Division (opens new window)</a>."
+    supplements available through the <a
+    href="https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external noopener noreferrer"
+    target="_blank">Prices Analytical Series (opens new window)</a>. From April 2021 to July 2021,
+    and January 2022, details and treatments are available upon request by contacting the <a
+    href="mailto:statcan.cpddisseminationunit-dpcunitedediffusion.statcan@canada.ca" rel="external
+    noopener noreferrer" target="_blank">Consumer Prices Division (opens new window)</a>.
 
   Note 43  [used by: 1 member(s) of dimension 2]
     Price movements for this sub-index were imputed using special approaches in either one, or more
     months. The details of these treatments from April 2020 to March 2021 are provided in technical
-    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
-    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
-    window)</a>. From April 2021 to June 2021 details and treatments are available upon request by
-    contacting the <a href="mailto:statcan.cpddisseminationunit-
-    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
-    target="_blank">Consumer Prices Division (opens new window)</a>."
+    supplements available through the <a
+    href="https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external noopener noreferrer"
+    target="_blank">Prices Analytical Series (opens new window)</a>. From April 2021 to June 2021,
+    details and treatments are available upon request by contacting the <a
+    href="mailto:statcan.cpddisseminationunit-dpcunitedediffusion.statcan@canada.ca" rel="external
+    noopener noreferrer" target="_blank">Consumer Prices Division (opens new window)</a>.
 
   Note 44  [used by: 1 member(s) of dimension 2]
     Price movements for this sub-index were imputed using special approaches in either one, or more
     months. The details of these treatments from April 2020 to March 2021 are provided in technical
-    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
-    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
-    window)</a>. From April 2021 to June 2021 details and treatments are available upon request by
-    contacting the <a href="mailto:statcan.cpddisseminationunit-
-    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
-    target="_blank">Consumer Prices Division (opens new window)</a>."
+    supplements available through the <a
+    href="https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external noopener noreferrer"
+    target="_blank">Prices Analytical Series (opens new window)</a>. From April 2021 to June 2021,
+    details and treatments are available upon request by contacting the <a
+    href="mailto:statcan.cpddisseminationunit-dpcunitedediffusion.statcan@canada.ca" rel="external
+    noopener noreferrer" target="_blank">Consumer Prices Division (opens new window)</a>.
 
   Note 45  [used by: 1 member(s) of dimension 2]
     Price movements for this sub-index were imputed using special approaches in either one, or more
     months. The details of these treatments from April 2020 to March 2021 are provided in technical
-    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
-    rel="external noopener noreferrer" target="_blank">Prices Analytical Series(opens new
-    window)</a>. From April 2021 to June 2021 details and treatments are available upon request by
-    contacting the <a href="mailto:statcan.cpddisseminationunit-
-    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
-    target="_blank">Consumer Prices Division (opens new window)</a>."
+    supplements available through the <a
+    href="https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external noopener noreferrer"
+    target="_blank">Prices Analytical Series(opens new window)</a>. From April 2021 to June 2021,
+    details and treatments are available upon request by contacting the <a
+    href="mailto:statcan.cpddisseminationunit-dpcunitedediffusion.statcan@canada.ca" rel="external
+    noopener noreferrer" target="_blank">Consumer Prices Division (opens new window)</a>.
 
   Note 46  [used by: 1 member(s) of dimension 2]
     Price movements for this sub-index were imputed using special approaches in either one, or more
     months. The details of these treatments from April 2020 to March 2021 are provided in technical
-    supplements available through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M"
-    rel="external noopener noreferrer" target="_blank">Prices Analytical Series (opens new
-    window)</a>. From April 2021 to July 2021 and from January 2022 to February 2022 details and
-    treatments are available upon request by contacting the <a
-    href="mailto:statcan.cpddisseminationunit-dpcunitedediffusion.statcan@canada.ca" rel="external
-    noopener noreferrer" target="_blank">Consumer Prices Division (opens new window)</a>."
+    supplements available through the <a
+    href="https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external noopener noreferrer"
+    target="_blank">Prices Analytical Series (opens new window)</a>. From April 2021 to July 2021,
+    and from January 2022 to February 2022, details and treatments are available upon request by
+    contacting the <a href="mailto:statcan.cpddisseminationunit-
+    dpcunitedediffusion.statcan@canada.ca" rel="external noopener noreferrer"
+    target="_blank">Consumer Prices Division (opens new window)</a>.
 
   Note 47  [used by: 1 member(s) of dimension 2]
     From April 2020 to July 2021, price movements for this sub-index were imputed using special
@@ -1078,12 +1086,12 @@ NOTES (full text, 39 notes)
     advised to exercise caution in interpreting the 1-month change for August 2021 and November
     2021, and the 12-month change for the next 12 months for the travel tours index. The details of
     these treatments from April 2020 to March 2021 are provided in technical supplements available
-    through the <a href=https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external
+    through the <a href="https://www150.statcan.gc.ca/n1/en/catalogue/62F0014M" rel="external
     noopener noreferrer" target="_blank">Prices Analytical Series (opens new window)</a>. Starting
-    in April 2021 details and treatments are available upon request by contacting the <a
+    in April 2021, details and treatments are available upon request by contacting the <a
     href="mailto:statcan.cpddisseminationunit-dpcunitedediffusion.statcan@statcan.gc.ca"
     rel="external noopener noreferrer" target="_blank">Consumer Prices Division (opens new
-    window)</a>."
+    window)</a>.
 
   Note 48  [used by: 2 member(s) of dimension 2]
     Available starting April 2022. In order to have historical data prior to April 2022, users can
@@ -1092,8 +1100,8 @@ NOTES (full text, 39 notes)
     Therefore, users should rebase the purchase of passenger vehicles index values that are based on
     2002=100, to 2022-04=100 in order to make the series continuous. For more information on
     rebasing, you can consult section 8.25 of <a
-    href=https://www150.statcan.gc.ca/n1/en/catalogue/62-553-X" rel="external noopener noreferrer"
-    target="_blank">The Consumer Price Index Reference Paper (opens new window)</a>."
+    href="https://www150.statcan.gc.ca/n1/en/catalogue/62-553-X" rel="external noopener noreferrer"
+    target="_blank">The Consumer Price Index Reference Paper (opens new window)</a>.
 
   Note 49  [used by: 1 member(s) of dimension 2]
     With the release of the Consumer Price Index (CPI) of May 2023,  the classification of the fresh
@@ -1150,7 +1158,8 @@ STRUCTURAL CHECKS
   OK: 'members' table found
   OK: 'symbols' table found
   OK: every table was recognized
-  WARNING: 12 row(s) have more cells than their header
+  OK: no row has more cells than its header
+  OK: 39 notes read from raw text match the CSV note rows
   OK: declared dimension count (2) matches dimension rows
   OK: all members belong to a declared dimension
   OK: every dimension has members
@@ -1158,6 +1167,7 @@ STRUCTURAL CHECKS
   OK: every parent member ID exists
   OK: every referenced note is defined
   OK: reference period start is not after its end
+  INFO: 12 note(s) have irregular quoting in the source CSV (text recovered from raw lines)
   INFO: 36 terminated member(s)
   INFO: 0 defined note(s) not referenced by this cube
 
@@ -1165,10 +1175,10 @@ STRUCTURAL CHECKS
 OVERALL SUMMARY
 ================================================================================
   14100022: Labour force characteristics by industry, monthly, unadjusted for seasonality
-      1976-01-01 to 2026-08-01  —  1 WARNING(S)
+      1976-01-01 to 2026-08-01  —  OK
   14100063: Employee wages by industry, monthly, unadjusted for seasonality
-      1997-01-01 to 2026-08-01  —  1 WARNING(S)
+      1997-01-01 to 2026-08-01  —  OK
   14100372: Job vacancies, payroll employees, and job vacancy rate by industry sector, monthly, unadjusted for seasonality
-      2015-04-01 to 2026-06-01  —  1 WARNING(S)
+      2015-04-01 to 2026-06-01  —  OK
   18100004: Consumer Price Index, monthly, not seasonally adjusted
-      1914-01-01 to 2026-08-01  —  1 WARNING(S)
+      1914-01-01 to 2026-08-01  —  OK

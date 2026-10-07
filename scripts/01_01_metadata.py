@@ -206,6 +206,62 @@ def parse_note_ids(value):
   return re.findall(r"\d+", value or "")
 
 
+def read_raw_lines(file_path):
+  """Read the file as raw physical lines (same line splitting as csv.reader)."""
+  with open(file_path, "r", encoding="utf-8-sig", newline="") as file:
+    return file.readlines()
+
+
+NOTE_START = re.compile(r'^\s*"?(\d+)"?\s*,(.*)$', re.DOTALL)
+
+
+def clean_note_text(text):
+  """Remove the field's outer quotes and unescape doubled quotes."""
+  text = text.strip()
+
+  if text.startswith('"'):
+    text = text[1:]
+
+  if text.endswith('"'):
+    text = text[:-1]
+
+  return text.replace('""', '"').strip()
+
+
+def parse_raw_notes(raw_lines, tables):
+  """
+  Read notes from the raw text instead of the CSV parser.
+
+  Some Statistics Canada notes contain unescaped quotes and commas (HTML links,
+  quoted titles). A CSV parser then splits them into extra cells and drops
+  quote characters. Splitting only on the first comma keeps the text intact.
+  """
+  notes = []
+
+  for table in tables:
+    if table["role"] != "notes":
+      continue
+
+    header_rows = 2 if table["title"] else 1
+    body_lines = raw_lines[table["start_line"] - 1 + header_rows:table["end_line"]]
+
+    for line in body_lines:
+      line = line.rstrip("\r\n")
+      match = NOTE_START.match(line)
+
+      if match:
+        notes.append(
+          {"Note ID": match.group(1), "Note": match.group(2), "_extra": []}
+        )
+      elif notes:
+        notes[-1]["Note"] += " " + line.strip()
+
+  for note in notes:
+    note["Note"] = clean_note_text(note["Note"])
+
+  return notes
+
+
 def sha256_of(file_path):
   digest = hashlib.sha256()
 
@@ -480,11 +536,22 @@ def write_structural_checks(
   )
 
   # Rows are not wider than their header (trailing blank cells are ignored).
-  extra_rows = sum(table["extra_cell_rows"] for table in tables)
+  # Notes are excluded here because they are read from the raw text.
+  extra_rows = sum(
+    table["extra_cell_rows"] for table in tables if table["role"] != "notes"
+  )
   report.check(
     extra_rows == 0,
     "no row has more cells than its header",
     f"{extra_rows} row(s) have more cells than their header",
+  )
+
+  # Raw-text note parsing found as many notes as the CSV has note rows.
+  note_rows = sum(len(t["body"]) for t in tables if t["role"] == "notes")
+  report.check(
+    len(notes) == note_rows,
+    f"{len(notes)} notes read from raw text match the CSV note rows",
+    f"raw text gave {len(notes)} notes but the CSV has {note_rows} note rows",
   )
 
   # Declared dimension count matches the dimension table.
@@ -578,6 +645,14 @@ def write_structural_checks(
   terminated = sum(1 for m in members if m.get("Terminated"))
   unused = sorted(defined - set(references), key=lambda x: int(x) if x.isdigit() else 0)
 
+  irregular_notes = sum(
+    t["extra_cell_rows"] for t in tables if t["role"] == "notes"
+  )
+
+  report.write(
+    f"  INFO: {irregular_notes} note(s) have irregular quoting in the source "
+    "CSV (text recovered from raw lines)"
+  )
   report.write(f"  INFO: {terminated} terminated member(s)")
   report.write(f"  INFO: {len(unused)} defined note(s) not referenced by this cube")
 
@@ -590,6 +665,7 @@ def inspect_metadata_file(file_path, report):
   """Inspect one metadata CSV file and return a one-line summary record."""
 
   rows = read_rows(file_path)
+  raw_lines = read_raw_lines(file_path)
   warnings_before = report.warning_count
 
   report.banner(f"FILE: {file_path.name}")
@@ -610,7 +686,7 @@ def inspect_metadata_file(file_path, report):
   cube = cube_records[0] if cube_records else {}
   dimensions = records_for(tables, "dimensions")
   members = records_for(tables, "members")
-  notes = records_for(tables, "notes")
+  notes = parse_raw_notes(raw_lines, tables)
   references = collect_note_references(cube, dimensions, members)
 
   report.write(f"SHA-256: {sha256_of(file_path)}")
