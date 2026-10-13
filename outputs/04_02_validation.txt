@@ -10,10 +10,10 @@ Status levels:
 
 Summary
 ================================================================================
-- employment: OK 11, NOTE 6, WARNING 0
-- wages: OK 11, NOTE 3, WARNING 0
-- vacancies: OK 14, NOTE 3, WARNING 0
-- labour_force_total: OK 13, NOTE 3, WARNING 0
+- employment: OK 12, NOTE 6, WARNING 0
+- wages: OK 12, NOTE 3, WARNING 0
+- vacancies: OK 15, NOTE 3, WARNING 0
+- labour_force_total: OK 16, NOTE 2, WARNING 0
 Overall: no unexpected differences found. All differences between extracted and processed data follow from the transformation rules.
 
 Dataset: employment (14100022)
@@ -24,18 +24,18 @@ Dataset: employment (14100022)
 
 2. Shape
 - Extracted rows: 1,525,920
-- Processed rows: 1,680
+- Processed rows: 18,027
 - Extracted columns: 18
 - Processed columns: 4
 - Row funnel (extracted → processed):
   - Extracted rows: 1,525,920
-  - After Canada and analysis period: 122,400
-  - After selected measures and dimensions: 1,680
-  - Suppressed observations removed: 0
-  - Valid observations: 1,680
-  - Expected processed rows (month × industry): 1,680
-- [OK] Processed rows match the expected rows (1,680). The reduction from 1,525,920 extracted rows is due to the Canada filter, the analysis period, and the selected measures.
-- [OK] Complete month × industry grid: 28 industries × 60 months = 1,680.
+  - After expected geographies and analysis period: 1,346,400
+  - After selected measures and dimensions: 18,480
+  - Suppressed observations removed: 453
+  - Valid observations: 18,027
+  - Expected processed rows (month × geography × industry): 18,027
+- [OK] Processed rows match the expected rows (18,027). The reduction from 1,525,920 extracted rows is due to the geography filter, the analysis period, and the selected measures.
+- [NOTE] 453 of 18,480 month × geography × industry combinations have no valid observation (all observations suppressed). Expected for small provinces and small industries.
 
 3. Column changes
 - [OK] Processed columns match the expected output structure: REF_DATE, GEO, NAICS, Employment_thousands
@@ -66,9 +66,12 @@ Dataset: employment (14100022)
 - [OK] All 60 months of the analysis period are present.
 
 5. Geography
+- Expected GEO values: 11
 - Extracted unique GEO values: 11
-- Processed unique GEO values: 1
-- [NOTE] Extracted geographies (11) are reduced to Canada only by design (national-level analysis).
+- Processed unique GEO values: 11
+- Canada is a national total, not a sibling of the provinces: never sum across GEO.
+- [OK] Processed GEO values match the expected set (11) and the extract.
+- [OK] Rows per geography match the extract (min 1,594, max 1,680).
 
 6. NAICS coverage
 - [NOTE] Label normalized: Business, building and other support services [55, 56] → Business, building and other support services [55-56]
@@ -95,11 +98,11 @@ Dataset: employment (14100022)
 9. Analytical grain
 - Target grain: GEO × NAICS × REF_DATE
 - [OK] No duplicate analytical keys.
-- [OK] Selected extracted rows are unique per month × industry × measure (the filters fully determine the grain).
+- [OK] Selected extracted rows are unique per month × geography × industry × measure (the filters fully determine the grain).
 
 10. Value reconciliation (extracted vs processed)
-- Rows checked: 22 of 1,680 rows (2 first/last month of the Total row, 20 random, seed 42)
-- Values and flags compared: 22
+- Rows checked: 42 of 18,027 rows (22 first/last month of the Total row of every geography, 20 random, seed 42)
+- Values and flags compared: 42
 - [OK] All compared values and flags match the extract.
 
 Dataset: wages (14100063)
@@ -110,18 +113,18 @@ Dataset: wages (14100063)
 
 2. Shape
 - Extracted rows: 2,558,160
-- Processed rows: 1,140
+- Processed rows: 12,534
 - Extracted columns: 19
 - Processed columns: 6
 - Row funnel (extracted → processed):
   - Extracted rows: 2,558,160
-  - After Canada and analysis period: 205,200
-  - After selected measures and dimensions: 3,420
-  - Suppressed observations removed: 0
-  - Valid observations: 3,420
-  - Expected processed rows (month × industry): 1,140
-- [OK] Processed rows match the expected rows (1,140). The reduction from 2,558,160 extracted rows is due to the Canada filter, the analysis period, and the selected measures.
-- [OK] Complete month × industry grid: 19 industries × 60 months = 1,140.
+  - After expected geographies and analysis period: 2,257,200
+  - After selected measures and dimensions: 37,620
+  - Suppressed observations removed: 18
+  - Valid observations: 37,602
+  - Expected processed rows (month × geography × industry): 12,534
+- [OK] Processed rows match the expected rows (12,534). The reduction from 2,558,160 extracted rows is due to the geography filter, the analysis period, and the selected measures.
+- [NOTE] 6 of 12,540 month × geography × industry combinations have no valid observation (all observations suppressed). Expected for small provinces and small industries.
 
 3. Column changes
 - [OK] Processed columns match the expected output structure: REF_DATE, GEO, NAICS, Average_hourly_wage_cad, Median_hourly_wage_cad, Total_employees_thousands
@@ -153,9 +156,12 @@ Dataset: wages (14100063)
 - [OK] All 60 months of the analysis period are present.
 
 5. Geography
+- Expected GEO values: 11
 - Extracted unique GEO values: 11
-- Processed unique GEO values: 1
-- [NOTE] Extracted geographies (11) are reduced to Canada only by design (national-level analysis).
+- Processed unique GEO values: 11
+- Canada is a national total, not a sibling of the provinces: never sum across GEO.
+- [OK] Processed GEO values match the expected set (11) and the extract.
+- [OK] Rows per geography match the extract (min 1,134, max 1,140).
 
 6. NAICS coverage
 - Extracted unique NAICS values: 19 (19 after normalization)
@@ -179,11 +185,11 @@ Dataset: wages (14100063)
 9. Analytical grain
 - Target grain: GEO × NAICS × REF_DATE
 - [OK] No duplicate analytical keys.
-- [OK] Selected extracted rows are unique per month × industry × measure (the filters fully determine the grain).
+- [OK] Selected extracted rows are unique per month × geography × industry × measure (the filters fully determine the grain).
 
 10. Value reconciliation (extracted vs processed)
-- Rows checked: 22 of 1,140 rows (2 first/last month of the Total row, 20 random, seed 42)
-- Values and flags compared: 66
+- Rows checked: 42 of 12,534 rows (22 first/last month of the Total row of every geography, 20 random, seed 42)
+- Values and flags compared: 126
 - [OK] All compared values and flags match the extract.
 
 Dataset: vacancies (14100372)
@@ -199,14 +205,14 @@ Dataset: vacancies (14100372)
 - Processed columns: 9
 - Row funnel (extracted → processed):
   - Extracted rows: 4,158
-  - After Canada and analysis period: 3,780
+  - After expected geographies and analysis period: 3,780
   - After selected measures and dimensions: 3,780
   - Suppressed observations removed: 0
   - Unreliable observations set to NULL (flag kept): 16
   - Valid observations: 3,764
-  - Expected processed rows (month × industry): 1,260
-- [OK] Processed rows match the expected rows (1,260). The reduction from 4,158 extracted rows is due to the Canada filter, the analysis period, and the selected measures.
-- [OK] Complete month × industry grid: 21 industries × 60 months = 1,260.
+  - Expected processed rows (month × geography × industry): 1,260
+- [OK] Processed rows match the expected rows (1,260). The reduction from 4,158 extracted rows is due to the geography filter, the analysis period, and the selected measures.
+- [OK] Complete month × geography × industry grid: 1 geographies × 21 industries × 60 months = 1,260.
 
 3. Column changes
 - [OK] Processed columns match the expected output structure: REF_DATE, GEO, NAICS, Job_vacancies, Payroll_employees, Job_vacancy_rate_pct, Job_vacancies_quality, Payroll_employees_quality, Job_vacancy_rate_quality
@@ -235,9 +241,11 @@ Dataset: vacancies (14100372)
 - [OK] All 60 months of the analysis period are present.
 
 5. Geography
+- Expected GEO values: 1
 - Extracted unique GEO values: 1
 - Processed unique GEO values: 1
-- [OK] Single geography (Canada) in both datasets.
+- [OK] Processed GEO values match the expected set (1) and the extract.
+- [OK] Rows per geography match the extract (min 1,260, max 1,260).
 
 6. NAICS coverage
 - Extracted unique NAICS values: 21 (21 after normalization)
@@ -262,10 +270,10 @@ Dataset: vacancies (14100372)
 9. Analytical grain
 - Target grain: GEO × NAICS × REF_DATE
 - [OK] No duplicate analytical keys.
-- [OK] Selected extracted rows are unique per month × industry × measure (the filters fully determine the grain).
+- [OK] Selected extracted rows are unique per month × geography × industry × measure (the filters fully determine the grain).
 
 10. Value reconciliation (extracted vs processed)
-- Rows checked: 22 of 1,260 rows (2 first/last month of the Total row, 20 random, seed 42)
+- Rows checked: 22 of 1,260 rows (2 first/last month of the Total row of every geography, 20 random, seed 42)
 - Values and flags compared: 132
 - [OK] All compared values and flags match the extract.
 
@@ -285,18 +293,18 @@ Dataset: labour_force_total (14100022)
 
 2. Shape
 - Extracted rows: 1,525,920
-- Processed rows: 60
+- Processed rows: 660
 - Extracted columns: 18
 - Processed columns: 6
 - Row funnel (extracted → processed):
   - Extracted rows: 1,525,920
-  - After Canada and analysis period: 122,400
-  - After selected measures and dimensions: 240
+  - After expected geographies and analysis period: 1,346,400
+  - After selected measures and dimensions: 2,640
   - Suppressed observations removed: 0
-  - Valid observations: 240
-  - Expected processed rows (month × industry): 60
-- [OK] Processed rows match the expected rows (60). The reduction from 1,525,920 extracted rows is due to the Canada filter, the analysis period, and the selected measures.
-- [OK] Complete month × industry grid: 1 industries × 60 months = 60.
+  - Valid observations: 2,640
+  - Expected processed rows (month × geography × industry): 660
+- [OK] Processed rows match the expected rows (660). The reduction from 1,525,920 extracted rows is due to the geography filter, the analysis period, and the selected measures.
+- [OK] Complete month × geography × industry grid: 11 geographies × 1 industries × 60 months = 660.
 
 3. Column changes
 - [OK] Processed columns match the expected output structure: REF_DATE, GEO, Labour_force_thousands, Employment_thousands, Unemployment_thousands, Unemployment_rate_pct
@@ -327,9 +335,12 @@ Dataset: labour_force_total (14100022)
 - [OK] All 60 months of the analysis period are present.
 
 5. Geography
+- Expected GEO values: 11
 - Extracted unique GEO values: 11
-- Processed unique GEO values: 1
-- [NOTE] Extracted geographies (11) are reduced to Canada only by design (national-level analysis).
+- Processed unique GEO values: 11
+- Canada is a national total, not a sibling of the provinces: never sum across GEO.
+- [OK] Processed GEO values match the expected set (11) and the extract.
+- [OK] Rows per geography match the extract (min 60, max 60).
 
 6. NAICS coverage
 - Not applicable: the table holds the all-industries total only (Total, all industries).
@@ -351,16 +362,18 @@ Dataset: labour_force_total (14100022)
 9. Analytical grain
 - Target grain: GEO × REF_DATE
 - [OK] No duplicate analytical keys.
-- [OK] Selected extracted rows are unique per month × industry × measure (the filters fully determine the grain).
+- [OK] Selected extracted rows are unique per month × geography × industry × measure (the filters fully determine the grain).
 
 10. Value reconciliation (extracted vs processed)
-- Rows checked: all 60 rows
-- Values and flags compared: 240
+- Rows checked: 42 of 660 rows (22 first/last month of the Total row of every geography, 20 random, seed 42)
+- Values and flags compared: 168
 - [OK] All compared values and flags match the extract.
 
 12. Internal consistency
-- [OK] Employment_thousands equals the Total row of employment.csv in all 60 months.
+- [OK] Employment_thousands equals the Total row of employment.csv for every geography and month (660 rows).
 - Max |labour force − employment − unemployment|: 0.10 thousand
 - [OK] Labour force = employment + unemployment (tolerance 0.3 thousand).
 - Max |implied rate − published rate|: 0.050 percentage points
 - [OK] Unemployment rate = unemployment / labour force (tolerance 0.15 percentage points).
+- Max |Canada − sum of provinces| (employment, Total row): 0.20 thousand
+- [OK] Provinces add up to Canada within 1.0 thousand.

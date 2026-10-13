@@ -15,26 +15,33 @@ Status levels:
 - WARNING: unexpected difference that needs review.
 
 Transformation rules reflected in the expectations:
-- Canada only
+- Geographies: Canada plus the ten provinces (per dataset, see DATASETS)
 - Analysis period 2021-01 to 2025-12
 - Selected measures and dimensions only
 - NAICS label normalization
 - Suppressed observations (x) removed before reshaping
 - Unreliable observations (F) set to NULL, quality flag kept
 
+Geography design:
+- GEO is part of the analytical grain: GEO x NAICS x REF_DATE
+  (GEO x REF_DATE for the labour force total).
+- "Canada" is a national total, not a sibling of the provinces. Rows must
+  never be summed across GEO.
+- Every lookup, sample and reconciliation key includes GEO.
+
 Checks:
 - Dataset correspondence
 - Row counts (expected vs. actual)
 - Column structure
 - Date coverage
-- Geography
+- Geography (expected set, rows per geography)
 - NAICS coverage
 - Duplicate rows
 - Missing values
 - Expected analytical grain
 - Value reconciliation (sampled values and flags vs. the extract)
 - Quality flag columns (vacancies)
-- Internal consistency (labour force total)
+- Internal consistency (labour force total, per geography)
 
 The value reconciliation reads values directly from the extract and does not
 reuse any function of 01_transform.py, so that a bug in the transformation
@@ -61,7 +68,21 @@ OUTPUT_FILE = Path("outputs/04_02_validation.txt")
 # These constants must match 01_transform.py.
 START_DATE = pd.Timestamp("2021-01-01")
 END_DATE = pd.Timestamp("2025-12-01")
-EXPECTED_GEO = "Canada"
+
+NATIONAL_GEO = "Canada"
+PROVINCES = [
+    "Newfoundland and Labrador",
+    "Prince Edward Island",
+    "Nova Scotia",
+    "New Brunswick",
+    "Quebec",
+    "Ontario",
+    "Manitoba",
+    "Saskatchewan",
+    "Alberta",
+    "British Columbia",
+]
+ALL_GEOS = [NATIONAL_GEO] + PROVINCES
 
 NAICS_LABEL_FIXES = {
     "[55, 56]": "[55-56]",
@@ -84,8 +105,14 @@ SAMPLE_ALL_BELOW = 100
 IDENTITY_TOLERANCE_THOUSANDS = 0.3
 RATE_TOLERANCE_PCT = 0.15
 
-# "filters" and "suppressed_flags" must match the row selection and the
-# flag handling in 01_transform.py.
+# Provinces rarely add up to Canada exactly (rounding, suppression).
+# A larger gap is reported as NOTE, never as WARNING.
+PROVINCE_SUM_TOLERANCE_THOUSANDS = 1.0
+
+# "geos", "filters" and "suppressed_flags" must match the row selection and
+# the flag handling in 01_transform.py.
+#
+# geos: GEO values expected in the processed table.
 #
 # flag_handling:
 # - "remove": observations with the flag are removed before reshaping
@@ -99,6 +126,7 @@ DATASETS = {
     "employment": {
         "id": "14100022",
         "processed": "employment.csv",
+        "geos": ALL_GEOS,
         "measure_column": "Labour force characteristics",
         "filters": {
             "Labour force characteristics": ["Employment"],
@@ -121,6 +149,7 @@ DATASETS = {
     "wages": {
         "id": "14100063",
         "processed": "wages.csv",
+        "geos": ALL_GEOS,
         "measure_column": "Wages",
         "filters": {
             "Wages": [
@@ -155,9 +184,12 @@ DATASETS = {
             },
         },
     },
+    # The vacancy table is published for Canada only. Joins with the other
+    # tables are valid on Canada rows only.
     "vacancies": {
         "id": "14100372",
         "processed": "vacancies.csv",
+        "geos": [NATIONAL_GEO],
         "measure_column": "Statistics",
         "filters": {},
         "suppressed_flags": ["F"],
@@ -192,6 +224,7 @@ DATASETS = {
     "labour_force_total": {
         "id": "14100022",
         "processed": "labour_force_total.csv",
+        "geos": ALL_GEOS,
         "measure_column": "Labour force characteristics",
         "filters": {
             "_naics": [TOTAL_ALL_INDUSTRIES],
@@ -329,14 +362,14 @@ def select_slice(extracted, config):
     Reproduce the row selection of the transformation.
 
     Returns:
-    - in_scope: Canada within the analysis period
+    - in_scope: expected geographies within the analysis period
     - selected: in_scope restricted to the selected measures and dimensions
     - kept:     selected observations that enter the reshaping
     - removed:  selected observations removed as suppressed
     - nulled:   selected observations kept with the value set to NULL
     """
     in_scope = extracted[
-        (extracted["GEO"] == EXPECTED_GEO)
+        extracted["GEO"].isin(config["geos"])
         & (extracted["_date"] >= START_DATE)
         & (extracted["_date"] <= END_DATE)
     ]
@@ -361,7 +394,7 @@ def select_slice(extracted, config):
 
 def check_shape(report, config, extracted_rows, processed, in_scope,
                 selected, kept, removed, nulled, expected_rows,
-                n_industries, n_months, extracted_columns):
+                n_geos, n_industries, n_months, extracted_columns):
     report.add("2. Shape")
     report.info(f"Extracted rows: {extracted_rows:,}")
     report.info(f"Processed rows: {len(processed):,}")
@@ -372,7 +405,10 @@ def check_shape(report, config, extracted_rows, processed, in_scope,
 
     report.add("- Row funnel (extracted → processed):")
     report.sub(f"Extracted rows: {extracted_rows:,}")
-    report.sub(f"After Canada and analysis period: {len(in_scope):,}")
+    report.sub(
+        f"After expected geographies and analysis period: "
+        f"{len(in_scope):,}"
+    )
     report.sub(f"After selected measures and dimensions: {len(selected):,}")
     report.sub(f"Suppressed observations removed: {len(removed):,}")
 
@@ -384,7 +420,8 @@ def check_shape(report, config, extracted_rows, processed, in_scope,
 
     report.sub(f"Valid observations: {valid_count:,}")
     report.sub(
-        f"Expected processed rows (month × industry): {expected_rows:,}"
+        "Expected processed rows (month × geography × industry): "
+        f"{expected_rows:,}"
     )
 
     if len(processed) == expected_rows:
@@ -392,7 +429,7 @@ def check_shape(report, config, extracted_rows, processed, in_scope,
             "OK",
             "Processed rows match the expected rows "
             f"({len(processed):,}). The reduction from "
-            f"{extracted_rows:,} extracted rows is due to the Canada "
+            f"{extracted_rows:,} extracted rows is due to the geography "
             "filter, the analysis period, and the selected measures."
         )
     else:
@@ -402,19 +439,22 @@ def check_shape(report, config, extracted_rows, processed, in_scope,
             f"rows ({expected_rows:,})."
         )
 
-    full_grid = n_industries * n_months
+    full_grid = n_geos * n_industries * n_months
 
     if expected_rows == full_grid:
         report.check(
             "OK",
-            f"Complete month × industry grid: {n_industries} industries "
-            f"× {n_months} months = {full_grid:,}."
+            f"Complete month × geography × industry grid: {n_geos} "
+            f"geographies × {n_industries} industries × {n_months} "
+            f"months = {full_grid:,}."
         )
     else:
         report.check(
             "NOTE",
-            f"{full_grid - expected_rows:,} month × industry combinations "
-            "have no valid observation (all observations suppressed)."
+            f"{full_grid - expected_rows:,} of {full_grid:,} month × "
+            "geography × industry combinations have no valid observation "
+            "(all observations suppressed). Expected for small provinces "
+            "and small industries."
         )
 
     report.add()
@@ -529,32 +569,83 @@ def check_dates(report, extracted, processed, processed_date_column,
     report.add()
 
 
-def check_geography(report, extracted, processed):
+def check_geography(report, extracted, processed, kept, config):
     report.add("5. Geography")
 
+    expected_geo = set(config["geos"])
     extracted_geo = set(extracted["GEO"].dropna().unique())
     processed_geo = set(processed["GEO"].dropna().unique())
 
+    report.info(f"Expected GEO values: {len(expected_geo)}")
     report.info(f"Extracted unique GEO values: {len(extracted_geo)}")
     report.info(f"Processed unique GEO values: {len(processed_geo)}")
 
-    if processed_geo != {EXPECTED_GEO}:
+    if NATIONAL_GEO in expected_geo and len(expected_geo) > 1:
+        report.info(
+            f"{NATIONAL_GEO} is a national total, not a sibling of the "
+            "provinces: never sum across GEO."
+        )
+
+    if processed_geo != expected_geo:
         report.check(
             "WARNING",
-            f"Processed GEO values are not only {EXPECTED_GEO}: "
-            + ", ".join(sorted(processed_geo))
+            "Processed GEO values differ from the expected set."
         )
+
+        missing = sorted(expected_geo - processed_geo)
+        unexpected = sorted(processed_geo - expected_geo)
+
+        if missing:
+            report.sub("Missing: " + ", ".join(missing))
+
+        if unexpected:
+            report.sub("Unexpected: " + ", ".join(unexpected))
     elif extracted_geo != processed_geo:
         report.check(
             "NOTE",
             f"Extracted geographies ({len(extracted_geo)}) are reduced "
-            f"to {EXPECTED_GEO} only by design (national-level analysis)."
+            f"to the expected {len(expected_geo)} by design."
         )
     else:
         report.check(
             "OK",
-            f"Single geography ({EXPECTED_GEO}) in both datasets."
+            f"Processed GEO values match the expected set "
+            f"({len(expected_geo)}) and the extract."
         )
+
+    # Rows per geography must equal the number of valid month × industry
+    # combinations of that geography in the extract.
+    key_columns = ["_date", "GEO", "_naics"]
+    expected_by_geo = (
+        kept[key_columns].drop_duplicates().groupby("GEO").size()
+    )
+    actual_by_geo = processed.groupby("GEO").size()
+
+    comparison = pd.concat(
+        [expected_by_geo.rename("expected"), actual_by_geo.rename("actual")],
+        axis=1,
+    ).fillna(0).astype(int)
+    differing = comparison[comparison["expected"] != comparison["actual"]]
+
+    if differing.empty:
+        report.check(
+            "OK",
+            "Rows per geography match the extract "
+            f"(min {comparison['actual'].min():,}, "
+            f"max {comparison['actual'].max():,})."
+        )
+    else:
+        report.check(
+            "WARNING",
+            f"Rows per geography differ from the extract in "
+            f"{len(differing)} geography(ies)."
+        )
+
+        for geo, row in differing.iterrows():
+            report.sub(
+                f"{geo}: expected {row['expected']:,}, "
+                f"processed {row['actual']:,}"
+            )
 
     report.add()
 
@@ -601,7 +692,10 @@ def check_naics(report, extracted, processed, extracted_naics_column,
                 + ", ".join(appears_under)
             )
         else:
-            detail = "no observations for Canada in the analysis period"
+            detail = (
+                "no observations for the expected geographies in the "
+                "analysis period"
+            )
 
         report.check(
             "NOTE",
@@ -684,11 +778,14 @@ def check_missing(report, config, extracted_missing, extracted_view,
     value_total = int(value_missing.sum())
 
     # A removed observation leaves an empty cell only when another measure
-    # of the same month × industry is still valid after reshaping.
-    kept_keys = set(zip(kept["_date"], kept["_naics"]))
+    # of the same month × geography × industry is still valid after
+    # reshaping.
+    kept_keys = set(zip(kept["_date"], kept["GEO"], kept["_naics"]))
     expected_from_removed = sum(
-        (date, naics) in kept_keys
-        for date, naics in zip(removed["_date"], removed["_naics"])
+        (date, geo, naics) in kept_keys
+        for date, geo, naics in zip(
+            removed["_date"], removed["GEO"], removed["_naics"]
+        )
     )
 
     # An observation set to NULL always leaves one empty value cell.
@@ -726,7 +823,8 @@ def check_missing(report, config, extracted_missing, extracted_view,
             "NOTE",
             f"{value_total:,} missing cells are expected: each "
             "removed suppressed observation leaves an empty cell where "
-            "another measure of the same month × industry is valid."
+            "another measure of the same month × geography × industry "
+            "is valid."
         )
 
         for column, count in value_missing[value_missing > 0].items():
@@ -781,16 +879,16 @@ def check_grain(report, processed, selected, config):
     if source_duplicates == 0:
         report.check(
             "OK",
-            "Selected extracted rows are unique per month × industry × "
-            "measure (the filters fully determine the grain)."
+            "Selected extracted rows are unique per month × geography × "
+            "industry × measure (the filters fully determine the grain)."
         )
     else:
         report.check(
             "WARNING",
             f"{source_duplicates:,} extracted rows share the same month × "
-            "industry × measure. The filters do not fully determine the "
-            "grain, so reshaping would silently pick one value. Check "
-            "for a missing filter."
+            "geography × industry × measure. The filters do not fully "
+            "determine the grain, so reshaping would silently pick one "
+            "value. Check for a missing filter."
         )
 
     report.add()
@@ -801,8 +899,10 @@ def check_values(report, config, processed, selected, date_column,
     """
     Compare sampled processed values and quality flags with the extract.
 
-    The lookup is built from the extract with its own code path.
-    The sample always contains the first and last month of the Total row.
+    The lookup is keyed on month × geography × industry × measure and is
+    built from the extract with its own code path.
+    The sample always contains the first and last month of the Total row
+    of every geography.
     """
     report.add("10. Value reconciliation (extracted vs processed)")
 
@@ -816,6 +916,7 @@ def check_values(report, config, processed, selected, date_column,
     keys = list(
         zip(
             selected["_date"],
+            selected["GEO"],
             selected["_naics"],
             selected[measure_column],
         )
@@ -851,18 +952,19 @@ def check_values(report, config, processed, selected, date_column,
         sample = pd.concat([forced, random_rows])
         sample_text = (
             f"{len(sample):,} of {len(frame):,} rows "
-            f"({len(forced):,} first/last month of the Total row, "
-            f"{len(random_rows):,} random, seed {SAMPLE_SEED})"
+            f"({len(forced):,} first/last month of the Total row of "
+            f"every geography, {len(random_rows):,} random, "
+            f"seed {SAMPLE_SEED})"
         )
 
     mismatches = []
     n_compared = 0
 
     for _, row in sample.iterrows():
-        label = f"{row['_date']:%Y-%m} | {row['_naics']}"
+        label = f"{row['_date']:%Y-%m} | {row['GEO']} | {row['_naics']}"
 
         for column, spec in config["value_columns"].items():
-            key = (row["_date"], row["_naics"], spec["measure"])
+            key = (row["_date"], row["GEO"], row["_naics"], spec["measure"])
 
             if key not in values:
                 mismatches.append(
@@ -997,12 +1099,14 @@ def check_labour_force_consistency(report):
 
     employment_total = employment.loc[
         employment["NAICS"] == TOTAL_ALL_INDUSTRIES,
-        ["REF_DATE", "Employment_thousands"],
+        ["REF_DATE", "GEO", "Employment_thousands"],
     ]
 
+    # Match on geography as well as month: each GEO is compared only with
+    # its own Total row.
     merged = total.merge(
         employment_total,
-        on="REF_DATE",
+        on=["GEO", "REF_DATE"],
         how="outer",
         suffixes=("", "_employment_table"),
     )
@@ -1019,15 +1123,22 @@ def check_labour_force_consistency(report):
         report.check(
             "OK",
             "Employment_thousands equals the Total row of employment.csv "
-            f"in all {len(merged):,} months."
+            f"for every geography and month ({len(merged):,} rows)."
         )
     else:
         report.check(
             "WARNING",
             "Employment_thousands differs from the Total row of "
-            f"employment.csv (unmatched months: {unmatched:,}, "
+            f"employment.csv (unmatched rows: {unmatched:,}, "
             f"max difference: {max_difference})."
         )
+
+        differing = merged.loc[
+            difference.isna() | (difference >= 1e-9), "GEO"
+        ].value_counts()
+
+        for geo, count in differing.items():
+            report.sub(f"{geo}: {count:,} row(s)")
 
     gap = (
         total["Labour_force_thousands"]
@@ -1052,7 +1163,7 @@ def check_labour_force_consistency(report):
             "Labour force differs from employment + unemployment by more "
             f"than {IDENTITY_TOLERANCE_THOUSANDS} thousand in "
             f"{int((gap > IDENTITY_TOLERANCE_THOUSANDS).sum()):,} "
-            "month(s). Review how the Total row is defined."
+            "row(s). Review how the Total row is defined."
         )
 
     implied_rate = (
@@ -1078,8 +1189,43 @@ def check_labour_force_consistency(report):
             "WARNING",
             "Unemployment rate differs from unemployment / labour force "
             f"by more than {RATE_TOLERANCE_PCT} percentage points in "
-            f"{int((rate_gap > RATE_TOLERANCE_PCT).sum()):,} month(s)."
+            f"{int((rate_gap > RATE_TOLERANCE_PCT).sum()):,} row(s)."
         )
+
+    # Provinces vs Canada: informational only. Rounding and suppression
+    # mean the provinces do not add up to Canada exactly.
+    provinces = (
+        employment_total[employment_total["GEO"] != NATIONAL_GEO]
+        .groupby("REF_DATE")["Employment_thousands"]
+        .sum()
+    )
+    national = (
+        employment_total[employment_total["GEO"] == NATIONAL_GEO]
+        .set_index("REF_DATE")["Employment_thousands"]
+    )
+    province_gap = (national - provinces).abs().dropna()
+
+    if not province_gap.empty:
+        report.info(
+            f"Max |{NATIONAL_GEO} − sum of provinces| (employment, "
+            f"Total row): {province_gap.max():.2f} thousand"
+        )
+
+        if province_gap.max() <= PROVINCE_SUM_TOLERANCE_THOUSANDS:
+            report.check(
+                "OK",
+                "Provinces add up to Canada within "
+                f"{PROVINCE_SUM_TOLERANCE_THOUSANDS} thousand."
+            )
+        else:
+            report.check(
+                "NOTE",
+                "Provinces do not add up to Canada within "
+                f"{PROVINCE_SUM_TOLERANCE_THOUSANDS} thousand in "
+                f"{int((province_gap > PROVINCE_SUM_TOLERANCE_THOUSANDS).sum()):,} "
+                "month(s). Expected when provincial values are suppressed "
+                "or rounded; do not derive Canada by summing provinces."
+            )
 
     report.add()
 
@@ -1142,9 +1288,10 @@ def validate_dataset(name, config):
     )
 
     n_months = len(pd.date_range(START_DATE, END_DATE, freq="MS"))
+    n_geos = kept["GEO"].nunique()
     n_industries = kept["_naics"].nunique()
     expected_rows = len(
-        kept[["_date", "_naics"]].drop_duplicates()
+        kept[["_date", "GEO", "_naics"]].drop_duplicates()
     )
 
     report = Report()
@@ -1159,14 +1306,14 @@ def validate_dataset(name, config):
 
     check_shape(
         report, config, extracted_rows, processed, in_scope, selected,
-        kept, removed, nulled, expected_rows, n_industries, n_months,
-        extracted_columns,
+        kept, removed, nulled, expected_rows, n_geos, n_industries,
+        n_months, extracted_columns,
     )
     check_columns(report, extracted_columns, processed, config)
     check_dates(
         report, extracted, processed, processed_date_column, n_months,
     )
-    check_geography(report, extracted, processed)
+    check_geography(report, extracted, processed, kept, config)
 
     if has_naics(config):
         check_naics(
