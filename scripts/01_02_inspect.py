@@ -26,11 +26,6 @@ import os
 DATA_DIR = Path("data/raw")
 OUTPUT_DIR = Path("outputs")
 
-# TARGET_FILES = [
-#   "14100022.csv",
-#   "14100063.csv",
-#   "14100372.csv",
-
 METADATA_DIR = Path("data/metadata")
 
 
