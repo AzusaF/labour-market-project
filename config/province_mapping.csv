@@ -1,0 +1,15 @@
+province_code,province_name,province_abbr
+01,Canada,CA
+10,Newfoundland and Labrador,NL
+11,Prince Edward Island,PE
+12,Nova Scotia,NS
+13,New Brunswick,NB
+24,Quebec,QC
+35,Ontario,ON
+46,Manitoba,MB
+47,Saskatchewan,SK
+48,Alberta,AB
+59,British Columbia,BC
+60,Yukon,YT
+61,Northwest Territories,NT
+62,Nunavut,NU

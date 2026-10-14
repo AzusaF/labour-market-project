@@ -87,6 +87,34 @@ UNRELIABLE_FLAGS = ("F",)
 
 TOTAL_ALL_INDUSTRIES = "Total, all industries"
 
+# =============================================================================
+# GEO
+# =============================================================================
+
+NATIONAL_GEO = "Canada"
+PROVINCES = [
+  "Newfoundland and Labrador",
+  "Prince Edward Island",
+  "Nova Scotia",
+  "New Brunswick",
+  "Quebec",
+  "Ontario",
+  "Manitoba",
+  "Saskatchewan",
+  "Alberta",
+  "British Columbia",
+]
+
+ALL_GEOS = [NATIONAL_GEO] + PROVINCES
+
+TABLE_GEOS = {
+  "employment": ALL_GEOS,
+  "wages": ALL_GEOS,
+  "vacancies": [NATIONAL_GEO],
+  "labour_force_total": ALL_GEOS,
+  "cpi": ALL_GEOS,
+}
+
 
 # =============================================================================
 # ANALYTICAL GRAIN
@@ -578,6 +606,11 @@ def transform_cpi():
   df = df[
     (df["Products and product groups"] == "All-items") &
     (df["UOM"] == "2002=100")
+  ].copy()
+
+  # Keep Canada and the 10 provinces.
+  df = df[
+    df["GEO"].isin(TABLE_GEOS["cpi"])
   ].copy()
 
   # Remove suppressed observations if any.

@@ -281,82 +281,82 @@ def main():
 			file=output_file,
 		)
 
-	print(f"Mapping file  : {MAPPING_FILE}", file=output_file)
-	print(f"Processed dir : {PROCESSED_DIR}", file=output_file)
-	print(f"Output file   : {OUTPUT_FILE}", file=output_file)
+		print(f"Mapping file  : {MAPPING_FILE}", file=output_file)
+		print(f"Processed dir : {PROCESSED_DIR}", file=output_file)
+		print(f"Output file   : {OUTPUT_FILE}", file=output_file)
 
-	# ---------------------------------------------------------------
-	# Load mapping table and run table-wide checks
-	# ---------------------------------------------------------------
+		# ---------------------------------------------------------------
+		# Load mapping table and run table-wide checks
+		# ---------------------------------------------------------------
 
-	mapping_df = load_mapping_table(MAPPING_FILE)
+		mapping_df = load_mapping_table(MAPPING_FILE)
 
-	key_ok = check_composite_key(mapping_df, output_file)
-	types_ok = check_unknown_mapping_types(mapping_df, output_file)
+		key_ok = check_composite_key(mapping_df, output_file)
+		types_ok = check_unknown_mapping_types(mapping_df, output_file)
 
-	# ---------------------------------------------------------------
-	# Validate each source table against its own processed file
-	# ---------------------------------------------------------------
+		# ---------------------------------------------------------------
+		# Validate each source table against its own processed file
+		# ---------------------------------------------------------------
 
-	print_section(
-	"PER-SOURCE-TABLE VALIDATION",
-	file=output_file,
-	)
+		print_section(
+		"PER-SOURCE-TABLE VALIDATION",
+		file=output_file,
+		)
 
-	table_results = {}
+		table_results = {}
 
-	for source_table, file_name in FILE_BY_SOURCE_TABLE.items():
-		file_path = PROCESSED_DIR / file_name
+		for source_table, file_name in FILE_BY_SOURCE_TABLE.items():
+			file_path = PROCESSED_DIR / file_name
 
-		print_subsection(
-			f"{source_table} → {file_name}",
+			print_subsection(
+				f"{source_table} → {file_name}",
+				file=output_file,
+			)
+
+			if not file_path.exists():
+				print(
+					f"Processed file not found: {file_path}",
+					file=output_file,
+				)
+				table_results[source_table] = False
+				continue
+
+			data_labels = load_naics_labels(file_path)
+
+			table_results[source_table] = validate_source_table(
+				source_table,
+				mapping_df,
+				data_labels,
+				output_file,
+			)
+
+		# ---------------------------------------------------------------
+		# Verdict
+		# ---------------------------------------------------------------
+
+		print_section("VALIDATION RESULT", file=output_file)
+
+		all_ok = key_ok and types_ok and all(table_results.values())
+
+		for source_table, passed in table_results.items():
+			status = "PASSED" if passed else "FAILED"
+
+			print(f"{source_table}: {status}", file=output_file)
+
+		print(file=output_file)
+		print(
+			f"Overall status: {'PASSED' if all_ok else 'FAILED'}",
 			file=output_file,
 		)
 
-		if not file_path.exists():
+		if all_ok:
+			print(f"Validation passed. Report written to: {OUTPUT_FILE}")
+		else:
 			print(
-				f"Processed file not found: {file_path}",
-				file=output_file,
+				f"Validation FAILED — see report for details: {OUTPUT_FILE}",
+				file=sys.stderr,
 			)
-			table_results[source_table] = False
-			continue
-
-		data_labels = load_naics_labels(file_path)
-
-		table_results[source_table] = validate_source_table(
-			source_table,
-			mapping_df,
-			data_labels,
-			output_file,
-		)
-
-	# ---------------------------------------------------------------
-	# Verdict
-	# ---------------------------------------------------------------
-
-	print_section("VALIDATION RESULT", file=output_file)
-
-	all_ok = key_ok and types_ok and all(table_results.values())
-
-	for source_table, passed in table_results.items():
-		status = "PASSED" if passed else "FAILED"
-
-		print(f"{source_table}: {status}", file=output_file)
-
-	print(file=output_file)
-	print(
-		f"Overall status: {'PASSED' if all_ok else 'FAILED'}",
-		file=output_file,
-	)
-
-	if all_ok:
-		print(f"Validation passed. Report written to: {OUTPUT_FILE}")
-	else:
-		print(
-			f"Validation FAILED — see report for details: {OUTPUT_FILE}",
-			file=sys.stderr,
-		)
-	sys.exit(1)
+		sys.exit(1)
 
 
 if __name__ == "__main__":
