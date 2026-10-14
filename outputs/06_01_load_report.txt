@@ -6,8 +6,8 @@ Database file: data/warehouse.duckdb
 Output file  : outputs/06_01_load_report.txt
 
 [employment]
-CSV rows   : 1,680
-DuckDB rows: 1,680
+CSV rows   : 18,027
+DuckDB rows: 18,027
 
 Schema:
          column_name column_type
@@ -17,8 +17,8 @@ Schema:
 Employment_thousands      DOUBLE
 
 [wages]
-CSV rows   : 1,140
-DuckDB rows: 1,140
+CSV rows   : 12,534
+DuckDB rows: 12,534
 
 Schema:
               column_name column_type
@@ -46,8 +46,8 @@ Payroll_employees_quality     VARCHAR
  Job_vacancy_rate_quality     VARCHAR
 
 [labour_force_total]
-CSV rows   : 60
-DuckDB rows: 60
+CSV rows   : 660
+DuckDB rows: 660
 
 Schema:
            column_name column_type
@@ -57,6 +57,16 @@ Labour_force_thousands      DOUBLE
   Employment_thousands      DOUBLE
 Unemployment_thousands      DOUBLE
  Unemployment_rate_pct      DOUBLE
+
+[cpi]
+CSV rows   : 660
+DuckDB rows: 660
+
+Schema:
+column_name column_type
+   REF_DATE        DATE
+        GEO     VARCHAR
+        CPI      DOUBLE
 
 [naics_mapping]
 CSV rows   : 69
@@ -70,6 +80,16 @@ Schema:
 naics_harmonized     VARCHAR
     mapping_type     VARCHAR
            notes     VARCHAR
+
+[province_mapping]
+CSV rows   : 14
+DuckDB rows: 14
+
+Schema:
+  column_name column_type
+province_code     VARCHAR
+province_name     VARCHAR
+province_abbr     VARCHAR
 
 ================================================================================
 LOAD RESULT

@@ -4,6 +4,7 @@ DATA INSPECTION
 Data directory: data/raw
 Output directory: outputs
 
+Datasets to inspect: 14100022.csv, 14100063.csv, 14100372.csv, 18100004.csv
 
 --------------------------------------------------------------------------------
 FILE: 14100022.csv
@@ -174,6 +175,61 @@ Row 5: ['2015-04', 'Canada', '2016A000011124', 'Agriculture, forestry, fishing a
 "2026-06","Canada","2016A000011124","Public administration [91]","Job vacancies","Number","223","units","0","v1212389463","1.21.1","12960","B","","","0"
 "2026-06","Canada","2016A000011124","Public administration [91]","Payroll employees","Number","223","units","0","v1212389462","1.21.3","614855","A","","","0"
 "2026-06","Canada","2016A000011124","Public administration [91]","Job vacancy rate","Percent","239","units","0","v1212389464","1.21.4","2.1","B","","","1"
+
+[Full-file analysis]
+Skipped intentionally to avoid loading the entire dataset into memory.
+
+--------------------------------------------------------------------------------
+FILE: 18100004.csv
+--------------------------------------------------------------------------------
+Size: 161,013,600 bytes
+Size: 153.55 MB
+
+[CSV structure]
+Detected delimiter: ','
+Number of columns: 15
+
+Column names:
+  1. REF_DATE
+  2. GEO
+  3. DGUID
+  4. Products and product groups
+  5. UOM
+  6. UOM_ID
+  7. SCALAR_FACTOR
+  8. SCALAR_ID
+  9. VECTOR
+  10. COORDINATE
+  11. VALUE
+  12. STATUS
+  13. SYMBOL
+  14. TERMINATED
+  15. DECIMALS
+
+Checked first 1000 data rows.
+Row structure is consistent within the checked sample.
+
+[Beginning of file]
+Header columns: 15
+Row 1: ['1914-01', 'Canada', '2016A000011124', 'All-items', '2002=100', '17', 'units', '0', 'v41690973', '2.2', '6.0', '', '', '', '1']
+Row 2: ['1914-01', 'Canada', '2016A000011124', 'All-items (1992=100)', '1992=100', '7', 'units', '0', 'v41713403', '2.309', '7.2', '', '', 't', '1']
+Row 3: ['1914-01', 'Canada', '2016A000011124', 'Goods and services', '2002=100', '17', 'units', '0', 'v41691221', '2.273', '6.0', '', '', 't', '1']
+Row 4: ['1914-02', 'Canada', '2016A000011124', 'All-items', '2002=100', '17', 'units', '0', 'v41690973', '2.2', '6.0', '', '', '', '1']
+Row 5: ['1914-02', 'Canada', '2016A000011124', 'All-items (1992=100)', '1992=100', '7', 'units', '0', 'v41713403', '2.309', '7.2', '', '', 't', '1']
+
+[Middle of file]
+"2003-04","Quebec","2016A000224","Homeowners' maintenance and repairs","2002=100","17","units","0","v41691823","11.89","102.3","","","","1"
+"2003-04","Quebec","2016A000224","Water, fuel and electricity","2002=100","17","units","0","v41691824","11.91","104.2","","","","1"
+"2003-04","Quebec","2016A000224","Electricity","2002=100","17","units","0","v41691825","11.92","100.0","","","","1"
+"2003-04","Quebec","2016A000224","Water","2002=100","17","units","0","v41691826","11.93","97.3","","","","1"
+"2003-04","Quebec","2016A000224","Natural gas","2002=100","17","units","0","v41691827","11.94","119.5","","","","1"
+
+[End of file]
+"2026-08","Yellowknife, Northwest Territories","2011A00056106023","Durable goods","2002=100","17","units","0","v41692831","30.275","119.0","","","","1"
+"2026-08","Yellowknife, Northwest Territories","2011A00056106023","Semi-durable goods","2002=100","17","units","0","v41692832","30.276","113.3","","","","1"
+"2026-08","Yellowknife, Northwest Territories","2011A00056106023","Non-durable goods","2002=100","17","units","0","v41692833","30.277","208.0","","","","1"
+"2026-08","Yellowknife, Northwest Territories","2011A00056106023","Services","2002=100","17","units","0","v41692834","30.282","172.5","","","","1"
+"2026-08","Iqaluit, Nunavut","2011A00056204003","All-items","2002=100","17","units","0","v41713432","31.2","150.6","","","","1"
 
 [Full-file analysis]
 Skipped intentionally to avoid loading the entire dataset into memory.

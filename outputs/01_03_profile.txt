@@ -2,7 +2,7 @@
 03 PROFILE
 ================================================================================
 Data directory: data/raw
-Files analyzed: 3
+Files analyzed: 4
 
 
 ################################################################################
@@ -780,6 +780,269 @@ C    1293
 D     642
 E     137
 F      29
+Name: count, dtype: int64
+
+
+################################################################################
+# 03 PROFILE — 18100004.csv
+################################################################################
+
+================================================================================
+DATA LOADING
+================================================================================
+File: 18100004.csv
+File size: 153.55 MB
+Small file detected. Reading the full dataset.
+Rows loaded: 1,152,913
+Columns loaded: 15
+
+================================================================================
+STRUCTURE
+================================================================================
+
+[SHAPE]
+Rows: 1,152,913
+Columns: 15
+
+[COLUMNS]
+['REF_DATE', 'GEO', 'DGUID', 'Products and product groups', 'UOM', 'UOM_ID', 'SCALAR_FACTOR', 'SCALAR_ID', 'VECTOR', 'COORDINATE', 'VALUE', 'STATUS', 'SYMBOL', 'TERMINATED', 'DECIMALS']
+
+[DATA TYPES]
+REF_DATE                        object
+GEO                             object
+DGUID                           object
+Products and product groups     object
+UOM                             object
+UOM_ID                           int64
+SCALAR_FACTOR                   object
+SCALAR_ID                        int64
+VECTOR                          object
+COORDINATE                     float64
+VALUE                          float64
+STATUS                          object
+SYMBOL                         float64
+TERMINATED                      object
+DECIMALS                         int64
+dtype: object
+
+[FIRST 5 ROWS]
+  REF_DATE     GEO           DGUID Products and product groups       UOM  UOM_ID SCALAR_FACTOR  SCALAR_ID     VECTOR  COORDINATE  VALUE STATUS  SYMBOL TERMINATED  DECIMALS
+0  1914-01  Canada  2016A000011124                   All-items  2002=100      17         units          0  v41690973       2.200    6.0    NaN     NaN        NaN         1
+1  1914-01  Canada  2016A000011124        All-items (1992=100)  1992=100       7         units          0  v41713403       2.309    7.2    NaN     NaN          t         1
+2  1914-01  Canada  2016A000011124          Goods and services  2002=100      17         units          0  v41691221       2.273    6.0    NaN     NaN          t         1
+3  1914-02  Canada  2016A000011124                   All-items  2002=100      17         units          0  v41690973       2.200    6.0    NaN     NaN        NaN         1
+4  1914-02  Canada  2016A000011124        All-items (1992=100)  1992=100       7         units          0  v41713403       2.309    7.2    NaN     NaN          t         1
+
+================================================================================
+NUMERIC SUMMARY
+================================================================================
+             UOM_ID  SCALAR_ID    COORDINATE         VALUE  SYMBOL   DECIMALS
+count  1.152913e+06  1152913.0  1.152913e+06  1.152913e+06     0.0  1152913.0
+mean   1.786864e+01        0.0  1.405747e+01  1.025005e+02     NaN        1.0
+std    1.960465e+01        0.0  9.592221e+00  4.221746e+01     NaN        0.0
+min    7.000000e+00        0.0  2.100000e+00  0.000000e+00     NaN        1.0
+25%    1.700000e+01        0.0  5.188000e+00  7.870000e+01     NaN        1.0
+50%    1.700000e+01        0.0  1.170000e+01  9.840000e+01     NaN        1.0
+75%    1.700000e+01        0.0  2.317600e+01  1.231000e+02     NaN        1.0
+max    4.520000e+02        0.0  3.120000e+01  6.814000e+02     NaN        1.0
+
+================================================================================
+VALUE ANALYSIS
+================================================================================
+
+[VALUE SUMMARY]
+count    1.152913e+06
+mean     1.025005e+02
+std      4.221746e+01
+min      0.000000e+00
+25%      7.870000e+01
+50%      9.840000e+01
+75%      1.231000e+02
+max      6.814000e+02
+Name: VALUE, dtype: float64
+
+[VALUE BY STATUS]
+        count   min    max        mean
+STATUS                                
+E           3  82.0  223.6  131.433333
+
+================================================================================
+DUPLICATES
+================================================================================
+Duplicate rows: 0
+
+================================================================================
+MISSING VALUES
+================================================================================
+SYMBOL        1152913
+STATUS        1152910
+TERMINATED    1093605
+DGUID            3476
+dtype: int64
+
+================================================================================
+CATEGORICAL COLUMNS
+================================================================================
+
+[REF_DATE]
+Unique values: 1,352
+REF_DATE
+2018-12    2102
+2016-12    2089
+2016-10    2089
+2016-09    2089
+2016-08    2089
+2016-07    2089
+2016-06    2089
+2016-05    2089
+2016-04    2089
+2016-03    2089
+2016-02    2089
+2016-01    2089
+2016-11    2089
+2013-12    2088
+2013-08    2088
+2015-09    2088
+2015-10    2088
+2015-11    2088
+2015-12    2088
+2013-10    2088
+Name: count, dtype: int64
+
+[GEO]
+Unique values: 30
+GEO
+Canada                                   189710
+British Columbia                          77385
+Saskatchewan                              77385
+Manitoba                                  77385
+Ontario                                   77385
+Quebec                                    77385
+Alberta                                   76809
+New Brunswick                             76809
+Nova Scotia                               76809
+Newfoundland and Labrador                 76809
+Prince Edward Island                      76137
+Yellowknife, Northwest Territories        66536
+Whitehorse, Yukon                         66536
+Edmonton, Alberta                          3797
+Vancouver, British Columbia                3797
+St. John's, Newfoundland and Labrador      3797
+Saskatoon, Saskatchewan                    3797
+Regina, Saskatchewan                       3797
+Winnipeg, Manitoba                         3797
+Thunder Bay, Ontario                       3797
+Name: count, dtype: int64
+
+[DGUID]
+Unique values: 30
+DGUID
+2016A000011124      189710
+2016A000259          77385
+2016A000247          77385
+2016A000246          77385
+2016A000235          77385
+2016A000224          77385
+2016A000248          76809
+2016A000213          76809
+2016A000212          76809
+2016A000210          76809
+2016A000211          76137
+2011A00056106023     66536
+2011A00056001009     66536
+2011S0503835          3797
+2011S0503933          3797
+2011S0503001          3797
+2011S0503725          3797
+2011S0503705          3797
+2011S0503602          3797
+2011S0503595          3797
+Name: count, dtype: int64
+
+[Products and product groups]
+Unique values: 359
+Products and product groups
+All-items                                     18950
+Water, fuel and electricity                   17811
+Rented accommodation                          17121
+Owned accommodation                           17121
+Shelter                                       16545
+All-items (1992=100)                          15997
+Liquor purchased from stores                   7760
+Passenger vehicle insurance premiums           7760
+All-items excluding food                       7760
+Furniture                                      7760
+Clothing and footwear                          7760
+Transportation                                 7760
+Private transportation                         7760
+Purchase and leasing of passenger vehicles     7760
+Cigarettes                                     7760
+Purchase of passenger vehicles                 7760
+Gasoline                                       7760
+Tobacco products and smokers' supplies         7760
+Local and commuter transportation              7760
+Beer purchased from stores                     7760
+Name: count, dtype: int64
+
+[UOM]
+Unique values: 11
+UOM
+2002=100      1119007
+1992=100        15997
+200212=100       7410
+2013=100         6949
+201812=100       1395
+202304=100        738
+201104=100        515
+202404=100        435
+200704=100        233
+2017=100          128
+202204=100        106
+Name: count, dtype: int64
+
+[SCALAR_FACTOR]
+Unique values: 1
+SCALAR_FACTOR
+units    1152913
+Name: count, dtype: int64
+
+[VECTOR]
+Unique values: 2,139
+VECTOR
+v41690973    1352
+v41691221    1260
+v41713403    1260
+v41691141     932
+v41691153     932
+v41691150     932
+v41691149     932
+v41691148     932
+v41691147     932
+v41691132     932
+v41691136     932
+v41691161     932
+v41691131     932
+v41691129     932
+v41691128     932
+v41691108     932
+v41691154     932
+v41691165     932
+v41691163     932
+v41691071     932
+Name: count, dtype: int64
+
+[STATUS]
+Unique values: 2
+STATUS
+NaN    1152910
+E            3
+Name: count, dtype: int64
+
+[TERMINATED]
+Unique values: 2
+TERMINATED
+NaN    1093605
+t        59308
 Name: count, dtype: int64
 
 ================================================================================

@@ -73,15 +73,15 @@ def load_data(file_path):
 
     df = pd.read_csv(
       file_path,
-      nrows=SAMPLE_ROWS
+      nrows=SAMPLE_ROWS,
+      low_memory=False
     )
 
     is_sample = True
 
   else:
     print("Small file detected. Reading the full dataset.")
-
-    df = pd.read_csv(file_path)
+    df = pd.read_csv(file_path, low_memory=False)
 
     is_sample = False
 

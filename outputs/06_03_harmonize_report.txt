@@ -3,23 +3,78 @@ HARMONIZE
 ================================================================================
 
 -- Output tables --
-   employment_h: 900 rows, 15 harmonized industries
+   employment_h: 9894 rows, 15 harmonized industries, 11 GEO
 [PASS] employment_h: not empty
-   wages_h: 900 rows, 15 harmonized industries
+   wages_h: 9894 rows, 15 harmonized industries, 11 GEO
 [PASS] wages_h: not empty
-   vacancies_h: 900 rows, 15 harmonized industries
+   vacancies_h: 900 rows, 15 harmonized industries, 1 GEO
 [PASS] vacancies_h: not empty
-   industry_monthly: 900 rows, 15 harmonized industries
+   industry_monthly: 9894 rows, 15 harmonized industries, 11 GEO
 [PASS] industry_monthly: not empty
+   cpi_h: 660 rows, 11 GEO
+[PASS] cpi_h: not empty
+   geo_monthly: 660 rows, 11 GEO
+[PASS] geo_monthly: not empty
+[PASS] cpi_h: same row count as cpi (joins did not multiply rows)  -> 660 vs 660
+[PASS] geo_monthly: same row count as labour_force_total  -> 660 vs 660
 
--- Component stability --
-[PASS] employment_h: n_components constant across months
-[PASS] wages_h: n_components constant across months
-[PASS] vacancies_h: n_components constant across months
+-- GEO coverage --
+[PASS] employment_h: GEO set == expected (11)
+[PASS] wages_h: GEO set == expected (11)
+[PASS] vacancies_h: GEO set == expected (1)
+[PASS] cpi_h: GEO set == expected (11)
+[PASS] geo_monthly: GEO set == expected (11)
+[PASS] industry_monthly: vacancy columns populated for Canada rows only
+
+-- Component completeness --
+[PASS] employment_h: n_components <= expected_components
+[PASS] employment_h: incomplete components never produce a value (no partial sums)
+   employment_h.employment_thousands NULL (incomplete or suppressed) by GEO:
+     Alberta: 60/900
+     Ontario: 59/900
+     Manitoba: 58/900
+     Saskatchewan: 58/900
+     Prince Edward Island: 47/894
+     Quebec: 40/900
+     Newfoundland and Labrador: 29/900
+     British Columbia: 29/900
+     Nova Scotia: 3/900
+     Canada: 0/900
+     New Brunswick: 0/900
+[PASS] wages_h: n_components <= expected_components
+[PASS] wages_h: incomplete components never produce a value (no partial sums)
+   wages_h.avg_hourly_wage_cad NULL (incomplete or suppressed) by GEO:
+     Canada: 0/900
+     Nova Scotia: 0/900
+     Prince Edward Island: 0/894
+     Newfoundland and Labrador: 0/900
+     Ontario: 0/900
+     Quebec: 0/900
+     British Columbia: 0/900
+     Saskatchewan: 0/900
+     Manitoba: 0/900
+     New Brunswick: 0/900
+     Alberta: 0/900
+[PASS] vacancies_h: n_components <= expected_components
+[PASS] vacancies_h: incomplete components never produce a value (no partial sums)
+   vacancies_h.job_vacancies NULL (incomplete or suppressed) by GEO:
+     Canada: 8/900
+
+-- Grain --
 [PASS] employment_h: unique on (REF_DATE, GEO, naics_harmonized)
 [PASS] wages_h: unique on (REF_DATE, GEO, naics_harmonized)
 [PASS] vacancies_h: unique on (REF_DATE, GEO, naics_harmonized)
 [PASS] industry_monthly: unique on (REF_DATE, GEO, naics_harmonized)
+[PASS] cpi_h: unique on (REF_DATE, GEO)
+[PASS] geo_monthly: unique on (REF_DATE, GEO)
+
+-- CPI --
+[PASS] cpi_h: rebased index == 100 at 2021-01 for every GEO
+[PASS] cpi_h: yoy % available from 2022-01 onward in every GEO
+   yoy % range: 0.25 to 11.10
+[PASS] cpi_h: yoy % within plausible range (-5 to 15)
+[PASS] industry_monthly: every row has CPI for its GEO and month
+[PASS] industry_monthly: real wage computed wherever nominal wage exists
 
 -- Harmonized industry overlap across tables --
    in all 3 tables: 15
@@ -41,23 +96,33 @@ HARMONIZE
    in only some tables: 0
 [PASS] at least one industry present in all 3 tables
 
--- Harmonized employment vs labour_force_total.Employment_thousands --
-   sum(harmonized) / total employment: min 1.000, max 1.000
+-- Harmonized employment vs labour_force_total.Employment_thousands (per GEO) --
+   only (GEO, month) where every harmonized industry is present and complete
+   British Columbia: 31 months, ratio min 1.000, max 1.000
+   Canada: 60 months, ratio min 1.000, max 1.000
+   Manitoba: 2 months, ratio min 1.000, max 1.000
+   New Brunswick: 60 months, ratio min 0.999, max 1.001
+   Newfoundland and Labrador: 31 months, ratio min 0.999, max 1.002
+   Nova Scotia: 57 months, ratio min 0.999, max 1.001
+   Ontario: 1 months, ratio min 1.000, max 1.000
+   Prince Edward Island: 13 months, ratio min 0.999, max 1.002
+   Quebec: 20 months, ratio min 1.000, max 1.000
+   Saskatchewan: 2 months, ratio min 1.000, max 1.000
    (should be close to 1; if not, check for aggregate rows kept as direct)
 
--- worst_vacancy_quality in industry_monthly --
+-- worst_vacancy_quality in industry_monthly (rows with vacancy data) --
    A: 122
    B: 382
    C: 235
    D: 134
    E: 19
    F: 8
-[PASS] worst_vacancy_quality populated for every industry-month
+[PASS] worst_vacancy_quality populated wherever vacancy data exists
 
--- vacancies_h rows with NULL vacancies (suppressed component): 8
+-- vacancies_h rows with NULL vacancies (suppressed or incomplete component): 8
 
 ================================================================================
 HARMONIZE RESULT
 ================================================================================
-Checks: 13 | Passed: 13 | Failed: 0
+Checks: 33 | Passed: 33 | Failed: 0
 Status: PASSED
