@@ -1,0 +1,17 @@
+industry,full_chain_months,emp_to_vac_lag0,emp_to_vac_best_lag,emp_to_vac_best,vac_to_wage_lag0,vac_to_wage_best_lag,vac_to_wage_best,emp_to_wage_lag0,emp_to_wage_best_lag,emp_to_wage_best,verdict
+ALL INDUSTRIES (national),48,0.734,0,0.734,-0.847,12,-0.657,-0.801,12,-0.255,breaks at vacancies -> wages
+Accommodation and food services,48,0.504,0,0.504,-0.672,12,0.459,-0.28,12,0.742,chain holds
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",46,0.118,0,0.118,-0.422,12,-0.013,-0.016,9,0.277,no link
+"Business, building and other support services",48,-0.083,6,0.252,-0.161,2,-0.117,-0.192,3,0.311,no link
+Construction,48,0.541,2,0.56,-0.579,12,-0.097,-0.578,12,0.287,breaks at vacancies -> wages
+Educational services,48,-0.057,0,-0.057,-0.846,12,-0.711,0.082,11,0.398,no link
+"Finance, insurance, real estate, rental and leasing",46,0.274,0,0.274,-0.64,12,-0.231,-0.31,12,0.469,no link
+Health care and social assistance,48,-0.011,5,0.061,-0.867,12,-0.426,-0.034,6,0.176,no link
+"Information, culture and recreation",48,0.776,0,0.776,-0.256,0,-0.256,-0.618,12,-0.589,breaks at vacancies -> wages
+Manufacturing,48,0.032,0,0.032,-0.425,12,0.394,-0.012,12,0.436,breaks at employment -> vacancies
+Other services (except public administration),48,-0.408,0,-0.408,-0.7,12,-0.329,0.198,6,0.493,no link
+"Professional, scientific and technical services",48,0.329,0,0.329,-0.23,3,-0.128,0.138,3,0.384,breaks at vacancies -> wages
+Public administration,48,0.535,5,0.568,-0.676,0,-0.676,-0.754,12,-0.281,breaks at vacancies -> wages
+Transportation and warehousing,48,-0.131,6,-0.02,-0.713,12,0.117,0.251,9,0.339,no link
+Utilities,39,0.296,1,0.366,-0.488,10,-0.217,-0.561,12,-0.206,breaks at vacancies -> wages
+Wholesale and retail trade,48,0.815,0,0.815,-0.742,12,-0.009,-0.586,12,-0.043,breaks at vacancies -> wages

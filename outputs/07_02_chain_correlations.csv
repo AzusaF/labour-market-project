@@ -1,0 +1,529 @@
+industry,link,lag_months,n_pairs,pearson,spearman
+Accommodation and food services,emp_to_vac,0,48,0.5039,0.3887
+Accommodation and food services,emp_to_vac,1,47,0.3941,0.2831
+Accommodation and food services,emp_to_vac,2,46,0.2759,0.1809
+Accommodation and food services,emp_to_vac,3,45,0.1742,0.1292
+Accommodation and food services,emp_to_vac,4,44,0.053,0.0189
+Accommodation and food services,emp_to_vac,5,43,-0.085,-0.1426
+Accommodation and food services,emp_to_vac,6,42,-0.1169,-0.1689
+Accommodation and food services,vac_to_wage,0,48,-0.6723,-0.6862
+Accommodation and food services,vac_to_wage,1,47,-0.6755,-0.5686
+Accommodation and food services,vac_to_wage,2,46,-0.5941,-0.4775
+Accommodation and food services,vac_to_wage,3,45,-0.4395,-0.4005
+Accommodation and food services,vac_to_wage,4,44,-0.2868,-0.2529
+Accommodation and food services,vac_to_wage,5,43,-0.1388,-0.1714
+Accommodation and food services,vac_to_wage,6,42,0.0238,-0.0681
+Accommodation and food services,vac_to_wage,7,41,0.1657,0.0812
+Accommodation and food services,vac_to_wage,8,40,0.2367,0.2011
+Accommodation and food services,vac_to_wage,9,39,0.2507,0.2356
+Accommodation and food services,vac_to_wage,10,38,0.2283,0.3393
+Accommodation and food services,vac_to_wage,11,37,0.2942,0.4512
+Accommodation and food services,vac_to_wage,12,36,0.4595,0.4906
+Accommodation and food services,emp_to_wage,0,48,-0.2804,-0.2419
+Accommodation and food services,emp_to_wage,1,47,-0.21,-0.1966
+Accommodation and food services,emp_to_wage,2,46,-0.0728,-0.0912
+Accommodation and food services,emp_to_wage,3,45,0.0522,0.0821
+Accommodation and food services,emp_to_wage,4,44,0.3279,0.2911
+Accommodation and food services,emp_to_wage,5,43,0.4131,0.386
+Accommodation and food services,emp_to_wage,6,42,0.3517,0.4015
+Accommodation and food services,emp_to_wage,7,41,0.2471,0.4369
+Accommodation and food services,emp_to_wage,8,40,0.2219,0.4553
+Accommodation and food services,emp_to_wage,9,39,0.3452,0.5132
+Accommodation and food services,emp_to_wage,10,38,0.5526,0.6188
+Accommodation and food services,emp_to_wage,11,37,0.7095,0.7285
+Accommodation and food services,emp_to_wage,12,36,0.7416,0.7861
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_vac,0,46,0.1177,0.1209
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_vac,1,45,0.0104,0.0635
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_vac,2,44,-0.0224,0.0678
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_vac,3,43,-0.1041,-0.0646
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_vac,4,42,-0.0352,-0.0186
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_vac,5,41,-0.201,-0.2613
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_vac,6,40,-0.1691,-0.1844
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,0,46,-0.4222,-0.2993
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,1,45,-0.4372,-0.3216
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,2,44,-0.5132,-0.3927
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,3,43,-0.6522,-0.5156
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,4,42,-0.7258,-0.576
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,5,41,-0.7005,-0.4789
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,6,40,-0.7691,-0.6064
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,7,39,-0.7248,-0.5751
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,8,38,-0.5984,-0.3905
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,9,37,-0.5529,-0.3831
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,10,36,-0.4376,-0.3004
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,11,35,-0.2843,-0.2112
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",vac_to_wage,12,34,-0.0129,0.0032
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,0,48,-0.0156,0.102
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,1,47,0.0504,0.1404
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,2,46,0.0917,0.198
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,3,45,0.1015,0.2219
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,4,44,0.1549,0.2647
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,5,43,0.1943,0.2406
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,6,42,0.185,0.1923
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,7,41,0.2266,0.2232
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,8,40,0.2548,0.2321
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,9,39,0.2767,0.2652
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,10,38,0.1761,0.1625
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,11,37,0.0454,0.0178
+"Agriculture, forestry, fishing, mining, quarrying, oil and gas",emp_to_wage,12,36,0.0773,0.0438
+"Business, building and other support services",emp_to_vac,0,48,-0.0831,-0.1806
+"Business, building and other support services",emp_to_vac,1,47,-0.0202,0.0281
+"Business, building and other support services",emp_to_vac,2,46,-0.0552,-0.0508
+"Business, building and other support services",emp_to_vac,3,45,0.0159,0.0739
+"Business, building and other support services",emp_to_vac,4,44,0.0509,0.1439
+"Business, building and other support services",emp_to_vac,5,43,0.0832,0.1329
+"Business, building and other support services",emp_to_vac,6,42,0.2523,0.297
+"Business, building and other support services",vac_to_wage,0,48,-0.1606,0.0542
+"Business, building and other support services",vac_to_wage,1,47,-0.1828,-0.037
+"Business, building and other support services",vac_to_wage,2,46,-0.1168,-0.0847
+"Business, building and other support services",vac_to_wage,3,45,-0.2193,-0.2321
+"Business, building and other support services",vac_to_wage,4,44,-0.322,-0.2784
+"Business, building and other support services",vac_to_wage,5,43,-0.4695,-0.3584
+"Business, building and other support services",vac_to_wage,6,42,-0.4985,-0.4278
+"Business, building and other support services",vac_to_wage,7,41,-0.5219,-0.4078
+"Business, building and other support services",vac_to_wage,8,40,-0.5254,-0.4809
+"Business, building and other support services",vac_to_wage,9,39,-0.4836,-0.3271
+"Business, building and other support services",vac_to_wage,10,38,-0.4684,-0.4398
+"Business, building and other support services",vac_to_wage,11,37,-0.547,-0.614
+"Business, building and other support services",vac_to_wage,12,36,-0.444,-0.4646
+"Business, building and other support services",emp_to_wage,0,48,-0.1923,-0.1911
+"Business, building and other support services",emp_to_wage,1,47,-0.0169,0.0153
+"Business, building and other support services",emp_to_wage,2,46,0.1313,0.227
+"Business, building and other support services",emp_to_wage,3,45,0.3114,0.309
+"Business, building and other support services",emp_to_wage,4,44,0.0599,0.0403
+"Business, building and other support services",emp_to_wage,5,43,0.1519,0.1318
+"Business, building and other support services",emp_to_wage,6,42,0.1954,0.1317
+"Business, building and other support services",emp_to_wage,7,41,0.3006,0.2659
+"Business, building and other support services",emp_to_wage,8,40,0.2682,0.2216
+"Business, building and other support services",emp_to_wage,9,39,0.2162,0.1395
+"Business, building and other support services",emp_to_wage,10,38,0.1074,0.1382
+"Business, building and other support services",emp_to_wage,11,37,0.1382,0.1076
+"Business, building and other support services",emp_to_wage,12,36,-0.078,-0.1107
+Construction,emp_to_vac,0,48,0.5405,0.5627
+Construction,emp_to_vac,1,47,0.4895,0.5116
+Construction,emp_to_vac,2,46,0.5605,0.609
+Construction,emp_to_vac,3,45,0.4566,0.5526
+Construction,emp_to_vac,4,44,0.4066,0.5013
+Construction,emp_to_vac,5,43,0.3812,0.4142
+Construction,emp_to_vac,6,42,0.3501,0.4054
+Construction,vac_to_wage,0,48,-0.5792,-0.3955
+Construction,vac_to_wage,1,47,-0.6992,-0.5452
+Construction,vac_to_wage,2,46,-0.6838,-0.4125
+Construction,vac_to_wage,3,45,-0.6585,-0.475
+Construction,vac_to_wage,4,44,-0.6074,-0.3701
+Construction,vac_to_wage,5,43,-0.6324,-0.4017
+Construction,vac_to_wage,6,42,-0.5187,-0.3991
+Construction,vac_to_wage,7,41,-0.2987,-0.2204
+Construction,vac_to_wage,8,40,-0.3809,-0.2529
+Construction,vac_to_wage,9,39,-0.3966,-0.234
+Construction,vac_to_wage,10,38,-0.1411,0.0148
+Construction,vac_to_wage,11,37,-0.1195,0.0209
+Construction,vac_to_wage,12,36,-0.0973,-0.0031
+Construction,emp_to_wage,0,48,-0.5784,-0.4987
+Construction,emp_to_wage,1,47,-0.4321,-0.356
+Construction,emp_to_wage,2,46,-0.2645,-0.1742
+Construction,emp_to_wage,3,45,-0.2575,-0.2054
+Construction,emp_to_wage,4,44,-0.198,-0.21
+Construction,emp_to_wage,5,43,-0.0813,-0.0822
+Construction,emp_to_wage,6,42,0.0262,-0.0035
+Construction,emp_to_wage,7,41,-0.0212,-0.0185
+Construction,emp_to_wage,8,40,-0.0236,-0.0383
+Construction,emp_to_wage,9,39,0.1246,0.036
+Construction,emp_to_wage,10,38,0.0617,0.0769
+Construction,emp_to_wage,11,37,0.0511,0.0574
+Construction,emp_to_wage,12,36,0.2872,0.3184
+Educational services,emp_to_vac,0,48,-0.0573,-0.0757
+Educational services,emp_to_vac,1,47,-0.1096,-0.2002
+Educational services,emp_to_vac,2,46,-0.1327,-0.2565
+Educational services,emp_to_vac,3,45,-0.2486,-0.2544
+Educational services,emp_to_vac,4,44,-0.3178,-0.3316
+Educational services,emp_to_vac,5,43,-0.0993,-0.1628
+Educational services,emp_to_vac,6,42,-0.1018,-0.1694
+Educational services,vac_to_wage,0,48,-0.8464,-0.8591
+Educational services,vac_to_wage,1,47,-0.8631,-0.8544
+Educational services,vac_to_wage,2,46,-0.8697,-0.8522
+Educational services,vac_to_wage,3,45,-0.8672,-0.8386
+Educational services,vac_to_wage,4,44,-0.8542,-0.8407
+Educational services,vac_to_wage,5,43,-0.8704,-0.8612
+Educational services,vac_to_wage,6,42,-0.8843,-0.8516
+Educational services,vac_to_wage,7,41,-0.8796,-0.8483
+Educational services,vac_to_wage,8,40,-0.8309,-0.8013
+Educational services,vac_to_wage,9,39,-0.8318,-0.7974
+Educational services,vac_to_wage,10,38,-0.7816,-0.7958
+Educational services,vac_to_wage,11,37,-0.7138,-0.7359
+Educational services,vac_to_wage,12,36,-0.7114,-0.7526
+Educational services,emp_to_wage,0,48,0.0825,0.0484
+Educational services,emp_to_wage,1,47,0.1211,0.1159
+Educational services,emp_to_wage,2,46,0.134,0.1198
+Educational services,emp_to_wage,3,45,0.1418,0.154
+Educational services,emp_to_wage,4,44,0.2318,0.2443
+Educational services,emp_to_wage,5,43,0.1492,0.1501
+Educational services,emp_to_wage,6,42,0.1747,0.239
+Educational services,emp_to_wage,7,41,0.1823,0.2174
+Educational services,emp_to_wage,8,40,0.2504,0.3034
+Educational services,emp_to_wage,9,39,0.3516,0.3872
+Educational services,emp_to_wage,10,38,0.3903,0.4083
+Educational services,emp_to_wage,11,37,0.3981,0.4173
+Educational services,emp_to_wage,12,36,0.3848,0.4304
+"Finance, insurance, real estate, rental and leasing",emp_to_vac,0,46,0.274,0.3249
+"Finance, insurance, real estate, rental and leasing",emp_to_vac,1,45,0.2115,0.2264
+"Finance, insurance, real estate, rental and leasing",emp_to_vac,2,45,0.2671,0.2773
+"Finance, insurance, real estate, rental and leasing",emp_to_vac,3,44,0.2622,0.2713
+"Finance, insurance, real estate, rental and leasing",emp_to_vac,4,43,0.168,0.1676
+"Finance, insurance, real estate, rental and leasing",emp_to_vac,5,42,0.2688,0.26
+"Finance, insurance, real estate, rental and leasing",emp_to_vac,6,41,0.2722,0.3152
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,0,46,-0.6398,-0.612
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,1,45,-0.6881,-0.6497
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,2,44,-0.6718,-0.6299
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,3,43,-0.7647,-0.7404
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,4,42,-0.6656,-0.6538
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,5,41,-0.565,-0.5305
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,6,40,-0.5693,-0.6053
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,7,39,-0.5247,-0.4834
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,8,38,-0.5111,-0.4345
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,9,37,-0.3881,-0.3483
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,10,36,-0.3128,-0.2824
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,11,35,-0.3444,-0.1675
+"Finance, insurance, real estate, rental and leasing",vac_to_wage,12,34,-0.231,-0.0313
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,0,48,-0.3101,-0.2307
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,1,47,-0.3119,-0.2056
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,2,46,-0.2361,-0.1361
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,3,45,-0.2435,-0.1498
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,4,44,-0.2239,-0.1619
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,5,43,-0.0905,-0.0165
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,6,42,-0.1505,-0.0711
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,7,41,-0.0885,0.0016
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,8,40,0.0021,0.0848
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,9,39,0.0802,0.1338
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,10,38,0.144,0.2111
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,11,37,0.1942,0.197
+"Finance, insurance, real estate, rental and leasing",emp_to_wage,12,36,0.4691,0.4489
+Health care and social assistance,emp_to_vac,0,48,-0.0109,-0.0069
+Health care and social assistance,emp_to_vac,1,47,0.051,0.0098
+Health care and social assistance,emp_to_vac,2,46,0.0577,-0.0377
+Health care and social assistance,emp_to_vac,3,45,-0.0513,-0.1551
+Health care and social assistance,emp_to_vac,4,44,-0.0222,-0.1779
+Health care and social assistance,emp_to_vac,5,43,0.061,-0.188
+Health care and social assistance,emp_to_vac,6,42,0.0002,-0.1771
+Health care and social assistance,vac_to_wage,0,48,-0.8674,-0.805
+Health care and social assistance,vac_to_wage,1,47,-0.7224,-0.6972
+Health care and social assistance,vac_to_wage,2,46,-0.8491,-0.737
+Health care and social assistance,vac_to_wage,3,45,-0.7736,-0.7427
+Health care and social assistance,vac_to_wage,4,44,-0.7841,-0.7019
+Health care and social assistance,vac_to_wage,5,43,-0.6988,-0.6036
+Health care and social assistance,vac_to_wage,6,42,-0.7898,-0.6681
+Health care and social assistance,vac_to_wage,7,41,-0.689,-0.5882
+Health care and social assistance,vac_to_wage,8,40,-0.6583,-0.5463
+Health care and social assistance,vac_to_wage,9,39,-0.6735,-0.5838
+Health care and social assistance,vac_to_wage,10,38,-0.6045,-0.4969
+Health care and social assistance,vac_to_wage,11,37,-0.5397,-0.3585
+Health care and social assistance,vac_to_wage,12,36,-0.4257,-0.3694
+Health care and social assistance,emp_to_wage,0,48,-0.0341,0.0134
+Health care and social assistance,emp_to_wage,1,47,-0.0473,0.0775
+Health care and social assistance,emp_to_wage,2,46,0.0225,0.1459
+Health care and social assistance,emp_to_wage,3,45,0.0338,0.1539
+Health care and social assistance,emp_to_wage,4,44,0.0449,0.1914
+Health care and social assistance,emp_to_wage,5,43,0.1054,0.2555
+Health care and social assistance,emp_to_wage,6,42,0.1758,0.3069
+Health care and social assistance,emp_to_wage,7,41,0.1437,0.2864
+Health care and social assistance,emp_to_wage,8,40,0.1085,0.2184
+Health care and social assistance,emp_to_wage,9,39,0.0359,0.1239
+Health care and social assistance,emp_to_wage,10,38,-0.0474,-0.0091
+Health care and social assistance,emp_to_wage,11,37,-0.1635,-0.1086
+Health care and social assistance,emp_to_wage,12,36,-0.1936,-0.1349
+"Information, culture and recreation",emp_to_vac,0,48,0.7763,0.4358
+"Information, culture and recreation",emp_to_vac,1,47,0.6296,0.2904
+"Information, culture and recreation",emp_to_vac,2,46,0.5601,0.169
+"Information, culture and recreation",emp_to_vac,3,45,0.5068,0.134
+"Information, culture and recreation",emp_to_vac,4,44,0.4191,0.1066
+"Information, culture and recreation",emp_to_vac,5,43,0.3517,0.0313
+"Information, culture and recreation",emp_to_vac,6,42,0.141,-0.0994
+"Information, culture and recreation",vac_to_wage,0,48,-0.2561,-0.136
+"Information, culture and recreation",vac_to_wage,1,47,-0.3335,-0.2002
+"Information, culture and recreation",vac_to_wage,2,46,-0.4269,-0.2604
+"Information, culture and recreation",vac_to_wage,3,45,-0.471,-0.3228
+"Information, culture and recreation",vac_to_wage,4,44,-0.4168,-0.346
+"Information, culture and recreation",vac_to_wage,5,43,-0.3753,-0.3383
+"Information, culture and recreation",vac_to_wage,6,42,-0.4127,-0.338
+"Information, culture and recreation",vac_to_wage,7,41,-0.478,-0.4364
+"Information, culture and recreation",vac_to_wage,8,40,-0.5462,-0.4827
+"Information, culture and recreation",vac_to_wage,9,39,-0.5974,-0.5306
+"Information, culture and recreation",vac_to_wage,10,38,-0.6671,-0.5816
+"Information, culture and recreation",vac_to_wage,11,37,-0.7099,-0.6242
+"Information, culture and recreation",vac_to_wage,12,36,-0.6726,-0.6831
+"Information, culture and recreation",emp_to_wage,0,48,-0.6178,-0.6572
+"Information, culture and recreation",emp_to_wage,1,47,-0.5903,-0.6632
+"Information, culture and recreation",emp_to_wage,2,46,-0.6212,-0.7241
+"Information, culture and recreation",emp_to_wage,3,45,-0.6161,-0.7377
+"Information, culture and recreation",emp_to_wage,4,44,-0.6246,-0.8003
+"Information, culture and recreation",emp_to_wage,5,43,-0.6429,-0.7768
+"Information, culture and recreation",emp_to_wage,6,42,-0.6917,-0.8305
+"Information, culture and recreation",emp_to_wage,7,41,-0.7651,-0.8672
+"Information, culture and recreation",emp_to_wage,8,40,-0.7933,-0.8809
+"Information, culture and recreation",emp_to_wage,9,39,-0.7541,-0.8126
+"Information, culture and recreation",emp_to_wage,10,38,-0.6934,-0.7514
+"Information, culture and recreation",emp_to_wage,11,37,-0.7287,-0.7565
+"Information, culture and recreation",emp_to_wage,12,36,-0.5887,-0.6726
+Manufacturing,emp_to_vac,0,48,0.0317,-0.1002
+Manufacturing,emp_to_vac,1,47,-0.0628,-0.2102
+Manufacturing,emp_to_vac,2,46,-0.1563,-0.2815
+Manufacturing,emp_to_vac,3,45,-0.2395,-0.3316
+Manufacturing,emp_to_vac,4,44,-0.3125,-0.3636
+Manufacturing,emp_to_vac,5,43,-0.4193,-0.4147
+Manufacturing,emp_to_vac,6,42,-0.5049,-0.4717
+Manufacturing,vac_to_wage,0,48,-0.4246,-0.5918
+Manufacturing,vac_to_wage,1,47,-0.5273,-0.6642
+Manufacturing,vac_to_wage,2,46,-0.69,-0.7364
+Manufacturing,vac_to_wage,3,45,-0.6968,-0.6569
+Manufacturing,vac_to_wage,4,44,-0.701,-0.5798
+Manufacturing,vac_to_wage,5,43,-0.6328,-0.478
+Manufacturing,vac_to_wage,6,42,-0.5648,-0.3812
+Manufacturing,vac_to_wage,7,41,-0.4164,-0.2413
+Manufacturing,vac_to_wage,8,40,-0.2692,-0.0839
+Manufacturing,vac_to_wage,9,39,-0.0731,0.0229
+Manufacturing,vac_to_wage,10,38,0.0993,0.1286
+Manufacturing,vac_to_wage,11,37,0.2304,0.3198
+Manufacturing,vac_to_wage,12,36,0.3941,0.4198
+Manufacturing,emp_to_wage,0,48,-0.0125,0.0138
+Manufacturing,emp_to_wage,1,47,-0.0027,0.023
+Manufacturing,emp_to_wage,2,46,0.0414,0.0598
+Manufacturing,emp_to_wage,3,45,0.1201,0.1491
+Manufacturing,emp_to_wage,4,44,0.093,0.0733
+Manufacturing,emp_to_wage,5,43,0.0972,0.1205
+Manufacturing,emp_to_wage,6,42,0.0572,0.1226
+Manufacturing,emp_to_wage,7,41,0.2128,0.2207
+Manufacturing,emp_to_wage,8,40,0.2081,0.2313
+Manufacturing,emp_to_wage,9,39,0.3721,0.3903
+Manufacturing,emp_to_wage,10,38,0.3059,0.2544
+Manufacturing,emp_to_wage,11,37,0.3852,0.3596
+Manufacturing,emp_to_wage,12,36,0.4358,0.4059
+Other services (except public administration),emp_to_vac,0,48,-0.4083,-0.3695
+Other services (except public administration),emp_to_vac,1,47,-0.4324,-0.4117
+Other services (except public administration),emp_to_vac,2,46,-0.4274,-0.4228
+Other services (except public administration),emp_to_vac,3,45,-0.4502,-0.4852
+Other services (except public administration),emp_to_vac,4,44,-0.4617,-0.5287
+Other services (except public administration),emp_to_vac,5,43,-0.5031,-0.5971
+Other services (except public administration),emp_to_vac,6,42,-0.5995,-0.6846
+Other services (except public administration),vac_to_wage,0,48,-0.6999,-0.6614
+Other services (except public administration),vac_to_wage,1,47,-0.7555,-0.5542
+Other services (except public administration),vac_to_wage,2,46,-0.7988,-0.494
+Other services (except public administration),vac_to_wage,3,45,-0.7875,-0.5622
+Other services (except public administration),vac_to_wage,4,44,-0.8031,-0.6564
+Other services (except public administration),vac_to_wage,5,43,-0.8401,-0.6231
+Other services (except public administration),vac_to_wage,6,42,-0.8102,-0.6762
+Other services (except public administration),vac_to_wage,7,41,-0.7836,-0.5704
+Other services (except public administration),vac_to_wage,8,40,-0.7338,-0.3951
+Other services (except public administration),vac_to_wage,9,39,-0.6135,-0.3427
+Other services (except public administration),vac_to_wage,10,38,-0.5037,-0.1251
+Other services (except public administration),vac_to_wage,11,37,-0.4168,-0.1202
+Other services (except public administration),vac_to_wage,12,36,-0.3294,-0.0986
+Other services (except public administration),emp_to_wage,0,48,0.1977,0.1111
+Other services (except public administration),emp_to_wage,1,47,0.2435,0.1652
+Other services (except public administration),emp_to_wage,2,46,0.272,0.2042
+Other services (except public administration),emp_to_wage,3,45,0.3493,0.2991
+Other services (except public administration),emp_to_wage,4,44,0.4047,0.3846
+Other services (except public administration),emp_to_wage,5,43,0.4427,0.4793
+Other services (except public administration),emp_to_wage,6,42,0.4931,0.4991
+Other services (except public administration),emp_to_wage,7,41,0.4828,0.4697
+Other services (except public administration),emp_to_wage,8,40,0.3942,0.3848
+Other services (except public administration),emp_to_wage,9,39,0.3392,0.296
+Other services (except public administration),emp_to_wage,10,38,0.3601,0.3726
+Other services (except public administration),emp_to_wage,11,37,0.3466,0.344
+Other services (except public administration),emp_to_wage,12,36,0.3412,0.3848
+"Professional, scientific and technical services",emp_to_vac,0,48,0.3295,0.138
+"Professional, scientific and technical services",emp_to_vac,1,47,0.3077,0.0974
+"Professional, scientific and technical services",emp_to_vac,2,46,0.2533,0.0751
+"Professional, scientific and technical services",emp_to_vac,3,45,0.115,-0.0581
+"Professional, scientific and technical services",emp_to_vac,4,44,0.0089,-0.0957
+"Professional, scientific and technical services",emp_to_vac,5,43,-0.0917,-0.1338
+"Professional, scientific and technical services",emp_to_vac,6,42,-0.3522,-0.3563
+"Professional, scientific and technical services",vac_to_wage,0,48,-0.2296,-0.278
+"Professional, scientific and technical services",vac_to_wage,1,47,-0.2618,-0.2794
+"Professional, scientific and technical services",vac_to_wage,2,46,-0.1699,-0.2472
+"Professional, scientific and technical services",vac_to_wage,3,45,-0.1276,-0.213
+"Professional, scientific and technical services",vac_to_wage,4,44,-0.1556,-0.2279
+"Professional, scientific and technical services",vac_to_wage,5,43,-0.2108,-0.2564
+"Professional, scientific and technical services",vac_to_wage,6,42,-0.1739,-0.2297
+"Professional, scientific and technical services",vac_to_wage,7,41,-0.1988,-0.2287
+"Professional, scientific and technical services",vac_to_wage,8,40,-0.183,-0.2336
+"Professional, scientific and technical services",vac_to_wage,9,39,-0.1644,-0.2196
+"Professional, scientific and technical services",vac_to_wage,10,38,-0.1894,-0.2912
+"Professional, scientific and technical services",vac_to_wage,11,37,-0.194,-0.3725
+"Professional, scientific and technical services",vac_to_wage,12,36,-0.2064,-0.4152
+"Professional, scientific and technical services",emp_to_wage,0,48,0.1378,0.1926
+"Professional, scientific and technical services",emp_to_wage,1,47,0.2827,0.3516
+"Professional, scientific and technical services",emp_to_wage,2,46,0.3324,0.4341
+"Professional, scientific and technical services",emp_to_wage,3,45,0.3844,0.4734
+"Professional, scientific and technical services",emp_to_wage,4,44,0.3643,0.4452
+"Professional, scientific and technical services",emp_to_wage,5,43,0.3312,0.4121
+"Professional, scientific and technical services",emp_to_wage,6,42,0.26,0.3038
+"Professional, scientific and technical services",emp_to_wage,7,41,0.1631,0.1944
+"Professional, scientific and technical services",emp_to_wage,8,40,0.1104,0.1274
+"Professional, scientific and technical services",emp_to_wage,9,39,-0.0037,0.0336
+"Professional, scientific and technical services",emp_to_wage,10,38,-0.0393,-0.0176
+"Professional, scientific and technical services",emp_to_wage,11,37,-0.0913,-0.041
+"Professional, scientific and technical services",emp_to_wage,12,36,-0.1758,-0.0896
+Public administration,emp_to_vac,0,48,0.535,0.4735
+Public administration,emp_to_vac,1,47,0.4686,0.4326
+Public administration,emp_to_vac,2,46,0.4704,0.3879
+Public administration,emp_to_vac,3,45,0.4842,0.4348
+Public administration,emp_to_vac,4,44,0.3971,0.3356
+Public administration,emp_to_vac,5,43,0.5675,0.5341
+Public administration,emp_to_vac,6,42,0.49,0.4558
+Public administration,vac_to_wage,0,48,-0.6757,-0.5017
+Public administration,vac_to_wage,1,47,-0.7208,-0.5794
+Public administration,vac_to_wage,2,46,-0.7716,-0.5558
+Public administration,vac_to_wage,3,45,-0.8129,-0.5383
+Public administration,vac_to_wage,4,44,-0.8447,-0.6388
+Public administration,vac_to_wage,5,43,-0.8558,-0.6133
+Public administration,vac_to_wage,6,42,-0.884,-0.654
+Public administration,vac_to_wage,7,41,-0.8026,-0.4815
+Public administration,vac_to_wage,8,40,-0.7952,-0.4797
+Public administration,vac_to_wage,9,39,-0.7678,-0.4755
+Public administration,vac_to_wage,10,38,-0.7573,-0.4973
+Public administration,vac_to_wage,11,37,-0.7884,-0.5382
+Public administration,vac_to_wage,12,36,-0.7392,-0.5012
+Public administration,emp_to_wage,0,48,-0.7535,-0.614
+Public administration,emp_to_wage,1,47,-0.6801,-0.5273
+Public administration,emp_to_wage,2,46,-0.7088,-0.6186
+Public administration,emp_to_wage,3,45,-0.6938,-0.7009
+Public administration,emp_to_wage,4,44,-0.6533,-0.6537
+Public administration,emp_to_wage,5,43,-0.5872,-0.5701
+Public administration,emp_to_wage,6,42,-0.5612,-0.525
+Public administration,emp_to_wage,7,41,-0.5319,-0.5254
+Public administration,emp_to_wage,8,40,-0.5399,-0.4737
+Public administration,emp_to_wage,9,39,-0.554,-0.5356
+Public administration,emp_to_wage,10,38,-0.4738,-0.387
+Public administration,emp_to_wage,11,37,-0.4566,-0.3563
+Public administration,emp_to_wage,12,36,-0.2811,-0.1766
+Transportation and warehousing,emp_to_vac,0,48,-0.1308,-0.1063
+Transportation and warehousing,emp_to_vac,1,47,-0.11,-0.1026
+Transportation and warehousing,emp_to_vac,2,46,-0.1126,-0.122
+Transportation and warehousing,emp_to_vac,3,45,-0.0925,-0.1389
+Transportation and warehousing,emp_to_vac,4,44,-0.1361,-0.1994
+Transportation and warehousing,emp_to_vac,5,43,-0.1315,-0.1832
+Transportation and warehousing,emp_to_vac,6,42,-0.0203,-0.0939
+Transportation and warehousing,vac_to_wage,0,48,-0.7127,-0.6032
+Transportation and warehousing,vac_to_wage,1,47,-0.7686,-0.5903
+Transportation and warehousing,vac_to_wage,2,46,-0.8317,-0.6449
+Transportation and warehousing,vac_to_wage,3,45,-0.7801,-0.4991
+Transportation and warehousing,vac_to_wage,4,44,-0.7664,-0.4655
+Transportation and warehousing,vac_to_wage,5,43,-0.7578,-0.5649
+Transportation and warehousing,vac_to_wage,6,42,-0.6307,-0.2701
+Transportation and warehousing,vac_to_wage,7,41,-0.5155,-0.1629
+Transportation and warehousing,vac_to_wage,8,40,-0.4278,-0.2321
+Transportation and warehousing,vac_to_wage,9,39,-0.2666,-0.0352
+Transportation and warehousing,vac_to_wage,10,38,-0.0896,0.1844
+Transportation and warehousing,vac_to_wage,11,37,-0.012,0.1124
+Transportation and warehousing,vac_to_wage,12,36,0.1169,0.1122
+Transportation and warehousing,emp_to_wage,0,48,0.2513,0.2139
+Transportation and warehousing,emp_to_wage,1,47,0.1847,0.1458
+Transportation and warehousing,emp_to_wage,2,46,0.1755,0.1387
+Transportation and warehousing,emp_to_wage,3,45,0.1532,0.151
+Transportation and warehousing,emp_to_wage,4,44,0.1057,0.1067
+Transportation and warehousing,emp_to_wage,5,43,0.045,0.0334
+Transportation and warehousing,emp_to_wage,6,42,0.0592,0.0625
+Transportation and warehousing,emp_to_wage,7,41,0.1958,0.2038
+Transportation and warehousing,emp_to_wage,8,40,0.2732,0.282
+Transportation and warehousing,emp_to_wage,9,39,0.3395,0.3117
+Transportation and warehousing,emp_to_wage,10,38,0.3382,0.3115
+Transportation and warehousing,emp_to_wage,11,37,0.2528,0.2508
+Transportation and warehousing,emp_to_wage,12,36,0.2394,0.2713
+Utilities,emp_to_vac,0,39,0.2961,0.3449
+Utilities,emp_to_vac,1,39,0.3659,0.3632
+Utilities,emp_to_vac,2,38,0.3409,0.3886
+Utilities,emp_to_vac,3,37,0.3003,0.3065
+Utilities,emp_to_vac,4,36,0.2371,0.1519
+Utilities,emp_to_vac,5,35,0.3045,0.3028
+Utilities,emp_to_vac,6,35,0.2546,0.3602
+Utilities,vac_to_wage,0,39,-0.4876,-0.4526
+Utilities,vac_to_wage,1,38,-0.5559,-0.5824
+Utilities,vac_to_wage,2,37,-0.5199,-0.5313
+Utilities,vac_to_wage,3,36,-0.4281,-0.4093
+Utilities,vac_to_wage,4,35,-0.4322,-0.3588
+Utilities,vac_to_wage,5,35,-0.3808,-0.3692
+Utilities,vac_to_wage,6,34,-0.2649,-0.2614
+Utilities,vac_to_wage,7,34,-0.2839,-0.2211
+Utilities,vac_to_wage,8,33,-0.4495,-0.4408
+Utilities,vac_to_wage,9,32,-0.3002,-0.3112
+Utilities,vac_to_wage,10,31,-0.2173,-0.2113
+Utilities,vac_to_wage,11,30,-0.3725,-0.3157
+Utilities,vac_to_wage,12,29,-0.3691,-0.3286
+Utilities,emp_to_wage,0,48,-0.5615,-0.5484
+Utilities,emp_to_wage,1,47,-0.5656,-0.5467
+Utilities,emp_to_wage,2,46,-0.5595,-0.5512
+Utilities,emp_to_wage,3,45,-0.5662,-0.5748
+Utilities,emp_to_wage,4,44,-0.5157,-0.5236
+Utilities,emp_to_wage,5,43,-0.5331,-0.5337
+Utilities,emp_to_wage,6,42,-0.564,-0.6081
+Utilities,emp_to_wage,7,41,-0.5384,-0.5218
+Utilities,emp_to_wage,8,40,-0.4952,-0.4797
+Utilities,emp_to_wage,9,39,-0.5065,-0.5087
+Utilities,emp_to_wage,10,38,-0.4894,-0.5021
+Utilities,emp_to_wage,11,37,-0.3114,-0.3054
+Utilities,emp_to_wage,12,36,-0.2059,-0.236
+Wholesale and retail trade,emp_to_vac,0,48,0.8149,0.6518
+Wholesale and retail trade,emp_to_vac,1,47,0.7972,0.6296
+Wholesale and retail trade,emp_to_vac,2,46,0.7973,0.6396
+Wholesale and retail trade,emp_to_vac,3,45,0.7772,0.5638
+Wholesale and retail trade,emp_to_vac,4,44,0.7025,0.5245
+Wholesale and retail trade,emp_to_vac,5,43,0.6303,0.465
+Wholesale and retail trade,emp_to_vac,6,42,0.5552,0.3249
+Wholesale and retail trade,vac_to_wage,0,48,-0.7418,-0.7602
+Wholesale and retail trade,vac_to_wage,1,47,-0.655,-0.7344
+Wholesale and retail trade,vac_to_wage,2,46,-0.5843,-0.6831
+Wholesale and retail trade,vac_to_wage,3,45,-0.6324,-0.6711
+Wholesale and retail trade,vac_to_wage,4,44,-0.5725,-0.6469
+Wholesale and retail trade,vac_to_wage,5,43,-0.4614,-0.5408
+Wholesale and retail trade,vac_to_wage,6,42,-0.4676,-0.4517
+Wholesale and retail trade,vac_to_wage,7,41,-0.4793,-0.4195
+Wholesale and retail trade,vac_to_wage,8,40,-0.4251,-0.3323
+Wholesale and retail trade,vac_to_wage,9,39,-0.352,-0.197
+Wholesale and retail trade,vac_to_wage,10,38,-0.2889,-0.0916
+Wholesale and retail trade,vac_to_wage,11,37,-0.2119,-0.01
+Wholesale and retail trade,vac_to_wage,12,36,-0.0089,0.1949
+Wholesale and retail trade,emp_to_wage,0,48,-0.5856,-0.4632
+Wholesale and retail trade,emp_to_wage,1,47,-0.4293,-0.3734
+Wholesale and retail trade,emp_to_wage,2,46,-0.356,-0.3584
+Wholesale and retail trade,emp_to_wage,3,45,-0.3893,-0.2819
+Wholesale and retail trade,emp_to_wage,4,44,-0.3534,-0.2063
+Wholesale and retail trade,emp_to_wage,5,43,-0.2474,-0.1465
+Wholesale and retail trade,emp_to_wage,6,42,-0.2495,-0.0798
+Wholesale and retail trade,emp_to_wage,7,41,-0.2654,0.0052
+Wholesale and retail trade,emp_to_wage,8,40,-0.2142,0.0788
+Wholesale and retail trade,emp_to_wage,9,39,-0.134,0.098
+Wholesale and retail trade,emp_to_wage,10,38,-0.1324,0.0988
+Wholesale and retail trade,emp_to_wage,11,37,-0.0825,0.0773
+Wholesale and retail trade,emp_to_wage,12,36,-0.0432,-0.0015
+ALL INDUSTRIES (national),emp_to_vac,0,48,0.7343,0.24
+ALL INDUSTRIES (national),emp_to_vac,1,47,0.7021,0.1871
+ALL INDUSTRIES (national),emp_to_vac,2,46,0.6401,0.1365
+ALL INDUSTRIES (national),emp_to_vac,3,45,0.5952,0.1203
+ALL INDUSTRIES (national),emp_to_vac,4,44,0.5239,0.0605
+ALL INDUSTRIES (national),emp_to_vac,5,43,0.4809,0.0338
+ALL INDUSTRIES (national),emp_to_vac,6,42,0.4025,-0.0395
+ALL INDUSTRIES (national),vac_to_wage,0,48,-0.8467,-0.771
+ALL INDUSTRIES (national),vac_to_wage,1,47,-0.8863,-0.7821
+ALL INDUSTRIES (national),vac_to_wage,2,46,-0.9225,-0.8318
+ALL INDUSTRIES (national),vac_to_wage,3,45,-0.9327,-0.8523
+ALL INDUSTRIES (national),vac_to_wage,4,44,-0.9392,-0.8513
+ALL INDUSTRIES (national),vac_to_wage,5,43,-0.9389,-0.8716
+ALL INDUSTRIES (national),vac_to_wage,6,42,-0.9422,-0.8504
+ALL INDUSTRIES (national),vac_to_wage,7,41,-0.929,-0.7852
+ALL INDUSTRIES (national),vac_to_wage,8,40,-0.9077,-0.7038
+ALL INDUSTRIES (national),vac_to_wage,9,39,-0.8744,-0.6818
+ALL INDUSTRIES (national),vac_to_wage,10,38,-0.8068,-0.6146
+ALL INDUSTRIES (national),vac_to_wage,11,37,-0.7475,-0.5567
+ALL INDUSTRIES (national),vac_to_wage,12,36,-0.6572,-0.4929
+ALL INDUSTRIES (national),emp_to_wage,0,48,-0.8007,-0.6097
+ALL INDUSTRIES (national),emp_to_wage,1,47,-0.7783,-0.5575
+ALL INDUSTRIES (national),emp_to_wage,2,46,-0.7601,-0.4995
+ALL INDUSTRIES (national),emp_to_wage,3,45,-0.751,-0.4374
+ALL INDUSTRIES (national),emp_to_wage,4,44,-0.7101,-0.3331
+ALL INDUSTRIES (national),emp_to_wage,5,43,-0.7347,-0.3571
+ALL INDUSTRIES (national),emp_to_wage,6,42,-0.7083,-0.3161
+ALL INDUSTRIES (national),emp_to_wage,7,41,-0.7168,-0.2854
+ALL INDUSTRIES (national),emp_to_wage,8,40,-0.6994,-0.2615
+ALL INDUSTRIES (national),emp_to_wage,9,39,-0.5779,-0.134
+ALL INDUSTRIES (national),emp_to_wage,10,38,-0.4748,-0.0876
+ALL INDUSTRIES (national),emp_to_wage,11,37,-0.3981,0.0301
+ALL INDUSTRIES (national),emp_to_wage,12,36,-0.2553,0.1163
