@@ -93,15 +93,15 @@ VALIDATION
 
 -- GEO values --
 [PASS] employment: GEO set == expected (11)
-   employment rows per GEO: New Brunswick=1680, Canada=1680, Nova Scotia=1677, British Columbia=1651, Newfoundland and Labrador=1651, Quebec=1640, Ontario=1621, Prince Edward Island=1614, Alberta=1613, Saskatchewan=1606, Manitoba=1594
+   employment rows per GEO: Canada=1680, New Brunswick=1680, Nova Scotia=1677, Newfoundland and Labrador=1651, British Columbia=1651, Quebec=1640, Ontario=1621, Prince Edward Island=1614, Alberta=1613, Saskatchewan=1606, Manitoba=1594
 [PASS] wages: GEO set == expected (11)
-   wages rows per GEO: Newfoundland and Labrador=1140, Ontario=1140, Canada=1140, Nova Scotia=1140, Quebec=1140, Alberta=1140, Manitoba=1140, New Brunswick=1140, British Columbia=1140, Saskatchewan=1140, Prince Edward Island=1134
+   wages rows per GEO: Quebec=1140, Alberta=1140, Manitoba=1140, New Brunswick=1140, Canada=1140, Nova Scotia=1140, British Columbia=1140, Saskatchewan=1140, Newfoundland and Labrador=1140, Ontario=1140, Prince Edward Island=1134
 [PASS] vacancies: GEO set == expected (1)
    vacancies rows per GEO: Canada=1260
 [PASS] labour_force_total: GEO set == expected (11)
-   labour_force_total rows per GEO: Quebec=60, Newfoundland and Labrador=60, Ontario=60, Alberta=60, Manitoba=60, New Brunswick=60, Canada=60, Nova Scotia=60, Prince Edward Island=60, British Columbia=60, Saskatchewan=60
+   labour_force_total rows per GEO: Newfoundland and Labrador=60, Ontario=60, Canada=60, Nova Scotia=60, Prince Edward Island=60, Quebec=60, British Columbia=60, Saskatchewan=60, Alberta=60, Manitoba=60, New Brunswick=60
 [PASS] cpi: GEO set == expected (11)
-   cpi rows per GEO: Newfoundland and Labrador=60, Ontario=60, Quebec=60, New Brunswick=60, Manitoba=60, Alberta=60, Canada=60, Prince Edward Island=60, Nova Scotia=60, Saskatchewan=60, British Columbia=60
+   cpi rows per GEO: Canada=60, Prince Edward Island=60, Nova Scotia=60, Saskatchewan=60, British Columbia=60, Newfoundland and Labrador=60, Ontario=60, Quebec=60, New Brunswick=60, Manitoba=60, Alberta=60
 [PASS] province_mapping: a column lists all 10 provinces
    province_mapping columns: ['province_code', 'province_name', 'province_abbr']; province column(s): ['province_name']; Canada listed: True
 

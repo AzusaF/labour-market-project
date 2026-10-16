@@ -67,8 +67,8 @@ QA + PROVENANCE
 
    industries affected (source level):
      Canada | Utilities [22]: 6 months
-     Canada | Mining, quarrying, and oil and gas extraction [21]: 1 months
      Canada | Finance and insurance [52]: 1 months
+     Canada | Mining, quarrying, and oil and gas extraction [21]: 1 months
 [PASS] every NULL vacancy row has a Job_vacancies_quality flag (documented missingness)
 [PASS] NULL vacancies never have a populated rate
 
