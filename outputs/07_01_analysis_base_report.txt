@@ -25,6 +25,7 @@ ANALYSIS BASE
 [PASS] chain: unique on (REF_DATE, naics_harmonized)
 [PASS] chain: no 12-month change before 2022-01
 [PASS] chain: same row count as industry_monthly (Canada)  -> 900 vs 900
+[PASS] chain: nominal wage change exists wherever real wage change exists
 
    12-month changes available, by industry (employment / wage / vacancies / full chain):
      Accommodation and food services: 48 / 48 / 48 / 48
@@ -54,5 +55,5 @@ ANALYSIS BASE
 ================================================================================
 ANALYSIS BASE RESULT
 ================================================================================
-Checks: 17 | Passed: 17 | Failed: 0 | Warnings: 0
+Checks: 18 | Passed: 18 | Failed: 0 | Warnings: 0
 Status: PASSED

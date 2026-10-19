@@ -11,8 +11,9 @@ Reads data/warehouse.duckdb (stage 06) and writes two tables back into it:
       -> Beveridge curve, tightness x wage (Phillips-type), lag correlation
 
   analysis_industry_chain     Canada x harmonized industry x month
-      levels plus 12-month % change of employment, real average wage and
-      job vacancies, and a full_chain flag (all three changes available)
+      levels plus 12-month % change of employment, real average wage,
+      nominal average wage and job vacancies, and a full_chain flag
+      (employment, real wage and vacancy changes all available)
       -> employment -> vacancies -> wages chain, clustering, pass-through
 
 Scope:
@@ -121,6 +122,7 @@ con.execute(f"""
   WITH base AS (
     SELECT REF_DATE, naics_harmonized,
            employment_thousands,
+           avg_hourly_wage_cad,
            real_avg_hourly_wage_cad,
            job_vacancies,
            job_vacancy_rate_pct,
@@ -134,6 +136,8 @@ con.execute(f"""
                     / NULLIF(p.employment_thousands, 0) - 1)       AS employment_yoy_pct,
            100.0 * (b.real_avg_hourly_wage_cad
                     / NULLIF(p.real_avg_hourly_wage_cad, 0) - 1)   AS real_wage_yoy_pct,
+           100.0 * (b.avg_hourly_wage_cad
+                    / NULLIF(p.avg_hourly_wage_cad, 0) - 1)        AS nominal_wage_yoy_pct,
            100.0 * (b.job_vacancies
                     / NULLIF(p.job_vacancies, 0) - 1)              AS vacancies_yoy_pct
     FROM base b
@@ -214,6 +218,13 @@ check(f"chain: no 12-month change before {FIRST_YOY_MONTH[:7]}", early == 0,
 # the yoy self-join must not multiply or drop rows
 src = q(f"SELECT COUNT(*) FROM industry_monthly WHERE GEO = '{NATIONAL_GEO}'")[0][0]
 check("chain: same row count as industry_monthly (Canada)", src == n, f"{src} vs {n}")
+
+k = q("""
+  SELECT COUNT(*) FROM analysis_industry_chain
+  WHERE real_wage_yoy_pct IS NOT NULL AND nominal_wage_yoy_pct IS NULL
+""")[0][0]
+check("chain: nominal wage change exists wherever real wage change exists", k == 0,
+      f"{k} rows" if k else "")
 
 log("\n   12-month changes available, by industry (employment / wage / vacancies / full chain):")
 rows = q("""
