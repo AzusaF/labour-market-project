@@ -1,0 +1,103 @@
+================================================================================
+TIGHTNESS, CPI AND WAGES
+================================================================================
+   months 2022-01 to 2025-12 (48), lags 0..6, min pairs 24
+[PASS] national frame covers every month  -> 48 months
+[PASS] national wage growth, CPI inflation and V/U present every month
+   corr(V/U, CPI inflation) at lag 0: 0.935
+[WARN] V/U and CPI inflation are strongly correlated (0.94); their separate effects on wages cannot be reliably separated
+
+-- A. National: tightness_t vs nominal wage growth_{t+lag} --
+[PASS] national lag correlations computed  -> 21 rows
+[PASS] pearson values within [-1, 1]
+          measure  lag_months  n_pairs  pearson  spearman
+              V/U           0       48    0.269     0.319
+              V/U           1       47    0.376     0.419
+              V/U           2       46    0.472     0.478
+              V/U           3       45    0.557     0.564
+              V/U           4       44    0.657     0.658
+              V/U           5       43    0.722     0.708
+              V/U           6       42    0.710     0.707
+     vacancy rate           0       48    0.139     0.221
+     vacancy rate           1       47    0.259     0.331
+     vacancy rate           2       46    0.378     0.414
+     vacancy rate           3       45    0.478     0.481
+     vacancy rate           4       44    0.580     0.595
+     vacancy rate           5       43    0.665     0.635
+     vacancy rate           6       42    0.693     0.668
+unemployment rate           0       48   -0.483    -0.429
+unemployment rate           1       47   -0.554    -0.494
+unemployment rate           2       46   -0.591    -0.532
+unemployment rate           3       45   -0.659    -0.627
+unemployment rate           4       44   -0.720    -0.666
+unemployment rate           5       43   -0.734    -0.692
+unemployment rate           6       42   -0.684    -0.647
+
+   Regression on standardized variables (coefficients are in standard deviations):
+   wage_{t+lag} ~ CPI inflation_t + V/U_t  vs  CPI inflation_t alone, same rows
+ lag_months  n  beta_cpi_with_tight  beta_tight  r2_cpi_and_tight  beta_cpi_alone  r2_cpi_alone  r2_added_by_tight
+          0 48               -0.804       1.021             0.154           0.150         0.023              0.131
+          1 47               -0.694       1.026             0.201           0.266         0.071              0.131
+          2 46               -0.566       1.001             0.263           0.370         0.137              0.126
+          3 45               -0.203       0.747             0.316           0.495         0.245              0.071
+          4 44               -0.261       0.901             0.441           0.580         0.337              0.104
+          5 43               -0.325       1.026             0.536           0.632         0.399              0.137
+          6 42               -0.320       1.007             0.517           0.618         0.382              0.136
+   largest R^2 added by V/U: 0.137 at lag 5 (CPI alone R^2 0.399)
+
+-- B. CPI pass-through: slope of nominal wage growth_{t+lag} on CPI inflation_t --
+   slope = percentage points of wage growth per 1 point of inflation; 1.0 = full pass-through
+[PASS] industry chain table is not empty  -> 900 rows
+[PASS] enough industries for cross-industry analysis  -> 15 usable industries
+[PASS] pass-through computed  -> 17 series
+                                                        series  lag0_slope  lag0_corr  best_lag  best_slope  best_corr  best_lag_at_edge
+                                     ALL INDUSTRIES (national)       0.064      0.150         5       0.237      0.632             False
+                               Accommodation and food services       0.824      0.593         4       1.233      0.888             False
+Agriculture, forestry, fishing, mining, quarrying, oil and gas      -0.981     -0.448         6      -0.230     -0.102              True
+                 Business, building and other support services       0.109      0.095         0       0.109      0.095             False
+                                                  Construction       0.394      0.519         5       0.557      0.709             False
+                                          Educational services      -0.447     -0.612         2      -0.379     -0.530             False
+           Finance, insurance, real estate, rental and leasing       0.095      0.087         4       0.214      0.211             False
+                             Health care and social assistance      -0.030     -0.051         5       0.105      0.232             False
+                           Information, culture and recreation      -1.131     -0.583         3      -1.075     -0.553             False
+                                                 Manufacturing       0.577      0.573         6       0.779      0.805              True
+                 Other services (except public administration)      -0.528     -0.511         6      -0.008     -0.010              True
+               Professional, scientific and technical services       0.840      0.612         3       0.965      0.696             False
+                                         Public administration      -0.416     -0.583         6      -0.210     -0.339              True
+                                Transportation and warehousing      -0.431     -0.349         6       0.283      0.241              True
+                                                     Utilities      -1.028     -0.537         6      -0.437     -0.255              True
+                                    Wholesale and retail trade       0.571      0.579         3       0.612      0.631             False
+                                      POOLED within industries      -0.105        NaN         6       0.113        NaN              True
+
+   industries, lag 0: median slope -0.03, range -1.13 to 0.84
+   slope > 0 in 7 of 15; slope < 1 in 15 of 15
+[WARN] 6 industries have their best lag at the edge (lag 6); the peak may lie outside the tested range
+
+-- C. Cross-industry: industry vacancy rate_t vs nominal wage growth_{t+lag} --
+   rank correlation across industries within each month; CPI cancels out
+ lag_months  n_months  mean_rho  median_rho  share_positive
+          0        48     0.096       0.125           0.646
+          1        47     0.094       0.143           0.660
+          2        46     0.094       0.141           0.609
+          3        45     0.078       0.086           0.578
+          4        44     0.065       0.062           0.545
+          5        43     0.054       0.103           0.558
+          6        42     0.056       0.039           0.548
+[PASS] cross-section computed for every lag  -> min months 42
+
+   lag 0: mean rho 0.096, share positive 0.65 -> no consistent link
+   best lag 0: mean rho 0.096, share positive 0.65 -> no consistent link
+
+   Notes: descriptive only. Overlapping 12-month changes, one inflation cycle,
+   collinear drivers and non-seasonally-adjusted tightness series.
+
+   written: outputs/07_04_national_lags.csv
+   written: outputs/07_04_passthrough.csv
+   written: outputs/07_04_tightness_cross_section.csv
+   written: outputs/07_04_tightness_wages.png
+
+================================================================================
+TIGHTNESS, CPI AND WAGES RESULT
+================================================================================
+Checks: 8 | Passed: 8 | Failed: 0 | Warnings: 2
+Status: PASSED
