@@ -69,9 +69,6 @@ MAX_LAG = 6
 MIN_PAIRS = 24
 MIN_CHAIN_MONTHS = 24     # same cutoff as 07_01
 MIN_INDUSTRIES = 8
-CS_MEAN_THRESHOLD = 0.2   # part C: clear link
-WEAK_MEAN = 0.1           # part C: weak but consistent
-CS_SHARE_THRESHOLD = 0.6
 COLLINEARITY_WARN = 0.6
 NATIONAL_NAME = "ALL INDUSTRIES (national)"
 
@@ -145,18 +142,6 @@ def fit_standardized(data, y, xs):
   resid = Y - X @ beta
   r2 = 1.0 - float((resid ** 2).sum()) / float((Y ** 2).sum())
   return dict(zip(xs, [float(b) for b in beta])), r2
-
-
-def reading(mean, share):
-  if mean >= CS_MEAN_THRESHOLD and share >= CS_SHARE_THRESHOLD:
-    return "clear positive link across industries"
-  if mean <= -CS_MEAN_THRESHOLD and share <= 1 - CS_SHARE_THRESHOLD:
-    return "clear negative link across industries"
-  if mean >= WEAK_MEAN and share >= CS_SHARE_THRESHOLD:
-    return "weak but consistent positive link"
-  if mean <= -WEAK_MEAN and share <= 1 - CS_SHARE_THRESHOLD:
-    return "weak but consistent negative link"
-  return "no consistent link"
 
 
 def grid(df):
@@ -385,11 +370,11 @@ valid = cs.dropna(subset=["mean_rho"])
 if not valid.empty:
   at0 = valid[valid["lag_months"] == 0].iloc[0]
   top = valid.loc[valid["mean_rho"].idxmax()]
-  log(f"\n   lag 0: mean rho {at0['mean_rho']:.3f}, share positive {at0['share_positive']:.2f} -> "
-      + reading(at0["mean_rho"], at0["share_positive"]))
+  log(f"\n   lag 0: mean rho {at0['mean_rho']:.3f}, share of months positive {at0['share_positive']:.2f}")
   log(f"   best lag {int(top['lag_months'])}: mean rho {top['mean_rho']:.3f}, "
-      f"share positive {top['share_positive']:.2f} -> "
-      + reading(top["mean_rho"], top["share_positive"]))
+      f"share of months positive {top['share_positive']:.2f}")
+  log("   Scale: |mean rho| below about 0.2 is a weak relationship; "
+      "the share shows how consistent the sign is across months.")
 
 # ------------------------------------------------------------------ figure
 

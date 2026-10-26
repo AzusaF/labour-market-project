@@ -15,7 +15,8 @@ What it does:
   - Reports the fit residual by calendar year. Residuals that rise or fall
     over time mean the curve has shifted outward or inward (changes in
     matching efficiency), as opposed to movement along the curve.
-  - Compares the first 12 months with the last 12 months (change in u and v).
+  - Reports the year-to-year change of the annual mean u and v, and whether
+    each step is movement along the curve or a shift of the curve.
   - Reports V/U (vacancies per unemployed person) as the tightness measure
     used later for the wage analysis.
 
@@ -45,7 +46,6 @@ OUT.parent.mkdir(exist_ok=True)
 
 N_MONTHS = 60
 SMOOTH_MONTHS = 3
-WINDOW = 12            # months compared at the start and at the end
 BAD_QUALITY = ("E", "F")
 
 con = duckdb.connect(DB, read_only=True)
@@ -177,20 +177,19 @@ by_year = df.groupby("year").agg(
 ).round(3)
 log(by_year.to_string())
 
-first = df.head(WINDOW)
-last = df.tail(WINDOW)
-du = float(last["u"].mean() - first["u"].mean())
-dv = float(last["v"].mean() - first["v"].mean())
-log(f"\n-- First {WINDOW} months vs last {WINDOW} months --")
-log(f"   unemployment rate: {first['u'].mean():.2f} -> {last['u'].mean():.2f}  ({du:+.2f} pp)")
-log(f"   job vacancy rate : {first['v'].mean():.2f} -> {last['v'].mean():.2f}  ({dv:+.2f} pp)")
-if du * dv < 0:
-  movement = "u and v moved in opposite directions: movement along the curve"
-elif du > 0 and dv > 0:
-  movement = "u and v both rose: outward shift (or a move along a shifted curve)"
-else:
-  movement = "u and v both fell: inward shift (or a move along a shifted curve)"
-log(f"   reading: {movement}")
+log("\n-- Year-to-year movement of the annual means --")
+log("   opposite signs for u and v = movement along the curve; same sign = shift of the curve")
+years = by_year.index.tolist()
+for prev, cur in zip(years[:-1], years[1:]):
+  du = float(by_year.loc[cur, "mean_u"] - by_year.loc[prev, "mean_u"])
+  dv = float(by_year.loc[cur, "mean_v"] - by_year.loc[prev, "mean_v"])
+  if du * dv < 0:
+    movement = "along the curve"
+  elif du > 0:
+    movement = "both rose: shift outward"
+  else:
+    movement = "both fell: shift inward"
+  log(f"   {prev} -> {cur}: unemployment rate {du:+.2f} pp, vacancy rate {dv:+.2f} pp  ({movement})")
 
 peak = df.loc[df["v"].idxmax()]
 trough = df.loc[df["v"].idxmin()]
