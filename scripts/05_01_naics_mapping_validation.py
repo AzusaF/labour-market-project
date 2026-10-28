@@ -181,8 +181,8 @@ def check_unknown_mapping_types(mapping_df, file):
 	if unknown_types:
 		print("Unrecognized mapping_type value(s):", file=file)
 
-	for value in unknown_types:
-		print(f"  - {value}", file=file)
+		for value in unknown_types:
+			print(f"  - {value}", file=file)
 	else:
 		print("All mapping_type values recognized.", file=file)
 
@@ -356,7 +356,7 @@ def main():
 				f"Validation FAILED — see report for details: {OUTPUT_FILE}",
 				file=sys.stderr,
 			)
-		sys.exit(1)
+			sys.exit(1)
 
 
 if __name__ == "__main__":

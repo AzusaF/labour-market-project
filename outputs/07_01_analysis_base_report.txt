@@ -1,0 +1,59 @@
+================================================================================
+ANALYSIS BASE
+================================================================================
+
+-- analysis_national_monthly --
+   60 rows, 60 distinct months, 2021-01-01 -> 2025-12-01
+[PASS] national: one row per month, 60 months
+[PASS] national.unemployment_thousands: no NULLs
+[PASS] national.unemployment_rate_pct: no NULLs
+[PASS] national.cpi: no NULLs
+[PASS] national.cpi_rebased: no NULLs
+[PASS] national.job_vacancies: present for every month (needed for Beveridge / tightness)
+[PASS] national.job_vacancy_rate_pct: present for every month (needed for Beveridge / tightness)
+[PASS] national.vacancies_per_unemployed: present for every month (needed for Beveridge / tightness)
+[PASS] national.avg_hourly_wage_cad: present for every month (needed for Beveridge / tightness)
+[PASS] national.real_avg_hourly_wage_cad: present for every month (needed for Beveridge / tightness)
+[PASS] national.cpi_yoy_pct: available from 2022-01
+   V/U range: 0.252 to 1.033
+[PASS] national: V/U within plausible range (0 to 3)
+   real avg hourly wage (BASE_MONTH dollars): 28.58 to 31.04
+
+-- analysis_industry_chain --
+   900 rows, 15 harmonized industries
+[PASS] chain: not empty
+[PASS] chain: unique on (REF_DATE, naics_harmonized)
+[PASS] chain: no 12-month change before 2022-01
+[PASS] chain: same row count as industry_monthly (Canada)  -> 900 vs 900
+[PASS] chain: nominal wage change exists wherever real wage change exists
+
+   12-month changes available, by industry (employment / wage / vacancies / full chain):
+     Accommodation and food services: 48 / 48 / 48 / 48
+     Business, building and other support services: 48 / 48 / 48 / 48
+     Construction: 48 / 48 / 48 / 48
+     Educational services: 48 / 48 / 48 / 48
+     Health care and social assistance: 48 / 48 / 48 / 48
+     Information, culture and recreation: 48 / 48 / 48 / 48
+     Manufacturing: 48 / 48 / 48 / 48
+     Other services (except public administration): 48 / 48 / 48 / 48
+     Professional, scientific and technical services: 48 / 48 / 48 / 48
+     Public administration: 48 / 48 / 48 / 48
+     Transportation and warehousing: 48 / 48 / 48 / 48
+     Wholesale and retail trade: 48 / 48 / 48 / 48
+     Agriculture, forestry, fishing, mining, quarrying, oil and gas: 48 / 48 / 46 / 46
+     Finance, insurance, real estate, rental and leasing: 48 / 48 / 46 / 46
+     Utilities: 48 / 48 / 39 / 39
+[PASS] chain: at least one industry with enough full-chain months  -> 15 usable industries
+
+   vacancy quality of rows in the chain (worst of components):
+     A: 122
+     B: 382
+     C: 235
+     D: 134
+     E: 19
+
+================================================================================
+ANALYSIS BASE RESULT
+================================================================================
+Checks: 18 | Passed: 18 | Failed: 0 | Warnings: 0
+Status: PASSED

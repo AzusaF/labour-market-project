@@ -32,29 +32,29 @@ HARMONIZE
    employment_h.employment_thousands NULL (incomplete or suppressed) by GEO:
      Alberta: 60/900
      Ontario: 59/900
-     Manitoba: 58/900
      Saskatchewan: 58/900
+     Manitoba: 58/900
      Prince Edward Island: 47/894
      Quebec: 40/900
-     Newfoundland and Labrador: 29/900
      British Columbia: 29/900
+     Newfoundland and Labrador: 29/900
      Nova Scotia: 3/900
      Canada: 0/900
      New Brunswick: 0/900
 [PASS] wages_h: n_components <= expected_components
 [PASS] wages_h: incomplete components never produce a value (no partial sums)
    wages_h.avg_hourly_wage_cad NULL (incomplete or suppressed) by GEO:
+     Quebec: 0/900
+     Newfoundland and Labrador: 0/900
+     Ontario: 0/900
+     Alberta: 0/900
+     Manitoba: 0/900
+     New Brunswick: 0/900
      Canada: 0/900
      Nova Scotia: 0/900
      Prince Edward Island: 0/894
-     Newfoundland and Labrador: 0/900
-     Ontario: 0/900
-     Quebec: 0/900
      British Columbia: 0/900
      Saskatchewan: 0/900
-     Manitoba: 0/900
-     New Brunswick: 0/900
-     Alberta: 0/900
 [PASS] vacancies_h: n_components <= expected_components
 [PASS] vacancies_h: incomplete components never produce a value (no partial sums)
    vacancies_h.job_vacancies NULL (incomplete or suppressed) by GEO:

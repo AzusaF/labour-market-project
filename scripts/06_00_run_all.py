@@ -1,7 +1,7 @@
 """
 06 — Data Warehouse
 00 - RUN ALL
-Runs the stage-08 scripts in order (scripts/06_01_*.py ... 06_04_*.py) from the project root.
+Runs the stage-06 scripts in order (scripts/06_01_*.py ... 06_04_*.py) from the project root.
 Stops at the first non-zero exit code.
 """
 import subprocess

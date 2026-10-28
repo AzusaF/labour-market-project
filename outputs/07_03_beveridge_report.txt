@@ -1,0 +1,42 @@
+================================================================================
+BEVERIDGE CURVE
+================================================================================
+[PASS] 60 monthly points  -> 60 rows
+[PASS] no NULLs in u, v, V/U
+[PASS] u and v strictly positive (needed for ln)
+   vacancy quality of the national total: A 60
+
+-- Fit: ln(v) = a + b * ln(u) --
+   a = 2.399   b = -0.570   R^2 = 0.139   n = 60
+   Pearson corr(u, v) = -0.342
+   slope is negative: higher unemployment goes with fewer vacancies
+
+-- Residual by calendar year (mean of ln v - fitted ln v) --
+   positive = more vacancies than the curve implies (curve shifted outward)
+      months  mean_u  mean_v  mean_v_per_u  mean_resid_ln
+year                                                     
+2021      12   7.533   4.725         0.535          0.279
+2022      12   5.275   5.342         0.865          0.215
+2023      12   5.383   4.125         0.639         -0.031
+2024      12   6.350   3.208         0.409         -0.186
+2025      12   6.825   2.808         0.326         -0.277
+
+-- First 12 months vs last 12 months --
+   unemployment rate: 7.53 -> 6.82  (-0.71 pp)
+   job vacancy rate : 4.73 -> 2.81  (-1.92 pp)
+   reading: u and v both fell: inward shift (or a move along a shifted curve)
+
+   peak vacancy rate  : 6.00% in 2022-04 (u = 5.50%)
+   lowest vacancy rate: 2.40% in 2025-12 (u = 6.30%)
+   V/U range: 0.252 to 1.033
+
+   written: outputs/07_03_beveridge_points.csv
+   written: outputs/07_03_beveridge.png
+
+   Notes: descriptive only. Short window, autocorrelated months, no seasonal adjustment.
+
+================================================================================
+BEVERIDGE RESULT
+================================================================================
+Checks: 3 | Passed: 3 | Failed: 0 | Warnings: 0
+Status: PASSED

@@ -1,0 +1,126 @@
+================================================================================
+CHAIN v2: employment -> vacancies -> wages
+================================================================================
+   months 2022-01 to 2025-12 (48), min pairs 24, link threshold 0.3, min industries per month 8
+[PASS] chain table is not empty  -> 900 rows
+[PASS] enough industries for cross-industry analysis  -> 15 usable industries
+[PASS] at least 24 months have 8+ industries  -> 48 months
+[PASS] time-series correlations computed  -> 16 industries/series
+[PASS] pearson values within [-1, 1]
+[PASS] one row per (series, industry, link, lag)
+
+-- A. Time series, RAW 12-month changes --
+   Pearson; lag in months; best = highest over lags 0..6; edge lags are not trusted
+                                                      industry  full_chain_months  emp_to_vac_lag0  emp_to_vac_best_lag  emp_to_vac_best  vac_to_real_wage_lag0  vac_to_real_wage_best_lag  vac_to_real_wage_best  vac_to_nominal_wage_lag0  vac_to_nominal_wage_best                      verdict
+                               Accommodation and food services                 48            0.504                    0            0.504                 -0.672                          6                  0.024                    -0.211                     0.531 breaks at vacancies -> wages
+Agriculture, forestry, fishing, mining, quarrying, oil and gas                 46            0.118                    0            0.118                 -0.422                          0                 -0.422                    -0.270                    -0.262                      no link
+                 Business, building and other support services                 48           -0.083                    6            0.252                 -0.161                          2                 -0.117                     0.258                     0.499                      no link
+                                                  Construction                 48            0.541                    2            0.560                 -0.579                          6                 -0.519                     0.224                     0.550 breaks at vacancies -> wages
+                                          Educational services                 48           -0.057                    0           -0.057                 -0.846                          0                 -0.846                    -0.689                    -0.554                      no link
+           Finance, insurance, real estate, rental and leasing                 46            0.274                    0            0.274                 -0.640                          5                 -0.565                    -0.306                    -0.016                      no link
+                             Health care and social assistance                 48           -0.011                    5            0.061                 -0.867                          5                 -0.699                    -0.294                     0.311                      no link
+                           Information, culture and recreation                 48            0.776                    0            0.776                 -0.256                          0                 -0.256                    -0.121                    -0.115 breaks at vacancies -> wages
+                                                 Manufacturing                 48            0.032                    0            0.032                 -0.425                          0                 -0.425                     0.072                     0.218                      no link
+                 Other services (except public administration)                 48           -0.408                    0           -0.408                 -0.700                          0                 -0.700                    -0.603                    -0.361                      no link
+               Professional, scientific and technical services                 48            0.329                    0            0.329                 -0.230                          3                 -0.128                     0.155                     0.394 breaks at vacancies -> wages
+                                         Public administration                 48            0.535                    5            0.568                 -0.676                          0                 -0.676                    -0.487                    -0.474 breaks at vacancies -> wages
+                                Transportation and warehousing                 48           -0.131                    6           -0.020                 -0.713                          6                 -0.631                    -0.486                    -0.167                      no link
+                                                     Utilities                 39            0.296                    1            0.366                 -0.488                          6                 -0.265                    -0.382                    -0.064 breaks at vacancies -> wages
+                                    Wholesale and retail trade                 48            0.815                    0            0.815                 -0.742                          5                 -0.461                    -0.113                     0.452 breaks at vacancies -> wages
+                                     ALL INDUSTRIES (national)                 48            0.734                    0            0.734                 -0.847                          0                 -0.847                    -0.537                     0.236 breaks at vacancies -> wages
+
+   verdict counts (raw, industries only):
+     no link: 8
+     breaks at vacancies -> wages: 7
+   chain holds: (none)
+   emp_to_vac: lag-0 correlation positive in 10 of 15 industries
+   vac_to_real_wage: lag-0 correlation positive in 0 of 15 industries
+
+-- A. Time series, RELATIVE (industry minus cross-industry mean of the month) --
+   Pearson; lag in months; best = highest over lags 0..6; edge lags are not trusted
+                                                      industry  full_chain_months  emp_to_vac_lag0  emp_to_vac_best_lag  emp_to_vac_best  vac_to_real_wage_lag0  vac_to_real_wage_best_lag  vac_to_real_wage_best  vac_to_nominal_wage_lag0  vac_to_nominal_wage_best                           verdict
+                               Accommodation and food services                 48            0.443                    0            0.443                 -0.136                          6                  0.495                    -0.138                     0.506      breaks at vacancies -> wages
+Agriculture, forestry, fishing, mining, quarrying, oil and gas                 46            0.420                    0            0.420                  0.443                          0                  0.443                     0.439                     0.439                       chain holds
+                 Business, building and other support services                 48           -0.191                    6            0.473                  0.210                          2                  0.260                     0.204                     0.256                           no link
+                                                  Construction                 48            0.165                    2            0.453                  0.406                          0                  0.406                     0.406                     0.406                       chain holds
+                                          Educational services                 48           -0.034                    0           -0.034                 -0.513                          2                 -0.368                    -0.510                    -0.359                           no link
+           Finance, insurance, real estate, rental and leasing                 46            0.296                    2            0.313                 -0.166                          5                 -0.145                    -0.161                    -0.145      breaks at vacancies -> wages
+                             Health care and social assistance                 48           -0.075                    0           -0.075                 -0.048                          1                  0.066                    -0.044                     0.072                           no link
+                           Information, culture and recreation                 48            0.421                    0            0.421                  0.357                          0                  0.357                     0.352                     0.352                       chain holds
+                                                 Manufacturing                 48           -0.050                    6            0.004                 -0.370                          6                 -0.170                    -0.366                    -0.171                           no link
+                 Other services (except public administration)                 48           -0.143                    1           -0.093                 -0.069                          1                  0.030                    -0.073                     0.028                           no link
+               Professional, scientific and technical services                 48            0.087                    1            0.129                 -0.210                          0                 -0.210                    -0.215                    -0.215                           no link
+                                         Public administration                 48           -0.183                    5            0.146                  0.245                          3                  0.351                     0.249                     0.362 breaks at employment -> vacancies
+                                Transportation and warehousing                 48            0.025                    6            0.107                 -0.117                          6                  0.251                    -0.126                     0.247                           no link
+                                                     Utilities                 39            0.152                    1            0.246                 -0.146                          6                  0.053                    -0.145                     0.054                           no link
+                                    Wholesale and retail trade                 48            0.209                    3            0.214                 -0.537                          6                  0.006                    -0.537                     0.007                           no link
+
+   verdict counts (relative, industries only):
+     no link: 9
+     chain holds: 3
+     breaks at vacancies -> wages: 2
+     breaks at employment -> vacancies: 1
+   chain holds: Agriculture, forestry, fishing, mining, quarrying, oil and gas, Construction, Information, culture and recreation
+   emp_to_vac: lag-0 correlation positive in 9 of 15 industries
+   vac_to_real_wage: lag-0 correlation positive in 5 of 15 industries
+
+-- B. Cross-industry, month by month (rank correlation across industries) --
+   mean/median over months; share = months with a positive correlation; pooled = Pearson of relative series over all industry-months
+               link  lag_months  n_months  mean_rho  median_rho  share_positive  pooled_pearson  pooled_n
+         emp_to_vac           0        48     0.163       0.176           0.771           0.204       707
+         emp_to_vac           1        47     0.144       0.143           0.660           0.158       693
+         emp_to_vac           2        46     0.133       0.091           0.696           0.103       679
+         emp_to_vac           3        45     0.087       0.054           0.600           0.043       664
+         emp_to_vac           4        44     0.035       0.030           0.568          -0.005       649
+         emp_to_vac           5        43     0.037       0.007           0.558           0.020       634
+         emp_to_vac           6        42     0.053       0.105           0.643           0.006       620
+   vac_to_real_wage           0        48    -0.047      -0.052           0.417          -0.040       707
+   vac_to_real_wage           1        47    -0.065      -0.086           0.319          -0.048       692
+   vac_to_real_wage           2        46    -0.042      -0.051           0.413          -0.033       677
+   vac_to_real_wage           3        45    -0.061      -0.059           0.400           0.003       662
+   vac_to_real_wage           4        44    -0.054      -0.068           0.409           0.028       647
+   vac_to_real_wage           5        43    -0.021      -0.004           0.465           0.060       633
+   vac_to_real_wage           6        42    -0.006       0.009           0.500           0.082       618
+vac_to_nominal_wage           0        48    -0.047      -0.052           0.417          -0.042       707
+vac_to_nominal_wage           1        47    -0.065      -0.086           0.319          -0.048       692
+vac_to_nominal_wage           2        46    -0.042      -0.051           0.413          -0.033       677
+vac_to_nominal_wage           3        45    -0.061      -0.059           0.400           0.004       662
+vac_to_nominal_wage           4        44    -0.054      -0.068           0.409           0.030       647
+vac_to_nominal_wage           5        43    -0.021      -0.004           0.465           0.061       633
+vac_to_nominal_wage           6        42    -0.006       0.009           0.500           0.085       618
+   emp_to_real_wage           0        48    -0.039       0.002           0.500          -0.097       720
+   emp_to_real_wage           1        47    -0.005      -0.014           0.468          -0.058       705
+   emp_to_real_wage           2        46     0.034      -0.002           0.500          -0.036       690
+   emp_to_real_wage           3        45     0.037      -0.004           0.489          -0.009       675
+   emp_to_real_wage           4        44     0.040       0.023           0.545           0.005       660
+   emp_to_real_wage           5        43     0.077       0.089           0.628           0.019       645
+   emp_to_real_wage           6        42     0.043       0.038           0.548          -0.023       630
+[PASS] cross-section computed for every link  -> min months 42
+
+   Cross-industry reading (lag 0, and best lag by mean rho):
+     emp_to_vac: lag 0 mean rho 0.163 (share positive 0.77); best lag 0 mean rho 0.163 (share positive 0.77) -> no consistent link across industries
+     vac_to_real_wage: lag 0 mean rho -0.047 (share positive 0.42); best lag 6 mean rho -0.006 (share positive 0.50) -> no consistent link across industries
+     vac_to_nominal_wage: lag 0 mean rho -0.047 (share positive 0.42); best lag 6 mean rho -0.006 (share positive 0.50) -> no consistent link across industries
+     emp_to_real_wage: lag 0 mean rho -0.039 (share positive 0.50); best lag 5 mean rho 0.077 (share positive 0.63) -> no consistent link across industries
+
+-- C. National: is the negative vacancies -> real wage correlation the CPI cycle? --
+   lag 0, vacancies vs real wage: -0.847  (n = 48)
+   lag 0, vacancies vs nominal wage: -0.537  (n = 48)
+   lag 0, vacancies vs CPI inflation: 0.643  (n = 48)
+   lag 0, real wage vs CPI inflation: -0.914  (n = 48)
+   lag 0, nominal wage vs CPI inflation: 0.150  (n = 48)
+   If vacancies vs real wage is strongly negative while vacancies vs nominal wage is not,
+   and real wage tracks CPI inflation negatively, the sign comes from the CPI cycle.
+
+   Notes: descriptive only. Overlapping 12-month changes, one inflation cycle,
+   and best-lag selection mean these numbers are illustrations, not estimates.
+
+   written: outputs/07_02_chain_correlations.csv
+   written: outputs/07_02_chain_summary.csv
+   written: outputs/07_02_chain_cross_section.csv
+
+================================================================================
+CHAIN RESULT
+================================================================================
+Checks: 7 | Passed: 7 | Failed: 0 | Warnings: 0
+Status: PASSED
