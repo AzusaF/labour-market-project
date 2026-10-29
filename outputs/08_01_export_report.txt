@@ -1,0 +1,38 @@
+================================================================================
+EXPORT FOR TABLEAU
+================================================================================
+[PASS] all stage-07 CSV outputs exist
+[PASS] national: 60 months, one row per month  -> 60 rows
+[PASS] national: no missing months in the span
+   12-month changes start: 2022-01
+[PASS] national: 12-month changes start in 2022-01  -> 2022-01-01
+   written: outputs/bi/national_monthly.csv  (60 rows, 21 columns)
+[PASS] industry: not empty  -> 900 rows, 15 industries
+[PASS] industry: unique on (month, industry)
+   written: outputs/bi/industry_monthly.csv  (900 rows, 14 columns)
+[PASS] chain_summary: not empty  -> 31 rows
+[PASS] chain_cross_section: not empty  -> 28 rows
+[PASS] beveridge_points: not empty  -> 60 rows
+[PASS] national_lags: not empty  -> 21 rows
+[PASS] passthrough: not empty  -> 119 rows
+[PASS] tightness_cross_section: not empty  -> 7 rows
+[PASS] beveridge: one row per month  -> 60 rows
+   written: outputs/bi/beveridge_points.csv  (60 rows, 10 columns)
+[PASS] passthrough: one national and one pooled series
+   written: outputs/bi/passthrough.csv  (119 rows, 7 columns)
+[PASS] chain_summary: has a verdict for every row
+   written: outputs/bi/chain_summary.csv  (31 rows, 21 columns)
+   written: outputs/bi/national_lags.csv  (21 rows, 12 columns)
+   written: outputs/bi/tightness_cross_section.csv  (7 rows, 5 columns)
+   written: outputs/bi/chain_cross_section.csv  (28 rows, 8 columns)
+[PASS] every industry month exists in national_monthly
+[PASS] every industry in chain_summary exists in industry_monthly
+
+   Tableau: connect each CSV as a text file. Relate national_monthly and
+   industry_monthly on month. Keep the other files as separate data sources.
+
+================================================================================
+EXPORT RESULT
+================================================================================
+Checks: 17 | Passed: 17 | Failed: 0 | Warnings: 0
+Status: PASSED
